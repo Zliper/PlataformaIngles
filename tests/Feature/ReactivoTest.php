@@ -11,7 +11,7 @@ use App\models\TipoReactivo;
 use App\models\Estatus;
 use App\models\Profesor;
 use App\models\Reactivo;
-
+use App\User;
 
 class ReactivoTest extends TestCase
 {
@@ -26,7 +26,15 @@ class ReactivoTest extends TestCase
 		factory(Estatus::class)->times(2)->create();
 		factory(Profesor::class)->times(2)->create();
 
-		$this->json('GET','/api/reactivos')
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
+
+		$this->json('GET','/api/reactivos', [], $headers)
 		->assertStatus(200)
 		->assertJson([
 			'data' => [],
@@ -47,6 +55,14 @@ class ReactivoTest extends TestCase
 		factory(Estatus::class)->times(20)->create();
 		factory(Profesor::class)->times(20)->create();
 
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
+
 		factory(Reactivo::class)->create([
 			'competencia_id' => 1,
 			'tipo_id' => 1,
@@ -55,7 +71,7 @@ class ReactivoTest extends TestCase
 		]);
 
 
-		$this->json('GET','/api/reactivos/1')
+		$this->json('GET','/api/reactivos/1', [] , $headers)
 		->assertStatus(200)
 		->assertJsonStructure([
 			'data' => [
@@ -78,7 +94,16 @@ class ReactivoTest extends TestCase
 
 	/** @test */
 	public function reactivo_doesnt_exist() {
-		$this->json('GET','/api/reactivos/0')
+
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
+
+		$this->json('GET','/api/reactivos/0', [], $headers)
 		->assertStatus(404)
 		->assertJson([
 			'error' => 'Resource not found',

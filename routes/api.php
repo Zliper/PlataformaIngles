@@ -7,4 +7,10 @@ use Illuminate\Http\Request;
 });
 */
 
-Route::resource('reactivos','API\ReactivoController');
+Route::post('register', 'Auth\RegisterController@register');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout');
+
+Route::group(['middleware' => 'auth:api'], function() {
+	Route::resource('reactivos','API\ReactivoController');
+});

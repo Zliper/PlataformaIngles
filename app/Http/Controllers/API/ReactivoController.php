@@ -17,7 +17,7 @@ class ReactivoController extends Controller
      */
     public function index()
     {
-        return new ReactivoCollection(Reactivo::all());
+        return new ReactivoCollection(Reactivo::paginate(10));
     }
 
     /**
