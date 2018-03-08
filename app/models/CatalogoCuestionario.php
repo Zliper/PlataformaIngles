@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class CatalogoCuestionario extends Model
 {
+	protected $fillable = ['tipo_cuestionario'];
     protected $table = 'catalogo_cuestionarios';
+
+    public function hasEvaluacion() {
+    	return $this->hasMany('App\models\Evaluacion','catalogo_id');
+    }
 }

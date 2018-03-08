@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoReactivo extends Model
 {
+	protected $fillable = ['tipo_reactivo'];
     protected $table = 'tipo_reactivos';
+
+    public function reactivos() {
+    	return $this->hasMany('App\models\Reactivo','tipo_id');
+    }
 }
