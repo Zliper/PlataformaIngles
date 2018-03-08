@@ -7,5 +7,4 @@ use Illuminate\Http\Request;
 });
 */
 
-
-//carrreras
+Route::resource('reactivos','API\ReactivoController');
