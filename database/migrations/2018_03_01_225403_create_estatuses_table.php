@@ -15,7 +15,7 @@ class CreateEstatusesTable extends Migration
     {
         Schema::create('estatus', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('estatus');
+            $table->string('estatus');
             $table->timestamps();
         });
     }

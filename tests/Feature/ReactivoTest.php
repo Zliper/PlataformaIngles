@@ -252,6 +252,14 @@ class ReactivoTest extends TestCase
 		\Illuminate\Support\Facades\DB::table('profesores')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
+
 		factory(Competencia::class)->times(2)->create();
 		factory(TipoReactivo::class)->times(2)->create();
 		factory(Estatus::class)->times(2)->create();
@@ -264,7 +272,7 @@ class ReactivoTest extends TestCase
 			'profesor_id' => 1,
 		]);
 
-		$this->json('DELETE','/api/reactivos/1')
+		$this->json('DELETE','/api/reactivos/1', [], $headers)
 		->assertStatus(204);
 	}
 

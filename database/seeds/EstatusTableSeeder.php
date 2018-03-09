@@ -14,15 +14,12 @@ class EstatusTableSeeder extends Seeder
     public function run()
     {
         Estatus::create([
-            'estatus' => 0
+            'estatus' => 'Aprobado'
         ]);
 
         Estatus::create([
-            'estatus' => 1
+            'estatus' => 'Espera'
         ]);
-
-        Estatus::create([
-            'estatus' => 2
-        ]);
+        
     }
 }
