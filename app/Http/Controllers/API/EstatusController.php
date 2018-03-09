@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\EstatusResource;
+use App\Http\Resources\collections\EstatusCollection;
 use App\models\Estatus;
 
 class EstatusController extends Controller
@@ -16,6 +16,6 @@ class EstatusController extends Controller
      */
     public function index()
     {
-        return EstatusResource::collection(Estatus::all());
+        return new EstatusCollection(Estatus::all());
     }
 }

@@ -14,4 +14,5 @@ Route::post('logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => 'auth:api'], function() {
 	Route::resource('reactivos','API\ReactivoController');
 	Route::get('estatus','API\EstatusController@index');
+	Route::get('competencias','API\CompetenciaController@index');
 });
