@@ -4,7 +4,7 @@ namespace App\Http\Resources\collections;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ReactivoCollection extends ResourceCollection
+class PuntoGramaticalCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,12 +15,13 @@ class ReactivoCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'reactivos' => $this->collection->transform(function($reactivo){
+            "puntos_gramaticales" => $this->collection->transform(function($p) {
                 return [
-                    'id' => $reactivo->id,
-                    'pregunta' => $reactivo->pregunta,
+                    'id' => $p->id,
+                    'unidad' => $p->unidad,
+                    'punto_gramatical' => $p->punto_gramatica,
                 ];
-            }),
+            })
         ];
     }
 }

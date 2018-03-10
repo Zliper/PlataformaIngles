@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PuntoGramatical extends Model
 {
-	protected $fillable = ['unidad','punto_gramatical'];
+	protected $fillable = ['unidad','punto_gramatica','materia_id'];
     protected $table = 'puntos_gramaticales';
 
     public function materia() {

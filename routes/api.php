@@ -15,6 +15,8 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::resource('reactivos','API\ReactivoController');
 	Route::resource('carreras','API\CarreraController');
 	Route::resource('materias','API\MateriaController');
+	Route::resource('puntos','API\PuntoGramaticalController');
+	
 	Route::get('estatus','API\EstatusController@index');
 	Route::get('competencias','API\CompetenciaController@index');
 	Route::get('tipos','API\TipoReactivoController@index');
