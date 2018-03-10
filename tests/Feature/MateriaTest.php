@@ -6,158 +6,125 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
-use App\models\Carrera;
-use App\models\Groupo;
+use App\models\Materia;
 use App\User;
 
-class CarreraTest extends TestCase
+
+class MateriaTest extends TestCase
 {
-	use RefreshDatabase;
-
+	private $headers;
 
 	/** @test */
-	public function it_displays_carreras() {
+	public function it_displays_materias() {
 
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('carreras')->truncate();
+		DB::table('materias')->truncate();
 		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
-		Carrera::create([
-			'nombre_carrera' => 'IDS'
-		]);
-
-		Carrera::create([
-			'nombre_carrera' => 'Petrolera'
-		]);
-
-		Carrera::create([
-			'nombre_carrera' => 'Mecatronica'
-		]);
-
-		Carrera::create([
-			'nombre_carrera' => 'Biomedica'
-		]);
-
-		Carrera::create([
-			'nombre_carrera' => 'Energia'
-		]);
-
 		$user = factory(User::class)->create([
-			'email' => 'root@gmail.com',
+			'email' => 'root_test@gmail.com',
 		]);
-		$token = $user->generateToken();
 
+		$token = $user->generateToken();
 		$headers = ['Authorization' => "Bearer $token"];
 
-		$this->json('GET','/api/carreras', [], $headers)
+		factory(Materia::class)->times(2)->create();
+
+		$this->json('GET','/api/materias', [], $headers)
 		->assertStatus(200)
-		->assertJson([
-			'data' => [],
-		]);
-
-		$this->assertEquals(5, DB::table('carreras')->count());
-	}
-
-	/** @test */
-	public function it_displays_a_single_carrera() {
-
-		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('carreras')->truncate();
-		DB::table('users')->truncate();
-		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
-
-		Carrera::create([
-			'nombre_carrera' => 'IDS'
-		]);
-
-		$user = factory(User::class)->create([
-			'email' => 'root@gmail.com',
-		]);
-		$token = $user->generateToken();
-
-		$headers = ['Authorization' => "Bearer $token"];
-
-		$this->json('GET','/api/carreras/1', [], $headers)
-		->assertStatus(200)
-		->assertJson([
-			'data' => [],
-		]);
-	}
-
-
-	/** @test */
-	public function reactivo_doesnt_exist() {
-
-		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('carreras')->truncate();
-		DB::table('users')->truncate();
-		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
-
-		$user = factory(User::class)->create([
-			'email' => 'root@gmail.com',
-		]);
-
-		$token = $user->generateToken();
-
-		$headers = ['Authorization' => "Bearer $token"];
-
-		$this->json('GET','/api/carreras/0', [], $headers)
-		->assertStatus(404)
-		->assertJson([
-			'error' => 'Resource not found',
-		]);
-	}
-
-
-	/** @test */
-	public function it_adds_a_new_carrera() {
-		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('carreras')->truncate();
-		DB::table('users')->truncate();
-		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
-
-		$payload = [
-			"nombre_carrera" => "IDS"
-		];
-
-		$user = factory(User::class)->create([
-			'email' => 'root@gmail.com',
-		]);
-
-		$token = $user->generateToken();
-
-		$headers = ['Authorization' => "Bearer $token"];
-
-		$this->json('POST','/api/carreras', $payload, $headers)
-		->assertStatus(201)
 		->assertJsonStructure([
 			'data' => [
-				'id',
-				'attributes' => [
-					'carrera',
-				],
-				'relationships' => [
-					['grupos' => []]
-				]
-			],	
+				"materias" => []
+			],
+		]);
+	}
+
+	/** @test */
+	public function it_displays_a_sigle_materia() {
+
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+		DB::table('materias')->truncate();
+		DB::table('users')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
+		$user = factory(User::class)->create([
+			'email' => 'root_test@gmail.com',
 		]);
 
-		$this->assertEquals(1, DB::table('carreras')->count());
+		$token = $user->generateToken();
+		$headers = ['Authorization' => "Bearer $token"];
+
+		$m = factory(Materia::class)->create();
+
+		$this->json('GET','/api/materias/'.$m->id, [], $headers)
+		->assertStatus(200)
+		->assertJsonStructure([
+			"id",
+			"materia"
+		]);
+	}
+
+	/** @test */
+	public function it_displays_resource_not_found() {
+
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+		DB::table('materias')->truncate();
+		DB::table('users')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
+		$user = factory(User::class)->create([
+			'email' => 'root_test@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+		$headers = ['Authorization' => "Bearer $token"];
+		$this->json('GET','/api/materias/1', [], $headers)
+		->assertStatus(404);
 	}
 
 
 	/** @test */
-	public function it_adds_a_new_carrera_fail() {
-
+	public function it_adds_a_new_materia() {
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('carreras')->truncate();
+		DB::table('materias')->truncate();
 		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
+		$user = factory(User::class)->create([
+			'email' => 'root_test@gmail.com',
+		]);
+
 		$payload = [
-			'email' => 'root@gmail.com',
+			"materia" => "ingles 8"
 		];
+
+		$this->assertEquals(0, DB::table('materias')->count());
+
+		$token = $user->generateToken();
+		$headers = ['Authorization' => "Bearer $token"];
+
+		$this->json('POST','/api/materias', $payload, $headers)
+		->assertStatus(201)
+		->assertJsonStructure([
+			"id",
+			"materia"
+		]);
+
+		$materia = Materia::find(1);
+		$this->assertEquals(1, $materia->id);
+
+	}
+
+	/** @test */
+	public function it_adds_a_new_materia_fail() {
+
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+		DB::table('materias')->truncate();
+		DB::table('users')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
+		$payload = [];
 
 		$user = factory(User::class)->create([
 			'email' => 'root@gmail.com',
@@ -169,23 +136,21 @@ class CarreraTest extends TestCase
 
 		$this->json('POST','/api/carreras', $payload, $headers)
 		->assertStatus(400);
-
 	}
 
 	/** @test */
-	public function it_updates_a_new_carrera() {
-
+	public function it_updates_a_new_materia() {
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('carreras')->truncate();
+		DB::table('materias')->truncate();
 		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
-		Carrera::create([
-			'nombre_carrera' => 'IDS'
+		Materia::create([
+			"materia" => "ingles 8"
 		]);
 
 		$payload = [
-			'nombre_carrera' => 'Meca'
+			'materia' => 'ingles 9'
 		];
 
 		$user = factory(User::class)->create([
@@ -196,30 +161,19 @@ class CarreraTest extends TestCase
 
 		$headers = ['Authorization' => "Bearer $token"];
 
-		$this->json('PUT','/api/carreras/1', $payload, $headers)
-		->assertStatus(200)
-		->assertJsonStructure([
-			'data' => [
-				'id',
-				'attributes' => [
-					'carrera',
-				],
+		$this->json('PUT','/api/materias/1', $payload, $headers)
+		->assertStatus(200);
 
-				'relationships' => [
-					['grupos' => []]
-				]
-			],	
-		]);
+		$materia = Materia::find(1);
 
-		$carrera = Carrera::find(1);
-
-		$this->assertEquals('Meca',$carrera->nombre_carrera);
+		$this->assertEquals('ingles 9',$materia->materia);
 	}
 
+
 	/** @test */
-	public function it_updates_a_new_carrera_fail() {
+	public function it_updates_a_new_materia_fail() {
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('carreras')->truncate();
+		DB::table('materias')->truncate();
 		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
@@ -228,27 +182,26 @@ class CarreraTest extends TestCase
 		]);
 
 		$payload = [
-			'nombre_carrera' => 'Meca'
+			'materia' => 'Meca'
 		];
 
 		$token = $user->generateToken();
 
 		$headers = ['Authorization' => "Bearer $token"];
 
-		$this->json('PUT','/api/carreras/0', $payload, $headers)
+		$this->json('PUT','/api/materia/0', $payload, $headers)
 		->assertStatus(404);
 	}
 
 	/** @test */
-	public function it_deletes_a_carrera() {
-
+	public function it_deletes_a_materia() {
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('carreras')->truncate();
+		DB::table('materias')->truncate();
 		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
-		
-		Carrera::create([
-			'nombre_carrera' => 'IDS'
+
+		Materia::create([
+			'materia' => 'ingles 8'
 		]);
 
 		$user = factory(User::class)->create([
@@ -259,7 +212,26 @@ class CarreraTest extends TestCase
 
 		$headers = ['Authorization' => "Bearer $token"];
 
-		$this->json('DELETE','/api/carreras/1', [],  $headers)
+		$this->json('DELETE','/api/materias/1', [],  $headers)
 		->assertStatus(204);
+	}
+
+	/** @test */
+	public function it_deletes_a_materia_fail() {
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+		DB::table('materias')->truncate();
+		DB::table('users')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+		
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
+
+		$this->json('DELETE','/api/materias/1', [],  $headers)
+		->assertStatus(404);
 	}
 }

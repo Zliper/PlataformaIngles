@@ -4,25 +4,21 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\collections\ReactivoCollection;
-use App\Http\Resources\ReactivoResource;
-use App\models\Reactivo;
+use App\Http\Resources\collections\MateriaCollection;
+use App\Http\Resources\MateriaResource;
+use App\models\Materia;
 
-class ReactivoController extends Controller
+
+class MateriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->input('by','') == "Aprobado") {
-            return new ReactivoCollection(Reactivo::where('estatus_id','=',1)->paginate(8));
-        } else if ($request->input('by','') == "Espera") {
-            return new ReactivoCollection(Reactivo::where('estatus_id','=',2)->paginate(8));
-        }
-        return new ReactivoCollection(Reactivo::paginate(10));
+        return new MateriaCollection(Materia::all());
     }
 
     /**
@@ -43,10 +39,11 @@ class ReactivoController extends Controller
      */
     public function store(Request $request)
     {
-        ReactivoResource::withoutWrapping();
-        $reactivo = Reactivo::create($request->all());
+        MateriaResource::withoutWrapping();
 
-        return response(new ReactivoResource($reactivo),201);
+        $materia = Materia::create($request->all());
+
+        return response(new MateriaResource($materia), 201);
     }
 
     /**
@@ -55,10 +52,10 @@ class ReactivoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Reactivo $reactivo)
+    public function show(Materia $materia)
     {
-        ReactivoResource::withoutWrapping();
-        return new ReactivoResource($reactivo);
+        MateriaResource::withoutWrapping();
+        return new MateriaResource($materia);
     }
 
     /**
@@ -79,11 +76,12 @@ class ReactivoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reactivo $reactivo)
+    public function update(Request $request, Materia $materia)
     {
-        $reactivo->update($request->all());
+        MateriaResource::withoutWrapping();
+        $materia->update($request->all());
 
-        return response(new ReactivoResource($reactivo), 200);
+        return response(new MateriaResource($materia), 200);
     }
 
     /**
@@ -92,9 +90,10 @@ class ReactivoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reactivo $reactivo)
+    public function destroy(Materia $materia)
     {
-        $reactivo->delete();
-        return response()->json(null,204);
+        $materia->delete();
+
+        return response()->json(null, 204);
     }
 }

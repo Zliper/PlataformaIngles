@@ -16,10 +16,16 @@ use App\User;
 class ReactivoTest extends TestCase
 {
 
-	use RefreshDatabase;
-
 	/** @test */
 	public function it_displays_reactivos() {
+
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+		DB::table('competencias')->truncate();
+		DB::table('tipo_reactivos')->truncate();
+		DB::table('estatus')->truncate();
+		DB::table('profesores')->truncate();
+		DB::table('users')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
 		factory(Competencia::class)->times(2)->create();
 		factory(TipoReactivo::class)->times(2)->create();
@@ -44,16 +50,18 @@ class ReactivoTest extends TestCase
 	/** @test */
 	public function it_displays_a_sigle_reactivo() {
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		\Illuminate\Support\Facades\DB::table('competencias')->truncate();
-		\Illuminate\Support\Facades\DB::table('tipo_reactivos')->truncate();
-		\Illuminate\Support\Facades\DB::table('estatus')->truncate();
-		\Illuminate\Support\Facades\DB::table('profesores')->truncate();
+		DB::table('competencias')->truncate();
+		DB::table('tipo_reactivos')->truncate();
+		DB::table('estatus')->truncate();
+		DB::table('profesores')->truncate();
+		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
 		factory(Competencia::class)->times(20)->create();
 		factory(TipoReactivo::class)->times(20)->create();
 		factory(Estatus::class)->times(20)->create();
 		factory(Profesor::class)->times(20)->create();
+		$f = factory(Reactivo::class)->create();
 
 		$user = factory(User::class)->create([
 			'email' => 'root@gmail.com',
@@ -63,15 +71,7 @@ class ReactivoTest extends TestCase
 
 		$headers = ['Authorization' => "Bearer $token"];
 
-		factory(Reactivo::class)->create([
-			'competencia_id' => 1,
-			'tipo_id' => 1,
-			'estatus_id' => 1,
-			'profesor_id' => 1,
-		]);
-
-
-		$this->json('GET','/api/reactivos/1', [] , $headers)
+		$this->json('GET','/api/reactivos/' . $f->id, [] , $headers)
 		->assertStatus(200)
 		->assertJsonStructure([
 			'data' => [
@@ -95,6 +95,14 @@ class ReactivoTest extends TestCase
 	/** @test */
 	public function reactivo_doesnt_exist() {
 
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+		DB::table('competencias')->truncate();
+		DB::table('tipo_reactivos')->truncate();
+		DB::table('estatus')->truncate();
+		DB::table('profesores')->truncate();
+		DB::table('users')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
 		$user = factory(User::class)->create([
 			'email' => 'root@gmail.com',
 		]);
@@ -114,11 +122,20 @@ class ReactivoTest extends TestCase
 	public function it_adds_a_new_reactivo() {
 
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		\Illuminate\Support\Facades\DB::table('competencias')->truncate();
-		\Illuminate\Support\Facades\DB::table('tipo_reactivos')->truncate();
-		\Illuminate\Support\Facades\DB::table('estatus')->truncate();
-		\Illuminate\Support\Facades\DB::table('profesores')->truncate();
+		DB::table('competencias')->truncate();
+		DB::table('tipo_reactivos')->truncate();
+		DB::table('estatus')->truncate();
+		DB::table('profesores')->truncate();
+		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
 
 
 		factory(Competencia::class)->times(2)->create();
@@ -137,7 +154,7 @@ class ReactivoTest extends TestCase
 
 		];
 
-		$this->json('POST','/api/reactivos', $payload)
+		$this->json('POST','/api/reactivos', $payload, $headers)
 		->assertStatus(201)
 		->assertJsonStructure([
 			'data' => [
@@ -161,11 +178,20 @@ class ReactivoTest extends TestCase
 	/** @test */
 	public function it_adds_a_new_reactivo_fail() {
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		\Illuminate\Support\Facades\DB::table('competencias')->truncate();
-		\Illuminate\Support\Facades\DB::table('tipo_reactivos')->truncate();
-		\Illuminate\Support\Facades\DB::table('estatus')->truncate();
-		\Illuminate\Support\Facades\DB::table('profesores')->truncate();
+		DB::table('competencias')->truncate();
+		DB::table('tipo_reactivos')->truncate();
+		DB::table('estatus')->truncate();
+		DB::table('profesores')->truncate();
+		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
 
 		$payload = [
 			'competencia_id' => 1,
@@ -178,7 +204,7 @@ class ReactivoTest extends TestCase
 
 		];
 
-		$this->json('POST','/api/reactivos', $payload)
+		$this->json('POST','/api/reactivos', $payload, $headers)
 		->assertStatus(400);
 	}
 
@@ -186,22 +212,28 @@ class ReactivoTest extends TestCase
 	/** @test */
 	public function it_updates_a_reactivo() {
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		\Illuminate\Support\Facades\DB::table('competencias')->truncate();
-		\Illuminate\Support\Facades\DB::table('tipo_reactivos')->truncate();
-		\Illuminate\Support\Facades\DB::table('estatus')->truncate();
-		\Illuminate\Support\Facades\DB::table('profesores')->truncate();
+		DB::table('competencias')->truncate();
+		DB::table('tipo_reactivos')->truncate();
+		DB::table('estatus')->truncate();
+		DB::table('profesores')->truncate();
+		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
 
 		factory(Competencia::class)->times(10)->create();
-
 		factory(Competencia::class)->times(2)->create();
-
 		factory(TipoReactivo::class)->times(2)->times(2)->create();
 		factory(Estatus::class)->times(2)->create();
 		factory(Profesor::class)->times(2)->create();
 
-		factory(Reactivo::class)->create([
+		$i = factory(Reactivo::class)->create([
 			'competencia_id' => 1,
 			'tipo_id' => 1,
 			'estatus_id' => 1,
@@ -221,7 +253,7 @@ class ReactivoTest extends TestCase
 			'texto' => 'xd',
 		];
 
-		$this->json('PUT','/api/reactivos/1', $payload)
+		$this->json('PUT','/api/reactivos/'.$i->id , $payload, $headers)
 		->assertStatus(200)
 		->assertJsonStructure([
 			'data' => [
@@ -240,16 +272,21 @@ class ReactivoTest extends TestCase
 				],
 			]
 		]);
+
+		$i = Reactivo::find($i->id);
+
+		$this->assertEquals(2, $i->competencia_id);
 	}
 
 
 	/** @test */
 	public function it_deletes_a_reactivo() {
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		\Illuminate\Support\Facades\DB::table('competencias')->truncate();
-		\Illuminate\Support\Facades\DB::table('tipo_reactivos')->truncate();
-		\Illuminate\Support\Facades\DB::table('estatus')->truncate();
-		\Illuminate\Support\Facades\DB::table('profesores')->truncate();
+		DB::table('competencias')->truncate();
+		DB::table('tipo_reactivos')->truncate();
+		DB::table('estatus')->truncate();
+		DB::table('profesores')->truncate();
+		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
 		$user = factory(User::class)->create([
@@ -264,21 +301,32 @@ class ReactivoTest extends TestCase
 		factory(TipoReactivo::class)->times(2)->create();
 		factory(Estatus::class)->times(2)->create();
 		factory(Profesor::class)->times(2)->create();
+		$f = factory(Reactivo::class)->create();
 
-		factory(Reactivo::class)->create([
-			'competencia_id' => 1,
-			'tipo_id' => 1,
-			'estatus_id' => 1,
-			'profesor_id' => 1,
-		]);
-
-		$this->json('DELETE','/api/reactivos/1', [], $headers)
+		$this->json('DELETE','/api/reactivos/' . $f->id, [], $headers)
 		->assertStatus(204);
 	}
 
 	/** @test */
 	public function it_deletes_a_reactivo_fail() {
-		$this->json('DELETE','/api/reactivos/1')
+
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+		DB::table('competencias')->truncate();
+		DB::table('tipo_reactivos')->truncate();
+		DB::table('estatus')->truncate();
+		DB::table('profesores')->truncate();
+		DB::table('users')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
+
+		$this->json('DELETE','/api/reactivos/13242342', [], $headers)
 		->assertStatus(404)
 		->assertJson([
 			'error' => 'Resource not found',
@@ -290,24 +338,28 @@ class ReactivoTest extends TestCase
 	public function it_updates_a_reactivo_fail() {
 
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		\Illuminate\Support\Facades\DB::table('competencias')->truncate();
-		\Illuminate\Support\Facades\DB::table('tipo_reactivos')->truncate();
-		\Illuminate\Support\Facades\DB::table('estatus')->truncate();
-		\Illuminate\Support\Facades\DB::table('profesores')->truncate();
+		DB::table('competencias')->truncate();
+		DB::table('tipo_reactivos')->truncate();
+		DB::table('estatus')->truncate();
+		DB::table('profesores')->truncate();
+		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
+		$user = factory(User::class)->create([
+			'email' => 'root@gmail.com',
+		]);
+
+		$token = $user->generateToken();
+
+		$headers = ['Authorization' => "Bearer $token"];
 
 		factory(Competencia::class)->times(2)->create();
 		factory(TipoReactivo::class)->times(2)->create();
 		factory(Estatus::class)->times(2)->create();
-		factory(Profesor::class)->times(2)->create();
+		factory(Profesor::class)->create();
 
-		factory(Reactivo::class)->create([
-			'competencia_id' => 1,
-			'tipo_id' => 1,
-			'estatus_id' => 1,
-			'profesor_id' => 1,
-		]);
-
+		$f = factory(Reactivo::class)->create();
+		
 		$payload = [
 			'competencia_id' => 23,
 			'tipo_id' => 12,
@@ -318,7 +370,7 @@ class ReactivoTest extends TestCase
 			'texto' => 'xd',
 		];
 
-		$this->json('PUT','/api/reactivos/1', $payload)
+		$this->json('PUT','/api/reactivos/'.$f->id, $payload, $headers)
 		->assertStatus(400)
 		->assertJson([
 			'error' => 'Query error',

@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\models\Competencia;
+use \Illuminate\Support\Facades\DB;
 use App\User; 
 
 
@@ -16,8 +17,13 @@ class CompetenciaTest extends TestCase
 
 	/** @test */
 	public function it_displays_list_competencias() {
-		factory(Competencia::class)->times(2)->create();
 
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+		DB::table('competencias')->truncate();
+		DB::table('users')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
+		factory(Competencia::class)->times(2)->create();
 
 		$user = factory(User::class)->create([
 			'email' => 'root@gmail.com',
@@ -34,6 +40,12 @@ class CompetenciaTest extends TestCase
 
 	/** @test */
 	public function it_gets_404() {
+
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+		DB::table('competencias')->truncate();
+		DB::table('users')->truncate();
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
 		$user = factory(User::class)->create([
 			'email' => 'root@gmail.com',
 		]);
@@ -42,7 +54,7 @@ class CompetenciaTest extends TestCase
 
 		$headers = ['Authorization' => "Bearer $token"];
 
-		$this->json('GET','/api/competencias/3453', [], $headers)
+		$this->json('GET','/api/competencias/0', [], $headers)
 		->assertStatus(404);
 	} 
 }
