@@ -18,6 +18,7 @@ class GrupoCollection extends ResourceCollection
             'grupos' =>  $this->collection->transform(function($g) {
                 return [
                     'grado' => $g->grupo,
+                    'grupo' => $g->grupo,
                     'periodo' => $g->periodo,
                 ];
             })

@@ -17,7 +17,6 @@ class CarreraResource extends JsonResource
     {
         return [
             "data" => [
-
                 'id' => $this->id,
                 "attributes" => [
                     'carrera' => $this->nombre_carrera,
