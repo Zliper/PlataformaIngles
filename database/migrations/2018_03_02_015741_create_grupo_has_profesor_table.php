@@ -15,10 +15,10 @@ class CreateGrupoHasProfesorTable extends Migration
     {
         Schema::create('grupo_has_profesor', function (Blueprint $table) {
             $table->integer('grupo_id')->unsigned();
-            $table->foreign('grupo_id')->references('id')->on('grupos');
+            $table->foreign('grupo_id')->references('id')->on('grupos')->onDelete('cascade');
 
             $table->integer('profesor_id')->unsigned();
-            $table->foreign('profesor_id')->references('id')->on('profesores');
+            $table->foreign('profesor_id')->references('id')->on('profesores')->onDelete('cascade');
             $table->timestamps();
         });
     }

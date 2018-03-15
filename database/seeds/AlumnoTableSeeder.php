@@ -14,9 +14,15 @@ class AlumnoTableSeeder extends Seeder
         factory(App\models\Alumno::class)->times(120)->create();
 
         $user = factory(App\User::class)->create([
-			'email' => 'root_test@gmail.com',
+			'email' => 'root@gmail.com',
+            'password' => bcrypt('loremroot'),
 		]);
 
 		$user->generateToken();
+
+        factory(App\User::class)->create([
+            'email' => 'test@test.com',
+            'password' => bcrypt('loremtest'),
+        ])->generateToken();
     }
 }

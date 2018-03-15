@@ -16,10 +16,10 @@ class AddForeingKeysToRespuestas extends Migration
         Schema::table('respuestas', function(Blueprint $table) {
 
             $table->integer('evaluacion_id')->unsigned()->after('id');
-            $table->foreign('evaluacion_id')->references('id')->on('evaluaciones');
+            $table->foreign('evaluacion_id')->references('id')->on('evaluaciones')->onDelete('cascade');
 
             $table->integer('reactivo_id')->unsigned()->after('evaluacion_id');
-            $table->foreign('reactivo_id')->references('id')->on('reactivos');
+            $table->foreign('reactivo_id')->references('id')->on('reactivos')->onDelete('cascade');
         });
     }
 

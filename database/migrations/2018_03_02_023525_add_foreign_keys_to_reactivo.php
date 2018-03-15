@@ -16,16 +16,16 @@ class AddForeignKeysToReactivo extends Migration
         Schema::table('reactivos', function(Blueprint $table) {
 
             $table->integer('competencia_id')->unsigned()->after('id');
-            $table->foreign('competencia_id')->references('id')->on('competencias');
+            $table->foreign('competencia_id')->references('id')->on('competencias')->onDelete('cascade');
 
             $table->integer('tipo_id')->unsigned()->after('competencia_id');
-            $table->foreign('tipo_id')->references('id')->on('tipo_reactivos');
+            $table->foreign('tipo_id')->references('id')->on('tipo_reactivos')->onDelete('cascade');
 
             $table->integer('estatus_id')->unsigned()->after('tipo_id');
-            $table->foreign('estatus_id')->references('id')->on('estatus');
+            $table->foreign('estatus_id')->references('id')->on('estatus')->onDelete('cascade');
 
             $table->integer('profesor_id')->unsigned()->after('estatus_id');
-            $table->foreign('profesor_id')->references('id')->on('profesores');
+            $table->foreign('profesor_id')->references('id')->on('profesores')->onDelete('cascade');
         });
     }
 

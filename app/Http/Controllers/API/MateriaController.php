@@ -18,6 +18,7 @@ class MateriaController extends Controller
      */
     public function index()
     {
+        MateriaResource::withoutWrapping();
         return new MateriaCollection(Materia::all());
     }
 

@@ -17,9 +17,12 @@ class GrupoCollection extends ResourceCollection
         return [
             'grupos' =>  $this->collection->transform(function($g) {
                 return [
-                    'grado' => $g->grupo,
+                    'id' => $g->id,
                     'grupo' => $g->grupo,
                     'periodo' => $g->periodo,
+                    "relationships" => [
+                        new MateriaCollection($g->hasMateria)
+                    ]
                 ];
             })
         ];

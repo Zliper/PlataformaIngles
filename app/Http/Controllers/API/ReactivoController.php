@@ -16,13 +16,13 @@ class ReactivoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    { 
         if ($request->input('by','') == "Aprobado") {
-            return new ReactivoCollection(Reactivo::where('estatus_id','=',1)->paginate(8));
+            return new ReactivoCollection(Reactivo::where('estatus_id','=',1)->paginate(5));
         } else if ($request->input('by','') == "Espera") {
-            return new ReactivoCollection(Reactivo::where('estatus_id','=',2)->paginate(8));
+            return new ReactivoCollection(Reactivo::where('estatus_id','=',2)->paginate(5));
         }
-        return new ReactivoCollection(Reactivo::paginate(10));
+        return new ReactivoCollection(Reactivo::paginate(5));
     }
 
     /**

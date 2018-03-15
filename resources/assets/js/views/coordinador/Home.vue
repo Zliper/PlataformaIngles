@@ -1,57 +1,99 @@
 <template>
 	<div>
-		<h2>Reactivos</h2>
-		<h3>Validación de reactivos </h3>
+		<h3 class="title-component text-center">Reactivos Aprobados </h3>
+<!-- 		<template v-if="sortType==='Aprobado'">
+			<h3 class="title-component text-center">Reactivos Aprobados </h3>
+		</template>
 
-		<div v-for="reactivo in reactivos" class="card card-body mb-3">
+		<template v-else>
+			<h3 class="title-component text-center">Validación de reactivos </h3>
+		</template>
 
-			<table class="table">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">Ingles 1</th>
-						<th scope="col">Lic. Karla Alvez Dominguez</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="table-secondary">
-						<th scope="row">Unidad 3</th>
-						<td>3.1.2 - Verbo to BE</td>
-					</tr>
-					<tr>
-						<th scope="row"> {{ reactivo.pregunta }} </th>
-						<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non cupiditate vitae quaerat.</td>
-					</tr>
-					<tr class="table-success">
-						<th scope="row">Opcion 1</th>
-						<td>Jacob</td>
-					</tr>
-					<tr>
-						<th scope="row">Opcion 2</th>
-						<td>Larry</td>
-					</tr>
-					<tr>
-						<th scope="row">Opcion 3</th>
-						<td>Larry</td>
-					</tr>
-					<tr>
-						<th scope="row">Opcion 4</th>
-						<td>Larry</td>
-					</tr>
-				
-					<div class="row">
-						<div class="col-10">
-							<a href="#" class="btn btn-success ">Aceptar</a>
-							<a href="#" class="btn btn-warning">Denegar</a>
-						</div>
-						<div class="col-2 ">
-							<a href="#" class="btn btn-info">Pendiente</a>
-						</div>
+		<div class="form-row mb-5">
+			<select @change="sortBy(sortType)" v-model="sortType" class="form-control col-sm-4">
+				<option selected value="Espera">Por validar</option>
+				<option value="Aprobado">Validados</option>
+			</select>
+		</div> -->
+
+		<div v-for="reactivo in reactivos" class="card mb-5">
+			<div class="card-body">
+				<table class="table table-hover">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Profesor</th>
+							<th scope="col"> {{ reactivo.relationships[4].name  + " " +   reactivo.relationships[4].apellido }} </th>
+						</tr>
+					</thead>
+
+					<tbody>			
+						<tr>
+							<th>Id</th>
+							<td> {{ reactivo.id }} </td>
+						</tr>
+						<tr>
+							<th>Competencia</th>
+							<td>
+								{{ reactivo.relationships[1].competencia }}
+							</td>
+						</tr>
+						<tr>
+							<th>Tipo Reactivo</th>	
+							<td>
+								{{ reactivo.relationships[2].tipo }}
+							</td>
+						</tr>
+
+						<template v-if="reactivo.texto">
+							<tr>
+								<th> Texto/Url </th>
+								<td> {{ reactivo.texto }} </td>
+							</tr>
+						</template>
+
+						<tr>
+							<th>Pregunta</th>
+							<td> {{ reactivo.pregunta }} </td>
+						</tr>
+
+						<tr class="table-success">
+							<th>Respuesta</th>
+							<td> {{ reactivo.respuesta }} </td>
+						</tr>				
+
+						<tr v-for="(value, key, index) in reactivo.relationships[0].opciones">
+							<th>Opción {{ index }}</th>
+							<td>
+								{{ value.opcion }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="row">
+					<div class="offset-sm-8 col-sm-4 text-center">
+						<a @click="validateReactivo(reactivo.id)"   href="#" class="btn btn-primary ">Aceptar</a>
+						<a @click="deleteReactivo(reactivo.id)" href="#" class="btn btn-danger">Denegar</a>
 					</div>
-
-				</tbody>
-			</table>
-			<!--<router-link :to="{ name: 'grupos' }" class="nav-link">Hello World</router-link>-->
+				</div>
+			</div>
 		</div>
+		
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li v-bind:class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
+					<a @click="fetchReactivos(pagination.prev_page_url + '&by=Espera')" class="page-link" href="#">Previous</a>
+				</li>
+				
+				<li  v-for="n in pagination.last_page" v-bind:class="[{ active: pagination.current_page==n}]" class="page-item">
+					<a  @click="fetchReactivos(pagination.url+ n +'&by=Espera')" class="page-link" href="#"> {{ n }} </a>
+				</li>
+
+				<li v-bind:class="[{ disabled: !pagination.next_page_url }]" class="page-item">
+					<a @click="fetchReactivos(pagination.next_page_url + '&by=Espera' )" class="page-link" href="#">Next</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
 </template>
 
@@ -67,6 +109,8 @@ export default {
 				password: "loremroot"
 			},
 			token: '',
+			sortType: '',
+			pagination: {},
 			reactivos: [],
 		}
 	},
@@ -83,11 +127,89 @@ export default {
 	},
 
 	methods:{
-		fetchReactivos() {
-			axios.get('/api/reactivos', { headers: { Authorization: "Bearer " + this.token } })
+		login(exec) {
+			axios.post('/api/login', this.data)
 			.then(response => {
-				console.log(response.data.data.reactivos);
+				this.token = response.data.data.api_token;
+				exec();
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		},
+
+		fetchReactivos(page_url = '/api/reactivos?by=Espera') {
+			let vm = this; 
+
+			axios.get(page_url, { headers: { Authorization: "Bearer " + this.token } })
+			.then(response => {
+				console.log(response.data);
 				this.reactivos = response.data.data.reactivos;
+				vm.makePagination( response.data.meta, response.data.links )
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		},
+
+		makePagination(meta, links) {
+			let pagination = {
+				current_page: meta.current_page,
+				last_page: meta.last_page,
+				next_page_url: links.next,
+				prev_page_url: links.prev,
+				prev_next_url: links.prev_next_url,
+				url: meta.path + '?page='
+			}
+
+			this.pagination = pagination;
+		},
+
+		sortBy(sortType) {
+			if (sortType === "Aprobado") {
+				this.fetchReactivos('/api/reactivos?by=Aprobado');
+			} else if(sortType === "Espera") {
+				this.fetchReactivos();
+			}
+		},
+
+		validateReactivo(id) {
+			this.update(id);
+		},
+
+		update(id) {
+			axios.post('/api/login', this.data)
+			.then(response => {
+				this.token = response.data.data.api_token;
+				axios.put('/api/reactivos/' + id, {  "estatus_id" : 1 } , { headers: { Authorization: "Bearer " + this.token } })
+				.then(response => {
+					console.log("Updated" + response);
+					this.fetchReactivos();
+				})
+				.catch(e => {
+					console.log(e);
+				});
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		},
+
+		deleteReactivo(id) {
+			this.delete(id);
+		},
+
+		delete(id) {
+			axios.post('/api/login', this.data)
+			.then(response => {
+				this.token = response.data.data.api_token;
+				axios.delete('/api/reactivos/' + id, { headers: { Authorization: "Bearer " + this.token } })
+				.then(response => {
+					this.fetchReactivos();
+				})
+				.catch(e => {
+					console.log(e);
+				});
 			})
 			.catch(e => {
 				console.log(e);

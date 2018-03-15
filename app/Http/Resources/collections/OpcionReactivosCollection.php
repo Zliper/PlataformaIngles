@@ -20,7 +20,7 @@ class OpcionReactivosCollection extends ResourceCollection
                 return [
                     'opcion' => $opcion->opcion,
                 ];
-            }); 
+            })
         ];
     }
 }

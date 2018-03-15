@@ -15,10 +15,10 @@ class CreateGrupoHasMateriaTable extends Migration
     {
         Schema::create('grupo_has_materia', function (Blueprint $table) {
             $table->integer('grupo_id')->unsigned();
-            $table->foreign('grupo_id')->references('id')->on('grupos');
+            $table->foreign('grupo_id')->references('id')->on('grupos')->onDelete('cascade');
 
             $table->integer('materia_id')->unsigned();
-            $table->foreign('materia_id')->references('id')->on('materias');
+            $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');
             $table->timestamps();
         });
     }

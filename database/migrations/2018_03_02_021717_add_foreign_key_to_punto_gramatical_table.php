@@ -15,7 +15,7 @@ class AddForeignKeyToPuntoGramaticalTable extends Migration
     {
         Schema::table('puntos_gramaticales', function(Blueprint $table) {
             $table->integer('materia_id')->unsigned();
-            $table->foreign('materia_id')->references('id')->on('materias');
+            $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');
         });
     }
 

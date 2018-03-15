@@ -15,7 +15,7 @@ class AddForeignKeyToOpcionReactivo extends Migration
     {
         Schema::table('opcion_reactivos', function(Blueprint $table) {
             $table->integer('reactivo_id')->unsigned()->after('id');
-            $table->foreign('reactivo_id')->references('id')->on('reactivos');
+            $table->foreign('reactivo_id')->references('id')->on('reactivos')->onDelete('cascade');
  
         });
          

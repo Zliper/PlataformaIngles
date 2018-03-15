@@ -15,10 +15,10 @@ class CreateEvaluacionHasReactivoTable extends Migration
     {
         Schema::create('evaluacion_has_reactivo', function (Blueprint $table) {
             $table->integer('evaluacion_id')->unsigned();
-            $table->foreign('evaluacion_id')->references('id')->on('evaluaciones');
+            $table->foreign('evaluacion_id')->references('id')->on('evaluaciones')->onDelete('cascade');
 
             $table->integer('reactivo_id')->unsigned();
-            $table->foreign('reactivo_id')->references('id')->on('reactivos');
+            $table->foreign('reactivo_id')->references('id')->on('reactivos')->onDelete('cascade');
             $table->timestamps();
         });
     }

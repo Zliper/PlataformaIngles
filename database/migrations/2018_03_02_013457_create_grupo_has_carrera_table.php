@@ -15,10 +15,10 @@ class CreateGrupoHasCarreraTable extends Migration
     {
         Schema::create('grupo_has_carrera', function (Blueprint $table) {
             $table->integer('grupo_id')->unsigned();
-            $table->foreign('grupo_id')->references('id')->on('grupos');
+            $table->foreign('grupo_id')->references('id')->on('grupos')->onDelete('cascade');
 
             $table->integer('carrera_id')->unsigned();
-            $table->foreign('carrera_id')->references('id')->on('carreras');
+            $table->foreign('carrera_id')->references('id')->on('carreras')->onDelete('cascade');
             $table->timestamps();
         });
     }

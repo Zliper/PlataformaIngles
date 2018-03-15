@@ -16,13 +16,13 @@ class AddForeignKeysToEvaluacion extends Migration
         Schema::table('evaluaciones', function(Blueprint $table) {
 
             $table->integer('materia_id')->unsigned()->after('id');
-            $table->foreign('materia_id')->references('id')->on('materias');
+            $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');
 
             $table->integer('catalogo_id')->unsigned()->after('materia_id');
-            $table->foreign('catalogo_id')->references('id')->on('catalogo_cuestionarios');
+            $table->foreign('catalogo_id')->references('id')->on('catalogo_cuestionarios')->onDelete('cascade');
 
             $table->integer('alumno_id')->unsigned()->after('catalogo_id');
-            $table->foreign('alumno_id')->references('matricula')->on('alumnos');
+            $table->foreign('alumno_id')->references('matricula')->on('alumnos')->onDelete('cascade');
         });
     }
 

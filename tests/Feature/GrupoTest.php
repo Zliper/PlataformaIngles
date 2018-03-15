@@ -26,7 +26,8 @@ class GrupoTest extends TestCase
 		$token = $user->generateToken();
 		$headers = ['Authorization' => "Bearer $token"];
 
-		factory(Grupo::class)->times(10)->create();
+		factory(Grupo::class)->times(2)->create();
+		//factory(Grupo::class)->times(10)->create();
 
 		$this->json('GET','/api/grupos', [], $headers)
 		->assertStatus(200)
@@ -57,7 +58,7 @@ class GrupoTest extends TestCase
 		$this->json('GET','/api/grupos/' . $f->id , [], $headers)
 		->assertStatus(200)
 		->assertJsonStructure([
-			'id','grado','grupo' ,'periodo'
+			'id','grupo' ,'periodo'
 		]);
 	}
 
@@ -91,7 +92,6 @@ class GrupoTest extends TestCase
 		]);
 
 		$payload = [
-			'grado' => 1,
 			'grupo' => 'E',
 			'periodo' => '1986-07-27'
 		];
@@ -102,7 +102,7 @@ class GrupoTest extends TestCase
 		$this->json('POST','/api/grupos', $payload, $headers)
 		->assertStatus(201)
 		->assertJsonStructure([
-			'id','grado','grupo' ,'periodo'
+			'id','grupo' ,'periodo'
 		]);
 	}
 
@@ -140,13 +140,11 @@ class GrupoTest extends TestCase
 		]);
 
 		$payload = [
-			'grado' => 3,
 			'grupo' => 'Z',
 			'periodo' => '1986-07-27'
 		];
 
 		$f = factory(Grupo::class)->create([
-			'grado' => 2,
 			'grupo' => 'A',
 			'periodo' => '1986-06-27' 
 		]);
@@ -159,7 +157,6 @@ class GrupoTest extends TestCase
 
 		$grupo = Grupo::find(1);
 
-		$this->assertEquals(3, $grupo->grado);
 		$this->assertEquals("Z", $grupo->grupo);
 		$this->assertEquals("1986-07-27", $grupo->periodo);
 	}

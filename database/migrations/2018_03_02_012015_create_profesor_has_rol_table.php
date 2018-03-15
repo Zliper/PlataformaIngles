@@ -15,10 +15,10 @@ class CreateProfesorHasRolTable extends Migration
     {
         Schema::create('profesor_has_rol', function (Blueprint $table) {   
             $table->integer('profesor_id')->unsigned();
-            $table->foreign('profesor_id')->references('id')->on('profesores');
+            $table->foreign('profesor_id')->references('id')->on('profesores')->onDelete('cascade');
 
             $table->integer('rol_id')->unsigned();
-            $table->foreign('rol_id')->references('id')->on('roles');
+            $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade');
             $table->timestamps();
         });
     }

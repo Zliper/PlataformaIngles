@@ -28,4 +28,8 @@ class Reactivo extends Model
     public function profesor() {
     	return $this->belongsTo('App\models\Profesor','profesor_id');
     }
+
+    public function opciones() {
+        return $this->hasMany('App\models\OpcionReactivo', 'reactivo_id');
+    }
 }
