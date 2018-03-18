@@ -19,7 +19,8 @@ class MateriaCollection extends ResourceCollection
                 return [
                     'id' => $m->id,
                     'materia' => $m->materia,
-                    'periodo' => $m->periodo
+                    'periodo' => $m->periodo,
+                    'year' => $m->year
                 ];
             })
         ];

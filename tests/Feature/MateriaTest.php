@@ -62,7 +62,8 @@ class MateriaTest extends TestCase
 		->assertJsonStructure([
 			"id",
 			"materia",
-			"periodo"
+			"periodo",
+			"year"
 		]);
 	}
 
@@ -98,7 +99,8 @@ class MateriaTest extends TestCase
 
 		$payload = [
 			"materia" => "ingles 8",
-			'periodo' => '1986-07-27'
+			'periodo' => '1986-07-27',
+			"year" => 1233
 		];
 
 		$this->assertEquals(0, DB::table('materias')->count());
@@ -111,7 +113,8 @@ class MateriaTest extends TestCase
 		->assertJsonStructure([
 			"id",
 			"materia",
-			"periodo"
+			"periodo",
+			"year"
 		]);
 
 		$materia = Materia::find(1);

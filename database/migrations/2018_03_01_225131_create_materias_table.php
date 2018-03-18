@@ -17,6 +17,7 @@ class CreateMateriasTable extends Migration
             $table->increments('id');
             $table->string('materia',20);
             $table->string('periodo',20);
+            $table->smallInteger('year');
             $table->timestamps();
         });
     }
