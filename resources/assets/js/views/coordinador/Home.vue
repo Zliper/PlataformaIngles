@@ -70,11 +70,9 @@
 					</tbody>
 				</table>
 
-				<div class="row">
-					<div class="offset-sm-8 col-sm-4 text-center">
-						<a @click="validateReactivo(reactivo.id)"   href="#" class="btn btn-primary ">Aceptar</a>
-						<a @click="deleteReactivo(reactivo.id)" href="#" class="btn btn-danger">Denegar</a>
-					</div>
+				<div class="d-flex justify-content-end">
+					<a @click="validateReactivo(reactivo.id)" href="#" class="btn btn-primary mr-3">Aceptar</a>
+					<a @click="deleteReactivo(reactivo.id)" href="#" class="btn btn-danger">Denegar</a>
 				</div>
 			</div>
 		</div>

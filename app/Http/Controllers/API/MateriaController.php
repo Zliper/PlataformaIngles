@@ -18,7 +18,7 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        return new MateriaCollection(Materia::all());
+        return new MateriaCollection(Materia::orderBy('year','DESC')->get());
     }
 
     /**
