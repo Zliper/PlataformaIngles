@@ -61,7 +61,8 @@ class MateriaTest extends TestCase
 		->assertStatus(200)
 		->assertJsonStructure([
 			"id",
-			"materia"
+			"materia",
+			"periodo"
 		]);
 	}
 
@@ -96,7 +97,8 @@ class MateriaTest extends TestCase
 		]);
 
 		$payload = [
-			"materia" => "ingles 8"
+			"materia" => "ingles 8",
+			'periodo' => '1986-07-27'
 		];
 
 		$this->assertEquals(0, DB::table('materias')->count());
@@ -108,7 +110,8 @@ class MateriaTest extends TestCase
 		->assertStatus(201)
 		->assertJsonStructure([
 			"id",
-			"materia"
+			"materia",
+			"periodo"
 		]);
 
 		$materia = Materia::find(1);
@@ -145,9 +148,7 @@ class MateriaTest extends TestCase
 		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
-		Materia::create([
-			"materia" => "ingles 8"
-		]);
+		$m = factory('App\models\Materia')->create();
 
 		$payload = [
 			'materia' => 'ingles 9'
@@ -161,7 +162,7 @@ class MateriaTest extends TestCase
 
 		$headers = ['Authorization' => "Bearer $token"];
 
-		$this->json('PUT','/api/materias/1', $payload, $headers)
+		$this->json('PUT','/api/materias/'. $m->id, $payload, $headers)
 		->assertStatus(200);
 
 		$materia = Materia::find(1);
@@ -200,9 +201,7 @@ class MateriaTest extends TestCase
 		DB::table('users')->truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
-		Materia::create([
-			'materia' => 'ingles 8'
-		]);
+		$m = factory('App\models\Materia')->create();
 
 		$user = factory(User::class)->create([
 			'email' => 'root@gmail.com',
@@ -212,7 +211,7 @@ class MateriaTest extends TestCase
 
 		$headers = ['Authorization' => "Bearer $token"];
 
-		$this->json('DELETE','/api/materias/1', [],  $headers)
+		$this->json('DELETE','/api/materias/' . $m->id, [],  $headers)
 		->assertStatus(204);
 	}
 

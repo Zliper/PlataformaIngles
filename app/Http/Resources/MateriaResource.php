@@ -17,6 +17,7 @@ class MateriaResource extends JsonResource
         return [
             'id' => $this->id,
             'materia' => $this->materia,
+            "periodo" =>  $this->periodo
         ];
     }
 }

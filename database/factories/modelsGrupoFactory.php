@@ -4,7 +4,6 @@ use Faker\Generator as Faker;
 
 $factory->define(App\models\Grupo::class, function (Faker $faker) {
     return [
-        'grupo' => $faker->randomElement($array = range('A','Z')),
-        'periodo' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'grupo' => $faker->randomElement($array = range('A','Z')),  
     ];
 });
