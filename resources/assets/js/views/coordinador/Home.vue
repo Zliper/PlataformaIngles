@@ -22,7 +22,7 @@
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col">Profesor</th>
-							<th scope="col"> {{ reactivo.relationships[4].name  + " " +   reactivo.relationships[4].apellido }} </th>
+							<th scope="col"> {{ reactivo.relationships['autor'].name  + " " +   reactivo.relationships['autor'].apellido }} </th>
 						</tr>
 					</thead>
 
@@ -34,34 +34,34 @@
 						<tr>
 							<th>Competencia</th>
 							<td>
-								{{ reactivo.relationships[1].competencia }}
+								{{ reactivo.relationships['competencia'].competencia }}
 							</td>
 						</tr>
 						<tr>
 							<th>Tipo Reactivo</th>	
 							<td>
-								{{ reactivo.relationships[2].tipo }}
+								{{ reactivo.relationships['tipo_reactivo'].tipo }}
 							</td>
 						</tr>
 
-						<template v-if="reactivo.texto">
+						<template v-if="reactivo.attributes.texto">
 							<tr>
 								<th> Texto/Url </th>
-								<td> {{ reactivo.texto }} </td>
+								<td> {{ reactivo.attributes.texto }} </td>
 							</tr>
 						</template>
 
 						<tr>
 							<th>Pregunta</th>
-							<td> {{ reactivo.pregunta }} </td>
+							<td> {{ reactivo.attributes.pregunta }} </td>
 						</tr>
 
 						<tr class="table-success">
 							<th>Respuesta</th>
-							<td> {{ reactivo.respuesta }} </td>
+							<td> {{ reactivo.attributes.respuesta }} </td>
 						</tr>				
 
-						<tr v-for="(value, key, index) in reactivo.relationships[0].opciones">
+						<tr v-for="(value, key, index) in reactivo.relationships['opciones'].opciones">
 							<th>Opción {{ index }}</th>
 							<td>
 								{{ value.opcion }}

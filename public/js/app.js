@@ -47633,7 +47633,9 @@ var render = function() {
     _c("header", [
       _c(
         "nav",
-        { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" },
+        {
+          staticClass: "navbar navbar-expand-lg navbar-dark bg-dark text-white"
+        },
         [
           _c("div", { staticClass: "container" }, [
             _c("ul", { staticClass: "navbar-nav mr-auto" }, [
@@ -50516,9 +50518,9 @@ var render = function() {
                     _vm._v(
                       " " +
                         _vm._s(
-                          reactivo.relationships[4].name +
+                          reactivo.relationships["autor"].name +
                             " " +
-                            reactivo.relationships[4].apellido
+                            reactivo.relationships["autor"].apellido
                         ) +
                         " "
                     )
@@ -50541,7 +50543,9 @@ var render = function() {
                     _c("td", [
                       _vm._v(
                         "\n\t\t\t\t\t\t\t\t" +
-                          _vm._s(reactivo.relationships[1].competencia) +
+                          _vm._s(
+                            reactivo.relationships["competencia"].competencia
+                          ) +
                           "\n\t\t\t\t\t\t\t"
                       )
                     ])
@@ -50553,18 +50557,22 @@ var render = function() {
                     _c("td", [
                       _vm._v(
                         "\n\t\t\t\t\t\t\t\t" +
-                          _vm._s(reactivo.relationships[2].tipo) +
+                          _vm._s(reactivo.relationships["tipo_reactivo"].tipo) +
                           "\n\t\t\t\t\t\t\t"
                       )
                     ])
                   ]),
                   _vm._v(" "),
-                  reactivo.texto
+                  reactivo.attributes.texto
                     ? [
                         _c("tr", [
                           _c("th", [_vm._v(" Texto/Url ")]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(" " + _vm._s(reactivo.texto) + " ")])
+                          _c("td", [
+                            _vm._v(
+                              " " + _vm._s(reactivo.attributes.texto) + " "
+                            )
+                          ])
                         ])
                       ]
                     : _vm._e(),
@@ -50572,16 +50580,20 @@ var render = function() {
                   _c("tr", [
                     _c("th", [_vm._v("Pregunta")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(" " + _vm._s(reactivo.pregunta) + " ")])
+                    _c("td", [
+                      _vm._v(" " + _vm._s(reactivo.attributes.pregunta) + " ")
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("tr", { staticClass: "table-success" }, [
                     _c("th", [_vm._v("Respuesta")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(" " + _vm._s(reactivo.respuesta) + " ")])
+                    _c("td", [
+                      _vm._v(" " + _vm._s(reactivo.attributes.respuesta) + " ")
+                    ])
                   ]),
                   _vm._v(" "),
-                  _vm._l(reactivo.relationships[0].opciones, function(
+                  _vm._l(reactivo.relationships["opciones"].opciones, function(
                     value,
                     key,
                     index

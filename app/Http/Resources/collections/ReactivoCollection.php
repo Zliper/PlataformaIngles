@@ -24,15 +24,17 @@ class ReactivoCollection extends ResourceCollection
             'reactivos' => $this->collection->transform(function($reactivo){
                 return [
                     'id' => $reactivo->id,
-                    'pregunta' => $reactivo->pregunta, 
-                    'respuesta' => $reactivo->respuesta_correcta,
-                    'texto' => $reactivo->texto,
+                    'attributes' => [
+                        'pregunta' => $reactivo->pregunta, 
+                        'respuesta' => $reactivo->respuesta_correcta,
+                        'texto' => $reactivo->texto,
+                    ],
                     'relationships' => [
-                        new OpcionReactivosCollection($reactivo->opciones),
-                        new CompetenciaResource($reactivo->competencia),
-                        new TipoReactivoResource($reactivo->tipo),
-                        new EstatusResource($reactivo->estatus),
-                        new ProfesorResource($reactivo->profesor),
+                        "opciones" => new OpcionReactivosCollection($reactivo->opciones),
+                        "competencia" => new CompetenciaResource($reactivo->competencia),
+                        "tipo_reactivo" => new TipoReactivoResource($reactivo->tipo),
+                        "estatus_reactivo" => new EstatusResource($reactivo->estatus),
+                        "autor" => new ProfesorResource($reactivo->profesor),
                     ],
                 ];
             }),

@@ -17,7 +17,6 @@ class GrupoController extends Controller
      */
     public function index()
     {
-        GrupoResource::withoutWrapping();
         return new GrupoCollection(Grupo::all());
     }
 
