@@ -19,7 +19,6 @@ class CreateGrupoHasProfesorTable extends Migration
 
             $table->integer('profesor_id')->unsigned();
             $table->foreign('profesor_id')->references('id')->on('profesores')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

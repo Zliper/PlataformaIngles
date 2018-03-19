@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\collections;
 
+use App\Http\Resources\collections\CarreraCollection;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class GrupoCollection extends ResourceCollection
@@ -19,9 +20,9 @@ class GrupoCollection extends ResourceCollection
                 return [
                     'id' => $g->id,
                     'grupo' => $g->grupo,
-                    'periodo' => $g->periodo,
                     "relationships" => [
-                        new MateriaCollection($g->hasMateria)
+                        "materias" => new MateriaCollection($g->hasMateria),
+                        "carreras" => new CarreraCollection($g->hasCarrera)
                     ]
                 ];
             })

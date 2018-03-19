@@ -19,7 +19,6 @@ class CreateGrupoHasMateriaTable extends Migration
 
             $table->integer('materia_id')->unsigned();
             $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

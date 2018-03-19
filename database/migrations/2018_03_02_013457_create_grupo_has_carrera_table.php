@@ -19,7 +19,6 @@ class CreateGrupoHasCarreraTable extends Migration
 
             $table->integer('carrera_id')->unsigned();
             $table->foreign('carrera_id')->references('id')->on('carreras')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

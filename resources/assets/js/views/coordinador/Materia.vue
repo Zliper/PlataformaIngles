@@ -9,7 +9,7 @@
 		</div>
 
 		<h2 class="text-center mt-3 mb-3">Materias</h2>
-		
+		<hr>
 		
 		<div class="d-flex justify-content-center mb-3 ">
 			<form v-on:submit.prevent="checkForm" class="form-inline">

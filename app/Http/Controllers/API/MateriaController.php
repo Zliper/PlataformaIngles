@@ -16,8 +16,13 @@ class MateriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->input('year','')) {
+            return new MateriaCollection(Materia::where('year','=',$request->input('year'))->get());
+            return $request->input('year');
+        }
+
         return new MateriaCollection(Materia::orderBy('year','DESC')->get());
     }
 

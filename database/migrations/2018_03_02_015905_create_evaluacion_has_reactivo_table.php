@@ -19,7 +19,6 @@ class CreateEvaluacionHasReactivoTable extends Migration
 
             $table->integer('reactivo_id')->unsigned();
             $table->foreign('reactivo_id')->references('id')->on('reactivos')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

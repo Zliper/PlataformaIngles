@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\collections\GrupoCollection;
 use App\Http\Resources\GrupoResource;
+use App\Http\Resources\collections\GrupoCollection;
+use App\models\Carrera;
 use App\models\Grupo;
+use App\models\Materia;
+use Illuminate\Http\Request;
 
 class GrupoController extends Controller
 {
@@ -38,9 +40,15 @@ class GrupoController extends Controller
      */
     public function store(Request $request)
     {
-        GrupoResource::withoutWrapping();
+        $materia = Materia::findOrFail($request->materia);
+        $carrera = Carrera::findOrFail($request->carrera);
 
-        $grupo = Grupo::create($request->all());
+        $grupo = Grupo::create([
+            "grupo" => $request->grupo
+        ]);
+
+        $grupo->hasMateria()->attach($materia);
+        $grupo->hasCarrera()->attach($carrera);
 
         return response( new GrupoResource($grupo), 201);
     }

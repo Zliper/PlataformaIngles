@@ -1,51 +1,62 @@
 <template>
 	<div>
-		<h3>Grupos</h3>
-		<hr>
 
-<!-- 		<div v-if="errors.length" class="alert alert-danger">
-			<h5><b>Please correct the following error(s):</b></h5>
-
+		<div v-if="errors.length" class="alert alert-danger">
+			<b>Please correct the following error(s):</b>
 			<ul>
-				<li v-for="e in errors">
-					{{ e }}
-				</li>
+				<li v-for="e in errors"> {{ e }} </li>
 			</ul>
-		</div> -->
+		</div>
 
-		<form v-on:click.prevent="checkForm" class="row justify-content-md-center">
-			<div class=" col-8 input-group ">
-				<select v-model="materia" class="form-control">
-					<option selected>Choose...</option>
-					<option v-for="m in materias" v-bind:value="m.id">
-						{{ m.materia }}
-					</option>
-				</select>
-				<input v-model="group" type="text" class="form-control" placeholder="grupo">
-				<div class="input-group-append">
-					<button type="submit" class="btn btn-primary" >Agregar</button>
+		<h3 class="text-center mt-3 mb-3">Grupos</h3>
+		<hr>
+		
+		<div class="d-flex justify-content-center mb-3 ">
+			<form v-on:submit.prevent="checkForm" class="form-inline">
+				<div class="form-group mr-3">
+					<label for="grupo" >Grupo</label>
+					<input v-model="grupo.grupo" id="grupo" class="form-control" type="text" placeholder="grupo">
 				</div>
-			</div>
-		</form>
-		<div class="row justify-content-md-center grupo-list">
-			<div class="col-sm-8">
-				<table class="table table-bordered text-center">
-					<thead class="thead-dark"> 
-						<tr>	 
+				
+				<div class="form-group mr-3">
+					<label for="carrera">Carrera</label>
+					<select v-model="grupo.carrera.id" id="carrera" class="form-control">
+						<option selected>Choose...</option>
+						<option v-for="c in carreras" v-bind:value="c.id"> {{ c.carrera }} </option>
+					</select>
+				</div>
+
+				<div class="form-group mr-3">
+					<label for="materia">Materia</label>
+					<select v-model="grupo.materia.id" id="materia" class="form-control">
+						<option selected>Choose...</option>
+						<option v-for="m in materias" v-bind:value="m.id"> {{ m.materia }} </option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Agregar</button>
+				</div>
+			</form>
+		</div>
+
+<!-- 		<div class="card">
+			<div class="card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
 							<th>Grupo</th>
-							<th>Período</th>
 						</tr>
 					</thead>
+
 					<tbody>
-						<tr v-for="grupo in grupos">
-							<!--<th> {{ grupo.relationships[0].materias[0].id }} </th>-->
-							<th> {{ grupo.grupo }} </th>
-							<th> {{ grupo.periodo }} </th>
+						<tr v-for="g in grupos">
+							<th> {{ g.grupo }} </th>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -59,11 +70,14 @@ export default {
 				email: "root@gmail.com",
 				password: "loremroot"
 			},
-			group: '',
-			materia: '',
+			grupo:{
+				carrera:{},
+				materia:{}
+			},
 			token: '',
 			errors: [],
 			grupos: [],
+			carreras: [],
 			materias: [],
 		}
 	},
@@ -73,7 +87,8 @@ export default {
 		.then(response => {
 			this.token = response.data.data.api_token;
 			this.fetchGrupos();
-			this.fetchMateria();
+			this.fetchMaterias();
+			this.fetchCarreras();
 		})
 		.catch(e => {
 			console.log(e);
@@ -81,37 +96,83 @@ export default {
 	},
 
 	methods:{
-		fetchGrupos() {
-			axios.get('/api/grupos', { headers: { Authorization: "Bearer " + this.token } })
+		fetchGrupos(page_url = '/api/grupos'){
+			axios.get(page_url, { headers: { Authorization: "Bearer " + this.token } })
 			.then(response => {
-				this.grupos = response.data.grupos;
-				console.log(response.data.grupos[0].relationships[0].materias[0].id)
+				console.log(response.data.data);
+				this.grupos = response.data.data.grupos;
 			})
 			.catch(e => {
 				console.log(e);
 			});
 		},
-		fetchMateria() {
-			axios.get('/api/materias', { headers: { Authorization: "Bearer " + this.token } })
+
+		fetchMaterias(page_url = '/api/materias?year=' + new Date().getFullYear().toString()) {
+			let vm = this; 
+			
+			axios.get(page_url, { headers: { Authorization: "Bearer " + this.token } })
 			.then(response => {
-				console.log(response)
-				this.materias = response.data.materias;
+				console.log(response.data.data);
+				this.materias = response.data.data.materias;
 			})
 			.catch(e => {
 				console.log(e);
 			});
 		},
+
+		fetchCarreras(page_url = '/api/carreras') {
+			axios.get(page_url, { headers: { Authorization: "Bearer " + this.token } })
+			.then(response => {
+				console.log(response.data.data);
+				this.carreras = response.data.data.carreras;
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		},
+
 		checkForm() {
-			if (this.group && this.materia) return true;
+			if (this.grupo.grupo && this.grupo.carrera.id && this.grupo.materia.id) {
+				this.addGrupo();
+			}
+
 			this.errors = [];
 
-			if (!this.materia) this.errors.push('Materia required');
-			if (!this.group) this.errors.push('Group required');
+			if (!this.grupo.grupo) this.errors.push('Grupo is required');
+			if (!this.grupo.carrera.id) this.errors.push('Carrera is required');
+			if (!this.grupo.materia.id) this.errors.push('Materia is required');	
 		},
 
 		addGrupo() {
-			console.log("Added")
+			axios.post('/api/login', this.data)
+			.then(response => {
+				this.token = response.data.data.api_token;
+
+				axios.post('/api/grupos', {
+					"grupo" :   this.grupo.grupo.toUpperCase(),
+					"carrera" : this.grupo.carrera.id,
+					"materia" : this.grupo.materia.id
+				}, { headers: { Authorization: "Bearer " + this.token } })
+				.then(response => {
+					this.grupo.grupo = '';
+					this.grupo.carrera.id = 0;
+					this.grupo.materia.id = 0;
+					console.log("Updated" + response);
+				})
+				.catch(e => {
+					console.log(e);
+				});
+			})
+			.catch(e => {
+				console.log(e);
+			});
 		}
 	}
 }
 </script>
+
+<style scoped>
+label {
+	margin-right: 10px;
+}
+</style>

@@ -7,6 +7,7 @@ import App from '../views/coordinador/App.vue'
 import Home from '../views/coordinador/Home.vue'
 import Grupo from '../views/coordinador/Grupo.vue'
 import Materia from '../views/coordinador/Materia'
+import Punto from '../views/coordinador/Punto'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const router = new VueRouter({
         	path: '/grupos',
         	name: 'grupos',
         	component: Grupo
+        },
+        {
+            path: '/puntos',
+            name: 'puntos',
+            component: Punto
         },
         {
             path: "*",

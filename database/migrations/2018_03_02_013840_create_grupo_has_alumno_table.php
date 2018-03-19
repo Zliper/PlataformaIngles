@@ -19,8 +19,6 @@ class CreateGrupoHasAlumnoTable extends Migration
 
             $table->integer('alumno_id')->unsigned();
             $table->foreign('alumno_id')->references('matricula')->on('alumnos')->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
