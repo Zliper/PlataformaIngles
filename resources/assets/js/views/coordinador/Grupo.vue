@@ -157,7 +157,7 @@ export default {
 					this.grupo.grupo = '';
 					this.grupo.carrera.id = 0;
 					this.grupo.materia.id = 0;
-					console.log("Updated" + response);
+					this.$toastr('success', 'Grupo added successfully');
 				})
 				.catch(e => {
 					console.log(e);

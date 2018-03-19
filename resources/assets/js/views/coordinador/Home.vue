@@ -114,6 +114,8 @@ export default {
 	},
 
 	created() {
+		
+
 		axios.post('/api/login', this.data)
 		.then(response => {
 			this.token = response.data.data.api_token;
@@ -181,8 +183,8 @@ export default {
 				this.token = response.data.data.api_token;
 				axios.put('/api/reactivos/' + id, {  "estatus_id" : 1 } , { headers: { Authorization: "Bearer " + this.token } })
 				.then(response => {
-					console.log("Updated" + response);
 					this.fetchReactivos();
+					this.$toastr('success', 'Reactivo added successfully');
 				})
 				.catch(e => {
 					console.log(e);
@@ -204,6 +206,7 @@ export default {
 				axios.delete('/api/reactivos/' + id, { headers: { Authorization: "Bearer " + this.token } })
 				.then(response => {
 					this.fetchReactivos();
+					this.$toastr('warning', 'Reactivo was delete');
 				})
 				.catch(e => {
 					console.log(e);
