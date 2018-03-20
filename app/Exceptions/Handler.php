@@ -58,10 +58,6 @@ class Handler extends ExceptionHandler
                 'error' => 'Resource not found'
             ], 404);
             
-        } else if ($exception instanceof QueryException) {
-            return response()->json([
-                'error' => 'Query error',
-            ],400);
         }
 
         return parent::render($request, $exception);

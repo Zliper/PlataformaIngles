@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\collections\ReactivoCollection;
 use App\Http\Resources\ReactivoResource;
 use App\models\Reactivo;
+use App\models\OpcionReactivo;
 
 class ReactivoController extends Controller
 {
@@ -43,9 +44,27 @@ class ReactivoController extends Controller
      */
     public function store(Request $request)
     {
-        ReactivoResource::withoutWrapping();
+        $reactivo = Reactivo::create([
+            "competencia_id" => $request->competencia,
+            "tipo_id" => $request->tipo,
+            "estatus_id" => $request->estatus,
+            "profesor_id" => $request->profesor,
+            "pregunta" => $request->pregunta,
+            "respuesta_correcta" => $request->respuesta,
+            "texto" => $request->text
+        ]);
+
+        foreach ($request->opciones as $o) {
+            $o = OpcionReactivo::create([
+                "reactivo_id" => $reactivo->id,
+                "opcion" => $o
+            ]);
+        }
+/*        ReactivoResource::withoutWrapping();
         $reactivo = Reactivo::create($request->all());
 
+        return response(new ReactivoResource($reactivo),201);*/
+        //return $request->all();
         return response(new ReactivoResource($reactivo),201);
     }
 

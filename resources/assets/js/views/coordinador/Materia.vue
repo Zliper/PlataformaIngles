@@ -89,7 +89,6 @@ export default {
 	},
 
 	created() {
-		this.$toastr('info', 'i am a toastr success', 'hello')
 		axios.post('/api/login', this.data)
 		.then(response => {
 			this.token = response.data.data.api_token;
