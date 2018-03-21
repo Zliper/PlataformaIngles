@@ -1,27 +1,26 @@
 <template>
 	<div>
 
-		<div v-if="errors.length" class="alert alert-danger">
+		<div v-if="errors.length" class="alert alert-danger error">
 			<b>Please correct the following error(s):</b>
 			<ul>
 				<li v-for="e in errors"> {{ e }} </li>
 			</ul>
 		</div>
 
-		<h2 class="text-center mt-3 mb-3">Materias</h2>
+		<h3 class="titles">Materias</h3>
 		<hr>
 		
 		<div class="d-flex justify-content-center mb-3 ">
 			<form v-on:submit.prevent="checkForm" class="form-inline">
 				<div class="form-group mr-3">
-					<label for="materia" >Materia</label>
+					<label class="filters" for="materia" >Materia</label>
 					<input v-model="materia.materia" id="materia" class="form-control" type="text" placeholder="materia">
 				</div>
 				
 				<div class="form-group mr-3">
-					<label for="periodo">Periodo</label>
+					<label class="filters" for="periodo">Periodo</label>
 					<select id="periodo" class="form-control" v-model="materia.periodo">
-						<option selected>Choose...</option>
 						<option>Ene-Abril</option>
 						<option>Mayo-Ago</option>
 						<option>Sep-Dic</option>
@@ -36,11 +35,9 @@
 		
 		<div class="form-row col-sm-3 mt-3 mb-3">
 			<label for="filter">filter by year</label>
-			<select id="fiter" class="form-control">
+			<select v-model="year" @change="yearChanges(year)" id="fiter" class="form-control">
 				<option selected>Year...</option>
-				<option>2017</option>
-				<option>2018</option>
-				<option>2019</option>
+				<option v-for="y in years" v-bind:value="y.year"> {{ y.year }} </option>
 			</select>
 		</div>
 
@@ -81,10 +78,12 @@ export default {
 				email: "root@gmail.com",
 				password: "loremroot"
 			},
+			year: '',
 			materia: {},
 			token: '',
 			errors: [],
 			materias: [],
+			years: [],
 		}
 	},
 
@@ -93,6 +92,7 @@ export default {
 		.then(response => {
 			this.token = response.data.data.api_token;
 			this.fetchMaterias();
+			this.fetchYears();
 		})
 		.catch(e => {
 			console.log(e);
@@ -100,12 +100,10 @@ export default {
 	},
 
 	methods:{
-		fetchMaterias(page_url = '/api/materias') {
+		fetchMaterias(page_url = '/api/materias?year=' + new Date().getFullYear().toString()) {
 			let vm = this; 
-			
 			axios.get(page_url, { headers: { Authorization: "Bearer " + this.token } })
 			.then(response => {
-				console.log(response.data.data);
 				this.materias = response.data.data.materias;
 			})
 			.catch(e => {
@@ -125,23 +123,18 @@ export default {
 			if (!this.materia.periodo) this.errors.push('Periodo is required');
 		},
 		
-		addMateria() {
-			
+		addMateria() {		
 			axios.post('/api/login', this.data)
 			.then(response => {
 				this.token = response.data.data.api_token;
-
-
 				axios.post('/api/materias', {
 					"materia" : this.materia.materia,
 					"periodo" : this.materia.periodo,
 					"year" : this.materia.year
 				}, { headers: { Authorization: "Bearer " + this.token } })
 				.then(response => {
-					console.log("Updated" + response);
 					this.materia.materia = '';
 					this.materia.periodo = '';
-
 					this.fetchMaterias();
 					this.$toastr('success', 'Materia added successfully');
 				})
@@ -152,13 +145,22 @@ export default {
 			.catch(e => {
 				console.log(e);
 			});
+		},
+
+		fetchYears(page_url = '/api/materias?years=2') {
+			axios.get(page_url, { headers: { Authorization: "Bearer " + this.token } })
+			.then(response => {
+				console.log(response.data);
+				this.years = response.data[0];
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		},
+
+		yearChanges() {
+			this.fetchMaterias('/api/materias?year=' + this.year);
 		}
 	}
 }
 </script>
-
-<style scoped>
-label {
-	margin-right: 10px;
-}
-</style>

@@ -1,35 +1,32 @@
 <template>
 	<div>
-
-		<div v-if="errors.length" class="alert alert-danger">
+		<div v-if="errors.length" class="alert alert-danger error">
 			<b>Please correct the following error(s):</b>
 			<ul>
 				<li v-for="e in errors"> {{ e }} </li>
 			</ul>
 		</div>
 
-		<h3 class="text-center mt-3 mb-3">Grupos</h3>
+		<h3 class="titles">Grupos</h3>
 		<hr>
 		
 		<div class="d-flex justify-content-center mb-3 ">
 			<form v-on:submit.prevent="checkForm" class="form-inline">
 				<div class="form-group mr-3">
-					<label for="grupo" >Grupo</label>
+					<label class="filters" for="grupo" >Grupo</label>
 					<input v-model="grupo.grupo" id="grupo" class="form-control" type="text" placeholder="grupo">
 				</div>
 				
 				<div class="form-group mr-3">
-					<label for="carrera">Carrera</label>
+					<label class="filters" for="carrera">Carrera</label>
 					<select v-model="grupo.carrera.id" id="carrera" class="form-control">
-						<option selected>Choose...</option>
 						<option v-for="c in carreras" v-bind:value="c.id"> {{ c.carrera }} </option>
 					</select>
 				</div>
 
 				<div class="form-group mr-3">
-					<label for="materia">Materia</label>
+					<label class="filters" for="materia">Materia</label>
 					<select v-model="grupo.materia.id" id="materia" class="form-control">
-						<option selected>Choose...</option>
 						<option v-for="m in materias" v-bind:value="m.id"> {{ m.materia }} </option>
 					</select>
 				</div>
@@ -39,24 +36,6 @@
 				</div>
 			</form>
 		</div>
-
-<!-- 		<div class="card">
-			<div class="card-body">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Grupo</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr v-for="g in grupos">
-							<th> {{ g.grupo }} </th>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div> -->
 	</div>
 </template>
 
@@ -170,9 +149,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped>
-label {
-	margin-right: 10px;
-}
-</style>

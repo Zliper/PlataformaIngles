@@ -20,7 +20,8 @@ class MateriaController extends Controller
     {
         if ($request->input('year','')) {
             return new MateriaCollection(Materia::where('year','=',$request->input('year'))->get());
-            return $request->input('year');
+        } else if ($request->input('years', '')) {
+            return response()->json([Materia::distinct()->select('year')->get()]);
         }
 
         return new MateriaCollection(Materia::orderBy('year','DESC')->get());

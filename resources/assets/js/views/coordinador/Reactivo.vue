@@ -1,20 +1,22 @@
 <template>
 	<div>
-		<h3 class="title-component text-center">Reactivos Aprobados </h3>
-<!-- 		<template v-if="sortType==='Aprobado'">
-			<h3 class="title-component text-center">Reactivos Aprobados </h3>
+		<template v-if="sortType==='Aprobado'">
+			<h3 class="titles">Reactivos Aprobados </h3>
 		</template>
 
 		<template v-else>
-			<h3 class="title-component text-center">Validación de reactivos </h3>
+			<h3 class="titles">Reactivos por aprobar </h3>
 		</template>
 
-		<div class="form-row mb-5">
-			<select @change="sortBy(sortType)" v-model="sortType" class="form-control col-sm-4">
+		<hr>
+
+		<div class="form-row col-sm-3 mb-5">
+			<label for="filter">filter by year</label>
+			<select @change="sortBy(sortType)" v-model="sortType" id="filter" class="form-control">
 				<option selected value="Espera">Por validar</option>
 				<option value="Aprobado">Validados</option>
 			</select>
-		</div> -->
+		</div>
 
 		<div v-for="reactivo in reactivos" class="card mb-5">
 			<div class="card-body">
@@ -70,7 +72,7 @@
 					</tbody>
 				</table>
 
-				<div class="d-flex justify-content-end">
+				<div v-if="sortType !== 'Aprobado'" class="d-flex justify-content-end">
 					<a @click="validateReactivo(reactivo.id)" href="#" class="btn btn-primary mr-3">Aceptar</a>
 					<a @click="deleteReactivo(reactivo.id)" href="#" class="btn btn-danger">Denegar</a>
 				</div>
@@ -206,7 +208,7 @@ export default {
 				axios.delete('/api/reactivos/' + id, { headers: { Authorization: "Bearer " + this.token } })
 				.then(response => {
 					this.fetchReactivos();
-					this.$toastr('warning', 'Reactivo was delete');
+					this.$toastr('warning', 'Reactivo was deleted');
 				})
 				.catch(e => {
 					console.log(e);

@@ -1,0 +1,18 @@
+.error {
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+
+.pagination {
+   justify-content: center;
+}
+
+.titles {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	text-align: center;
+}
+
+.filters {
+	margin-right: 10px;
+}

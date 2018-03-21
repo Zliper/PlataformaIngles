@@ -4,19 +4,26 @@ import VueRouter from 'vue-router'
 import PageNotFound from '../views/errors/404.vue'
 
 import App from '../views/coordinador/App.vue'
-import Home from '../views/coordinador/Home.vue'
+import Reactivo from '../views/coordinador/Reactivo.vue'
 import Grupo from '../views/coordinador/Grupo.vue'
 import Materia from '../views/coordinador/Materia'
 import Punto from '../views/coordinador/Punto'
+import Index from '../views/coordinador/Index.vue'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
 	mode: 'history',
-	routes: [		{
+	routes: [	
+        {
             path: '/',
-            name: 'home',
-            component: Home
+            name: 'index',
+            component: Index
+        },	
+        {
+            path: '/reactivos',
+            name: 'reactivos',
+            component: Reactivo
         },
         {
             path: '/materias',
@@ -33,6 +40,7 @@ const router = new VueRouter({
             name: 'puntos',
             component: Punto
         },
+
         {
             path: "*",
             component: PageNotFound
