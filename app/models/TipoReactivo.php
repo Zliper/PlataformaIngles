@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoReactivo extends Model
 {
+	public $timestamps = false;
 	protected $fillable = ['tipo_reactivo'];
     protected $table = 'tipo_reactivos';
 

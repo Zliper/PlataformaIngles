@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Competencia extends Model
 {
+	public $timestamps = false;
 	protected $fillable = ['tipo_competencia'];
     protected $table = 'competencias';
 

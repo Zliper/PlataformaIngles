@@ -17,8 +17,6 @@ class CreateReactivosTable extends Migration
             $table->increments('id');
             $table->string('pregunta');
             $table->string('respuesta_correcta');
-            $table->text('texto')->nullable();
-            $table->timestamps();
         });
     }
 

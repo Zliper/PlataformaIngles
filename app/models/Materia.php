@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Materia extends Model
 {
+    public $timestamps = false;
 	protected $fillable = ['materia','periodo','year'];
     protected $table = 'materias';
 

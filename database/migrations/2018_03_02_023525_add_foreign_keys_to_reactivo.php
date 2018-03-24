@@ -26,6 +26,15 @@ class AddForeignKeysToReactivo extends Migration
 
             $table->integer('profesor_id')->unsigned()->after('estatus_id');
             $table->foreign('profesor_id')->references('id')->on('profesores')->onDelete('cascade');
+
+            $table->integer('text_id')->nullable()->unsigned()->after('profesor_id');
+            $table->foreign('text_id')->references('id')->on('text')->onDelete('cascade');
+
+            $table->integer('punto_id')->nullable()->unsigned()->after('text_id');
+            $table->foreign('punto_id')->references('id')->on('puntos_gramaticales')->onDelete('cascade');
+
+            $table->integer('catalogo_id')->nullable()->unsigned()->after('punto_id');
+            $table->foreign('catalogo_id')->references('id')->on('catalogo_cuestionarios')->onDelete('cascade');
         });
     }
 
@@ -50,6 +59,14 @@ class AddForeignKeysToReactivo extends Migration
 
         Schema::table('reactivos', function(Blueprint $table) {
             $table->dropForeign(['profesor_id']);
+        });
+
+        Schema::table('reactivos', function(Blueprint $table) {
+            $table->dropForeign(['text_id']);
+        });
+
+        Schema::table('reactivos', function(Blueprint $table) {
+            $table->dropForeign(['punto_id']);
         });
     }
 }

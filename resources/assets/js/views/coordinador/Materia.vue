@@ -88,21 +88,14 @@ export default {
 	},
 
 	created() {
-		axios.post('/api/login', this.data)
-		.then(response => {
-			this.token = response.data.data.api_token;
-			this.fetchMaterias();
-			this.fetchYears();
-		})
-		.catch(e => {
-			console.log(e);
-		});
+		this.fetchMaterias();
+		this.fetchYears();
 	},
 
 	methods:{
 		fetchMaterias(page_url = '/api/materias?year=' + new Date().getFullYear().toString()) {
 			let vm = this; 
-			axios.get(page_url, { headers: { Authorization: "Bearer " + this.token } })
+			axios.get(page_url)
 			.then(response => {
 				this.materias = response.data.data.materias;
 			})
@@ -124,23 +117,16 @@ export default {
 		},
 		
 		addMateria() {		
-			axios.post('/api/login', this.data)
+			axios.post('/api/materias', {
+				"materia" : this.materia.materia,
+				"periodo" : this.materia.periodo,
+				"year" : this.materia.year
+			}, { headers: { Authorization: "Bearer " + this.token } })
 			.then(response => {
-				this.token = response.data.data.api_token;
-				axios.post('/api/materias', {
-					"materia" : this.materia.materia,
-					"periodo" : this.materia.periodo,
-					"year" : this.materia.year
-				}, { headers: { Authorization: "Bearer " + this.token } })
-				.then(response => {
-					this.materia.materia = '';
-					this.materia.periodo = '';
-					this.fetchMaterias();
-					this.$toastr('success', 'Materia added successfully');
-				})
-				.catch(e => {
-					console.log(e);
-				});
+				this.materia.materia = '';
+				this.materia.periodo = '';
+				this.fetchMaterias();
+				this.$toastr('success', 'Materia added successfully');
 			})
 			.catch(e => {
 				console.log(e);
@@ -148,7 +134,7 @@ export default {
 		},
 
 		fetchYears(page_url = '/api/materias?years=2') {
-			axios.get(page_url, { headers: { Authorization: "Bearer " + this.token } })
+			axios.get(page_url)
 			.then(response => {
 				console.log(response.data);
 				this.years = response.data[0];

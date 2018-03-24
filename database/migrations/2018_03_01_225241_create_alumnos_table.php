@@ -20,7 +20,6 @@ class CreateAlumnosTable extends Migration
             //$table->increments('id');
             $table->string('nombre',20);
             $table->string('apellido',20);
-            $table->timestamps();
         });
     }
 

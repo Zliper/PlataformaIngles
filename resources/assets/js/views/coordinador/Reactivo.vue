@@ -116,34 +116,14 @@ export default {
 	},
 
 	created() {
-		
-
-		axios.post('/api/login', this.data)
-		.then(response => {
-			this.token = response.data.data.api_token;
-			this.fetchReactivos();
-		})
-		.catch(e => {
-			console.log(e);
-		});
+		this.fetchReactivos();
 	},
 
 	methods:{
-		login(exec) {
-			axios.post('/api/login', this.data)
-			.then(response => {
-				this.token = response.data.data.api_token;
-				exec();
-			})
-			.catch(e => {
-				console.log(e);
-			});
-		},
-
 		fetchReactivos(page_url = '/api/reactivos?by=Espera') {
 			let vm = this; 
 
-			axios.get(page_url, { headers: { Authorization: "Bearer " + this.token } })
+			axios.get(page_url)
 			.then(response => {
 				console.log(response.data);
 				this.reactivos = response.data.data.reactivos;
@@ -180,17 +160,10 @@ export default {
 		},
 
 		update(id) {
-			axios.post('/api/login', this.data)
+			axios.put('/api/reactivos/' + id, {  "estatus_id" : 1 } , { headers: { Authorization: "Bearer " + this.token } })
 			.then(response => {
-				this.token = response.data.data.api_token;
-				axios.put('/api/reactivos/' + id, {  "estatus_id" : 1 } , { headers: { Authorization: "Bearer " + this.token } })
-				.then(response => {
-					this.fetchReactivos();
-					this.$toastr('success', 'Reactivo added successfully');
-				})
-				.catch(e => {
-					console.log(e);
-				});
+				this.fetchReactivos();
+				this.$toastr('success', 'Reactivo added successfully');
 			})
 			.catch(e => {
 				console.log(e);
@@ -202,17 +175,10 @@ export default {
 		},
 
 		delete(id) {
-			axios.post('/api/login', this.data)
+			axios.delete('/api/reactivos/' + id)
 			.then(response => {
-				this.token = response.data.data.api_token;
-				axios.delete('/api/reactivos/' + id, { headers: { Authorization: "Bearer " + this.token } })
-				.then(response => {
-					this.fetchReactivos();
-					this.$toastr('warning', 'Reactivo was deleted');
-				})
-				.catch(e => {
-					console.log(e);
-				});
+				this.fetchReactivos();
+				this.$toastr('warning', 'Reactivo was deleted');
 			})
 			.catch(e => {
 				console.log(e);

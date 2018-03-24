@@ -16,7 +16,6 @@ class CreateCatalogoCuestionariosTable extends Migration
         Schema::create('catalogo_cuestionarios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_cuestionario');
-            $table->timestamps();
         });
     }
 

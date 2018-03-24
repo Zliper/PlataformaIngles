@@ -19,7 +19,6 @@ class CreateEvaluacionsTable extends Migration
             $table->text('nota');
             $table->text('instruccion');
             $table->integer('status');
-            $table->timestamps();
         });
     }
 

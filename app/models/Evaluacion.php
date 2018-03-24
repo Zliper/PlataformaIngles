@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evaluacion extends Model
 {
+    public $timestamps = false;
 	protected $fillable = [
 		'materia_id','catalogo_id','alumno_id','cantidad_reactivos',
 		'nota','instruccion','status',
 	];
+    
     protected $table = 'evaluaciones';
 
     public function alumno() {

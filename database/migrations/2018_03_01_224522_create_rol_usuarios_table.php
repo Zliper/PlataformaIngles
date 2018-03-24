@@ -16,7 +16,6 @@ class CreateRolUsuariosTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_rol',15);
-            $table->timestamps();
         });
     }
 

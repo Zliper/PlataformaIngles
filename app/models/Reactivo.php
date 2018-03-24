@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reactivo extends Model
 {
+    public $timestamps = false;
 	protected $fillable = [
 		'competencia_id','tipo_id','estatus_id','profesor_id','pregunta',
-		'respuesta_correcta','texto',
+		'respuesta_correcta',
 	];
 
     protected $table = 'reactivos';

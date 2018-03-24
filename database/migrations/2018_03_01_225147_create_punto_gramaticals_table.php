@@ -17,7 +17,6 @@ class CreatePuntoGramaticalsTable extends Migration
             $table->increments('id');
             $table->integer('unidad');
             $table->string('punto_gramatica',30);
-            $table->timestamps();
         });
     }
 

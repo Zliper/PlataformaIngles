@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carrera extends Model
 {
+	public $timestamps = false;
 	protected $fillable = ['nombre_carrera'];
     protected $table = 'carreras';
 

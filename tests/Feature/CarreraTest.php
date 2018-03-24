@@ -18,11 +18,6 @@ class CarreraTest extends TestCase
 	/** @test */
 	public function it_displays_carreras() {
 
-		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('carreras')->truncate();
-		DB::table('users')->truncate();
-		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
-
 		Carrera::create([
 			'nombre_carrera' => 'IDS'
 		]);

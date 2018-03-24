@@ -12,15 +12,9 @@ use App\User;
 
 class MateriaTest extends TestCase
 {
-	private $headers;
-
+	use RefreshDatabase;
 	/** @test */
 	public function it_displays_materias() {
-
-		DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-		DB::table('materias')->truncate();
-		DB::table('users')->truncate();
-		DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
 		$user = factory(User::class)->create([
 			'email' => 'root_test@gmail.com',

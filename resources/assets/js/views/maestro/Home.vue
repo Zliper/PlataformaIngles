@@ -117,20 +117,13 @@ export default {
 	},
 
 	created() {	
-		axios.post('/api/login', this.data)
-		.then(response => {
-			this.token = response.data.data.api_token;
-			this.fetchTipos();
-			this.fetchCompetencias();
-		})
-		.catch(e => {
-			console.log(e);
-		});
+		this.fetchTipos();
+		this.fetchCompetencias();
 	},
 
 	methods:{
 		fetchTipos() {
-			axios.get('/api/tipos', { headers: { Authorization: "Bearer " + this.token } })
+			axios.get('/api/tipos')
 			.then(response => {
 				this.tipos = response.data.data.tipos;
 			})
@@ -140,7 +133,7 @@ export default {
 		},
 
 		fetchCompetencias() {
-			axios.get('/api/competencias', { headers: { Authorization: "Bearer " + this.token } })
+			axios.get('/api/competencias')
 			.then(response => {
 				this.competencias = response.data.data.competencias;
 			})
@@ -171,30 +164,22 @@ export default {
 	},
 
 	addReactivo() {
-		this.deleteRespuestaFromOpciones();
-		axios.post('/api/login', this.data)
+		axios.post('/api/reactivos', {
+			"competencia" : this.reactivo.competencia,
+			"tipo" : this.reactivo.tipo,
+			"estatus" : 2,
+			"profesor" : 1,
+			"pregunta" : this.reactivo.pregunta,
+			"respuesta" : this.reactivo.respuesta,
+			"text" : this.reactivo.text,
+			"opciones" : this.reactivo.opciones
+		},{ headers: { Authorization: "Bearer " + this.token }})
 		.then(response => {
-			this.token = response.data.data.api_token;
-			axios.post('/api/reactivos', {
-				"competencia" : this.reactivo.competencia,
-				"tipo" : this.reactivo.tipo,
-				"estatus" : 2,
-				"profesor" : 1,
-				"pregunta" : this.reactivo.pregunta,
-				"respuesta" : this.reactivo.respuesta,
-				"text" : this.reactivo.text,
-				"opciones" : this.reactivo.opciones
-			},{ headers: { Authorization: "Bearer " + this.token }})
-			.then(response => {
-				this.$toastr('success', 'Reactivo added successfully');
-				this.resetReactivo();
-				console.log(response);
-			})
-			.catch(e => {
-				console.log(e);
-			});
+			this.$toastr('success', 'Reactivo added successfully');
+			this.resetReactivo();
+			console.log(response);
 		})
-		.catch(e=>{
+		.catch(e => {
 			console.log(e);
 		});
 	},

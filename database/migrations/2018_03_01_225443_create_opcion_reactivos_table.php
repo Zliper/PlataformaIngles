@@ -16,7 +16,6 @@ class CreateOpcionReactivosTable extends Migration
         Schema::create('opcion_reactivos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('opcion');
-            $table->timestamps();
         });
     }
 
