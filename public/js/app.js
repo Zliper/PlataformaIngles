@@ -27838,6 +27838,29 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -51111,7 +51134,7 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _c("div", { staticClass: "form-row col-sm-3 mb-5" }, [
-        _c("label", { attrs: { for: "filter" } }, [_vm._v("filter by year")]),
+        _c("label", { attrs: { for: "filter" } }, [_vm._v("filter by ")]),
         _vm._v(" "),
         _c(
           "select",
@@ -51191,6 +51214,47 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("tr", [
+                    _c("th", [_vm._v("Unidad ")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(
+                            reactivo.relationships["punto_gramatical"].unidad
+                          ) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", [_vm._v("Punto Gramatical")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(
+                            reactivo.relationships["punto_gramatical"]
+                              .punto_gramatical
+                          ) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", [_vm._v("Reactivo para ")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(reactivo.relationships["catalogo"].catalogo) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
                     _c("th", [_vm._v("Competencia")]),
                     _vm._v(" "),
                     _c("td", [
@@ -51216,14 +51280,16 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  reactivo.attributes.texto
+                  reactivo.relationships.text
                     ? [
                         _c("tr", [
                           _c("th", [_vm._v(" Texto/Url ")]),
                           _vm._v(" "),
                           _c("td", [
                             _vm._v(
-                              " " + _vm._s(reactivo.attributes.texto) + " "
+                              " " +
+                                _vm._s(reactivo.relationships["text"].texto) +
+                                " "
                             )
                           ])
                         ])
@@ -51287,7 +51353,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger mr-3",
                       attrs: { href: "#" },
                       on: {
                         click: function($event) {
@@ -51296,6 +51362,12 @@ var render = function() {
                       }
                     },
                     [_vm._v("Denegar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: " btn btn-info", attrs: { href: "#" } },
+                    [_vm._v("Comentario")]
                   )
                 ])
               : _vm._e()

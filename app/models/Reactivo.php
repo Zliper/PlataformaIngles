@@ -33,4 +33,16 @@ class Reactivo extends Model
     public function opciones() {
         return $this->hasMany('App\models\OpcionReactivo', 'reactivo_id');
     }
+
+    public function text() {
+      return $this->belongsTo('App\models\Text', 'text_id');
+    }
+
+    public function punto() {
+      return $this->belongsTo('App\models\PuntoGramatical', 'punto_id');
+    }
+
+    public function catalogo() {
+      return $this->belongsTo('App\models\CatalogoCuestionario','catalogo_id');
+    }
 }

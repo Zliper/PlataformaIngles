@@ -4,7 +4,7 @@ namespace App\Http\Resources\collections;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class PuntoGramaticalCollection extends ResourceCollection
+class CatalogoCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,11 +15,9 @@ class PuntoGramaticalCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            "puntos_gramaticales" => $this->collection->transform(function($p) {
+            "catalogo" => $this->collection->transform(function ($c) {
                 return [
-                    'id' => $p->id,
-                    'unidad' => $p->unidad,
-                    'punto_gramatical' => $p->punto_gramatica
+                    $c->tipo_cuestionario
                 ];
             })
         ];

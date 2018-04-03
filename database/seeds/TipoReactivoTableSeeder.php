@@ -15,8 +15,7 @@ class TipoReactivoTableSeeder extends Seeder
         TipoReactivo::create([
             'tipo_reactivo' => 'Pregunta abierta'
         ]);
-
-
+        
         TipoReactivo::create([
             'tipo_reactivo' => 'Pregunta true y false'
         ]);

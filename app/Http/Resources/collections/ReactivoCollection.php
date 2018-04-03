@@ -7,8 +7,15 @@ use App\Http\Resources\CompetenciaResource;
 use App\Http\Resources\TipoReactivoResource;
 use App\Http\Resources\EstatusResource;
 use App\Http\Resources\ProfesorResource;
+use App\Http\Resources\PuntoGramaticalResource;
+use App\Http\Resources\CatalagoResource;
+use App\Http\Resources\TextResource;
+
 
 use App\Http\Resources\collections\OpcionReactivosCollection;
+use App\Http\Resources\collections\PuntoGramaticalCollection;
+use App\Http\Resources\collections\CatalogoCollection;
+
 
 class ReactivoCollection extends ResourceCollection
 {
@@ -27,14 +34,16 @@ class ReactivoCollection extends ResourceCollection
                     'attributes' => [
                         'pregunta' => $reactivo->pregunta, 
                         'respuesta' => $reactivo->respuesta_correcta,
-                        'texto' => $reactivo->texto,
                     ],
                     'relationships' => [
                         "opciones" => new OpcionReactivosCollection($reactivo->opciones),
                         "competencia" => new CompetenciaResource($reactivo->competencia),
                         "tipo_reactivo" => new TipoReactivoResource($reactivo->tipo),
                         "estatus_reactivo" => new EstatusResource($reactivo->estatus),
+                        "punto_gramatical" => new PuntoGramaticalResource($reactivo->punto),
+                        "catalogo" => new CatalagoResource($reactivo->catalogo),
                         "autor" => new ProfesorResource($reactivo->profesor),
+                        "text" => new TextResource($reactivo->text),
                     ],
                 ];
             }),

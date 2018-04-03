@@ -30,10 +30,10 @@ class AddForeignKeysToReactivo extends Migration
             $table->integer('text_id')->nullable()->unsigned()->after('profesor_id');
             $table->foreign('text_id')->references('id')->on('text')->onDelete('cascade');
 
-            $table->integer('punto_id')->nullable()->unsigned()->after('text_id');
+            $table->integer('punto_id')->unsigned()->after('text_id');
             $table->foreign('punto_id')->references('id')->on('puntos_gramaticales')->onDelete('cascade');
 
-            $table->integer('catalogo_id')->nullable()->unsigned()->after('punto_id');
+            $table->integer('catalogo_id')->unsigned()->after('punto_id');
             $table->foreign('catalogo_id')->references('id')->on('catalogo_cuestionarios')->onDelete('cascade');
         });
     }

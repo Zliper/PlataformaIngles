@@ -10,7 +10,7 @@ use App\User;
 class AuthTest extends TestCase
 {
 	use RefreshDatabase;
-	
+
 	/** @test */
 	public function loginSuccessfully() {
 		$user = factory(User::class)->create([
@@ -27,8 +27,6 @@ class AuthTest extends TestCase
 					'id',
 					'name',
 					'email',
-					'created_at',
-					'updated_at',
 					'api_token',
 				],
 			]);

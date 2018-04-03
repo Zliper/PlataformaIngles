@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->truncateTables([
+            'users',
             'alumnos',
             'carreras',
             'catalogo_cuestionarios',
@@ -24,15 +25,17 @@ class DatabaseSeeder extends Seeder
             'grupos',
             'puntos_gramaticales',
             'evaluaciones',
+            'text',
             'reactivos',
             'respuestas',
             'opcion_reactivos',
             'comentarios',
             'evaluacion_has_reactivo',
             'grupo_has_alumno',
+            'instrucciones',
         ]);
 
-        
+
         $this->call(AlumnoTableSeeder::class);
         $this->call(CarreraTableSeeder::class);
         $this->call(CatalogoCuestionarioTableSeeder::class);
@@ -45,23 +48,25 @@ class DatabaseSeeder extends Seeder
         $this->call(GrupoTableSeeder::class);
         $this->call(PuntoGramaticalTableSeeder::class);
         $this->call(EvaluacionTableSeeder::class);
-        $this->call(ReactivoTableSeeder::class);          
+        $this->call(TextTableSeeder::class);
+        $this->call(ReactivoTableSeeder::class);
         $this->call(RespuestaTableSeeder::class);
-        $this->call(OpcionReactivoTableSeeder::class);     
+        $this->call(OpcionReactivoTableSeeder::class);
         $this->call(ComentarioTableSeeder::class);
         $this->call(EvaluacionHasReactivoTableSeeder::class);
         $this->call(GrupoHasAlumnoTableSeeder::class);
+        $this->call(InstruccionTableSeeder::class);
         // $this->call(UsersTableSeeder::class);
     }
 
     public function truncateTables(array $tables)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
- 
+
         foreach ($tables as $table) {
             DB::table($table)->truncate();
         }
- 
+
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
     }
 }

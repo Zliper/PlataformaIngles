@@ -19,7 +19,6 @@ class EstatusTableSeeder extends Seeder
 
         Estatus::create([
             'estatus' => 'Espera'
-        ]);
-        
+        ]);  
     }
 }

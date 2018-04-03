@@ -11,7 +11,7 @@
 		<hr>
 
 		<div class="form-row col-sm-3 mb-5">
-			<label for="filter">filter by year</label>
+			<label for="filter">filter by </label>
 			<select @change="sortBy(sortType)" v-model="sortType" id="filter" class="form-control">
 				<option selected value="Espera">Por validar</option>
 				<option value="Aprobado">Validados</option>
@@ -33,6 +33,28 @@
 							<th>Id</th>
 							<td> {{ reactivo.id }} </td>
 						</tr>
+
+						<tr>
+							<th>Unidad </th>
+							<td>
+								{{ reactivo.relationships['punto_gramatical'].unidad }}
+							</td>
+						</tr>
+						
+						<tr>
+							<th>Punto Gramatical</th>
+							<td>
+								{{ reactivo.relationships['punto_gramatical'].punto_gramatical }}
+							</td>
+						</tr>
+						
+						<tr>
+							<th>Reactivo para </th>
+							<td>
+								{{ reactivo.relationships['catalogo'].catalogo }}
+							</td>
+						</tr>
+						
 						<tr>
 							<th>Competencia</th>
 							<td>
@@ -46,10 +68,10 @@
 							</td>
 						</tr>
 
-						<template v-if="reactivo.attributes.texto">
+						<template v-if="reactivo.relationships.text">
 							<tr>
 								<th> Texto/Url </th>
-								<td> {{ reactivo.attributes.texto }} </td>
+								<td> {{ reactivo.relationships['text'].texto }} </td>
 							</tr>
 						</template>
 
@@ -74,7 +96,8 @@
 
 				<div v-if="sortType !== 'Aprobado'" class="d-flex justify-content-end">
 					<a @click="validateReactivo(reactivo.id)" href="#" class="btn btn-primary mr-3">Aceptar</a>
-					<a @click="deleteReactivo(reactivo.id)" href="#" class="btn btn-danger">Denegar</a>
+					<a @click="deleteReactivo(reactivo.id)" href="#" class="btn btn-danger mr-3">Denegar</a>
+					<a href="#" class=" btn btn-info">Comentario</a>
 				</div>
 			</div>
 		</div>

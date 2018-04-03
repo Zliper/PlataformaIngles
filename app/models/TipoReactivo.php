@@ -13,4 +13,8 @@ class TipoReactivo extends Model
     public function reactivos() {
     	return $this->hasMany('App\models\Reactivo','tipo_id');
     }
+
+		public function instrucciones() {
+			return $this->hasMany('App\models\Instruccion','tipo_reactivo');
+		}
 }
