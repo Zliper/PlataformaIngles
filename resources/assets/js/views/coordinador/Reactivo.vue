@@ -18,7 +18,9 @@
 			</select>
 		</div>
 
-		<div v-for="reactivo in reactivos" class="card mb-5">
+		<card-transition>
+
+		<div class="card mb-5" v-for="reactivo in reactivos" :key="reactivo.id" >
 			<div class="card-body">
 				<table class="table table-hover">
 					<thead class="thead-dark">
@@ -32,6 +34,13 @@
 						<tr>
 							<th>Id</th>
 							<td> {{ reactivo.id }} </td>
+						</tr>
+
+						<tr>
+							<th>Nivel </th>
+							<td>
+								{{ reactivo.relationships['nivel'].materia }}
+							</td>
 						</tr>
 
 						<tr>
@@ -101,29 +110,27 @@
 				</div>
 			</div>
 		</div>
-		
-		<nav aria-label="Page navigation example">
-			<ul class="pagination">
-				<li v-bind:class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
-					<a @click="fetchReactivos(pagination.prev_page_url + '&by=Espera')" class="page-link" href="#">Previous</a>
-				</li>
-				
-				<li  v-for="n in pagination.last_page" v-bind:class="[{ active: pagination.current_page==n}]" class="page-item">
-					<a  @click="fetchReactivos(pagination.url+ n +'&by=Espera')" class="page-link" href="#"> {{ n }} </a>
-				</li>
+	</card-transition>
 
-				<li v-bind:class="[{ disabled: !pagination.next_page_url }]" class="page-item">
-					<a @click="fetchReactivos(pagination.next_page_url + '&by=Espera' )" class="page-link" href="#">Next</a>
-				</li>
-			</ul>
-		</nav>
-	</div>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<li v-bind:class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
+				<a @click="fetchReactivos(pagination.prev_page_url + '&by=Espera')" class="page-link" href="#">Previous</a>
+			</li>
+
+			<li  v-for="n in pagination.last_page" v-bind:class="[{ active: pagination.current_page==n}]" class="page-item">
+				<a  @click="fetchReactivos(pagination.url+ n +'&by=Espera')" class="page-link" href="#"> {{ n }} </a>
+			</li>
+
+			<li v-bind:class="[{ disabled: !pagination.next_page_url }]" class="page-item">
+				<a @click="fetchReactivos(pagination.next_page_url + '&by=Espera' )" class="page-link" href="#">Next</a>
+			</li>
+		</ul>
+	</nav>
+</div>
 </template>
 
 <script>
-
-import axios from 'axios';
-
 export default {
 	data() {
 		return {
@@ -206,7 +213,7 @@ export default {
 			.catch(e => {
 				console.log(e);
 			});
-		}
+		},
 	}
 }
 </script>

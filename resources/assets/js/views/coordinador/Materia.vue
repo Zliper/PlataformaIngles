@@ -8,14 +8,14 @@
 			</ul>
 		</div>
 
-		<h3 class="titles">Materias</h3>
+		<h3 class="titles">Niveles</h3>
 		<hr>
 		
 		<div class="d-flex justify-content-center mb-3 ">
 			<form v-on:submit.prevent="checkForm" class="form-inline">
 				<div class="form-group mr-3">
-					<label class="filters" for="materia" >Materia</label>
-					<input v-model="materia.materia" id="materia" class="form-control" type="text" placeholder="materia">
+					<label class="filters" for="materia" >Nivel</label>
+					<input v-model="materia.materia" id="materia" class="form-control" type="text" placeholder="nivel">
 				</div>
 				
 				<div class="form-group mr-3">
@@ -40,36 +40,36 @@
 				<option v-for="y in years" v-bind:value="y.year"> {{ y.year }} </option>
 			</select>
 		</div>
+		
+		<card-transition tag="div">
+			<div class="card" :key="1">
+				<div class="card-body">
+					<table class="table table-hover text-center">
+						<thead>
+							<tr>
+								<th>Nivele</th>
+								<th>Periodo</th>
+								<th>Año</th>
+								<th>Info</th>
+							</tr>
+						</thead>
 
-		<div class="card">
-			<div class="card-body">
-				<table class="table table-hover text-center">
-					<thead>
-						<tr>
-							<th>Materia</th>
-							<th>Periodo</th>
-							<th>Año</th>
-							<th>Info</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr v-for="materia in materias">
-							<th> {{ materia.materia }} </th>
-							<th> {{ materia.periodo }} </th>
-							<th> {{ materia.year }} </th>
-							<th> <a href="" class="btn btn-info">Info {{ materia.id }} </a></th>
-						</tr>
-					</tbody>
-				</table>
+						<tbody>
+							<tr v-for="materia in materias">
+								<th> {{ materia.materia }} </th>
+								<th> {{ materia.periodo }} </th>
+								<th> {{ materia.year }} </th>
+								<th> <a href="" class="btn btn-info">Info {{ materia.id }} </a></th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
+		</card-transition>
 	</div>
 </template>
 
 <script>
-
-import axios from 'axios';
 
 export default {
 	data() {

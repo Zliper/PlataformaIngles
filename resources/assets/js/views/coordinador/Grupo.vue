@@ -12,20 +12,20 @@
 		
 		<div class="d-flex justify-content-center mb-3 ">
 			<form v-on:submit.prevent="checkForm" class="form-inline">
-				<div class="form-group mr-3">
+				<div class="form-group inputs">
 					<label class="filters" for="grupo" >Grupo</label>
 					<input v-model="grupo.grupo" id="grupo" class="form-control" type="text" placeholder="grupo">
 				</div>
 				
-				<div class="form-group mr-3">
+				<div class="form-group inputs">
 					<label class="filters" for="carrera">Carrera</label>
 					<select v-model="grupo.carrera.id" id="carrera" class="form-control">
 						<option v-for="c in carreras" v-bind:value="c.id"> {{ c.carrera }} </option>
 					</select>
 				</div>
-
-				<div class="form-group mr-3">
-					<label class="filters" for="materia">Materia</label>
+				
+				<div class="form-group inputs">
+					<label class="filters" for="materia">Nivel</label>
 					<select v-model="grupo.materia.id" id="materia" class="form-control">
 						<option v-for="m in materias" v-bind:value="m.id"> {{ m.materia }} </option>
 					</select>
@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
 	data() {
@@ -80,12 +79,11 @@ export default {
 		},
 
 		fetchMaterias(page_url = '/api/materias?year=' + new Date().getFullYear().toString()) {
-			let vm = this; 
-			
 			axios.get(page_url)
 			.then(response => {
 				console.log(response.data.data);
 				this.materias = response.data.data.materias;
+				console.log(materias);
 			})
 			.catch(e => {
 				console.log(e);

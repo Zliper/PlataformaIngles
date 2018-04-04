@@ -22,7 +22,12 @@ class ReactivoController extends Controller
             return new ReactivoCollection(Reactivo::where('estatus_id','=',1)->paginate(5));
         } else if ($request->input('by','') == "Espera") {
             return new ReactivoCollection(Reactivo::where('estatus_id','=',2)->paginate(5));
+        } else if($request->input('count','') == "Aprobado") {
+            return Reactivo::where('estatus_id',1)->count();
+        } else if($request->input('count','') == "Espera") {
+            return Reactivo::where('estatus_id',2)->count();
         }
+
         return new ReactivoCollection(Reactivo::paginate(5));
     }
 

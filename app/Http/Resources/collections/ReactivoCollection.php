@@ -10,6 +10,7 @@ use App\Http\Resources\ProfesorResource;
 use App\Http\Resources\PuntoGramaticalResource;
 use App\Http\Resources\CatalagoResource;
 use App\Http\Resources\TextResource;
+use App\Http\Resources\MateriaResource;
 
 
 use App\Http\Resources\collections\OpcionReactivosCollection;
@@ -38,6 +39,7 @@ class ReactivoCollection extends ResourceCollection
                     'relationships' => [
                         "opciones" => new OpcionReactivosCollection($reactivo->opciones),
                         "competencia" => new CompetenciaResource($reactivo->competencia),
+                        "nivel" => new MateriaResource($reactivo->punto->materia),
                         "tipo_reactivo" => new TipoReactivoResource($reactivo->tipo),
                         "estatus_reactivo" => new EstatusResource($reactivo->estatus),
                         "punto_gramatical" => new PuntoGramaticalResource($reactivo->punto),
