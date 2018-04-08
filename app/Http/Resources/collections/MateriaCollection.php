@@ -15,7 +15,7 @@ class MateriaCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            "materias" => $this->collection->transform(function($m) {
+            "nivel" => $this->collection->transform(function($m) {
                 return [
                     'id' => $m->id,
                     'materia' => $m->materia,

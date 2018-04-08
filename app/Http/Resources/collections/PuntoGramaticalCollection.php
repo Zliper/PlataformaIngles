@@ -3,6 +3,7 @@
 namespace App\Http\Resources\collections;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Http\Resources\MateriaResource;
 
 class PuntoGramaticalCollection extends ResourceCollection
 {
@@ -19,7 +20,8 @@ class PuntoGramaticalCollection extends ResourceCollection
                 return [
                     'id' => $p->id,
                     'unidad' => $p->unidad,
-                    'punto_gramatical' => $p->punto_gramatica
+                    'punto_gramatical' => $p->punto_gramatica,
+                    'nivel' => new MateriaResource($p->materia)
                 ];
             })
         ];

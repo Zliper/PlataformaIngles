@@ -82,7 +82,7 @@ export default {
 			axios.get(page_url)
 			.then(response => {
 				console.log(response.data.data);
-				this.materias = response.data.data.materias;
+				this.materias = response.data.data.nivel;
 				console.log(materias);
 			})
 			.catch(e => {

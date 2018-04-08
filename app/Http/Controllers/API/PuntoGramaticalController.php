@@ -15,8 +15,18 @@ class PuntoGramaticalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->input('year','')) {
+            $year = $request->input('year');
+            $puntos = PuntoGramatical::join('materias', function($join) use ($year){
+                $join->on('puntos_gramaticales.materia_id','=','materias.id')
+                    ->where('materias.year','=',$year);
+            })
+            ->get();
+            
+            return $puntos;
+        }
         return new PuntoGramaticalCollection(PuntoGramatical::all());
     }
 

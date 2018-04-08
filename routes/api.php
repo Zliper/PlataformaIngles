@@ -15,6 +15,7 @@ Route::resource('instrucciones','API\InstruccionController');
 Route::get('estatus','API\EstatusController@index');
 Route::get('competencias','API\CompetenciaController@index');
 Route::get('tipos','API\TipoReactivoController@index');
+Route::get('cuestionarios','API\CatalogoCuestionarioController@index');
 
 Route::group(['middleware' => 'auth:api'], function() {
 });

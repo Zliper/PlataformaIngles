@@ -17,6 +17,7 @@ class CatalogoCollection extends ResourceCollection
         return [
             "catalogo" => $this->collection->transform(function ($c) {
                 return [
+                    $c->id,
                     $c->tipo_cuestionario
                 ];
             })

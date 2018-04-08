@@ -47,7 +47,11 @@
 					</thead>
 
 					<tbody>
-						
+						<tr v-for="punto in puntos">
+							<th> {{ punto.unidad }} </th>
+							<th> {{ punto.punto_gramatica }} </th>
+							<th> {{ punto.materia }} </th>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -65,15 +69,18 @@ export default {
 			punto:{},
 		}
 	},
+
 	created() {
 		this.fetchPuntosGramaticals();
 		this.fetchMaterias();
 	},
+
 	methods: {
-		fetchPuntosGramaticals(page_url='/api/puntos') {
+		fetchPuntosGramaticals(page_url='/api/puntos?year=' + new Date().getFullYear().toString()) {
 			axios.get(page_url)
 			.then(response => {
-				this.puntos = response.data.data.puntos_gramaticales;
+				this.puntos = response.data;
+				console.log(response.data)
 			})
 			.catch(e => {
 				console.log(e);
@@ -83,7 +90,7 @@ export default {
 		fetchMaterias(page_url = '/api/materias?year=' + new Date().getFullYear().toString()) { 
 			axios.get(page_url)
 			.then(response => {
-				this.materias = response.data.data.materias;
+				this.materias = response.data.data.nivel;
 			})
 			.catch(e => {
 				console.log(e);
@@ -91,19 +98,13 @@ export default {
 		},
 
 		add() {
-			let payload = {
-				"unidad" : 1,
-					"punto_gramatica": "lorem",
-					"materia_id": 1
-			};
-
-
 			axios.post('/api/puntos', {
-					"unidad" : this.punto.unidad,
-					"punto_gramatica": this.punto.punto_gramatical,
-					"materia_id": this.punto.materia
+				"unidad" : this.punto.unidad,
+				"punto_gramatica": this.punto.punto_gramatical,
+				"materia_id": this.punto.materia
 			})
 			.then(response => {
+				this.fetchPuntosGramaticals();
 				this.punto.unidad = '';
 				this.punto.punto_gramatical = '';
 				this.punto.materia = '';

@@ -97,7 +97,7 @@ export default {
 			let vm = this; 
 			axios.get(page_url)
 			.then(response => {
-				this.materias = response.data.data.materias;
+				this.materias = response.data.data.nivel;
 			})
 			.catch(e => {
 				console.log(e);
