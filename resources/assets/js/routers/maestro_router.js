@@ -8,6 +8,8 @@ import Home from '../views/maestro/Home.vue'
 import Reactivo from '../views/maestro/Reactivo.vue'
 import CreateReactivo from '../views/global/CreateReactivo.vue'
 
+import Cuestionario from "../views/global/Cuestionario.vue"
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -22,6 +24,11 @@ const router = new VueRouter({
             path: '/maestro/reactivos/list',
             name: 'reactivo.list',
             component: Reactivo
+        },
+        {
+            path: '/maestro/cuestionarios',
+            name: 'cuestionarios',
+            component: Cuestionario
         },
         {
             path: '/maestro/reactivos/create',

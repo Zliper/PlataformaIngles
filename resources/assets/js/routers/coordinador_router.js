@@ -10,6 +10,8 @@ import Materia from '../views/coordinador/Materia'
 import Punto from '../views/coordinador/Punto'
 import Index from '../views/coordinador/Index.vue'
 
+import Cuestionario from "../views/global/Cuestionario.vue"
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -29,6 +31,11 @@ const router = new VueRouter({
             path: '/materias',
             name: 'materias',
             component: Materia
+        },
+        {
+            path: '/cuestionarios',
+            name: 'cuestionarios',
+            component: Cuestionario
         },
         {
         	path: '/grupos',

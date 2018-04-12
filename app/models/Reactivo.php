@@ -8,8 +8,8 @@ class Reactivo extends Model
 {
     public $timestamps = false;
 	protected $fillable = [
-		'competencia_id','tipo_id','estatus_id','profesor_id','pregunta',
-		'respuesta_correcta',
+		'competencia_id','tipo_id','estatus_id','profesor_id','text_id',
+        'punto_id','catalogo_id','pregunta','respuesta_correcta',
 	];
 
     protected $table = 'reactivos';

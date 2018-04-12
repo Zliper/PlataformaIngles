@@ -19,9 +19,9 @@ class ReactivoController extends Controller
     public function index(Request $request)
     { 
         if ($request->input('by','') == "Aprobado") {
-            return new ReactivoCollection(Reactivo::where('estatus_id','=',1)->paginate(5));
+            return new ReactivoCollection(Reactivo::where('estatus_id','=',1)->paginate(3));
         } else if ($request->input('by','') == "Espera") {
-            return new ReactivoCollection(Reactivo::where('estatus_id','=',2)->paginate(5));
+            return new ReactivoCollection(Reactivo::where('estatus_id','=',2)->paginate(3));
         } else if($request->input('count','') == "Aprobado") {
             return Reactivo::where('estatus_id',1)->count();
         } else if($request->input('count','') == "Espera") {
@@ -50,13 +50,15 @@ class ReactivoController extends Controller
     public function store(Request $request)
     {
         $reactivo = Reactivo::create([
-            "competencia_id" => $request->competencia,
-            "tipo_id" => $request->tipo,
-            "estatus_id" => $request->estatus,
-            "profesor_id" => $request->profesor,
+            "competencia_id" => $request->competencia_id,
+            "tipo_id" => $request->tipo_id,
+            "estatus_id" => $request->estatus_id,
+            "profesor_id" => $request->profesor_id,
+            "text_id" => $request->text_id,
+            "punto_id" => $request->punto_id,
+            "catalogo_id" => $request->catalogo_id,
             "pregunta" => $request->pregunta,
-            "respuesta_correcta" => $request->respuesta,
-            "texto" => $request->text
+            "respuesta_correcta" => $request->respuesta_correcta
         ]);
 
         foreach ($request->opciones as $o) {

@@ -20,7 +20,6 @@ class ReactivoResource extends JsonResource
                 'attributes' => [
                     'pregunta' => $this->pregunta,
                     'respuesta' => $this->respuesta_correcta,
-                    'texto' => $this->texto,
                 ],
                 'relationships' => [
                     new CompetenciaResource($this->competencia),
