@@ -18,32 +18,32 @@ const router = new VueRouter({
 	mode: 'history',
 	routes: [	
         {
-            path: '/',
+            path: '/coordinador',
             name: 'index',
             component: Index
         },	
         {
-            path: '/reactivos',
+            path: '/coordinador/reactivos',
             name: 'reactivos',
             component: Reactivo
         },
         {
-            path: '/materias',
+            path: '/coordinador/materias',
             name: 'materias',
             component: Materia
         },
         {
-            path: '/cuestionarios',
+            path: '/coordinador/cuestionarios',
             name: 'cuestionarios',
             component: Cuestionario
         },
         {
-        	path: '/grupos',
+        	path: '/coordinador/grupos',
         	name: 'grupos',
         	component: Grupo
         },
         {
-            path: '/puntos',
+            path: '/coordinador/puntos',
             name: 'puntos',
             component: Punto
         },

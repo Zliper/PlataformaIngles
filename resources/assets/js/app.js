@@ -25,7 +25,6 @@ const app = new Vue({
     router: Router 
 });
 
-
 const appMaestro = new Vue({
 	el: '#app-maestro',
 	components: { AppMaestro },

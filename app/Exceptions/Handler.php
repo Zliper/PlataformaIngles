@@ -7,6 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Auth\AuthenticationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class Handler extends ExceptionHandler
@@ -58,6 +59,12 @@ class Handler extends ExceptionHandler
                 'error' => 'Resource not found'
             ], 404);
             
+        } else if ($exception instanceof NotFoundHttpException) {
+            if ($request->is('maestro/*')) {
+                return response()->view('maestro');
+            } else if($request->is('coordinador/*')) {
+                return response()->view('coordinador');
+            }
         }
 
         return parent::render($request, $exception);
