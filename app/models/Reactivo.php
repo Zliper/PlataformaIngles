@@ -23,7 +23,7 @@ class Reactivo extends Model
     }
 
     public function estatus() {
-    	return $this->belongsTo('App\models\estatus','estatus_id');
+    	return $this->belongsTo('App\models\Estatus','estatus_id');
     }
 
     public function profesor() {

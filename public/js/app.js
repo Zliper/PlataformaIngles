@@ -29146,6 +29146,13 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -29153,6 +29160,8 @@ if (false) {(function () {
 		return {
 			disable: false,
 			cuestionarios: [],
+			instrucciones: [],
+			instruccion: '',
 			tipos: [],
 			reactivos: [],
 			errors: [],
@@ -29167,6 +29176,7 @@ if (false) {(function () {
 		this.fetchCatalogo();
 		this.fetchPuntosGramaticales();
 		this.fetchTipoReactivos();
+		//this.fetchInstrucciones();
 	},
 
 
@@ -29187,7 +29197,6 @@ if (false) {(function () {
 
 			axios.get(page_url).then(function (response) {
 				_this2.puntos = response.data;
-				console.log(response.data);
 			}).catch(function (e) {
 				console.log(e);
 			});
@@ -29197,6 +29206,22 @@ if (false) {(function () {
 
 			axios.get('/api/tipos').then(function (response) {
 				_this3.tipos = response.data.data.tipos;
+			}).catch(function (e) {
+				console.log(e);
+			});
+		},
+		instruccionesBy: function instruccionesBy(id) {
+			this.fetchInstrucciones('/api/instrucciones?by=' + id);
+			console.log(id);
+		},
+		fetchInstrucciones: function fetchInstrucciones() {
+			var _this4 = this;
+
+			var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/api/instrucciones';
+
+			axios.get(page_url).then(function (response) {
+				_this4.instrucciones = response.data.data.instrucciones;
+				console.log(response);
 			}).catch(function (e) {
 				console.log(e);
 			});
@@ -29233,19 +29258,19 @@ if (false) {(function () {
 			}
 		},
 		addText: function addText() {
-			var _this4 = this;
+			var _this5 = this;
 
 			axios.post('/api/texts', {
 				"text": this.reactivo.url
 			}).then(function (response) {
-				_this4.reactivo.url = response.data.id;
-				_this4.add(); //luego se registran las preguntas
+				_this5.reactivo.url = response.data.id;
+				_this5.add(); //luego se registran las preguntas
 			}).catch(function (e) {
 				console.log(e);
 			});
 		},
 		addReactivo: function addReactivo(pregunta) {
-			var _this5 = this;
+			var _this6 = this;
 
 			axios.post('/api/reactivos', {
 				"competencia_id": this.reactivo.competencia,
@@ -29260,7 +29285,7 @@ if (false) {(function () {
 				"opciones": pregunta.opciones
 			}).then(function (response) {
 				console.log(response);
-				_this5.$toastr('success', 'Reactivos added successfully');
+				_this6.$toastr('success', 'Reactivos added successfully');
 			}).catch(function (e) {
 				console.log(e);
 			});
@@ -29270,8 +29295,6 @@ if (false) {(function () {
 
 			if (this.reactivo.cantidad > 0) {
 
-				console.log(this.reactivo.cantidad);
-
 				this.disable = true;
 				this.reactivos = this.range(this.reactivo.cantidad);
 				this.preguntas = this.range(this.reactivo.cantidad);
@@ -29280,7 +29303,6 @@ if (false) {(function () {
 					this.preguntas[i] = {
 						opciones: {}
 					};
-					console.log(this.preguntas[i]);
 				}
 				return;
 			}
@@ -54761,7 +54783,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "form-group row justify-content-center " }, [
-          _c("div", { staticClass: "col-3" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
             _c(
               "div",
               {
@@ -54850,7 +54872,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
             _c(
               "div",
               {
@@ -54939,7 +54961,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
             _c(
               "div",
               {
@@ -55030,7 +55052,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group row justify-content-center " }, [
-          _c("div", { staticClass: "col-8" }, [
+          _c("div", { staticClass: "col-sm-8" }, [
             _vm._m(4),
             _vm._v(" "),
             _c("h6", [_vm._v("URL")]),
@@ -55063,7 +55085,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-8 mb-4" }, [
+          _c("div", { staticClass: "col-sm-8 mb-4" }, [
             _c("label", { attrs: { for: "materia" } }, [
               _vm._v("Tipo de reactivo")
             ]),
@@ -55082,6 +55104,57 @@ var render = function() {
                 staticClass: "form-control mb-4",
                 attrs: { name: "materia", id: "materia" },
                 on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.reactivo,
+                        "tipo_reactivo",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.instruccionesBy(_vm.reactivo.tipo_reactivo)
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.tipos, function(t) {
+                return _c("option", { domProps: { value: t.id } }, [
+                  _vm._v(" " + _vm._s(t.tipo))
+                ])
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-8 mb-4" }, [
+            _c("label", { attrs: { for: "instruccion" } }, [
+              _vm._v("Instrucciones")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.instruccion,
+                    expression: "instruccion"
+                  }
+                ],
+                staticClass: "form-control mb-4",
+                attrs: { name: "instruccion" },
+                on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
                       .call($event.target.options, function(o) {
@@ -55091,26 +55164,17 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.$set(
-                      _vm.reactivo,
-                      "tipo_reactivo",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
+                    _vm.instruccion = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
                   }
                 }
               },
-              [
-                _c("option", { attrs: { selected: "" } }, [
-                  _vm._v("Elije el tipo del reactivo")
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.tipos, function(t) {
-                  return _c("option", { domProps: { value: t.id } }, [
-                    _vm._v(" " + _vm._s(t.tipo))
-                  ])
-                })
-              ],
-              2
+              _vm._l(_vm.instrucciones, function(instruccion) {
+                return _c("option", { domProps: { value: instruccion.id } }, [
+                  _vm._v(" " + _vm._s(instruccion.instruccion) + " ")
+                ])
+              })
             )
           ])
         ]),

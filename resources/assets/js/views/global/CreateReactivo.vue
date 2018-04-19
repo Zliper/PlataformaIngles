@@ -34,7 +34,7 @@
 			</div>
 
 			<div class="form-group row justify-content-center ">
-				<div class="col-3">
+				<div class="col-sm-3">
 					<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
 						<div class="card-header">
 							<label class="form-check-label">
@@ -57,7 +57,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-3">
+				<div class="col-sm-3">
 					<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
 						<div class="card-header">
 							<label class="form-check-label">
@@ -80,7 +80,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-3">
+				<div class="col-sm-3">
 					<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
 						<div class="card-header">
 							<label class="form-check-label">
@@ -107,7 +107,7 @@
 
 			<div class="form-group row justify-content-center ">
 				<!-- URL -->
-				<div class="col-8">
+				<div class="col-sm-8">
 					<div class="alert alert-primary alert-dismissible fade show" role="alert">
 						<strong>Hola!</strong><br>De ser necesario asigna un archivo de apoyo para que el alumno pueda responder el reactivo.
 						Asignado una URL en el cuadro de texto de abajo.
@@ -121,12 +121,19 @@
 					</div>
 
 				</div>
+
 				<!-- Tipo de reactivo -->
-				<div class="col-8 mb-4">
+				<div class="col-sm-8 mb-4">
 					<label for="materia">Tipo de reactivo</label>
-					<select v-model="reactivo.tipo_reactivo" name="materia" id="materia" class="form-control mb-4">
-						<option selected>Elije el tipo del reactivo</option>
+					<select v-model="reactivo.tipo_reactivo" @change="instruccionesBy(reactivo.tipo_reactivo)"  name="materia" id="materia" class="form-control mb-4">
 						<option v-for="t in tipos" v-bind:value="t.id"> {{ t.tipo }}</option>
+					</select>
+				</div>
+
+				<div class="col-sm-8 mb-4">
+					<label for="instruccion">Instrucciones</label>
+					<select name="instruccion" v-model="instruccion" class="form-control mb-4">
+						<option  v-for="instruccion in instrucciones" v-bind:value="  instruccion.id "> {{ instruccion.instruccion }} </option>
 					</select>
 				</div>
 			</div>
@@ -178,6 +185,8 @@ export default {
 		return {
 			disable: false,
 			cuestionarios: [],
+			instrucciones: [],
+			instruccion: '',
 			tipos: [],
 			reactivos: [],
 			errors: [],
@@ -193,6 +202,7 @@ export default {
 		this.fetchCatalogo();
 		this.fetchPuntosGramaticales();
 		this.fetchTipoReactivos();
+		//this.fetchInstrucciones();
 	},
 
 	methods: {
@@ -210,7 +220,6 @@ export default {
 			axios.get(page_url)
 			.then(response => {
 				this.puntos = response.data;
-				console.log(response.data)
 			})
 			.catch(e => {
 				console.log(e);
@@ -223,6 +232,22 @@ export default {
 				this.tipos = response.data.data.tipos;
 			})
 			.catch(e => {
+				console.log(e);
+			});
+		},
+
+		instruccionesBy(id) {
+			this.fetchInstrucciones('/api/instrucciones?by=' + id);
+			console.log(id);
+		},
+
+		fetchInstrucciones(page_url='/api/instrucciones') {
+			axios.get(page_url)
+			.then(response=>{
+				this.instrucciones = response.data.data.instrucciones;
+				console.log(response);
+			})
+			.catch(e=>{
 				console.log(e);
 			});
 		},
@@ -307,8 +332,6 @@ export default {
 
 		if (this.reactivo.cantidad > 0) {
 
-			console.log(this.reactivo.cantidad);
-
 			this.disable = true;
 			this.reactivos = this.range(this.reactivo.cantidad);
 			this.preguntas = this.range(this.reactivo.cantidad);
@@ -317,7 +340,6 @@ export default {
 				this.preguntas[i] = {
 					opciones: {}
 				};
-				console.log(this.preguntas[i]);
 			}
 			return;
 		}

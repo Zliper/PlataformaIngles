@@ -27,7 +27,7 @@
 	</style>
 
 	<div class="container">
-		<h4 class="display-1 text-center e">404</h4>
+		<h4 class="display-1 text-center e">Error 404 Page not found</h4>
 	</div>
 </body>
 </html>

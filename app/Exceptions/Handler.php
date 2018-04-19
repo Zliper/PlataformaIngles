@@ -64,6 +64,8 @@ class Handler extends ExceptionHandler
                 return response()->view('maestro');
             } else if($request->is('coordinador/*')) {
                 return response()->view('coordinador');
+            } else if($request->is('alumno/*')) {
+                return response()->view('alumno');
             }
         }
 

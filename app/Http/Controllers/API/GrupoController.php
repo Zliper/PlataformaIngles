@@ -23,16 +23,6 @@ class GrupoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -64,18 +54,7 @@ class GrupoController extends Controller
         GrupoResource::withoutWrapping();
         return new GrupoResource($grupo);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Grupo $grupo)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *

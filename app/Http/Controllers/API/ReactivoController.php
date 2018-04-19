@@ -32,16 +32,6 @@ class ReactivoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -67,11 +57,7 @@ class ReactivoController extends Controller
                 "opcion" => $o
             ]);
         }
-/*        ReactivoResource::withoutWrapping();
-        $reactivo = Reactivo::create($request->all());
 
-        return response(new ReactivoResource($reactivo),201);*/
-        //return $request->all();
         return response(new ReactivoResource($reactivo),201);
     }
 
@@ -86,18 +72,7 @@ class ReactivoController extends Controller
         ReactivoResource::withoutWrapping();
         return new ReactivoResource($reactivo);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *

@@ -8,7 +8,7 @@
                          <li class="nav-item">
                            <router-link :to="{ name: 'index' } " class="nav-link text-white">Inicio</router-link>
                        </li>
-                        <li class="nav-item">
+                       <li class="nav-item">
                            <router-link :to="{ name: 'reactivos' } " class="nav-link text-white">Reactivos</router-link>
                        </li>
                        <li class="nav-item">

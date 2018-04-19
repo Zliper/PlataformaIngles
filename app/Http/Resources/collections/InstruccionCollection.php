@@ -17,6 +17,7 @@ class InstruccionCollection extends ResourceCollection
         return [
             "instrucciones" => $this->collection->transform(function($i) {
                 return [
+                    "id" => $i->id,
                     "tipo_reactivo_id" => $i->tipo_reactivo_id,
                     "instruccion" => $i->instruccion,
                 ];
