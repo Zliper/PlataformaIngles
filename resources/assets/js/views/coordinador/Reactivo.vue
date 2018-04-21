@@ -102,11 +102,17 @@
 						</tr>
 					</tbody>
 				</table>
-
-				<div v-if="sortType !== 'Aprobado'" class="d-flex justify-content-end">
-					<a @click="validateReactivo(reactivo.id)" href="#" class="btn btn-primary mr-3">Aceptar</a>
-					<a @click="deleteReactivo(reactivo.id)" href="#" class="btn btn-danger mr-3">Denegar</a>
-					<a href="#" class=" btn btn-info">Comentario</a>
+				
+				<div v-if="sortType !== 'Aprobado'" class="row justify-content-start">
+					<div class="col-md-2 col-sm-12">
+						<a @click="validateReactivo(reactivo.id)" href="#" class="btn btn-primary btn-block inputs">Aceptar</a>
+					</div>
+					<div class="col-md-2 col-sm-12">
+						<a @click="deleteReactivo(reactivo.id)" href="#" class="btn btn-danger btn-block inputs">Denegar</a>
+					</div>
+					<div class="col-md-2 col-sm-12">
+						<a href="#" class="btn btn-info btn-block inputs">Comentario</a>
+					</div>
 				</div>
 			</div>
 		</div>

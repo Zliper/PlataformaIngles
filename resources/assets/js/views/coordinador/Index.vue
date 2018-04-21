@@ -5,11 +5,11 @@
 				<h3 class="display-4 titles">Bienvenido </h3>
 				<hr>
 				<div class="jumbotron">
-					<h4 class="display-4">Panel Coordinador</h4>
-					<p class="lead">En esta area encontraras tarjetas con algunas notificaciones y datos que quizas puedan servirte.</p>
+					<p class="display-4 text-center">Panel</p>
+					<p class="lead text-center">En esta area encontraras tarjetas con algunas notificaciones y datos que quizas puedan servirte.</p>
 
 					<div class="row justify-content-center">
-						<div class="col-sm-4">
+						<div class="col-sm-12 col-md-4">
 							<div class="card text-white bg-secondary mb-3">
 								<div class="card-header">
 									Reactivos
@@ -22,8 +22,8 @@
 							</div>
 						</div>
 
-						<div class="col-sm-4">
-							<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+						<div class="col-sm-12 col-md-4">
+							<div class="card text-white bg-secondary mb-3">
 								<div class="card-header">Reactivos</div>
 								<div class="card-body">
 									<h3 class="text-center"><span class="badge badge-warning"> {{ aprobados }}</span></h3>

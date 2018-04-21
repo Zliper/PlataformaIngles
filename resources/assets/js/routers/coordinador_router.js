@@ -9,6 +9,7 @@ import Grupo from '../views/coordinador/Grupo.vue'
 import Materia from '../views/coordinador/Materia'
 import Punto from '../views/coordinador/Punto'
 import Index from '../views/coordinador/Index.vue'
+import GrupoDetails from '../views/coordinador/GrupoDetail.vue'
 
 import Cuestionario from "../views/global/Cuestionario.vue"
 
@@ -41,6 +42,12 @@ const router = new VueRouter({
         	path: '/coordinador/grupos',
         	name: 'grupos',
         	component: Grupo
+        },
+        {
+            path: '/coordinador/grupos/:grupoId/show',
+            name: 'grupoDetails',
+            component: GrupoDetails,
+            props: true,
         },
         {
             path: '/coordinador/puntos',

@@ -10,8 +10,8 @@
 		<h3 class="titles">Reactivos</h3>
 		<hr>
 		<div>
-			<div class="form-group row justify-content-sm-center">
-				<div class="col-8 mb-4">
+			<div class="row justify-content-center inputs">
+				<div class="col-md-8 col-sm-12">
 					<label for="catalogo">Destino del reactivo</label>
 					<select v-model="reactivo.tipo_cuestionario" id="catalogo" class="form-control">
 						<option v-for="c in cuestionarios" v-bind:value="c.id"> {{ c.tipo }}</option>
@@ -19,84 +19,84 @@
 				</div>
 			</div>
 
-			<div class="form-group row justify-content-md-center">
-				<div class="col-sm-5 mb-4">
+			<div class="row justify-content-center inputs">
+				<div class="col-md-8 col-sm-12">
 					<label for="materia">Punto Gramatical</label>
 					<select v-model="reactivo.punto_gramatical" name="materia" id="materia" class="form-control">
 						<option v-for="punto in puntos" v-bind:value="punto.id"> {{ punto.unidad }} - {{ punto.punto_gramatica }}</option>
 					</select>
-				</div>			
-			</div>	
-
-			<div class="form-group row justify-content-center">
-				<br>
-				<h6>Elije la competencia al cual seran asignados los reactivos y el numero de ellos</h6>
+				</div>
 			</div>
-
-			<div class="form-group row justify-content-center ">
-				<div class="col-sm-3">
-					<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+			
+			<div class="row justify-content-center inputs">
+				<div class="col-md-8 col-sm-12">
+					<h6>Elije la competencia al cual seran asignados los reactivos y el numero de ellos</h6>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center inputs">
+				<div class="col-md-3 col-sm-12 inputs">
+					<div class="card text-white bg-secondary">
 						<div class="card-header">
 							<label class="form-check-label">
 								<input type="radio" name="competencia" id="eading" v-model="reactivo.competencia" v-bind:value="1"> Reading
 							</label>
 						</div>
 						<div class="card-body">
-							<h5 class="card-title text-center">
-								Reading
-							</h5>
-							<p class="card-text"><small></small></p>
+							<h5 class="card-title text-center">Reading</h5>
 						</div>
 						<div class="card-footer">
-							<div class="input-group mb-3">
-								<input  type="text" class="form-control"  :disabled="disable" v-model="reactivo.cantidad" placeholder="# Reactivos">
-								<div class="input-group-append">
+							<div class="row">
+								<div class="col-md-6 col-sm-12 inputs">
+									<input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1"  :disabled="disable" v-model="reactivo.cantidad" placeholder="# Reactivos">
+								</div>
+								<div class="col-md-3 col-sm-12 inputs">
 									<button class="btn btn-primary" v-on:click="disableButtons" type="button">Confirmar</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+
+				<div class="col-md-3 col-sm-12 inputs">
+					<div class="card text-white bg-secondary">
 						<div class="card-header">
 							<label class="form-check-label">
-								<input type="radio" name="competencia" id="listening" v-model="reactivo.competencia" v-bind:value="2"> Listening
+								<input type="radio" name="competencia" id="eading" v-model="reactivo.competencia" v-bind:value="1"> Reading
 							</label>
 						</div>
 						<div class="card-body">
-							<h5 class="card-title text-center">
-								Listening
-							</h5>
-							<p class="card-text"></p>
+							<h5 class="card-title text-center">Reading</h5>
 						</div>
 						<div class="card-footer">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control" :disabled="disable" v-model="reactivo.cantidad" placeholder="# Reactivos">
-								<div class="input-group-append">
+							<div class="row">
+								<div class="col-md-6 col-sm-12 inputs">
+									<input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1"  :disabled="disable" v-model="reactivo.cantidad" placeholder="# Reactivos">
+								</div>
+								<div class="col-md-3 col-sm-12 inputs">
 									<button class="btn btn-primary" v-on:click="disableButtons" type="button">Confirmar</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+
+				<div class="col-md-3 col-sm-12 inputs">
+					<div class="card text-white bg-secondary">
 						<div class="card-header">
 							<label class="form-check-label">
 								<input type="radio" name="competencia" id="grammar" v-model="reactivo.competencia" v-bind:value="3"> Writting
 							</label>
 						</div>
 						<div class="card-body">
-							<h5 class="card-title text-center">
-								Grammar
-							</h5>
-							<p class="card-text"></p>
+							<h5 class="card-title text-center">Reading</h5>
 						</div>
 						<div class="card-footer">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control" :disabled="disable" v-model="reactivo.cantidad" placeholder="# Reactivos">
-								<div class="input-group-append">
+							<div class="row">
+								<div class="col-md-6 col-sm-12 inputs">
+									<input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1" :disabled="disable" v-model="reactivo.cantidad" placeholder="# Reactivos">
+								</div>
+								<div class="col-md-3 col-sm-12 inputs">
 									<button class="btn btn-primary" v-on:click="disableButtons" type="button">Confirmar</button>
 								</div>
 							</div>
@@ -104,10 +104,9 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="form-group row justify-content-center ">
-				<!-- URL -->
-				<div class="col-sm-8">
+	
+			<div class="row justify-content-center">
+				<div class="col-sm-8 inputs">
 					<div class="alert alert-primary alert-dismissible fade show" role="alert">
 						<strong>Hola!</strong><br>De ser necesario asigna un archivo de apoyo para que el alumno pueda responder el reactivo.
 						Asignado una URL en el cuadro de texto de abajo.
@@ -116,33 +115,31 @@
 						</button>
 					</div>
 					<h6>URL</h6>
-					<div class="input-group mb-5">
+					<div class="input-group inputs">
 						<input type="text" v-model="reactivo.url" class="form-control" placeholder="Ingresa el enlace del archivo">
 					</div>
-
 				</div>
 
-				<!-- Tipo de reactivo -->
-				<div class="col-sm-8 mb-4">
+				<div class="col-md-8 inputs">
 					<label for="materia">Tipo de reactivo</label>
 					<select v-model="reactivo.tipo_reactivo" @change="instruccionesBy(reactivo.tipo_reactivo)"  name="materia" id="materia" class="form-control mb-4">
 						<option v-for="t in tipos" v-bind:value="t.id"> {{ t.tipo }}</option>
 					</select>
 				</div>
 
-				<div class="col-sm-8 mb-4">
+				<div class="col-md-8 inputs">
 					<label for="instruccion">Instrucciones</label>
 					<select name="instruccion" v-model="instruccion" class="form-control mb-4">
 						<option  v-for="instruccion in instrucciones" v-bind:value="  instruccion.id "> {{ instruccion.instruccion }} </option>
 					</select>
 				</div>
 			</div>
-
+			
 			<h3>Reactivos</h3>
 
 			<template v-if="disable">
 				<div class="row justify-content-center">
-					<div v-for="x in reactivos" class="card col-sm-7 border-dark mb-3">
+					<div v-for="x in reactivos" class="card col-sm-7 col-md-8 border-dark inputs">
 						<div class="card-body">
 							<div class="form-group">
 								<label for="question">Pregunta</label>
@@ -152,20 +149,30 @@
 								<label for="respuesta">Respuesta correcta</label>
 								<input type="text" v-model="preguntas[x].respuesta" class="form-control" placeholder="Respuesta correcta">
 							</div>
-							<div class="row form-group">
-								<div class="col-sm-4">
-									<label for="respuesta">Respuesta correcta</label>
-									<input type="text" v-model="preguntas[x].opciones.op_1" class="form-control" placeholder="Opción 1">
+							<template v-if="reactivo.tipo_reactivo != 2">
+								<div class="row form-group">
+									<div class="col-sm-4">
+										<label for="respuesta">Opción 1</label>
+										<input type="text" v-model="preguntas[x].opciones.op_1" class="form-control" placeholder="Opción 1">
+									</div>
+									<div class="col-sm-4">
+										<label for="respuesta">Opción 2</label>
+										<input type="text" v-model="preguntas[x].opciones.op_2" class="form-control" placeholder="Opción 1">
+									</div>
+									<div class="col-sm-4">
+										<label for="respuesta">Opción 3</label>
+										<input type="text" v-model="preguntas[x].opciones.op_3" class="form-control" placeholder="Opción 1">
+									</div>
 								</div>
-								<div class="col-sm-4">
-									<label for="respuesta">Respuesta correcta</label>
-									<input type="text" v-model="preguntas[x].opciones.op_2" class="form-control" placeholder="Opción 1">
+							</template>
+							<template v-else>
+								<div class="row form-group">
+									<div class="col-sm-12 text-center">
+										<label for="respuesta">Opción 1</label>
+										<input type="text" v-model="preguntas[x].opciones.op_1" class="form-control" placeholder="Opción 1">
+									</div>
 								</div>
-								<div class="col-sm-4">
-									<label for="respuesta">Respuesta correcta</label>
-									<input type="text" v-model="preguntas[x].opciones.op_3" class="form-control" placeholder="Opción 1">
-								</div>
-							</div>
+							</template>
 						</div>
 					</div>
 					<div class="col-sm-7">
@@ -202,7 +209,6 @@ export default {
 		this.fetchCatalogo();
 		this.fetchPuntosGramaticales();
 		this.fetchTipoReactivos();
-		//this.fetchInstrucciones();
 	},
 
 	methods: {
@@ -245,7 +251,6 @@ export default {
 			axios.get(page_url)
 			.then(response=>{
 				this.instrucciones = response.data.data.instrucciones;
-				console.log(response);
 			})
 			.catch(e=>{
 				console.log(e);
@@ -319,7 +324,6 @@ export default {
 			"opciones" : pregunta.opciones
 		})
 		.then(response=>{
-			console.log(response);
 			this.$toastr('success', 'Reactivos added successfully');
 		})
 		.catch(e=>{

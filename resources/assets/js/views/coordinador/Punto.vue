@@ -9,51 +9,48 @@
 
 		<h3 class="titles">Puntos Gramaticales</h3>
 		<hr>
-
-		<div class="d-flex justify-content-center mb-3">
-			<form v-on:submit.prevent="checkForm" class="form-inline">
-				<div class="form-group inputs">
-					<label class="filters" for="unidad">Unidad</label>
-					<input v-model="punto.unidad" class="form-control" type="text" id="unidad" placeholder="Unidad">
+		
+		<form class="mb-4" v-on:submit.prevent="checkForm">
+			<div class="form-row">
+				<div class="col-md-3 col-sm-12 ">
+					<input v-model="punto.unidad" name="unidad" type="number" onkeypress="return event.charCode >= 48" class="form-control inputs" placeholder="Unidad">
 				</div>
-
-				<div class="form-group inputs" >
-					<label class="filters" for="tema">Punto Gramatical</label>
-					<input v-model="punto.punto_gramatical" class="form-control" id="tema" type="text" placeholder="Punto Gramatical">
+				<div class="col-md-3 col-sm-12">
+					<input v-model="punto.punto_gramatical" type="text" class="form-control inputs" placeholder="Punto Gramatical">
 				</div>
-
-				<div class="form-group mr-3">
-					<label class="filters" for="periodo">Nivel</label>
-					<select v-model="punto.materia" id="periodo" class="form-control">
+				<div class="col-md-3 col-sm-12">
+					<select v-model="punto.materia" id="periodo" class="form-control inputs">
+						<option value="0" selected>Nivel</option>
 						<option v-for="materia in materias" v-bind:value="materia.id"> {{ materia.materia }} </option>
 					</select>
 				</div>
-
-				<div class="form-group inputs">
-					<button class="btn btn-primary" type="submit">Agregar</button>
+				<div class="col-md-3 col-sm-12">
+					<button type="submit" class="btn btn-primary btn-block">Guardar</button>
 				</div>
-			</form>
-		</div>
-
+			</div>
+		</form>
+		
 		<div class="card">
 			<div class="card-body">
-				<table class="table table-hover text-center">
-					<thead>
-						<tr>
-							<th>Unidad</th>
-							<th>Punto Gramatical</th>
-							<th>Materia</th>
-						</tr>
-					</thead>
+				<div class="table-responsive-md">
+					<table class="table table-hover text-center">
+						<thead>
+							<tr>
+								<th>Unidad</th>
+								<th>Punto Gramatical</th>
+								<th>Materia</th>
+							</tr>
+						</thead>
 
-					<tbody>
-						<tr v-for="punto in puntos">
-							<th> {{ punto.unidad }} </th>
-							<th> {{ punto.punto_gramatica }} </th>
-							<th> {{ punto.materia }} </th>
-						</tr>
-					</tbody>
-				</table>
+						<tbody>
+							<tr v-for="punto in puntos">
+								<th> {{ punto.unidad }} </th>
+								<th> {{ punto.punto_gramatica }} </th>
+								<th> {{ punto.materia }} </th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -98,11 +95,13 @@ export default {
 		},
 
 		add() {
-			axios.post('/api/puntos', {
+			let punto = {
 				"unidad" : this.punto.unidad,
 				"punto_gramatica": this.punto.punto_gramatical,
 				"materia_id": this.punto.materia
-			})
+			};
+
+			axios.post('/api/puntos', punto)
 			.then(response => {
 				this.fetchPuntosGramaticals();
 				this.punto.unidad = '';

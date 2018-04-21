@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<h3 class="display-4 titles">Detalles de grupo </h3>
+		<h3 class="display-4 titles">Detalles de grupo {{ grupoId }}</h3>
 
 		<div class="d-flex justify-content-center mb-3 ">
 			
@@ -9,15 +9,26 @@
 </template>
 
 <script>
-	export default() {
-		data() {
-			return {
 
-			}
-		},
-		
-		created() {
-
+export default {
+	props: ['grupoId'],
+	data() {
+		return {
+			data:{
+				email: "root@gmail.com",
+				password: "loremroot"
+			},
 		}
+	},
+
+	created() {
+		 
+	},
+
+	methods:{
+		 fetchAlumnos() {
+			 
+		 }
 	}
+}
 </script>

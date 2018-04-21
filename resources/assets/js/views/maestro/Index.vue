@@ -23,7 +23,7 @@
 						</div>
 						
 						<div class="col-sm-4">
-							<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+							<div class="card text-white bg-secondary mb-3">
 								<div class="card-header">Reactivos</div>
 								<div class="card-body">
 									<h3 class="text-center"><span class="badge badge-warning">9</span></h3>
@@ -34,7 +34,7 @@
 						</div>
 
 						<div class="col-sm-4">
-							<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+							<div class="card text-white bg-secondary mb-3">
 								<div class="card-header">Reactivos</div>
 								<div class="card-body">
 									<h3 class="text-center"><span class="badge badge-warning"> 2 </span></h3>

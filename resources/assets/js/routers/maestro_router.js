@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 import PageNotFound from '../views/errors/404.vue'
 
 import Index from '../views/maestro/Index.vue'
-import Home from '../views/maestro/Home.vue'
 import Reactivo from '../views/maestro/Reactivo.vue'
 import CreateReactivo from '../views/global/CreateReactivo.vue'
 

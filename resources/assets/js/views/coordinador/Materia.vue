@@ -11,28 +11,24 @@
 		<h3 class="titles">Niveles</h3>
 		<hr>
 		
-		<div class="d-flex justify-content-center mb-3 ">
-			<form v-on:submit.prevent="checkForm" class="form-inline">
-				<div class="form-group mr-3">
-					<label class="filters" for="materia" >Nivel</label>
-					<input v-model="materia.materia" id="materia" class="form-control" type="text" placeholder="nivel">
+		<form v-on:submit.prevent="checkForm">
+			<div class="form-row">
+				<div class="col-md-4">
+					<input v-model="materia.materia" id="materia" class="form-control inputs" type="number" onkeypress="return event.charCode >= 48" placeholder="nivel">
 				</div>
-				
-				<div class="form-group mr-3">
-					<label class="filters" for="periodo">Periodo</label>
-					<select id="periodo" class="form-control" v-model="materia.periodo">
+				<div class="col-md-4">
+					<select id="periodo" class="form-control inputs" v-model="materia.periodo">
 						<option>Ene-Abril</option>
 						<option>Mayo-Ago</option>
 						<option>Sep-Dic</option>
 					</select>
 				</div>
-
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Agregar</button>
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary btn-block inputs">Agregar</button>
 				</div>
-			</form>
-		</div>
-		
+			</div>
+		</form>
+				
 		<div class="form-row col-sm-3 mt-3 mb-3">
 			<label for="filter">filter by year</label>
 			<select v-model="year" @change="yearChanges(year)" id="fiter" class="form-control">
@@ -44,25 +40,27 @@
 		<card-transition tag="div">
 			<div class="card" :key="1">
 				<div class="card-body">
-					<table class="table table-hover text-center">
-						<thead>
-							<tr>
-								<th>Nivele</th>
-								<th>Periodo</th>
-								<th>Año</th>
-								<th>Info</th>
-							</tr>
-						</thead>
+					<div class="table-responsive-md">
+						<table class="table table-hover text-center">
+							<thead>
+								<tr>
+									<th>Nivele</th>
+									<th>Periodo</th>
+									<th>Año</th>
+									<th>Info</th>
+								</tr>
+							</thead>
 
-						<tbody>
-							<tr v-for="materia in materias">
-								<th> {{ materia.materia }} </th>
-								<th> {{ materia.periodo }} </th>
-								<th> {{ materia.year }} </th>
-								<th> <a href="" class="btn btn-info">Info {{ materia.id }} </a></th>
-							</tr>
-						</tbody>
-					</table>
+							<tbody>
+								<tr v-for="materia in materias">
+									<th> {{ materia.materia }} </th>
+									<th> {{ materia.periodo }} </th>
+									<th> {{ materia.year }} </th>
+									<th> <a href="" class="btn btn-info">Info {{ materia.id }} </a></th>
+								</tr>
+							</tbody>
+						</table>
+					</div>	
 				</div>
 			</div>
 		</card-transition>

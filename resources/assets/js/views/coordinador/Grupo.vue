@@ -10,32 +10,91 @@
 		<h3 class="titles">Grupos</h3>
 		<hr>
 		
-		<div class="d-flex justify-content-center mb-3 ">
-			<form v-on:submit.prevent="checkForm" class="form-inline">
-				<div class="form-group inputs">
-					<label class="filters" for="grupo" >Grupo</label>
-					<input v-model="grupo.grupo" id="grupo" class="form-control" type="text" placeholder="grupo">
+		<form v-on:submit.prevent="checkForm">
+			<div class="form-row">
+				<div class="col-md-3">
+					<input v-model="grupo.grupo" id="grupo" class="form-control inputs" type="text" placeholder="grupo">
 				</div>
-				
-				<div class="form-group inputs">
-					<label class="filters" for="carrera">Carrera</label>
-					<select v-model="grupo.carrera.id" id="carrera" class="form-control">
+				<div class="col-md-3">
+					<select v-model="grupo.carrera.id" id="carrera" class="form-control inputs">
 						<option v-for="c in carreras" v-bind:value="c.id"> {{ c.carrera }} </option>
 					</select>
 				</div>
-				
-				<div class="form-group inputs">
-					<label class="filters" for="materia">Nivel</label>
-					<select v-model="grupo.materia.id" id="materia" class="form-control">
+				<div class="col-md-3">
+					<select v-model="grupo.materia.id" id="materia" class="form-control inputs">
 						<option v-for="m in materias" v-bind:value="m.id"> {{ m.materia }} </option>
 					</select>
 				</div>
+				<div class="col-md-3">
+					<button type="submit" class="btn btn-primary btn-block inputs">Agregar</button>
+				</div>
+			</div>
+		</form>
 
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Agregar</button>
+<!-- 		<div class="d-flex justify-content-center mb-3 ">
+			<form v-on:submit.prevent="checkForm">
+				<div class="form-row justify-content-center">
+					<div class="col-auto">
+						<div class="form-group inputs">
+							<label class="filters" for="grupo" >Grupo</label>
+							<input v-model="grupo.grupo" id="grupo" class="form-control" type="text" placeholder="grupo">
+						</div>
+					</div>
+					
+					<div class="col-auto">
+						<div class="form-group inputs">
+							<label class="filters" for="carrera">Carrera</label>
+							<select v-model="grupo.carrera.id" id="carrera" class="form-control">
+								<option v-for="c in carreras" v-bind:value="c.id"> {{ c.carrera }} </option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-auto">
+						<div class="form-group inputs">
+							<label class="filters" for="materia">Nivel</label>
+							<select v-model="grupo.materia.id" id="materia" class="form-control">
+								<option v-for="m in materias" v-bind:value="m.id"> {{ m.materia }} </option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-auto">
+						<div class="form-group inputs mt-4">
+							<button type="submit" class="btn btn-primary btn-block">Agregar</button>
+						</div>
+					</div>
 				</div>
 			</form>
-		</div>
+		</div> -->
+		
+		<!-- <div class="row justify-content-center">
+			<div class="card">
+				<div class="card-body">
+					<div class="table-responsive-md">
+						<table class="table table-hover text-center">
+							<thead>
+								<tr>
+									<th>Grupo</th>
+									<th>Detalles</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr v-for="group in grupos">
+									<td>
+										{{ group.grupo }}
+									</td>
+									<td>
+										<router-link :to="{ name: 'grupoDetails', params: { grupoId: group.id } }" class="nav-link text-white">Detalles</router-link>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div> -->
 	</div>
 </template>
 
