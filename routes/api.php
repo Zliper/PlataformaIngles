@@ -10,7 +10,9 @@ Route::resource('reactivos','API\ReactivoController');
 Route::resource('carreras','API\CarreraController');
 Route::resource('materias','API\MateriaController');
 Route::resource('puntos','API\PuntoGramaticalController');
-Route::resource('grupos', 'API\GrupoController');
+Route::resource('evaluaciones','API\EvaluacionController');
+Route::resource('delEvaluacion','API\EvaluacionController@destroy');
+//Route::resource('grupos', 'API\GrupoController');
 Route::resource('texts', 'API\TextController');
 Route::resource('instrucciones','API\InstruccionController');
 

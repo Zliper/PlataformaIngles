@@ -6,6 +6,8 @@ import PageNotFound from '../views/errors/404.vue'
 import Index from '../views/maestro/Index.vue'
 import Reactivo from '../views/maestro/Reactivo.vue'
 import CreateReactivo from '../views/global/CreateReactivo.vue'
+import CreateCuestionario from '../views/maestro/CreateCuestionario.vue'
+import DifundirCuestionario from '../views/maestro/DifundirCuestionario.vue'
 
 import Cuestionario from "../views/global/Cuestionario.vue"
 
@@ -28,6 +30,17 @@ const router = new VueRouter({
             path: '/maestro/cuestionarios',
             name: 'cuestionarios',
             component: Cuestionario
+        },
+        {
+            path: '/maestro/cuestionarios/create',
+            name: 'cuestionario.create',
+            component: CreateCuestionario
+        },
+        {
+            path: '/maestro/cuestionarios/difundir',
+            name: 'cuestionario.difundir',
+            component: DifundirCuestionario,
+            props: true
         },
         {
             path: '/maestro/reactivos/create',

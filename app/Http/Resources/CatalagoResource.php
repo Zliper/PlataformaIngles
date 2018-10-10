@@ -16,7 +16,7 @@ class CatalagoResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "catalogo" => $this->tipo_cuestionario
+            "catalogo" => $this->tipo_cuestionario,
         ];
     }
 }

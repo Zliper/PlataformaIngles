@@ -20,7 +20,7 @@
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<select v-model="punto.materia" id="periodo" class="form-control inputs">
-						<option value="0" selected>Nivel</option>
+						<option selected disabled value="">Nivel</option>
 						<option v-for="materia in materias" v-bind:value="materia.id"> {{ materia.materia }} </option>
 					</select>
 				</div>
@@ -70,6 +70,7 @@ export default {
 	created() {
 		this.fetchPuntosGramaticals();
 		this.fetchMaterias();
+        this.punto.materia = '';
 	},
 
 	methods: {
@@ -84,7 +85,7 @@ export default {
 			});
 		},
 
-		fetchMaterias(page_url = '/api/materias?year=' + new Date().getFullYear().toString()) { 
+		fetchMaterias(page_url = '/api/materias') { 
 			axios.get(page_url)
 			.then(response => {
 				this.materias = response.data.data.nivel;

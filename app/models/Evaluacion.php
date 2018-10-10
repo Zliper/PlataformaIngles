@@ -8,12 +8,16 @@ class Evaluacion extends Model
 {
     public $timestamps = false;
 	protected $fillable = [
-		'materia_id','catalogo_id','alumno_id','cantidad_reactivos',
-		'nota','instruccion','status',
+		'profesor_id','materia_id','catalogo_id','alumno_id', 'punto_gramatical', 'cantidad_reading','cantidad_listening','cantidad_writing',
+		'nota','instruccion','status','fecha_creacion',
 	];
     
     protected $table = 'evaluaciones';
 
+    public function profesor() {
+    	return $this->belongsTo('App\models\Profesor','profesor_id','id');
+    }
+    
     public function alumno() {
     	return $this->belongsTo('App\models\Alumno','alumno_id','matricula');
     }
@@ -24,5 +28,9 @@ class Evaluacion extends Model
 
     public function catalogo() {
     	return $this->belongsTo('App\models\CatalogoCuestionario','catalogo_id','id');
+    }
+
+    public function punto_gramatical() {
+    	return $this->belongsTo('App\models\PuntoGramatical','punto_gramatical','id');
     }
 }

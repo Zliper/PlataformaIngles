@@ -38,11 +38,11 @@ const router = new VueRouter({
             name: 'cuestionarios',
             component: Cuestionario
         },
-        {
+        /*{
         	path: '/coordinador/grupos',
         	name: 'grupos',
         	component: Grupo
-        },
+        },*/
         {
             path: '/coordinador/grupos/:grupoId/show',
             name: 'grupoDetails',

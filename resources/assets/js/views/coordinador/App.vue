@@ -20,9 +20,6 @@
                                 <router-link :to="{ name: 'materias' } " class="nav-link text-white">Niveles</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{ name: 'grupos' }" class="nav-link text-white">Grupos</router-link>
-                            </li>
-                            <li class="nav-item">
                                 <router-link :to="{ name: 'puntos' }" class="nav-link text-white">Puntos Gramaticales</router-link>
                             </li>
                         </ul>

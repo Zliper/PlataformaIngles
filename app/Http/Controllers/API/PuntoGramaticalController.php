@@ -26,6 +26,15 @@ class PuntoGramaticalController extends Controller
             ->get();
             
             return $puntos;
+        } else if ($request->input('materia','')) {
+            $materia = $request->input('materia');
+            echo($materia);
+            $puntos = PuntoGramatical::join('materias', function($join) use ($materia){
+                $join->on('puntos_gramaticales.materia_id','=','materias.id')
+                    ->where('materias.id','=',$materia);
+            })
+                ->get();
+            return $puntos;
         }
         return new PuntoGramaticalCollection(PuntoGramatical::all());
     }

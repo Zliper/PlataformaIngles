@@ -86,7 +86,7 @@
 										{{ group.grupo }}
 									</td>
 									<td>
-										<router-link :to="{ name: 'grupoDetails', params: { grupoId: group.id } }" class="nav-link text-white">Detalles</router-link>
+										<router-link :to="{ name: 'grupoDetail', params: { grupoId: group.id } }" class="nav-link text-white">Detalles</router-link>
 									</td>
 								</tr>
 							</tbody>

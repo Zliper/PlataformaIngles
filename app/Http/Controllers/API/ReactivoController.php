@@ -26,6 +26,8 @@ class ReactivoController extends Controller
             return Reactivo::where('estatus_id',1)->count();
         } else if($request->input('count','') == "Espera") {
             return Reactivo::where('estatus_id',2)->count();
+        } else {
+            return new ReactivoCollection(Reactivo::where('profesor_id','=',$request->input('by',''))->paginate(3));
         }
 
         return new ReactivoCollection(Reactivo::paginate(5));

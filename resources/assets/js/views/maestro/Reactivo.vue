@@ -1,11 +1,21 @@
 <template>
 	<div>
-		<h3 class="titles">Reactivos creados </h3>
-		<hr>
+		 <br>
+        <div class="form-row">
+            <div class="col-md-10 col-sm-12">
+                <h3>Reactivos creados </h3>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <router-link :to="{ name: 'reactivo.create' }" >
+                    <button type="submit" class="btn btn-primary btn-block">Nuevo</button>
+                </router-link>
+            </div>
+        </div>
+        <hr>
 
 		<card-transition>
-
-			<div class="card mb-5" v-for="reactivo in reactivos" :key="reactivo.id" >
+			
+			<div class="card mb-5 col-md-10 col-sm-12" align="center" style="margin: auto;" v-for="reactivo in reactivos" :key="reactivo.id" >
 				<div class="card-body">
 					<table class="table table-hover">
 						<thead class="thead-dark">
@@ -85,6 +95,12 @@
 									{{ value.opcion }}
 								</td>
 							</tr>
+                            <tr>
+								<th>Estado</th>	
+								<td>
+									{{ reactivo.relationships['estatus_reactivo'].estatus }}
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -95,15 +111,15 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li v-bind:class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
-					<a @click="fetchReactivos(pagination.prev_page_url + '&by=Espera')" class="page-link" href="#">Previous</a>
+					<a @click="fetchReactivos(pagination.prev_page_url + '&by=1')" class="page-link" href="#">Previous</a>
 				</li>
 
 				<li  v-for="n in pagination.last_page" v-bind:class="[{ active: pagination.current_page==n}]" class="page-item">
-					<a  @click="fetchReactivos(pagination.url+ n +'&by=Espera')" class="page-link" href="#"> {{ n }} </a>
+					<a  @click="fetchReactivos(pagination.url+ n +'&by=1')" class="page-link" href="#"> {{ n }} </a>
 				</li>
 
 				<li v-bind:class="[{ disabled: !pagination.next_page_url }]" class="page-item">
-					<a @click="fetchReactivos(pagination.next_page_url + '&by=Espera' )" class="page-link" href="#">Next</a>
+					<a @click="fetchReactivos(pagination.next_page_url + '&by=1' )" class="page-link" href="#">Next</a>
 				</li>
 			</ul>
 		</nav>
@@ -122,7 +138,7 @@ export default {
 		this.fetchReactivos();
 	},
 	methods: {
-		fetchReactivos(page_url = '/api/reactivos?by=Espera') {
+		fetchReactivos(page_url = '/api/reactivos?by=1') {
 			let vm = this; 
 
 			axios.get(page_url)
