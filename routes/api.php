@@ -22,6 +22,7 @@ Route::get('competencias','API\CompetenciaController@index');
 Route::get('tipos','API\TipoReactivoController@index');
 Route::get('cuestionarios','API\CatalogoCuestionarioController@index');
 
+Route::post('images-upload','API\ReactivoController@upload');
 
 Route::group(['middleware' => 'auth:api'], function() {
 	//colocar todas las rutas para login api.

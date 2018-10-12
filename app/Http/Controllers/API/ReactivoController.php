@@ -100,4 +100,17 @@ class ReactivoController extends Controller
         $reactivo->delete();
         return response()->json(null,204);
     }
+
+    public function upload(Request $request)
+    {
+        if(count($request->images)) {
+            foreach ($request->images as $image) {
+                $image->store('images');    
+            }
+        }
+        
+        return response()->json([
+            "message" => "Done"
+        ]);
+    }   
 }

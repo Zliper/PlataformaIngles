@@ -87,7 +87,7 @@
                 <file-upload
                   class="btn btn-primary"
                   accept="image/png,image/jpeg,image/jpg,audio/mp3,application/pdf"
-                  post-action="/upload/post"
+                  post-action="api/images-upload"
                   :multiple="false"
                   :drop="true"
                   :drop-directory="false"
@@ -311,22 +311,36 @@ export default {
     },
 
     addText() {
-      console.clear;
-      console.log(this.files[0]);
-      axios
-        .post("/api/texts", {
-          text: this.files[0].file
-        })
-        .then(response => {
+      const formData = new FormData();
+      this.files.forEach( file =>{
+        alert(file.name);
+        formData.append('images[]', file,file.name);
+      });
+
+      axios.post('/api/images-upload',formData)
+       .then(response => {
+         alert('ookokok');
           this.textID = response.data.id;
-          this.add(); //luego se registran las preguntas
-        })
-        .catch(e => {
+          alert( this.textID);
+        }) .catch(e => {
           console.log(e);
         });
+      // console.clear;
+      // console.log(this.files[0].file);
+      // axios
+      //   .post("/api/images-upload", {
+      //     text: this.files[0].file
+      //   })
+      //   .then(response => {
+      //     this.textID = response.data.id;
+      //     this.add(); //luego se registran las preguntas
+      //   })
+      //   .catch(e => {
+      //     console.log(e);
+      //   });
     },
 
-    addReactivo(pregunta) {
+    addReactivo(pregunta) {p
       axios
         .post("/api/reactivos", {
           competencia_id: this.reactivo.competencia,

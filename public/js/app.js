@@ -29756,20 +29756,37 @@ var cantidad;
     addText: function addText() {
       var _this6 = this;
 
-      console.clear;
-      console.log(this.files[0]);
-      axios.post("/api/texts", {
-        text: this.files[0].file
-      }).then(function (response) {
+      var formData = new FormData();
+      this.files.forEach(function (file) {
+        alert(file.name);
+        formData.append('images[]', file, file.name);
+      });
+
+      axios.post('/api/images-upload', formData).then(function (response) {
+        alert('ookokok');
         _this6.textID = response.data.id;
-        _this6.add(); //luego se registran las preguntas
+        alert(_this6.textID);
       }).catch(function (e) {
         console.log(e);
       });
+      // console.clear;
+      // console.log(this.files[0].file);
+      // axios
+      //   .post("/api/images-upload", {
+      //     text: this.files[0].file
+      //   })
+      //   .then(response => {
+      //     this.textID = response.data.id;
+      //     this.add(); //luego se registran las preguntas
+      //   })
+      //   .catch(e => {
+      //     console.log(e);
+      //   });
     },
     addReactivo: function addReactivo(pregunta) {
       var _this7 = this;
 
+      p;
       axios.post("/api/reactivos", {
         competencia_id: this.reactivo.competencia,
         tipo_id: this.reactivo.tipo_reactivo,
@@ -58110,7 +58127,7 @@ var render = function() {
                             attrs: {
                               accept:
                                 "image/png,image/jpeg,image/jpg,audio/mp3,application/pdf",
-                              "post-action": "/upload/post",
+                              "post-action": "api/images-upload",
                               multiple: false,
                               drop: true,
                               "drop-directory": false
