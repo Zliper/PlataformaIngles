@@ -19,7 +19,6 @@ class EvaluacionResource extends JsonResource
             'profesor_id' => $this->profesor_id,
             'materia_id' => $this->materia_id,
             'catalogo_id' => $this->catalogo_id,
-            'alumno_id' => $this->alumno_id,
             'punto_gramatical' => $this->punto_gramatical,
             'cantidad_reading' => $this->cantidad_reading,
             'cantidad_listening' => $this->cantidad_listening,

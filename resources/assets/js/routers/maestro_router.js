@@ -8,6 +8,7 @@ import Reactivo from '../views/maestro/Reactivo.vue'
 import CreateReactivo from '../views/global/CreateReactivo.vue'
 import CreateCuestionario from '../views/maestro/CreateCuestionario.vue'
 import DifundirCuestionario from '../views/maestro/DifundirCuestionario.vue'
+import EditCuestionario from '../views/maestro/EditCuestionario.vue'
 
 import Cuestionario from "../views/global/Cuestionario.vue"
 
@@ -34,7 +35,13 @@ const router = new VueRouter({
         {
             path: '/maestro/cuestionarios/create',
             name: 'cuestionario.create',
-            component: CreateCuestionario
+            component: CreateCuestionario,
+        },
+        {
+            path: '/maestro/cuestionarios/edit',
+            name: 'cuestionario.edit',
+            component: EditCuestionario,
+            props: true
         },
         {
             path: '/maestro/cuestionarios/difundir',

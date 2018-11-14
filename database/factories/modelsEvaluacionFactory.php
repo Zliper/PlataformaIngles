@@ -3,7 +3,6 @@
 use Faker\Generator as Faker;
 use App\models\CatalogoCuestionario;
 use App\models\Profesor;
-use App\models\Alumno;
 use App\models\Materia;
 use App\models\PuntoGramatical;
 
@@ -11,7 +10,6 @@ use App\models\PuntoGramatical;
 $factory->define(App\models\Evaluacion::class, function (Faker $faker) {
 
     $catalogo = CatalogoCuestionario::count();
-    $alumno = Alumno::count();
     $profesor = Profesor::count();
     $materia = Materia::count();
     $punto_gramatical = PuntoGramatical::count();
@@ -26,7 +24,6 @@ $factory->define(App\models\Evaluacion::class, function (Faker $faker) {
         'materia_id' => $faker->numberBetween(1,$materia),
         'catalogo_id' => $faker->numberBetween(1,$catalogo),
         'punto_gramatical' => $faker->numberBetween(1,$punto_gramatical),
-        'alumno_id' => $faker->numberBetween(1,$alumno),
         'profesor_id' => $faker->numberBetween(1,$profesor),
     ];
 });

@@ -11,7 +11,7 @@ Route::resource('carreras','API\CarreraController');
 Route::resource('materias','API\MateriaController');
 Route::resource('puntos','API\PuntoGramaticalController');
 Route::resource('evaluaciones','API\EvaluacionController');
-Route::resource('delEvaluacion','API\EvaluacionController@destroy');
+//Route::resource('delEvaluacion','API\EvaluacionController@destroy');
 //Route::resource('grupos', 'API\GrupoController');
 Route::resource('texts', 'API\TextController');
 Route::resource('instrucciones','API\InstruccionController');
@@ -22,6 +22,7 @@ Route::get('competencias','API\CompetenciaController@index');
 Route::get('tipos','API\TipoReactivoController@index');
 Route::get('cuestionarios','API\CatalogoCuestionarioController@index');
 
+//Route::delete('delEvaluaciones','API\EvaluacionController@destroy');
 Route::post('images-upload','API\ReactivoController@upload');
 
 Route::group(['middleware' => 'auth:api'], function() {

@@ -7,20 +7,24 @@
 			</ul>
 		</div>
         
-        <h3 class="titles">Nuevo cuestionario</h3>
+        <h3 class="titles">{{ titulo }}</h3>
         <hr>
         <div>
-			<div class="row justify-content-center inputs">
+			<div class="row justify-content-center inputs" v-if="editing">
 				<form class="mb-4" v-on:submit.prevent="checkForm">
-				<input v-model="cuestionario.nota" class="form-control inputs" placeholder="Titulo"></input>
-				<select v-model="cuestionario.materia" @change="puntosBy(cuestionario.materia)" id="materia" class="form-control inputs">
-					<option disabled value="" selected>Nivel</option>
+				<input v-model="cuestionario.nota" class="form-control inputs" placeholder="Titulo">
+
+				<select v-model="cuestionario.materia.id"  id="materiaZ" hint="s"  class="form-control inputs">
+					<option selected disabled value="">Nivel</option>
 					<option v-for="materia in materias" v-bind:value="materia.id"> {{ materia.materia }} </option>
+					
 				</select>
-				<select v-model="cuestionario.tipo" id="tipo" hint="s" class="form-control inputs">
+
+				<select v-model="cuestionario.tipo.id" id="tipo" hint="s" class="form-control inputs">
 					<option selected disabled value="">Tipo de examen</option>
 					<option v-for="tipo in tipos" v-bind:value="tipo.id"> {{ tipo.tipo }} </option>
 				</select>
+
 				<select v-model="cuestionario.punto_gramatical" id="punto" hint="s" class="form-control inputs">
 					<option selected disabled value="">Punto gramatical</option>
 					<option v-for="punto in puntos" v-bind:value="punto.id"> {{ punto.punto_gramatical }} </option>
@@ -70,6 +74,7 @@
 <script>
 
 export default {
+	props: ['cuestionarioSelected'],
 	data() {
 		return {
 			materias: [],
@@ -77,14 +82,28 @@ export default {
 			puntos: [],
 			errors: [],
 			cuestionario:{},
+			titulo: 'No hay datos',
+			editing: false
 		}
 	},
+
+	mounted() {
+        
+        console.log(this.cuestionarioSelected);
+        if (this.cuestionarioSelected) {
+			this.editing = true;
+			this.titulo = 'Editar cuestionario',
+			this.cuestionario = this.cuestionarioSelected;
+			this.cuestionario.id= this.cuestionarioSelected.id;
+            console.log(this.cuestionario); 
+        }
+
+    },
 
 	created() {
 		this.fetchMaterias();
         this.fetchTipos();
         this.fetchPuntos();
-		this.clear();
 	},
 
 	methods: {
@@ -126,10 +145,10 @@ export default {
 		},
 
         add() {
-			let cuestionario = {
+			this.cuestionario = {
                 "profesor_id": '1',
-				"materia_id": this.cuestionario.materia,
-				"catalogo_id" : this.cuestionario.tipo,
+				"materia_id": this.cuestionario.materia.id,
+				"catalogo_id" : this.cuestionario.tipo.id,
 				//"alumno_id": '1',
                 "punto_gramatical": this.cuestionario.punto_gramatical,
                 "cantidad_reading": this.cuestionario.cantidad_reading,
@@ -140,15 +159,21 @@ export default {
                 "status": '1'
 			};
 
-			axios.post('/api/evaluaciones', cuestionario)
-				.then(response => {
+			// console.log("-------------------------");
+			// console.log(this.cuestionario);
+			// console.log(this.cuestionarioSelected);
+			// console.log("-------------------------");
+			
+			axios.put('/api/evaluaciones/'+ this.cuestionarioSelected.id, this.cuestionario)
+			.then(response => {
 				this.clear();
 				this.$router.push({ name: 'cuestionarios'})
 				this.$toastr('success', 'Cuestionario added successfully');
+				console.log(response);
 			})
 			.catch(e => {
 				console.log(this.cuestionario.punto_gramatical);
-				console.log("errorSQL: "+e);
+				console.log(e);
 			});
 		},
 
@@ -161,8 +186,8 @@ export default {
 		},
         
         clear() {
-            this.cuestionario.tipo = '';
-			this.cuestionario.materia = '';
+            //this.cuestionario.tipo = '';
+			//this.cuestionari.materia = '';
 			this.cuestionario.punto_gramatical = '';
 			this.cuestionario.cantidad_reading = '';
 			this.cuestionario.cantidad_listening = '';
@@ -172,14 +197,14 @@ export default {
         },
 
 		checkForm() {
-			if (this.cuestionario.tipo && this.cuestionario.materia && this.cuestionario.punto_gramatical && this.cuestionario.cantidad_reading && this.cuestionario.cantidad_listening && this.cuestionario.cantidad_writing && this.cuestionario.nota && this.cuestionario.instruccion) {
+			if (/*this.cuestionario.tipo.id && this.cuestionario.materia.id &&*/ this.cuestionario.punto_gramatical && this.cuestionario.cantidad_reading && this.cuestionario.cantidad_listening && this.cuestionario.cantidad_writing && this.cuestionario.nota && this.cuestionario.instruccion) {
 				this.add();
 			}
 
 			this.errors = [];
 
-			if (!this.cuestionario.materia) this.errors.push('Materia is required');
-			if (!this.cuestionario.tipo) this.errors.push('Tipo is required');
+			//if (!this.cuestionario.materia.id) this.errors.push('Materia is required');
+			//if (!this.cuestionario.tipo.id) this.errors.push('Tipo is required');
 			if (!this.cuestionario.punto_gramatical) this.errors.push('Punto gramatical is required');
 			if (!this.cuestionario.cantidad_reading) this.errors.push('Cantidad de reactivos reading is required');
 			if (!this.cuestionario.cantidad_listening) this.errors.push('Cantidad de reactivos listening is required');
@@ -191,7 +216,3 @@ export default {
 	},
 }
 </script>
-
-<style>
-
-</style>

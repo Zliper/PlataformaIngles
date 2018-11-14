@@ -35,6 +35,8 @@ class PuntoGramaticalController extends Controller
             })
                 ->get();
             return $puntos;
+        } else if ($request->input('id','')) {
+            return new PuntoGramaticalCollection(PuntoGramatical::where('id','=',$request->input('id',''))->get());
         }
         return new PuntoGramaticalCollection(PuntoGramatical::all());
     }

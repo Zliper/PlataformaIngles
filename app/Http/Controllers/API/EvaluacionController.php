@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\EvaluacionResource;
 use App\Http\Resources\collections\EvaluacionCollection;
 use App\models\Evaluacion;
-
+use App\User;
 class EvaluacionController extends Controller
 {
     /**
@@ -18,8 +18,12 @@ class EvaluacionController extends Controller
     public function index(Request $request)
     {
         if ($request->input('byTipo','')) {
-            return new EvaluacionCollection(Evaluacion::where('profesor_id','=',1)->where('catalogo_id','=',$request->input('byTipo',''))->get());
-        }
+            return new EvaluacionCollection(Evaluacion::where('profesor_id','=',$request->input('profesorId'))->where('catalogo_id','=',$request->input('byTipo',''))->get());
+        } /*else if($request->input('count','') == "Actividades") {
+            return Evaluacion::where('alumno_id','=',1)->where('catalogo_id',4)->count();
+        } else if($request->input('count','') == "Examenes") {
+            return Evaluacion::where('alumno_id','=',1)->where('catalogo_id',1)->count();
+        }*/
         return new EvaluacionCollection(Evaluacion::all());
     }
 
@@ -55,11 +59,18 @@ class EvaluacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evaluacion $cuestionario)
+    public function update($id, Request $request)
     {
-        EvaluacionResource::withoutWrapping();
-        $cuestionario->update($request->all());
-        return response(new EvaluacionResource($cuestionario), 200);
+        // EvaluacionResource::withoutWrapping();
+        // $cuestionario->update($request->all());
+        // return response(new EvaluacionResource($cuestionario), 200);
+        $cuestionario = Evaluacion::findOrFail($id);
+        //return response()->json(null,204);
+        //return Evaluacion::find($id)->nota;
+        if($cuestionario->update($request->all())){
+            return response()->json(null,204);
+        }
+        //return $request;
     }
 
     /**
@@ -68,10 +79,15 @@ class EvaluacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Evaluacion $cuestionario)
+    public function destroy($id)
     {
-        $cuestionario->delete();
-
-        return response()->json(null, 204);
+        //dd($cuestionario);
+        $cuestionario = Evaluacion::findOrFail($id);
+        //return response()->json(null,204);
+        //return Evaluacion::find($id)->nota;
+        if($cuestionario->delete()){
+            return response()->json(null,204);
+        }
     }
+
 }

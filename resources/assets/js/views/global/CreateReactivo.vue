@@ -290,7 +290,8 @@ export default {
         this.reactivo.punto_gramatical &&
         this.reactivo.competencia
       ) {
-        this.addText(); //primero se agrega el texto o url
+        //this.addText(); //primero se agrega el texto o url
+        this.add(); //primero se agrega el texto o url
       }
 
       this.errors = [];
@@ -317,9 +318,10 @@ export default {
         formData.append('images[]', file,file.name);
       });
 
-      axios.post('/api/images-upload',formData)
+      axios.post('/api/images-upload',this.files.name)
        .then(response => {
          alert('ookokok');
+         alert(this.files.name);
           this.textID = response.data.id;
           alert( this.textID);
         }) .catch(e => {
@@ -340,14 +342,14 @@ export default {
       //   });
     },
 
-    addReactivo(pregunta) {p
+    addReactivo(pregunta) {
       axios
         .post("/api/reactivos", {
           competencia_id: this.reactivo.competencia,
           tipo_id: this.reactivo.tipo_reactivo,
           estatus_id: 2,
           profesor_id: 1,
-          text_id: this.textID,
+          text_id: this.files.name,
           punto_id: this.reactivo.punto_gramatical,
           catalogo_id: this.reactivo.tipo_cuestionario,
           pregunta: pregunta.pregunta,

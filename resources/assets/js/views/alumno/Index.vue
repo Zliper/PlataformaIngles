@@ -15,7 +15,7 @@
 									Actividades
 								</div>
 								<div class="card-body">
-									<h3 class="text-center"><span class="badge badge-warning"> 6 </span></h3>
+									<h3 class="text-center"><span class="badge" v-bind:class="badgeAct"> {{ actividades }} </span></h3>
 									<h5 class="card-title text-center">Actividades por realizar</h5>
 									<p class="card-text">Actividades activas para realizar.</p>
 								</div>
@@ -26,7 +26,7 @@
 							<div class="card text-white bg-secondary mb-3">
 								<div class="card-header">Examenes</div>
 								<div class="card-body">
-									<h3 class="text-center"><span class="badge badge-success"> 0 </span></h3>
+									<h3 class="text-center"><span class="badge" v-bind:class="badgeEx"> {{ examenes }} </span></h3>
 									<h5 class="card-title text-center">Examenes pendientes</h5>
 									<p class="card-text">Examenes activos aun no presentados</p>
 								</div>
@@ -44,7 +44,44 @@
 export default {
 	data() {
 		return {
+			actividades: 0,
+			examenes: 0,
+			badgeAct: 'badge-success',
+			badgeEx: 'badge-success'
 
+		}
+	},
+
+	created() {
+		this.fetchActividades();
+		this.fetchExamenes();
+	},
+
+	methods: {
+		fetchActividades() {
+			axios.get('/api/evaluaciones?count=Actividades')
+			.then(response => {
+				this.actividades = response.data;
+				if (response.data > 0){
+					this.badgeAct= 'badge-warning';
+				}
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		},
+
+		fetchExamenes() {
+			axios.get('/api/evaluaciones?count=Examenes')
+			.then(response=>{
+				this.examenes = response.data;
+				if (response.data > 0){
+					this.badgeEx= 'badge-warning';
+				}
+			})
+			.catch(e=>{
+				console.log(e);
+			});
 		}
 	}
 }

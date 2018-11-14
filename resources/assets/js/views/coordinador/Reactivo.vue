@@ -11,9 +11,9 @@
 		<hr>
 
 		<div class="form-row col-sm-3 mb-5">
-			<label for="filter">filter by </label>
+			<label for="filter">Filtrar por </label>
 			<select @change="sortBy(sortType)" v-model="sortType" id="filter" class="form-control">
-				<option selected value="Espera">Por validar</option>
+				<option selected value="Espera">Sin validar</option>
 				<option value="Aprobado">Validados</option>
 			</select>
 		</div>
@@ -31,11 +31,6 @@
 					</thead>
 
 					<tbody>			
-						<tr>
-							<th>Id</th>
-							<td> {{ reactivo.id }} </td>
-						</tr>
-
 						<tr>
 							<th>Nivel </th>
 							<td>
@@ -121,7 +116,7 @@
 	<nav aria-label="Page navigation example">
 		<ul class="pagination">
 			<li v-bind:class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
-				<a @click="fetchReactivos(pagination.prev_page_url + '&by=Espera')" class="page-link" href="#">Previous</a>
+				<a @click="fetchReactivos(pagination.prev_page_url + '&by=Espera')" class="page-link" href="#">Anterior</a>
 			</li>
 
 			<li  v-for="n in pagination.last_page" v-bind:class="[{ active: pagination.current_page==n}]" class="page-item">
@@ -129,7 +124,7 @@
 			</li>
 
 			<li v-bind:class="[{ disabled: !pagination.next_page_url }]" class="page-item">
-				<a @click="fetchReactivos(pagination.next_page_url + '&by=Espera' )" class="page-link" href="#">Next</a>
+				<a @click="fetchReactivos(pagination.next_page_url + '&by=Espera' )" class="page-link" href="#">Siguiente</a>
 			</li>
 		</ul>
 	</nav>
@@ -153,6 +148,7 @@ export default {
 
 	created() {
 		this.fetchReactivos();
+		console.log(reactivo);
 	},
 
 	methods:{
@@ -207,7 +203,9 @@ export default {
 		},
 
 		deleteReactivo(id) {
-			this.delete(id);
+	    	if(confirm("¿Seguro que borrar el reactivo?")){
+				this.delete(id);
+			}
 		},
 
 		delete(id) {

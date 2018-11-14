@@ -24,10 +24,7 @@ class AddForeignKeysToEvaluacion extends Migration
             $table->integer('catalogo_id')->unsigned()->after('materia_id');
             $table->foreign('catalogo_id')->references('id')->on('catalogo_cuestionarios')->onDelete('cascade');
 
-            $table->integer('alumno_id')->unsigned()->after('catalogo_id');
-            $table->foreign('alumno_id')->references('matricula')->on('alumnos')->onDelete('cascade');
-
-            $table->integer('punto_gramatical')->unsigned()->after('alumno_id');
+            $table->integer('punto_gramatical')->unsigned()->after('catalogo_id');
             $table->foreign('punto_gramatical')->references('id')->on('puntos_gramaticales')->onDelete('cascade');
         });
     }
@@ -49,10 +46,6 @@ class AddForeignKeysToEvaluacion extends Migration
 
         Schema::table('evaluaciones', function(Blueprint $table) {
             $table->dropForeign(['catalogo_id']);
-        });
-
-        Schema::table('evaluaciones', function(Blueprint $table) {
-            $table->dropForeign(['alumno_id']);
         });
 
         Schema::table('evaluaciones', function(Blueprint $table) {

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evaluacion extends Model
 {
+
     public $timestamps = false;
 	protected $fillable = [
 		'profesor_id','materia_id','catalogo_id','alumno_id', 'punto_gramatical', 'cantidad_reading','cantidad_listening','cantidad_writing',
@@ -13,6 +14,7 @@ class Evaluacion extends Model
 	];
     
     protected $table = 'evaluaciones';
+    protected $primaryKey = 'id';
 
     public function profesor() {
     	return $this->belongsTo('App\models\Profesor','profesor_id','id');

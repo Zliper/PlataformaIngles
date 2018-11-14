@@ -25,7 +25,6 @@ class EvaluacionCollection extends ResourceCollection
                     'profesor_id' => $p->profesor_id,
                     'materia' => new MateriaResource($p->materia),
                     'tipo' => new CatalagoResource($p->catalogo),
-                    'alumno_id' => $p->alumno_id,
                     'punto_gramatical' => $p->punto_gramatical,
                     'cantidad_reading' => $p->cantidad_reading,
                     'cantidad_listening' => $p->cantidad_listening,
@@ -33,7 +32,10 @@ class EvaluacionCollection extends ResourceCollection
                     'nota' => $p->nota,
                     'instruccion' => $p->instruccion,
                     'status' => $p->status,
-                    'fecha_creacion' => $p->fecha_creacion
+                    'fecha_creacion' => $p->fecha_creacion,
+                    /*'relationships' => [
+                        "punto_gramatical" => new PuntoGramaticalResource($p->punto_gramatical),
+                    ],*/
                 ];
             })
         ];

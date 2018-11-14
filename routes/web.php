@@ -14,3 +14,8 @@ Route::get('/maestro', function () {
 Route::get('/alumno', function() {
 	return view('alumno');
 });
+
+//"Platinum"
+Route::get('/', function() {
+	return view('fakeplatinum');
+});

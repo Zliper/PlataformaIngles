@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-2 col-sm-12">
                 <router-link :to="{ name: 'reactivo.create' }" >
-                    <button type="submit" class="btn btn-primary btn-block">Nuevo</button>
+                    <button type="submit" class="btn btn-primary btn-block">Crear reactivo</button>
                 </router-link>
             </div>
         </div>

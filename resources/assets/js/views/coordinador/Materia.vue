@@ -14,7 +14,7 @@
 		<form v-on:submit.prevent="checkForm">
 			<div class="form-row">
 				<div class="col-md-4">
-					<input v-model="materia.materia" id="materia" class="form-control inputs" type="number" onkeypress="return event.charCode >= 48" placeholder="nivel">
+					<input v-model="materia.materia" id="materia" class="form-control inputs" type="text" onkeypress="return event.charCode >= 48" placeholder="Nivel">
 				</div>
 				<div class="col-md-4">
 					<select id="periodo" class="form-control inputs" v-model="materia.periodo">
@@ -30,9 +30,9 @@
 		</form>
 				
 		<div class="form-row col-sm-3 mt-3 mb-3">
-			<label for="filter">filter by year</label>
+			<label for="filter">Filtrar por año</label>
 			<select v-model="year" @change="yearChanges(year)" id="fiter" class="form-control">
-				<option selected>Year...</option>
+				<option selected disabled>Año</option>
 				<option v-for="y in years" v-bind:value="y.year"> {{ y.year }} </option>
 			</select>
 		</div>
@@ -44,10 +44,10 @@
 						<table class="table table-hover text-center">
 							<thead>
 								<tr>
-									<th>Nivele</th>
+									<th>Nivel</th>
 									<th>Periodo</th>
 									<th>Año</th>
-									<th>Info</th>
+									<!--<th>Informacion</th>-->
 								</tr>
 							</thead>
 
@@ -56,7 +56,7 @@
 									<th> {{ materia.materia }} </th>
 									<th> {{ materia.periodo }} </th>
 									<th> {{ materia.year }} </th>
-									<th> <a href="" class="btn btn-info">Info {{ materia.id }} </a></th>
+									<!--<th> <a href="" class="btn btn-info">Info {{ materia.id }} </a></th>-->
 								</tr>
 							</tbody>
 						</table>
