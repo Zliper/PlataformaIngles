@@ -103,8 +103,10 @@ class ReactivoController extends Controller
 
     public function upload(Request $request)
     {
+        info('This is some useful information.');
         if(count($request->images)) {
             foreach ($request->images as $image) {
+                
                 $image->store('images');    
             }
         }

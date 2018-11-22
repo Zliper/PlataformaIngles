@@ -14,6 +14,9 @@ import CardAnimation from  './views/animations/CardTransition.vue'
 import VueToastr from '@deveodk/vue-toastr'
 import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
 
+const VueUploadComponent = require('vue-upload-component')
+Vue.component('file-upload', VueUploadComponent)
+
 Vue.component('card-transition', CardAnimation);
 
 Vue.use(VueToastr, {

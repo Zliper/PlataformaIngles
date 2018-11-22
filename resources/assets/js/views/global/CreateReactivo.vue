@@ -84,6 +84,7 @@
     		        <h3>Suelte el archivo para subir</h3>
               </div>
               <div class="example-btn">
+                <!-- <input type="file"  @change="onFileChange"> -->
                 <file-upload
                   class="btn btn-primary"
                   accept="image/png,image/jpeg,image/jpg,audio/mp3,application/pdf"
@@ -388,6 +389,11 @@ export default {
         this.errors.push("Error elegir una cantidad de reactivos");
       }
       }
+    },
+    onFileChange(e) {
+      var filess =e.target.files || e.dataTransfer.files;
+      console.log(filess[0].name);
+
     }
   }
 };

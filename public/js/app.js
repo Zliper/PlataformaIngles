@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 37);
+/******/ 	return __webpack_require__(__webpack_require__.s = 38);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -180,7 +180,7 @@ function normalizeComponent (
 
 
 var bind = __webpack_require__(11);
-var isBuffer = __webpack_require__(45);
+var isBuffer = __webpack_require__(46);
 
 /*global toString:true*/
 
@@ -11466,7 +11466,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(62).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(63).setImmediate))
 
 /***/ }),
 /* 4 */
@@ -11558,7 +11558,7 @@ function toComment(sourceMap) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(1);
-var normalizeHeaderName = __webpack_require__(47);
+var normalizeHeaderName = __webpack_require__(48);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -14285,7 +14285,7 @@ if (inBrowser && window.Vue) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_24b4ed18_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_404_vue__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_24b4ed18_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_404_vue__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -14338,7 +14338,7 @@ if (false) {(function () {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["default"] = addStylesClient;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listToStyles__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listToStyles__ = __webpack_require__(93);
 /*
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
@@ -27670,12 +27670,12 @@ process.umask = function() { return 0; };
 
 
 var utils = __webpack_require__(1);
-var settle = __webpack_require__(48);
-var buildURL = __webpack_require__(50);
-var parseHeaders = __webpack_require__(51);
-var isURLSameOrigin = __webpack_require__(52);
+var settle = __webpack_require__(49);
+var buildURL = __webpack_require__(51);
+var parseHeaders = __webpack_require__(52);
+var isURLSameOrigin = __webpack_require__(53);
 var createError = __webpack_require__(14);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(53);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(54);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -27772,7 +27772,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(54);
+      var cookies = __webpack_require__(55);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -27856,7 +27856,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(49);
+var enhanceError = __webpack_require__(50);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -27919,7 +27919,7 @@ module.exports = Cancel;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(18);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_46c13b68_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_46c13b68_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -28929,7 +28929,7 @@ if (false) {(function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Cuestionario_vue__ = __webpack_require__(28);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_34da6cb2_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Cuestionario_vue__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_34da6cb2_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Cuestionario_vue__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -29096,6 +29096,7 @@ if (false) {(function () {
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
+      profesorID: "1",
       tipos: [],
       actividades: [],
       ordinarios: [],
@@ -29129,7 +29130,7 @@ if (false) {(function () {
     fetchExtraordinarios: function fetchExtraordinarios() {
       var _this2 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/evaluaciones?byTipo=1&profesorId=1";
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/evaluaciones?byTipo=1&profesorId=" + this.profesorID;
 
       var vm = this;
 
@@ -29143,7 +29144,7 @@ if (false) {(function () {
     fetchRecuperaciones: function fetchRecuperaciones() {
       var _this3 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/evaluaciones?byTipo=2";
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/evaluaciones?byTipo=2&profesorId=" + this.profesorID;
 
       var vm = this;
 
@@ -29157,7 +29158,7 @@ if (false) {(function () {
     fetchOrdinarios: function fetchOrdinarios() {
       var _this4 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/evaluaciones?byTipo=3";
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/evaluaciones?byTipo=3&profesorId=" + this.profesorID;
 
       var vm = this;
 
@@ -29171,7 +29172,7 @@ if (false) {(function () {
     fetchActividades: function fetchActividades() {
       var _this5 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/evaluaciones?byTipo=4";
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/evaluaciones?byTipo=4&profesorId=" + this.profesorID;
 
       var vm = this;
 
@@ -29183,10 +29184,16 @@ if (false) {(function () {
       });
     },
     difundir: function difundir(cuestionarioSelected) {
-      this.$router.push({ name: "cuestionario.difundir", params: { cuestionarioSelected: cuestionarioSelected } });
+      this.$router.push({
+        name: "cuestionario.difundir",
+        params: { cuestionarioSelected: cuestionarioSelected }
+      });
     },
     editar: function editar(cuestionarioSelected) {
-      this.$router.push({ name: "cuestionario.edit", params: { cuestionarioSelected: cuestionarioSelected } });
+      this.$router.push({
+        name: "cuestionario.edit",
+        params: { cuestionarioSelected: cuestionarioSelected }
+      });
     },
     confirmDelete: function confirmDelete(cuestionarioSelected) {
       if (confirm("¿Seguro que desea borrar el cuestionario " + cuestionarioSelected.nota + "?")) {
@@ -29196,13 +29203,13 @@ if (false) {(function () {
     borrar: function borrar(cuestionarioSelected) {
       var _this6 = this;
 
-      axios.delete('/api/evaluaciones/' + cuestionarioSelected.id).then(function (response) {
+      axios.delete("/api/evaluaciones/" + cuestionarioSelected.id).then(function (response) {
         _this6.fetchExtraordinarios();
         _this6.fetchRecuperaciones();
         _this6.fetchOrdinarios();
         _this6.fetchActividades();
         //this.$router.push({ name: 'cuestionarios'})
-        _this6.$toastr('warning', 'Cuestionario deleted successfully');
+        _this6.$toastr("warning", "Cuestionario deleted successfully");
         console.log(response);
       }).catch(function (e) {
         console.log(e);
@@ -29456,8 +29463,9 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_upload_component__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_upload_component__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_upload_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_upload_component__);
+//
 //
 //
 //
@@ -29826,12 +29834,2102 @@ var cantidad;
           this.errors.push("Error elegir una cantidad de reactivos");
         }
       }
+    },
+    onFileChange: function onFileChange(e) {
+      var filess = e.target.files || e.dataTransfer.files;
+      console.log(filess[0].name);
     }
   }
 });
 
 /***/ }),
 /* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Name: vue-upload-component
+ * Version: 2.8.14
+ * Author: LianYue
+ */
+(function (global, factory) {
+   true ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global.VueUploadComponent = factory());
+}(this, (function () { 'use strict';
+
+  /**
+   * Creates a XHR request
+   *
+   * @param {Object} options
+   */
+  var createRequest = function createRequest(options) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(options.method || 'GET', options.url);
+    xhr.responseType = 'json';
+    if (options.headers) {
+      Object.keys(options.headers).forEach(function (key) {
+        xhr.setRequestHeader(key, options.headers[key]);
+      });
+    }
+
+    return xhr;
+  };
+
+  /**
+   * Sends a XHR request with certain body
+   *
+   * @param {XMLHttpRequest} xhr
+   * @param {Object} body
+   */
+  var sendRequest = function sendRequest(xhr, body) {
+    return new Promise(function (resolve, reject) {
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          var response;
+          try {
+            response = JSON.parse(xhr.response);
+          } catch (err) {
+            response = xhr.response;
+          }
+          resolve(response);
+        } else {
+          reject(xhr.response);
+        }
+      };
+      xhr.onerror = function () {
+        return reject(xhr.response);
+      };
+      xhr.send(JSON.stringify(body));
+    });
+  };
+
+  /**
+   * Sends a XHR request with certain form data
+   *
+   * @param {XMLHttpRequest} xhr
+   * @param {Object} data
+   */
+  var sendFormRequest = function sendFormRequest(xhr, data) {
+    var body = new FormData();
+    for (var name in data) {
+      body.append(name, data[name]);
+    }
+
+    return new Promise(function (resolve, reject) {
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          var response;
+          try {
+            response = JSON.parse(xhr.response);
+          } catch (err) {
+            response = xhr.response;
+          }
+          resolve(response);
+        } else {
+          reject(xhr.response);
+        }
+      };
+      xhr.onerror = function () {
+        return reject(xhr.response);
+      };
+      xhr.send(body);
+    });
+  };
+
+  /**
+   * Creates and sends XHR request
+   *
+   * @param {Object} options
+   *
+   * @returns Promise
+   */
+  function request (options) {
+    var xhr = createRequest(options);
+
+    return sendRequest(xhr, options.body);
+  }
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  var ChunkUploadHandler = function () {
+    /**
+     * Constructor
+     *
+     * @param {File} file
+     * @param {Object} options
+     */
+    function ChunkUploadHandler(file, options) {
+      _classCallCheck(this, ChunkUploadHandler);
+
+      this.file = file;
+      this.options = options;
+    }
+
+    /**
+     * Gets the max retries from options
+     */
+
+
+    _createClass(ChunkUploadHandler, [{
+      key: 'createChunks',
+
+
+      /**
+       * Creates all the chunks in the initial state
+       */
+      value: function createChunks() {
+        this.chunks = [];
+
+        var start = 0;
+        var end = this.chunkSize;
+        while (start < this.fileSize) {
+          this.chunks.push({
+            blob: this.file.file.slice(start, end),
+            startOffset: start,
+            active: false,
+            retries: this.maxRetries
+          });
+          start = end;
+          end = start + this.chunkSize;
+        }
+      }
+
+      /**
+       * Updates the progress of the file with the handler's progress
+       */
+
+    }, {
+      key: 'updateFileProgress',
+      value: function updateFileProgress() {
+        this.file.progress = this.progress;
+      }
+
+      /**
+       * Paues the upload process
+       * - Stops all active requests
+       * - Sets the file not active
+       */
+
+    }, {
+      key: 'pause',
+      value: function pause() {
+        this.file.active = false;
+        this.stopChunks();
+      }
+
+      /**
+       * Stops all the current chunks
+       */
+
+    }, {
+      key: 'stopChunks',
+      value: function stopChunks() {
+        this.chunksUploading.forEach(function (chunk) {
+          chunk.xhr.abort();
+          chunk.active = false;
+        });
+      }
+
+      /**
+       * Resumes the file upload
+       * - Sets the file active
+       * - Starts the following chunks
+       */
+
+    }, {
+      key: 'resume',
+      value: function resume() {
+        this.file.active = true;
+        this.startChunking();
+      }
+
+      /**
+       * Starts the file upload
+       *
+       * @returns Promise
+       * - resolve  The file was uploaded
+       * - reject   The file upload failed
+       */
+
+    }, {
+      key: 'upload',
+      value: function upload() {
+        var _this = this;
+
+        this.promise = new Promise(function (resolve, reject) {
+          _this.resolve = resolve;
+          _this.reject = reject;
+        });
+        this.start();
+
+        return this.promise;
+      }
+
+      /**
+       * Start phase
+       * Sends a request to the backend to initialise the chunks
+       */
+
+    }, {
+      key: 'start',
+      value: function start() {
+        var _this2 = this;
+
+        request({
+          method: 'POST',
+          headers: Object.assign({}, this.headers, {
+            'Content-Type': 'application/json'
+          }),
+          url: this.action,
+          body: Object.assign(this.startBody, {
+            phase: 'start',
+            mime_type: this.fileType,
+            size: this.fileSize,
+            name: this.fileName
+          })
+        }).then(function (res) {
+          if (res.status !== 'success') {
+            _this2.file.response = res;
+            return _this2.reject('server');
+          }
+
+          _this2.sessionId = res.data.session_id;
+          _this2.chunkSize = res.data.end_offset;
+
+          _this2.createChunks();
+          _this2.startChunking();
+        }).catch(function (res) {
+          _this2.file.response = res;
+          _this2.reject('server');
+        });
+      }
+
+      /**
+       * Starts to upload chunks
+       */
+
+    }, {
+      key: 'startChunking',
+      value: function startChunking() {
+        for (var i = 0; i < this.maxActiveChunks; i++) {
+          this.uploadNextChunk();
+        }
+      }
+
+      /**
+       * Uploads the next chunk
+       * - Won't do anything if the process is paused
+       * - Will start finish phase if there are no more chunks to upload
+       */
+
+    }, {
+      key: 'uploadNextChunk',
+      value: function uploadNextChunk() {
+        if (this.file.active) {
+          if (this.hasChunksToUpload) {
+            return this.uploadChunk(this.chunksToUpload[0]);
+          }
+
+          if (this.chunksUploading.length === 0) {
+            return this.finish();
+          }
+        }
+      }
+
+      /**
+       * Uploads a chunk
+       * - Sends the chunk to the backend
+       * - Sets the chunk as uploaded if everything went well
+       * - Decreases the number of retries if anything went wrong
+       * - Fails if there are no more retries
+       *
+       * @param {Object} chunk
+       */
+
+    }, {
+      key: 'uploadChunk',
+      value: function uploadChunk(chunk) {
+        var _this3 = this;
+
+        chunk.progress = 0;
+        chunk.active = true;
+        this.updateFileProgress();
+        chunk.xhr = createRequest({
+          method: 'POST',
+          headers: this.headers,
+          url: this.action
+        });
+
+        chunk.xhr.upload.addEventListener('progress', function (evt) {
+          if (evt.lengthComputable) {
+            chunk.progress = Math.round(evt.loaded / evt.total * 100);
+          }
+        }, false);
+
+        sendFormRequest(chunk.xhr, Object.assign(this.uploadBody, {
+          phase: 'upload',
+          session_id: this.sessionId,
+          start_offset: chunk.startOffset,
+          chunk: chunk.blob
+        })).then(function (res) {
+          chunk.active = false;
+          if (res.status === 'success') {
+            chunk.uploaded = true;
+          } else {
+            if (chunk.retries-- <= 0) {
+              _this3.stopChunks();
+              return _this3.reject('upload');
+            }
+          }
+
+          _this3.uploadNextChunk();
+        }).catch(function () {
+          chunk.active = false;
+          if (chunk.retries-- <= 0) {
+            _this3.stopChunks();
+            return _this3.reject('upload');
+          }
+
+          _this3.uploadNextChunk();
+        });
+      }
+
+      /**
+       * Finish phase
+       * Sends a request to the backend to finish the process
+       */
+
+    }, {
+      key: 'finish',
+      value: function finish() {
+        var _this4 = this;
+
+        this.updateFileProgress();
+
+        request({
+          method: 'POST',
+          headers: Object.assign({}, this.headers, {
+            'Content-Type': 'application/json'
+          }),
+          url: this.action,
+          body: Object.assign(this.finishBody, {
+            phase: 'finish',
+            session_id: this.sessionId
+          })
+        }).then(function (res) {
+          _this4.file.response = res;
+          if (res.status !== 'success') {
+            return _this4.reject('server');
+          }
+
+          _this4.resolve(res);
+        }).catch(function (res) {
+          _this4.file.response = res;
+          _this4.reject('server');
+        });
+      }
+    }, {
+      key: 'maxRetries',
+      get: function get() {
+        return parseInt(this.options.maxRetries);
+      }
+
+      /**
+       * Gets the max number of active chunks being uploaded at once from options
+       */
+
+    }, {
+      key: 'maxActiveChunks',
+      get: function get() {
+        return parseInt(this.options.maxActive);
+      }
+
+      /**
+       * Gets the file type
+       */
+
+    }, {
+      key: 'fileType',
+      get: function get() {
+        return this.file.type;
+      }
+
+      /**
+       * Gets the file size
+       */
+
+    }, {
+      key: 'fileSize',
+      get: function get() {
+        return this.file.size;
+      }
+
+      /**
+       * Gets the file size
+       */
+
+    }, {
+      key: 'fileName',
+      get: function get() {
+        return this.file.name;
+      }
+
+      /**
+       * Gets action (url) to upload the file
+       */
+
+    }, {
+      key: 'action',
+      get: function get() {
+        return this.options.action || null;
+      }
+
+      /**
+       * Gets the body to be merged when sending the request in start phase
+       */
+
+    }, {
+      key: 'startBody',
+      get: function get() {
+        return this.options.startBody || {};
+      }
+
+      /**
+       * Gets the body to be merged when sending the request in upload phase
+       */
+
+    }, {
+      key: 'uploadBody',
+      get: function get() {
+        return this.options.uploadBody || {};
+      }
+
+      /**
+       * Gets the body to be merged when sending the request in finish phase
+       */
+
+    }, {
+      key: 'finishBody',
+      get: function get() {
+        return this.options.finishBody || {};
+      }
+
+      /**
+       * Gets the headers of the requests from options
+       */
+
+    }, {
+      key: 'headers',
+      get: function get() {
+        return this.options.headers || {};
+      }
+
+      /**
+       * Whether it's ready to upload files or not
+       */
+
+    }, {
+      key: 'readyToUpload',
+      get: function get() {
+        return !!this.chunks;
+      }
+
+      /**
+       * Gets the progress of the chunk upload
+       * - Gets all the completed chunks
+       * - Gets the progress of all the chunks that are being uploaded
+       */
+
+    }, {
+      key: 'progress',
+      get: function get() {
+        var _this5 = this;
+
+        var completedProgress = this.chunksUploaded.length / this.chunks.length * 100;
+        var uploadingProgress = this.chunksUploading.reduce(function (progress, chunk) {
+          return progress + (chunk.progress | 0) / _this5.chunks.length;
+        }, 0);
+
+        return Math.min(completedProgress + uploadingProgress, 100);
+      }
+
+      /**
+       * Gets all the chunks that are pending to be uploaded
+       */
+
+    }, {
+      key: 'chunksToUpload',
+      get: function get() {
+        return this.chunks.filter(function (chunk) {
+          return !chunk.active && !chunk.uploaded;
+        });
+      }
+
+      /**
+       * Whether there are chunks to upload or not
+       */
+
+    }, {
+      key: 'hasChunksToUpload',
+      get: function get() {
+        return this.chunksToUpload.length > 0;
+      }
+
+      /**
+       * Gets all the chunks that are uploading
+       */
+
+    }, {
+      key: 'chunksUploading',
+      get: function get() {
+        return this.chunks.filter(function (chunk) {
+          return !!chunk.xhr && !!chunk.active;
+        });
+      }
+
+      /**
+       * Gets all the chunks that have finished uploading
+       */
+
+    }, {
+      key: 'chunksUploaded',
+      get: function get() {
+        return this.chunks.filter(function (chunk) {
+          return !!chunk.uploaded;
+        });
+      }
+    }]);
+
+    return ChunkUploadHandler;
+  }();
+
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+
+  var script = {
+    methods: {
+      change: function change(e) {
+        this.$parent.addInputFile(e.target);
+        e.target.value = '';
+        if (!e.target.files) {
+          // ie9 fix #219
+          this.$destroy();
+          // eslint-disable-next-line
+          new this.constructor({
+            parent: this.$parent,
+            el: this.$el
+          });
+        }
+      }
+    }
+  };
+
+  /* script */
+  var __vue_script__ = script;
+
+  /* template */
+  var __vue_render__ = function __vue_render__() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('input', { attrs: { "type": "file", "name": _vm.$parent.name, "id": _vm.$parent.inputId || _vm.$parent.name, "accept": _vm.$parent.accept, "capture": _vm.$parent.capture, "webkitdirectory": _vm.$parent.directory && _vm.$parent.features.directory, "directory": _vm.$parent.directory && _vm.$parent.features.directory, "multiple": _vm.$parent.multiple && _vm.$parent.features.html5 }, on: { "change": _vm.change } });
+  };
+  var __vue_staticRenderFns__ = [];
+
+  /* style */
+  var __vue_inject_styles__ = undefined;
+  /* scoped */
+  var __vue_scope_id__ = undefined;
+  /* module identifier */
+  var __vue_module_identifier__ = undefined;
+  /* functional template */
+  var __vue_is_functional_template__ = false;
+  /* component normalizer */
+  function __vue_normalize__(template, style, script$$1, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
+    var component = (typeof script$$1 === 'function' ? script$$1.options : script$$1) || {};
+
+    if (!component.render) {
+      component.render = template.render;
+      component.staticRenderFns = template.staticRenderFns;
+      component._compiled = true;
+
+      if (functional) component.functional = true;
+    }
+
+    component._scopeId = scope;
+
+    return component;
+  }
+  /* style inject */
+  function __vue_create_injector__() {
+    var head = document.head || document.getElementsByTagName('head')[0];
+    var styles = __vue_create_injector__.styles || (__vue_create_injector__.styles = {});
+    var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
+
+    return function addStyle(id, css) {
+      if (document.querySelector('style[data-vue-ssr-id~="' + id + '"]')) return; // SSR styles are present.
+
+      var group = isOldIE ? css.media || 'default' : id;
+      var style = styles[group] || (styles[group] = { ids: [], parts: [], element: undefined });
+
+      if (!style.ids.includes(id)) {
+        var code = css.source;
+        var index = style.ids.length;
+
+        style.ids.push(id);
+
+        if (css.map) {
+          // https://developer.chrome.com/devtools/docs/javascript-debugging
+          // this makes source maps inside style tags work properly in Chrome
+          code += '\n/*# sourceURL=' + css.map.sources[0] + ' */';
+          // http://stackoverflow.com/a/26603875
+          code += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) + ' */';
+        }
+
+        if (isOldIE) {
+          style.element = style.element || document.querySelector('style[data-group=' + group + ']');
+        }
+
+        if (!style.element) {
+          var el = style.element = document.createElement('style');
+          el.type = 'text/css';
+
+          if (css.media) el.setAttribute('media', css.media);
+          if (isOldIE) {
+            el.setAttribute('data-group', group);
+            el.setAttribute('data-next-index', '0');
+          }
+
+          head.appendChild(el);
+        }
+
+        if (isOldIE) {
+          index = parseInt(style.element.getAttribute('data-next-index'));
+          style.element.setAttribute('data-next-index', index + 1);
+        }
+
+        if (style.element.styleSheet) {
+          style.parts.push(code);
+          style.element.styleSheet.cssText = style.parts.filter(Boolean).join('\n');
+        } else {
+          var textNode = document.createTextNode(code);
+          var nodes = style.element.childNodes;
+          if (nodes[index]) style.element.removeChild(nodes[index]);
+          if (nodes.length) style.element.insertBefore(textNode, nodes[index]);else style.element.appendChild(textNode);
+        }
+      }
+    };
+  }
+  /* style inject SSR */
+
+  var InputFile = __vue_normalize__({ render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ }, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, __vue_create_injector__, undefined);
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+  function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+  var CHUNK_DEFAULT_OPTIONS = {
+    headers: {},
+    action: '',
+    minSize: 1048576,
+    maxActive: 3,
+    maxRetries: 5,
+
+    handler: ChunkUploadHandler
+  };
+
+  var script$1 = {
+    components: {
+      InputFile: InputFile
+    },
+    props: {
+      inputId: {
+        type: String
+      },
+
+      name: {
+        type: String,
+        default: 'file'
+      },
+
+      accept: {
+        type: String
+      },
+
+      capture: {},
+
+      multiple: {
+        type: Boolean
+      },
+
+      maximum: {
+        type: Number,
+        default: function _default() {
+          return this.multiple ? 0 : 1;
+        }
+      },
+
+      addIndex: {
+        type: [Boolean, Number]
+      },
+
+      directory: {
+        type: Boolean
+      },
+
+      postAction: {
+        type: String
+      },
+
+      putAction: {
+        type: String
+      },
+
+      customAction: {
+        type: Function
+      },
+
+      headers: {
+        type: Object,
+        default: Object
+      },
+
+      data: {
+        type: Object,
+        default: Object
+      },
+
+      timeout: {
+        type: Number,
+        default: 0
+      },
+
+      drop: {
+        default: false
+      },
+
+      dropDirectory: {
+        type: Boolean,
+        default: true
+      },
+
+      size: {
+        type: Number,
+        default: 0
+      },
+
+      extensions: {
+        default: Array
+      },
+
+      value: {
+        type: Array,
+        default: Array
+      },
+
+      thread: {
+        type: Number,
+        default: 1
+      },
+
+      // Chunk upload enabled
+      chunkEnabled: {
+        type: Boolean,
+        default: false
+      },
+
+      // Chunk upload properties
+      chunk: {
+        type: Object,
+        default: function _default() {
+          return CHUNK_DEFAULT_OPTIONS;
+        }
+      }
+    },
+
+    data: function data() {
+      return {
+        files: this.value,
+        features: {
+          html5: true,
+          directory: false,
+          drag: false
+        },
+
+        active: false,
+        dropActive: false,
+
+        uploading: 0,
+
+        destroy: false
+      };
+    },
+
+
+    /**
+     * mounted
+     * @return {[type]} [description]
+     */
+    mounted: function mounted() {
+      var input = document.createElement('input');
+      input.type = 'file';
+      input.multiple = true;
+
+      // html5 特征
+      if (window.FormData && input.files) {
+        // 上传目录特征
+        if (typeof input.webkitdirectory === 'boolean' || typeof input.directory === 'boolean') {
+          this.features.directory = true;
+        }
+
+        // 拖拽特征
+        if (this.features.html5 && typeof input.ondrop !== 'undefined') {
+          this.features.drop = true;
+        }
+      } else {
+        this.features.html5 = false;
+      }
+
+      // files 定位缓存
+      this.maps = {};
+
+      this.$nextTick(function () {
+
+        // 更新下父级
+        if (this.$parent) {
+          this.$parent.$forceUpdate();
+        }
+
+        // 拖拽渲染
+        this.watchDrop(this.drop);
+      });
+    },
+
+
+    /**
+     * beforeDestroy
+     * @return {[type]} [description]
+     */
+    beforeDestroy: function beforeDestroy() {
+      // 已销毁
+      this.destroy = true;
+
+      // 设置成不激活
+      this.active = false;
+    },
+
+
+    computed: {
+      /**
+       * uploading 正在上传的线程
+       * @return {[type]} [description]
+       */
+
+      /**
+       * uploaded 文件列表是否全部已上传
+       * @return {[type]} [description]
+       */
+      uploaded: function uploaded() {
+        var file = void 0;
+        for (var i = 0; i < this.files.length; i++) {
+          file = this.files[i];
+          if (file.fileObject && !file.error && !file.success) {
+            return false;
+          }
+        }
+        return true;
+      },
+      chunkOptions: function chunkOptions() {
+        return Object.assign(CHUNK_DEFAULT_OPTIONS, this.chunk);
+      },
+      className: function className() {
+        return ['file-uploads', this.features.html5 ? 'file-uploads-html5' : 'file-uploads-html4', this.features.directory && this.directory ? 'file-uploads-directory' : undefined, this.features.drop && this.drop ? 'file-uploads-drop' : undefined];
+      }
+    },
+
+    watch: {
+      active: function active(_active) {
+        this.watchActive(_active);
+      },
+      dropActive: function dropActive() {
+        if (this.$parent) {
+          this.$parent.$forceUpdate();
+        }
+      },
+      drop: function drop(value) {
+        this.watchDrop(value);
+      },
+      value: function value(files) {
+        if (this.files === files) {
+          return;
+        }
+        this.files = files;
+
+        var oldMaps = this.maps;
+
+        // 重写 maps 缓存
+        this.maps = {};
+        for (var i = 0; i < this.files.length; i++) {
+          var file = this.files[i];
+          this.maps[file.id] = file;
+        }
+
+        // add, update
+        for (var key in this.maps) {
+          var newFile = this.maps[key];
+          var oldFile = oldMaps[key];
+          if (newFile !== oldFile) {
+            this.emitFile(newFile, oldFile);
+          }
+        }
+
+        // delete
+        for (var _key in oldMaps) {
+          if (!this.maps[_key]) {
+            this.emitFile(undefined, oldMaps[_key]);
+          }
+        }
+      }
+    },
+
+    methods: {
+
+      // 清空
+      clear: function clear() {
+        if (this.files.length) {
+          var files = this.files;
+          this.files = [];
+
+          // 定位
+          this.maps = {};
+
+          // 事件
+          this.emitInput();
+          for (var i = 0; i < files.length; i++) {
+            this.emitFile(undefined, files[i]);
+          }
+        }
+        return true;
+      },
+
+
+      // 选择
+      get: function get(id) {
+        if (!id) {
+          return false;
+        }
+
+        if ((typeof id === 'undefined' ? 'undefined' : _typeof(id)) === 'object') {
+          return this.maps[id.id] || false;
+        }
+
+        return this.maps[id] || false;
+      },
+
+
+      // 添加
+      add: function add(_files) {
+        var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.addIndex;
+
+        var files = _files;
+        var isArray = files instanceof Array;
+
+        // 不是数组整理成数组
+        if (!isArray) {
+          files = [files];
+        }
+
+        // 遍历规范对象
+        var addFiles = [];
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          if (this.features.html5 && file instanceof Blob) {
+            file = {
+              file: file,
+              size: file.size,
+              name: file.webkitRelativePath || file.relativePath || file.name || 'unknown',
+              type: file.type
+            };
+          }
+          var fileObject = false;
+          if (file.fileObject === false) ; else if (file.fileObject) {
+            fileObject = true;
+          } else if (typeof Element !== 'undefined' && file.el instanceof Element) {
+            fileObject = true;
+          } else if (typeof Blob !== 'undefined' && file.file instanceof Blob) {
+            fileObject = true;
+          }
+          if (fileObject) {
+            file = _extends({
+              fileObject: true,
+              size: -1,
+              name: 'Filename',
+              type: '',
+              active: false,
+              error: '',
+              success: false,
+              putAction: this.putAction,
+              postAction: this.postAction,
+              timeout: this.timeout
+            }, file, {
+              response: {},
+
+              progress: '0.00', // 只读
+              speed: 0 // 只读
+              // xhr: false,                // 只读
+              // iframe: false,             // 只读
+            });
+
+            file.data = _extends({}, this.data, file.data ? file.data : {});
+
+            file.headers = _extends({}, this.headers, file.headers ? file.headers : {});
+          }
+
+          // 必须包含 id
+          if (!file.id) {
+            file.id = Math.random().toString(36).substr(2);
+          }
+
+          if (this.emitFilter(file, undefined)) {
+            continue;
+          }
+
+          // 最大数量限制
+          if (this.maximum > 1 && addFiles.length + this.files.length >= this.maximum) {
+            break;
+          }
+
+          addFiles.push(file);
+
+          // 最大数量限制
+          if (this.maximum === 1) {
+            break;
+          }
+        }
+
+        // 没有文件
+        if (!addFiles.length) {
+          return false;
+        }
+
+        // 如果是 1 清空
+        if (this.maximum === 1) {
+          this.clear();
+        }
+
+        // 添加进去 files
+        var newFiles = void 0;
+        if (index === true || index === 0) {
+          newFiles = addFiles.concat(this.files);
+        } else if (index) {
+          var _newFiles;
+
+          newFiles = this.files.concat([]);
+          (_newFiles = newFiles).splice.apply(_newFiles, [index, 0].concat(addFiles));
+        } else {
+          newFiles = this.files.concat(addFiles);
+        }
+
+        this.files = newFiles;
+
+        // 定位
+        for (var _i = 0; _i < addFiles.length; _i++) {
+          var _file2 = addFiles[_i];
+          this.maps[_file2.id] = _file2;
+        }
+
+        // 事件
+        this.emitInput();
+        for (var _i2 = 0; _i2 < addFiles.length; _i2++) {
+          this.emitFile(addFiles[_i2], undefined);
+        }
+
+        return isArray ? addFiles : addFiles[0];
+      },
+
+
+      // 添加表单文件
+      addInputFile: function addInputFile(el) {
+        var files = [];
+        if (el.files) {
+          for (var i = 0; i < el.files.length; i++) {
+            var file = el.files[i];
+            files.push({
+              size: file.size,
+              name: file.webkitRelativePath || file.relativePath || file.name,
+              type: file.type,
+              file: file,
+              el: el
+            });
+          }
+        } else {
+          var names = el.value.replace(/\\/g, '/').split('/');
+          files.push({
+            name: names[names.length - 1],
+            el: el
+          });
+        }
+        return this.add(files);
+      },
+
+
+      // 添加 DataTransfer
+      addDataTransfer: function addDataTransfer(dataTransfer) {
+        var _this = this;
+
+        var files = [];
+        if (dataTransfer.items && dataTransfer.items.length) {
+          var items = [];
+          for (var i = 0; i < dataTransfer.items.length; i++) {
+            var item = dataTransfer.items[i];
+            if (item.getAsEntry) {
+              item = item.getAsEntry() || item.getAsFile();
+            } else if (item.webkitGetAsEntry) {
+              item = item.webkitGetAsEntry() || item.getAsFile();
+            } else {
+              item = item.getAsFile();
+            }
+            if (item) {
+              items.push(item);
+            }
+          }
+
+          return new Promise(function (resolve, reject) {
+            var forEach = function forEach(i) {
+              var item = items[i];
+              // 结束 文件数量大于 最大数量
+              if (!item || _this.maximum > 0 && files.length >= _this.maximum) {
+                return resolve(_this.add(files));
+              }
+              _this.getEntry(item).then(function (results) {
+                files.push.apply(files, _toConsumableArray(results));
+                forEach(i + 1);
+              });
+            };
+            forEach(0);
+          });
+        }
+
+        if (dataTransfer.files.length) {
+          for (var _i3 = 0; _i3 < dataTransfer.files.length; _i3++) {
+            files.push(dataTransfer.files[_i3]);
+            if (this.maximum > 0 && files.length >= this.maximum) {
+              break;
+            }
+          }
+          return Promise.resolve(this.add(files));
+        }
+
+        return Promise.resolve([]);
+      },
+
+
+      // 获得 entry
+      getEntry: function getEntry(entry) {
+        var _this2 = this;
+
+        var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+        return new Promise(function (resolve, reject) {
+          if (entry.isFile) {
+            entry.file(function (file) {
+              resolve([{
+                size: file.size,
+                name: path + file.name,
+                type: file.type,
+                file: file
+              }]);
+            });
+          } else if (entry.isDirectory && _this2.dropDirectory) {
+            var files = [];
+            var dirReader = entry.createReader();
+            var readEntries = function readEntries() {
+              dirReader.readEntries(function (entries) {
+                var forEach = function forEach(i) {
+                  if (!entries[i] && i === 0 || _this2.maximum > 0 && files.length >= _this2.maximum) {
+                    return resolve(files);
+                  }
+                  if (!entries[i]) {
+                    return readEntries();
+                  }
+                  _this2.getEntry(entries[i], path + entry.name + '/').then(function (results) {
+                    files.push.apply(files, _toConsumableArray(results));
+                    forEach(i + 1);
+                  });
+                };
+                forEach(0);
+              });
+            };
+            readEntries();
+          } else {
+            resolve([]);
+          }
+        });
+      },
+      replace: function replace(id1, id2) {
+        var file1 = this.get(id1);
+        var file2 = this.get(id2);
+        if (!file1 || !file2 || file1 === file2) {
+          return false;
+        }
+        var files = this.files.concat([]);
+        var index1 = files.indexOf(file1);
+        var index2 = files.indexOf(file2);
+        if (index1 === -1 || index2 === -1) {
+          return false;
+        }
+        files[index1] = file2;
+        files[index2] = file1;
+        this.files = files;
+        this.emitInput();
+        return true;
+      },
+
+
+      // 移除
+      remove: function remove(id) {
+        var file = this.get(id);
+        if (file) {
+          if (this.emitFilter(undefined, file)) {
+            return false;
+          }
+          var files = this.files.concat([]);
+          var index = files.indexOf(file);
+          if (index === -1) {
+            console.error('remove', file);
+            return false;
+          }
+          files.splice(index, 1);
+          this.files = files;
+
+          // 定位
+          delete this.maps[file.id];
+
+          // 事件
+          this.emitInput();
+          this.emitFile(undefined, file);
+        }
+        return file;
+      },
+
+
+      // 更新
+      update: function update(id, data) {
+        var file = this.get(id);
+        if (file) {
+          var newFile = _extends({}, file, data);
+          // 停用必须加上错误
+          if (file.fileObject && file.active && !newFile.active && !newFile.error && !newFile.success) {
+            newFile.error = 'abort';
+          }
+
+          if (this.emitFilter(newFile, file)) {
+            return false;
+          }
+
+          var files = this.files.concat([]);
+          var index = files.indexOf(file);
+          if (index === -1) {
+            console.error('update', file);
+            return false;
+          }
+          files.splice(index, 1, newFile);
+          this.files = files;
+
+          // 删除  旧定位 写入 新定位 （已便支持修改id)
+          delete this.maps[file.id];
+          this.maps[newFile.id] = newFile;
+
+          // 事件
+          this.emitInput();
+          this.emitFile(newFile, file);
+          return newFile;
+        }
+        return false;
+      },
+
+
+      // 预处理 事件 过滤器
+      emitFilter: function emitFilter(newFile, oldFile) {
+        var isPrevent = false;
+        this.$emit('input-filter', newFile, oldFile, function () {
+          isPrevent = true;
+          return isPrevent;
+        });
+        return isPrevent;
+      },
+
+
+      // 处理后 事件 分发
+      emitFile: function emitFile(newFile, oldFile) {
+        this.$emit('input-file', newFile, oldFile);
+        if (newFile && newFile.fileObject && newFile.active && (!oldFile || !oldFile.active)) {
+          this.uploading++;
+          // 激活
+          this.$nextTick(function () {
+            var _this3 = this;
+
+            setTimeout(function () {
+              _this3.upload(newFile).then(function () {
+                // eslint-disable-next-line
+                newFile = _this3.get(newFile);
+                if (newFile && newFile.fileObject) {
+                  _this3.update(newFile, {
+                    active: false,
+                    success: !newFile.error
+                  });
+                }
+              }).catch(function (e) {
+                _this3.update(newFile, {
+                  active: false,
+                  success: false,
+                  error: e.code || e.error || e.message || e
+                });
+              });
+            }, parseInt(Math.random() * 50 + 50, 10));
+          });
+        } else if ((!newFile || !newFile.fileObject || !newFile.active) && oldFile && oldFile.fileObject && oldFile.active) {
+          // 停止
+          this.uploading--;
+        }
+
+        // 自动延续激活
+        if (this.active && (Boolean(newFile) !== Boolean(oldFile) || newFile.active !== oldFile.active)) {
+          this.watchActive(true);
+        }
+      },
+      emitInput: function emitInput() {
+        this.$emit('input', this.files);
+      },
+
+
+      // 上传
+      upload: function upload(id) {
+        var file = this.get(id);
+
+        // 被删除
+        if (!file) {
+          return Promise.reject('not_exists');
+        }
+
+        // 不是文件对象
+        if (!file.fileObject) {
+          return Promise.reject('file_object');
+        }
+
+        // 有错误直接响应
+        if (file.error) {
+          return Promise.reject(file.error);
+        }
+
+        // 已完成直接响应
+        if (file.success) {
+          return Promise.resolve(file);
+        }
+
+        // 后缀
+        var extensions = this.extensions;
+        if (extensions && (extensions.length || typeof extensions.length === 'undefined')) {
+          if ((typeof extensions === 'undefined' ? 'undefined' : _typeof(extensions)) !== 'object' || !(extensions instanceof RegExp)) {
+            if (typeof extensions === 'string') {
+              extensions = extensions.split(',').map(function (value) {
+                return value.trim();
+              }).filter(function (value) {
+                return value;
+              });
+            }
+            extensions = new RegExp('\\.(' + extensions.join('|').replace(/\./g, '\\.') + ')$', 'i');
+          }
+          if (file.name.search(extensions) === -1) {
+            return Promise.reject('extension');
+          }
+        }
+
+        // 大小
+        if (this.size > 0 && file.size >= 0 && file.size > this.size) {
+          return Promise.reject('size');
+        }
+
+        if (this.customAction) {
+          return this.customAction(file, this);
+        }
+
+        if (this.features.html5) {
+          if (this.shouldUseChunkUpload(file)) {
+            return this.uploadChunk(file);
+          }
+          if (file.putAction) {
+            return this.uploadPut(file);
+          }
+          if (file.postAction) {
+            return this.uploadHtml5(file);
+          }
+        }
+        if (file.postAction) {
+          return this.uploadHtml4(file);
+        }
+        return Promise.reject('No action configured');
+      },
+
+
+      /**
+       * Whether this file should be uploaded using chunk upload or not
+       *
+       * @param Object file
+       */
+      shouldUseChunkUpload: function shouldUseChunkUpload(file) {
+        return this.chunkEnabled && !!this.chunkOptions.handler && file.size > this.chunkOptions.minSize;
+      },
+
+
+      /**
+       * Upload a file using Chunk method
+       *
+       * @param File file
+       */
+      uploadChunk: function uploadChunk(file) {
+        var HandlerClass = this.chunkOptions.handler;
+        file.chunk = new HandlerClass(file, this.chunkOptions);
+
+        return file.chunk.upload();
+      },
+      uploadPut: function uploadPut(file) {
+        var querys = [];
+        var value = void 0;
+        for (var key in file.data) {
+          value = file.data[key];
+          if (value !== null && value !== undefined) {
+            querys.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+          }
+        }
+        var queryString = querys.length ? (file.putAction.indexOf('?') === -1 ? '?' : '&') + querys.join('&') : '';
+        var xhr = new XMLHttpRequest();
+        xhr.open('PUT', file.putAction + queryString);
+        return this.uploadXhr(xhr, file, file.file);
+      },
+      uploadHtml5: function uploadHtml5(file) {
+        var form = new window.FormData();
+        var value = void 0;
+        for (var key in file.data) {
+          value = file.data[key];
+          if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
+            if (value instanceof File) {
+              form.append(key, value, value.name);
+            } else {
+              form.append(key, JSON.stringify(value));
+            }
+          } else if (value !== null && value !== undefined) {
+            form.append(key, value);
+          }
+        }
+        form.append(this.name, file.file, file.file.filename || file.name);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', file.postAction);
+        return this.uploadXhr(xhr, file, form);
+      },
+      uploadXhr: function uploadXhr(xhr, _file, body) {
+        var _this4 = this;
+
+        var file = _file;
+        var speedTime = 0;
+        var speedLoaded = 0;
+
+        // 进度条
+        xhr.upload.onprogress = function (e) {
+          // 还未开始上传 已删除 未激活
+          file = _this4.get(file);
+          if (!e.lengthComputable || !file || !file.fileObject || !file.active) {
+            return;
+          }
+
+          // 进度 速度 每秒更新一次
+          var speedTime2 = Math.round(Date.now() / 1000);
+          if (speedTime2 === speedTime) {
+            return;
+          }
+          speedTime = speedTime2;
+
+          file = _this4.update(file, {
+            progress: (e.loaded / e.total * 100).toFixed(2),
+            speed: e.loaded - speedLoaded
+          });
+          speedLoaded = e.loaded;
+        };
+
+        // 检查激活状态
+        var interval = setInterval(function () {
+          file = _this4.get(file);
+          if (file && file.fileObject && !file.success && !file.error && file.active) {
+            return;
+          }
+
+          if (interval) {
+            clearInterval(interval);
+            interval = false;
+          }
+
+          try {
+            xhr.abort();
+            xhr.timeout = 1;
+          } catch (e) {}
+        }, 100);
+
+        return new Promise(function (resolve, reject) {
+          var complete = void 0;
+          var fn = function fn(e) {
+            // 已经处理过了
+            if (complete) {
+              return;
+            }
+            complete = true;
+            if (interval) {
+              clearInterval(interval);
+              interval = false;
+            }
+
+            file = _this4.get(file);
+
+            // 不存在直接响应
+            if (!file) {
+              return reject('not_exists');
+            }
+
+            // 不是文件对象
+            if (!file.fileObject) {
+              return reject('file_object');
+            }
+
+            // 有错误自动响应
+            if (file.error) {
+              return reject(file.error);
+            }
+
+            // 未激活
+            if (!file.active) {
+              return reject('abort');
+            }
+
+            // 已完成 直接相应
+            if (file.success) {
+              return resolve(file);
+            }
+
+            var data = {};
+
+            switch (e.type) {
+              case 'timeout':
+              case 'abort':
+                data.error = e.type;
+                break;
+              case 'error':
+                if (!xhr.status) {
+                  data.error = 'network';
+                } else if (xhr.status >= 500) {
+                  data.error = 'server';
+                } else if (xhr.status >= 400) {
+                  data.error = 'denied';
+                }
+                break;
+              default:
+                if (xhr.status >= 500) {
+                  data.error = 'server';
+                } else if (xhr.status >= 400) {
+                  data.error = 'denied';
+                } else {
+                  data.progress = '100.00';
+                }
+            }
+
+            if (xhr.responseText) {
+              var contentType = xhr.getResponseHeader('Content-Type');
+              if (contentType && contentType.indexOf('/json') !== -1) {
+                data.response = JSON.parse(xhr.responseText);
+              } else {
+                data.response = xhr.responseText;
+              }
+            }
+
+            // 更新
+            file = _this4.update(file, data);
+
+            // 相应错误
+            if (file.error) {
+              return reject(file.error);
+            }
+
+            // 响应
+            return resolve(file);
+          };
+
+          // 事件
+          xhr.onload = fn;
+          xhr.onerror = fn;
+          xhr.onabort = fn;
+          xhr.ontimeout = fn;
+
+          // 超时
+          if (file.timeout) {
+            xhr.timeout = file.timeout;
+          }
+
+          // headers
+          for (var key in file.headers) {
+            xhr.setRequestHeader(key, file.headers[key]);
+          }
+
+          // 更新 xhr
+          file = _this4.update(file, { xhr: xhr });
+
+          // 开始上传
+          xhr.send(body);
+        });
+      },
+      uploadHtml4: function uploadHtml4(_file) {
+        var _this5 = this;
+
+        var file = _file;
+        var onKeydown = function onKeydown(e) {
+          if (e.keyCode === 27) {
+            e.preventDefault();
+          }
+        };
+
+        var iframe = document.createElement('iframe');
+        iframe.id = 'upload-iframe-' + file.id;
+        iframe.name = 'upload-iframe-' + file.id;
+        iframe.src = 'about:blank';
+        iframe.setAttribute('style', 'width:1px;height:1px;top:-999em;position:absolute; margin-top:-999em;');
+
+        var form = document.createElement('form');
+
+        form.action = file.postAction;
+
+        form.name = 'upload-form-' + file.id;
+
+        form.setAttribute('method', 'POST');
+        form.setAttribute('target', 'upload-iframe-' + file.id);
+        form.setAttribute('enctype', 'multipart/form-data');
+
+        var value = void 0;
+        var input = void 0;
+        for (var key in file.data) {
+          value = file.data[key];
+          if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
+            value = JSON.stringify(value);
+          }
+          if (value !== null && value !== undefined) {
+            input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = value;
+            form.appendChild(input);
+          }
+        }
+        form.appendChild(file.el);
+
+        document.body.appendChild(iframe).appendChild(form);
+
+        var getResponseData = function getResponseData() {
+          var doc = void 0;
+          try {
+            if (iframe.contentWindow) {
+              doc = iframe.contentWindow.document;
+            }
+          } catch (err) {}
+          if (!doc) {
+            try {
+              doc = iframe.contentDocument ? iframe.contentDocument : iframe.document;
+            } catch (err) {
+              doc = iframe.document;
+            }
+          }
+          if (doc && doc.body) {
+            return doc.body.innerHTML;
+          }
+          return null;
+        };
+
+        return new Promise(function (resolve, reject) {
+          setTimeout(function () {
+            file = _this5.update(file, { iframe: iframe });
+
+            // 不存在
+            if (!file) {
+              return reject('not_exists');
+            }
+
+            // 定时检查
+            var interval = setInterval(function () {
+              file = _this5.get(file);
+              if (file && file.fileObject && !file.success && !file.error && file.active) {
+                return;
+              }
+
+              if (interval) {
+                clearInterval(interval);
+                interval = false;
+              }
+
+              iframe.onabort({ type: file ? 'abort' : 'not_exists' });
+            }, 100);
+
+            var complete = void 0;
+            var fn = function fn(e) {
+              // 已经处理过了
+              if (complete) {
+                return;
+              }
+              complete = true;
+
+              if (interval) {
+                clearInterval(interval);
+                interval = false;
+              }
+
+              // 关闭 esc 事件
+              document.body.removeEventListener('keydown', onKeydown);
+
+              file = _this5.get(file);
+
+              // 不存在直接响应
+              if (!file) {
+                return reject('not_exists');
+              }
+
+              // 不是文件对象
+              if (!file.fileObject) {
+                return reject('file_object');
+              }
+
+              // 有错误自动响应
+              if (file.error) {
+                return reject(file.error);
+              }
+
+              // 未激活
+              if (!file.active) {
+                return reject('abort');
+              }
+
+              // 已完成 直接相应
+              if (file.success) {
+                return resolve(file);
+              }
+
+              var response = getResponseData();
+              var data = {};
+              switch (e.type) {
+                case 'abort':
+                  data.error = 'abort';
+                  break;
+                case 'error':
+                  if (file.error) {
+                    data.error = file.error;
+                  } else if (response === null) {
+                    data.error = 'network';
+                  } else {
+                    data.error = 'denied';
+                  }
+                  break;
+                default:
+                  if (file.error) {
+                    data.error = file.error;
+                  } else if (data === null) {
+                    data.error = 'network';
+                  } else {
+                    data.progress = '100.00';
+                  }
+              }
+
+              if (response !== null) {
+                if (response && response.substr(0, 1) === '{' && response.substr(response.length - 1, 1) === '}') {
+                  try {
+                    response = JSON.parse(response);
+                  } catch (err) {}
+                }
+                data.response = response;
+              }
+
+              // 更新
+              file = _this5.update(file, data);
+
+              if (file.error) {
+                return reject(file.error);
+              }
+
+              // 响应
+              return resolve(file);
+            };
+
+            // 添加事件
+            iframe.onload = fn;
+            iframe.onerror = fn;
+            iframe.onabort = fn;
+
+            // 禁止 esc 键
+            document.body.addEventListener('keydown', onKeydown);
+
+            // 提交
+            form.submit();
+          }, 50);
+        }).then(function (res) {
+          iframe.parentNode && iframe.parentNode.removeChild(iframe);
+          return res;
+        }).catch(function (res) {
+          iframe.parentNode && iframe.parentNode.removeChild(iframe);
+          return res;
+        });
+      },
+      watchActive: function watchActive(active) {
+        var file = void 0;
+        var index = 0;
+        while (file = this.files[index]) {
+          index++;
+          if (!file.fileObject) ; else if (active && !this.destroy) {
+            if (this.uploading >= this.thread || this.uploading && !this.features.html5) {
+              break;
+            }
+            if (!file.active && !file.error && !file.success) {
+              this.update(file, { active: true });
+            }
+          } else {
+            if (file.active) {
+              this.update(file, { active: false });
+            }
+          }
+        }
+        if (this.uploading === 0) {
+          this.active = false;
+        }
+      },
+      watchDrop: function watchDrop(_el) {
+        var el = _el;
+        if (!this.features.drop) {
+          return;
+        }
+
+        // 移除挂载
+        if (this.dropElement) {
+          try {
+            document.removeEventListener('dragenter', this.onDragenter, false);
+            document.removeEventListener('dragleave', this.onDragleave, false);
+            document.removeEventListener('drop', this.onDocumentDrop, false);
+            this.dropElement.removeEventListener('dragover', this.onDragover, false);
+            this.dropElement.removeEventListener('drop', this.onDrop, false);
+          } catch (e) {}
+        }
+
+        if (!el) {
+          el = false;
+        } else if (typeof el === 'string') {
+          el = document.querySelector(el) || this.$root.$el.querySelector(el);
+        } else if (el === true) {
+          el = this.$parent.$el;
+        }
+
+        this.dropElement = el;
+
+        if (this.dropElement) {
+          document.addEventListener('dragenter', this.onDragenter, false);
+          document.addEventListener('dragleave', this.onDragleave, false);
+          document.addEventListener('drop', this.onDocumentDrop, false);
+          this.dropElement.addEventListener('dragover', this.onDragover, false);
+          this.dropElement.addEventListener('drop', this.onDrop, false);
+        }
+      },
+      onDragenter: function onDragenter(e) {
+        e.preventDefault();
+        if (this.dropActive) {
+          return;
+        }
+        if (!e.dataTransfer) {
+          return;
+        }
+        var dt = e.dataTransfer;
+        if (dt.files && dt.files.length) {
+          this.dropActive = true;
+        } else if (!dt.types) {
+          this.dropActive = true;
+        } else if (dt.types.indexOf && dt.types.indexOf('Files') !== -1) {
+          this.dropActive = true;
+        } else if (dt.types.contains && dt.types.contains('Files')) {
+          this.dropActive = true;
+        }
+      },
+      onDragleave: function onDragleave(e) {
+        e.preventDefault();
+        if (!this.dropActive) {
+          return;
+        }
+        if (e.target.nodeName === 'HTML' || e.target === e.explicitOriginalTarget || !e.fromElement && (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight)) {
+          this.dropActive = false;
+        }
+      },
+      onDragover: function onDragover(e) {
+        e.preventDefault();
+      },
+      onDocumentDrop: function onDocumentDrop() {
+        this.dropActive = false;
+      },
+      onDrop: function onDrop(e) {
+        e.preventDefault();
+        this.addDataTransfer(e.dataTransfer);
+      }
+    }
+  };
+
+  /* script */
+  var __vue_script__$1 = script$1;
+
+  /* template */
+  var __vue_render__$1 = function __vue_render__() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('span', { class: _vm.className }, [_vm._t("default"), _vm._v(" "), _c('label', { attrs: { "for": _vm.inputId || _vm.name } }), _vm._v(" "), _c('input-file')], 2);
+  };
+  var __vue_staticRenderFns__$1 = [];
+
+  /* style */
+  var __vue_inject_styles__$1 = function (inject) {
+    if (!inject) return;
+    inject("data-v-37fa7525_0", { source: "\n.file-uploads{overflow:hidden;position:relative;text-align:center;display:inline-block\n}\n.file-uploads.file-uploads-html4 input[type=file],.file-uploads.file-uploads-html5 label{background:#fff;opacity:0;font-size:20em;z-index:1;top:0;left:0;right:0;bottom:0;position:absolute;width:100%;height:100%\n}\n.file-uploads.file-uploads-html4 label,.file-uploads.file-uploads-html5 input[type=file]{background:rgba(255,255,255,0);overflow:hidden;position:fixed;width:1px;height:1px;z-index:-1;opacity:0\n}", map: undefined, media: undefined });
+  };
+  /* scoped */
+  var __vue_scope_id__$1 = undefined;
+  /* module identifier */
+  var __vue_module_identifier__$1 = undefined;
+  /* functional template */
+  var __vue_is_functional_template__$1 = false;
+  /* component normalizer */
+  function __vue_normalize__$1(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
+    var component = (typeof script === 'function' ? script.options : script) || {};
+
+    if (!component.render) {
+      component.render = template.render;
+      component.staticRenderFns = template.staticRenderFns;
+      component._compiled = true;
+
+      if (functional) component.functional = true;
+    }
+
+    component._scopeId = scope;
+
+    {
+      var hook = void 0;
+      if (style) {
+        hook = function hook(context) {
+          style.call(this, createInjector(context));
+        };
+      }
+
+      if (hook !== undefined) {
+        if (component.functional) {
+          // register for functional component in vue file
+          var originalRender = component.render;
+          component.render = function renderWithStyleInjection(h, context) {
+            hook.call(context);
+            return originalRender(h, context);
+          };
+        } else {
+          // inject component registration as beforeCreate hook
+          var existing = component.beforeCreate;
+          component.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+        }
+      }
+    }
+
+    return component;
+  }
+  /* style inject */
+  function __vue_create_injector__$1() {
+    var head = document.head || document.getElementsByTagName('head')[0];
+    var styles = __vue_create_injector__$1.styles || (__vue_create_injector__$1.styles = {});
+    var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
+
+    return function addStyle(id, css) {
+      if (document.querySelector('style[data-vue-ssr-id~="' + id + '"]')) return; // SSR styles are present.
+
+      var group = isOldIE ? css.media || 'default' : id;
+      var style = styles[group] || (styles[group] = { ids: [], parts: [], element: undefined });
+
+      if (!style.ids.includes(id)) {
+        var code = css.source;
+        var index = style.ids.length;
+
+        style.ids.push(id);
+
+        if (css.map) {
+          // https://developer.chrome.com/devtools/docs/javascript-debugging
+          // this makes source maps inside style tags work properly in Chrome
+          code += '\n/*# sourceURL=' + css.map.sources[0] + ' */';
+          // http://stackoverflow.com/a/26603875
+          code += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) + ' */';
+        }
+
+        if (isOldIE) {
+          style.element = style.element || document.querySelector('style[data-group=' + group + ']');
+        }
+
+        if (!style.element) {
+          var el = style.element = document.createElement('style');
+          el.type = 'text/css';
+
+          if (css.media) el.setAttribute('media', css.media);
+          if (isOldIE) {
+            el.setAttribute('data-group', group);
+            el.setAttribute('data-next-index', '0');
+          }
+
+          head.appendChild(el);
+        }
+
+        if (isOldIE) {
+          index = parseInt(style.element.getAttribute('data-next-index'));
+          style.element.setAttribute('data-next-index', index + 1);
+        }
+
+        if (style.element.styleSheet) {
+          style.parts.push(code);
+          style.element.styleSheet.cssText = style.parts.filter(Boolean).join('\n');
+        } else {
+          var textNode = document.createTextNode(code);
+          var nodes = style.element.childNodes;
+          if (nodes[index]) style.element.removeChild(nodes[index]);
+          if (nodes.length) style.element.insertBefore(textNode, nodes[index]);else style.element.appendChild(textNode);
+        }
+      }
+    };
+  }
+  /* style inject SSR */
+
+  var FileUpload = __vue_normalize__$1({ render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 }, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, __vue_create_injector__$1, undefined);
+
+  var FileUpload$1 = /*#__PURE__*/Object.freeze({
+    default: FileUpload
+  });
+
+  var require$$0 = ( FileUpload$1 && FileUpload ) || FileUpload$1;
+
+  var src = require$$0;
+
+  return src;
+
+})));
+//# sourceMappingURL=vue-upload-component.js.map
+
+
+/***/ }),
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30023,10 +32121,22 @@ var cantidad;
 });
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_date_pick__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_date_pick___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_date_pick__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -30126,54 +32236,81 @@ var cantidad;
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    props: ['cuestionarioSelected'],
-    data: function data() {
-        return {
-            cuestionario: [],
-            aplicacion: [],
-            errors: [],
-            datos: false,
-            titulo: 'No hay datos'
-        };
-    },
-    mounted: function mounted() {
-        var _this = this;
+  components: { DatePick: __WEBPACK_IMPORTED_MODULE_0_vue_date_pick___default.a },
+  props: ["cuestionarioSelected"],
+  data: function data() {
+    return {
+      cuestionario: [],
+      aplicacion: [],
+      errors: [],
+      datos: false,
+      titulo: "No hay datos",
+      date: "2018-11-29 12:00"
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
 
-        console.log(this.cuestionarioSelected);
-        if (this.cuestionarioSelected) {
-            this.cuestionario = this.cuestionarioSelected;
-            console.log(this.cuestionarioSelected);
-            this.titulo = 'Aplicar cuestionario';
-            this.datos = true;
-            axios.get('/api/puntos?id=' + this.cuestionarioSelected.punto_gramatical).then(function (response) {
-                _this.cuestionarioSelected.punto_gramatical = response.data.data.puntos_gramaticales[0].punto_gramatical;
-            }).catch(function (e) {
-                console.log(e);
-            });
-        }
-    },
-
-    methods: {
-        add: function add() {
-            console.log(this.aplicacion.fecha_hora);
-            this.$router.push({ name: 'cuestionarios' });
-            this.$toastr('success', 'El cuestionario ha sido programado correctamente');
-        },
-        checkForm: function checkForm() {
-            if (this.aplicacion.duracion && this.aplicacion.fecha_hora) {
-                this.add();
-            }
-
-            this.errors = [];
-
-            if (!this.aplicacion.duracion) this.errors.push('Duracion is required');
-            if (!this.aplicacion.fecha_hora) this.errors.push('Fecha y hora is required');
-        }
+    console.log(this.cuestionarioSelected);
+    if (this.cuestionarioSelected) {
+      this.cuestionario = this.cuestionarioSelected;
+      console.log(this.cuestionarioSelected);
+      this.titulo = "Aplicar cuestionario";
+      this.datos = true;
+      axios.get("/api/puntos?id=" + this.cuestionarioSelected.punto_gramatical).then(function (response) {
+        _this.cuestionarioSelected.punto_gramatical = response.data.data.puntos_gramaticales[0].punto_gramatical;
+      }).catch(function (e) {
+        console.log(e);
+      });
     }
+  },
+
+  methods: {
+    isPastDate: function isPastDate(date) {
+      var currentDate = new Date();
+      return currentDate >= date;
+    },
+    add: function add() {
+      var _this2 = this;
+
+      console.log(this.aplicacion.fecha_hora);
+      var currentDate = new Date();
+      //const yesterdayDate = new Date("Y/m/d", strtotime("-1 days"));
+      //console.log(yesterdayDate);
+      console.log(currentDate);
+
+      var difusion = {
+        evaluacion_id: this.cuestionarioSelected.id,
+        profesor_id: "1",
+        matricula: "1",
+        duracion: this.aplicacion.duracion,
+        fecha_aplicacion: this.aplicacion.fecha_hora,
+        status: "1"
+      };
+
+      axios.post("/api/difusiones", difusion).then(function (response) {
+        //this.clear();
+        _this2.$router.push({ name: "cuestionarios" });
+        _this2.$toastr("success", "El cuestionario ha sido programado correctamente");
+      }).catch(function (e) {
+        console.log("errorSQL: " + e);
+      });
+    },
+    checkForm: function checkForm() {
+      if (this.aplicacion.duracion && this.aplicacion.fecha_hora) {
+        this.add();
+      }
+
+      this.errors = [];
+
+      if (!this.aplicacion.duracion) this.errors.push("Duracion is required");
+      if (!this.aplicacion.fecha_hora) this.errors.push("Fecha y hora is required");
+    }
+  }
 });
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30387,7 +32524,7 @@ var cantidad;
 });
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30479,7 +32616,7 @@ var cantidad;
 });
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30516,15 +32653,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 });
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(38);
+__webpack_require__(39);
 module.exports = __webpack_require__(114);
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30532,17 +32669,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_coordinador_App_vue__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_maestro_App_vue__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_alumno_App_vue__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routers_coordinador_router_js__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routers_maestro_router_js__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_maestro_App_vue__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_alumno_App_vue__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routers_coordinador_router_js__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routers_maestro_router_js__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__routers_alumno_router_js__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_animations_CardTransition_vue__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__deveodk_vue_toastr__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__deveodk_vue_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__deveodk_vue_toastr__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__deveodk_vue_toastr_dist_deveodk_vue_toastr_css__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__deveodk_vue_toastr_dist_deveodk_vue_toastr_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__deveodk_vue_toastr_dist_deveodk_vue_toastr_css__);
-__webpack_require__(39);
+__webpack_require__(40);
 window.Vue = __webpack_require__(3);
 
 
@@ -30556,6 +32693,9 @@ window.Vue = __webpack_require__(3);
 
 
 
+
+var VueUploadComponent = __webpack_require__(32);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('file-upload', VueUploadComponent);
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('card-transition', __WEBPACK_IMPORTED_MODULE_7__views_animations_CardTransition_vue__["a" /* default */]);
 
@@ -30583,11 +32723,11 @@ var appAlumno = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 });
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(40);
+window._ = __webpack_require__(41);
 window.Popper = __webpack_require__(9).default;
 
 /**
@@ -30599,7 +32739,7 @@ window.Popper = __webpack_require__(9).default;
 try {
   window.$ = window.jQuery = __webpack_require__(10);
 
-  __webpack_require__(42);
+  __webpack_require__(43);
 } catch (e) {}
 
 /**
@@ -30608,7 +32748,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(43);
+window.axios = __webpack_require__(44);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -30644,7 +32784,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -47746,10 +49886,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(41)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(42)(module)))
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -47777,7 +49917,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -51677,13 +53817,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(44);
+module.exports = __webpack_require__(45);
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51691,7 +53831,7 @@ module.exports = __webpack_require__(44);
 
 var utils = __webpack_require__(1);
 var bind = __webpack_require__(11);
-var Axios = __webpack_require__(46);
+var Axios = __webpack_require__(47);
 var defaults = __webpack_require__(5);
 
 /**
@@ -51726,14 +53866,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(16);
-axios.CancelToken = __webpack_require__(60);
+axios.CancelToken = __webpack_require__(61);
 axios.isCancel = __webpack_require__(15);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(61);
+axios.spread = __webpack_require__(62);
 
 module.exports = axios;
 
@@ -51742,7 +53882,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 /*!
@@ -51769,7 +53909,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51777,8 +53917,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(5);
 var utils = __webpack_require__(1);
-var InterceptorManager = __webpack_require__(55);
-var dispatchRequest = __webpack_require__(56);
+var InterceptorManager = __webpack_require__(56);
+var dispatchRequest = __webpack_require__(57);
 
 /**
  * Create a new instance of Axios
@@ -51855,7 +53995,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51874,7 +54014,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51907,7 +54047,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51935,7 +54075,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52010,7 +54150,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52070,7 +54210,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52145,7 +54285,7 @@ module.exports = (
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52188,7 +54328,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52248,7 +54388,7 @@ module.exports = (
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52307,18 +54447,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(1);
-var transformData = __webpack_require__(57);
+var transformData = __webpack_require__(58);
 var isCancel = __webpack_require__(15);
 var defaults = __webpack_require__(5);
-var isAbsoluteURL = __webpack_require__(58);
-var combineURLs = __webpack_require__(59);
+var isAbsoluteURL = __webpack_require__(59);
+var combineURLs = __webpack_require__(60);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -52400,7 +54540,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52427,7 +54567,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52448,7 +54588,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52469,7 +54609,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52533,7 +54673,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52567,7 +54707,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -52620,7 +54760,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(63);
+__webpack_require__(64);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -52634,7 +54774,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -52827,7 +54967,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(12)))
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52960,13 +55100,13 @@ if (false) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(19);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1185d012_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1185d012_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -53014,7 +55154,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53131,13 +55271,13 @@ if (false) {
 }
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(20);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8b361b54_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8b361b54_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -53185,7 +55325,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53270,7 +55410,7 @@ if (false) {
 }
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53279,12 +55419,12 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_errors_404_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_coordinador_App_vue__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_coordinador_Reactivo_vue__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_coordinador_Grupo_vue__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_coordinador_Materia__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_coordinador_Punto__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_coordinador_Index_vue__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_coordinador_GrupoDetail_vue__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_coordinador_Reactivo_vue__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_coordinador_Grupo_vue__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_coordinador_Materia__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_coordinador_Punto__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_coordinador_Index_vue__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_coordinador_GrupoDetail_vue__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__views_global_Cuestionario_vue__ = __webpack_require__(27);
 
 
@@ -53345,7 +55485,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53370,13 +55510,13 @@ if (false) {
 }
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Reactivo_vue__ = __webpack_require__(21);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_fe7d1b68_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Reactivo_vue__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_fe7d1b68_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Reactivo_vue__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -53424,7 +55564,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53816,13 +55956,13 @@ if (false) {
 }
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Grupo_vue__ = __webpack_require__(22);
 /* unused harmony reexport namespace */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5d5959f0_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Grupo_vue__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5d5959f0_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Grupo_vue__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -53870,7 +56010,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54047,13 +56187,13 @@ if (false) {
 }
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Materia_vue__ = __webpack_require__(23);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_afe4b0a8_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Materia_vue__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_afe4b0a8_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Materia_vue__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -54101,7 +56241,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54336,13 +56476,13 @@ if (false) {
 }
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Punto_vue__ = __webpack_require__(24);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5fec8b4b_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Punto_vue__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5fec8b4b_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Punto_vue__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -54390,7 +56530,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54600,13 +56740,13 @@ if (false) {
 }
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Index_vue__ = __webpack_require__(25);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_50cd19d9_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Index_vue__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_50cd19d9_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Index_vue__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -54654,7 +56794,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54749,13 +56889,13 @@ if (false) {
 }
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_GrupoDetail_vue__ = __webpack_require__(26);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7c89dbe1_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GrupoDetail_vue__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7c89dbe1_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GrupoDetail_vue__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -54803,7 +56943,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54832,7 +56972,7 @@ if (false) {
 }
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55290,7 +57430,7 @@ if (false) {
 }
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55298,9 +57438,9 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_errors_404_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_maestro_Index_vue__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_maestro_Reactivo_vue__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_global_CreateReactivo_vue__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_maestro_Index_vue__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_maestro_Reactivo_vue__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_global_CreateReactivo_vue__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_maestro_CreateCuestionario_vue__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_maestro_DifundirCuestionario_vue__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_maestro_EditCuestionario_vue__ = __webpack_require__(103);
@@ -55362,13 +57502,13 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Index_vue__ = __webpack_require__(29);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5c77e2b0_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Index_vue__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5c77e2b0_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Index_vue__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -55416,7 +57556,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55558,13 +57698,13 @@ if (false) {
 }
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Reactivo_vue__ = __webpack_require__(30);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4354171d_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Reactivo_vue__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4354171d_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Reactivo_vue__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
 /* script */
@@ -55612,7 +57752,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55965,7 +58105,7 @@ if (false) {
 }
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55976,7 +58116,7 @@ if (false) {
 var disposed = false
 function injectStyle (context) {
   if (disposed) return
-  __webpack_require__(90)
+  __webpack_require__(91)
 }
 /* script */
 
@@ -56023,13 +58163,13 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(91);
+var content = __webpack_require__(92);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -56050,7 +58190,7 @@ if(false) {
 }
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -56064,7 +58204,7 @@ exports.push([module.i, "\nul {\n    padding: 0;\n}\n.upload {\n    border-radiu
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56096,2092 +58236,6 @@ function listToStyles (parentId, list) {
   }
   return styles
 }
-
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*!
- * Name: vue-upload-component
- * Version: 2.8.14
- * Author: LianYue
- */
-(function (global, factory) {
-   true ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.VueUploadComponent = factory());
-}(this, (function () { 'use strict';
-
-  /**
-   * Creates a XHR request
-   *
-   * @param {Object} options
-   */
-  var createRequest = function createRequest(options) {
-    var xhr = new XMLHttpRequest();
-    xhr.open(options.method || 'GET', options.url);
-    xhr.responseType = 'json';
-    if (options.headers) {
-      Object.keys(options.headers).forEach(function (key) {
-        xhr.setRequestHeader(key, options.headers[key]);
-      });
-    }
-
-    return xhr;
-  };
-
-  /**
-   * Sends a XHR request with certain body
-   *
-   * @param {XMLHttpRequest} xhr
-   * @param {Object} body
-   */
-  var sendRequest = function sendRequest(xhr, body) {
-    return new Promise(function (resolve, reject) {
-      xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          var response;
-          try {
-            response = JSON.parse(xhr.response);
-          } catch (err) {
-            response = xhr.response;
-          }
-          resolve(response);
-        } else {
-          reject(xhr.response);
-        }
-      };
-      xhr.onerror = function () {
-        return reject(xhr.response);
-      };
-      xhr.send(JSON.stringify(body));
-    });
-  };
-
-  /**
-   * Sends a XHR request with certain form data
-   *
-   * @param {XMLHttpRequest} xhr
-   * @param {Object} data
-   */
-  var sendFormRequest = function sendFormRequest(xhr, data) {
-    var body = new FormData();
-    for (var name in data) {
-      body.append(name, data[name]);
-    }
-
-    return new Promise(function (resolve, reject) {
-      xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          var response;
-          try {
-            response = JSON.parse(xhr.response);
-          } catch (err) {
-            response = xhr.response;
-          }
-          resolve(response);
-        } else {
-          reject(xhr.response);
-        }
-      };
-      xhr.onerror = function () {
-        return reject(xhr.response);
-      };
-      xhr.send(body);
-    });
-  };
-
-  /**
-   * Creates and sends XHR request
-   *
-   * @param {Object} options
-   *
-   * @returns Promise
-   */
-  function request (options) {
-    var xhr = createRequest(options);
-
-    return sendRequest(xhr, options.body);
-  }
-
-  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-  var ChunkUploadHandler = function () {
-    /**
-     * Constructor
-     *
-     * @param {File} file
-     * @param {Object} options
-     */
-    function ChunkUploadHandler(file, options) {
-      _classCallCheck(this, ChunkUploadHandler);
-
-      this.file = file;
-      this.options = options;
-    }
-
-    /**
-     * Gets the max retries from options
-     */
-
-
-    _createClass(ChunkUploadHandler, [{
-      key: 'createChunks',
-
-
-      /**
-       * Creates all the chunks in the initial state
-       */
-      value: function createChunks() {
-        this.chunks = [];
-
-        var start = 0;
-        var end = this.chunkSize;
-        while (start < this.fileSize) {
-          this.chunks.push({
-            blob: this.file.file.slice(start, end),
-            startOffset: start,
-            active: false,
-            retries: this.maxRetries
-          });
-          start = end;
-          end = start + this.chunkSize;
-        }
-      }
-
-      /**
-       * Updates the progress of the file with the handler's progress
-       */
-
-    }, {
-      key: 'updateFileProgress',
-      value: function updateFileProgress() {
-        this.file.progress = this.progress;
-      }
-
-      /**
-       * Paues the upload process
-       * - Stops all active requests
-       * - Sets the file not active
-       */
-
-    }, {
-      key: 'pause',
-      value: function pause() {
-        this.file.active = false;
-        this.stopChunks();
-      }
-
-      /**
-       * Stops all the current chunks
-       */
-
-    }, {
-      key: 'stopChunks',
-      value: function stopChunks() {
-        this.chunksUploading.forEach(function (chunk) {
-          chunk.xhr.abort();
-          chunk.active = false;
-        });
-      }
-
-      /**
-       * Resumes the file upload
-       * - Sets the file active
-       * - Starts the following chunks
-       */
-
-    }, {
-      key: 'resume',
-      value: function resume() {
-        this.file.active = true;
-        this.startChunking();
-      }
-
-      /**
-       * Starts the file upload
-       *
-       * @returns Promise
-       * - resolve  The file was uploaded
-       * - reject   The file upload failed
-       */
-
-    }, {
-      key: 'upload',
-      value: function upload() {
-        var _this = this;
-
-        this.promise = new Promise(function (resolve, reject) {
-          _this.resolve = resolve;
-          _this.reject = reject;
-        });
-        this.start();
-
-        return this.promise;
-      }
-
-      /**
-       * Start phase
-       * Sends a request to the backend to initialise the chunks
-       */
-
-    }, {
-      key: 'start',
-      value: function start() {
-        var _this2 = this;
-
-        request({
-          method: 'POST',
-          headers: Object.assign({}, this.headers, {
-            'Content-Type': 'application/json'
-          }),
-          url: this.action,
-          body: Object.assign(this.startBody, {
-            phase: 'start',
-            mime_type: this.fileType,
-            size: this.fileSize,
-            name: this.fileName
-          })
-        }).then(function (res) {
-          if (res.status !== 'success') {
-            _this2.file.response = res;
-            return _this2.reject('server');
-          }
-
-          _this2.sessionId = res.data.session_id;
-          _this2.chunkSize = res.data.end_offset;
-
-          _this2.createChunks();
-          _this2.startChunking();
-        }).catch(function (res) {
-          _this2.file.response = res;
-          _this2.reject('server');
-        });
-      }
-
-      /**
-       * Starts to upload chunks
-       */
-
-    }, {
-      key: 'startChunking',
-      value: function startChunking() {
-        for (var i = 0; i < this.maxActiveChunks; i++) {
-          this.uploadNextChunk();
-        }
-      }
-
-      /**
-       * Uploads the next chunk
-       * - Won't do anything if the process is paused
-       * - Will start finish phase if there are no more chunks to upload
-       */
-
-    }, {
-      key: 'uploadNextChunk',
-      value: function uploadNextChunk() {
-        if (this.file.active) {
-          if (this.hasChunksToUpload) {
-            return this.uploadChunk(this.chunksToUpload[0]);
-          }
-
-          if (this.chunksUploading.length === 0) {
-            return this.finish();
-          }
-        }
-      }
-
-      /**
-       * Uploads a chunk
-       * - Sends the chunk to the backend
-       * - Sets the chunk as uploaded if everything went well
-       * - Decreases the number of retries if anything went wrong
-       * - Fails if there are no more retries
-       *
-       * @param {Object} chunk
-       */
-
-    }, {
-      key: 'uploadChunk',
-      value: function uploadChunk(chunk) {
-        var _this3 = this;
-
-        chunk.progress = 0;
-        chunk.active = true;
-        this.updateFileProgress();
-        chunk.xhr = createRequest({
-          method: 'POST',
-          headers: this.headers,
-          url: this.action
-        });
-
-        chunk.xhr.upload.addEventListener('progress', function (evt) {
-          if (evt.lengthComputable) {
-            chunk.progress = Math.round(evt.loaded / evt.total * 100);
-          }
-        }, false);
-
-        sendFormRequest(chunk.xhr, Object.assign(this.uploadBody, {
-          phase: 'upload',
-          session_id: this.sessionId,
-          start_offset: chunk.startOffset,
-          chunk: chunk.blob
-        })).then(function (res) {
-          chunk.active = false;
-          if (res.status === 'success') {
-            chunk.uploaded = true;
-          } else {
-            if (chunk.retries-- <= 0) {
-              _this3.stopChunks();
-              return _this3.reject('upload');
-            }
-          }
-
-          _this3.uploadNextChunk();
-        }).catch(function () {
-          chunk.active = false;
-          if (chunk.retries-- <= 0) {
-            _this3.stopChunks();
-            return _this3.reject('upload');
-          }
-
-          _this3.uploadNextChunk();
-        });
-      }
-
-      /**
-       * Finish phase
-       * Sends a request to the backend to finish the process
-       */
-
-    }, {
-      key: 'finish',
-      value: function finish() {
-        var _this4 = this;
-
-        this.updateFileProgress();
-
-        request({
-          method: 'POST',
-          headers: Object.assign({}, this.headers, {
-            'Content-Type': 'application/json'
-          }),
-          url: this.action,
-          body: Object.assign(this.finishBody, {
-            phase: 'finish',
-            session_id: this.sessionId
-          })
-        }).then(function (res) {
-          _this4.file.response = res;
-          if (res.status !== 'success') {
-            return _this4.reject('server');
-          }
-
-          _this4.resolve(res);
-        }).catch(function (res) {
-          _this4.file.response = res;
-          _this4.reject('server');
-        });
-      }
-    }, {
-      key: 'maxRetries',
-      get: function get() {
-        return parseInt(this.options.maxRetries);
-      }
-
-      /**
-       * Gets the max number of active chunks being uploaded at once from options
-       */
-
-    }, {
-      key: 'maxActiveChunks',
-      get: function get() {
-        return parseInt(this.options.maxActive);
-      }
-
-      /**
-       * Gets the file type
-       */
-
-    }, {
-      key: 'fileType',
-      get: function get() {
-        return this.file.type;
-      }
-
-      /**
-       * Gets the file size
-       */
-
-    }, {
-      key: 'fileSize',
-      get: function get() {
-        return this.file.size;
-      }
-
-      /**
-       * Gets the file size
-       */
-
-    }, {
-      key: 'fileName',
-      get: function get() {
-        return this.file.name;
-      }
-
-      /**
-       * Gets action (url) to upload the file
-       */
-
-    }, {
-      key: 'action',
-      get: function get() {
-        return this.options.action || null;
-      }
-
-      /**
-       * Gets the body to be merged when sending the request in start phase
-       */
-
-    }, {
-      key: 'startBody',
-      get: function get() {
-        return this.options.startBody || {};
-      }
-
-      /**
-       * Gets the body to be merged when sending the request in upload phase
-       */
-
-    }, {
-      key: 'uploadBody',
-      get: function get() {
-        return this.options.uploadBody || {};
-      }
-
-      /**
-       * Gets the body to be merged when sending the request in finish phase
-       */
-
-    }, {
-      key: 'finishBody',
-      get: function get() {
-        return this.options.finishBody || {};
-      }
-
-      /**
-       * Gets the headers of the requests from options
-       */
-
-    }, {
-      key: 'headers',
-      get: function get() {
-        return this.options.headers || {};
-      }
-
-      /**
-       * Whether it's ready to upload files or not
-       */
-
-    }, {
-      key: 'readyToUpload',
-      get: function get() {
-        return !!this.chunks;
-      }
-
-      /**
-       * Gets the progress of the chunk upload
-       * - Gets all the completed chunks
-       * - Gets the progress of all the chunks that are being uploaded
-       */
-
-    }, {
-      key: 'progress',
-      get: function get() {
-        var _this5 = this;
-
-        var completedProgress = this.chunksUploaded.length / this.chunks.length * 100;
-        var uploadingProgress = this.chunksUploading.reduce(function (progress, chunk) {
-          return progress + (chunk.progress | 0) / _this5.chunks.length;
-        }, 0);
-
-        return Math.min(completedProgress + uploadingProgress, 100);
-      }
-
-      /**
-       * Gets all the chunks that are pending to be uploaded
-       */
-
-    }, {
-      key: 'chunksToUpload',
-      get: function get() {
-        return this.chunks.filter(function (chunk) {
-          return !chunk.active && !chunk.uploaded;
-        });
-      }
-
-      /**
-       * Whether there are chunks to upload or not
-       */
-
-    }, {
-      key: 'hasChunksToUpload',
-      get: function get() {
-        return this.chunksToUpload.length > 0;
-      }
-
-      /**
-       * Gets all the chunks that are uploading
-       */
-
-    }, {
-      key: 'chunksUploading',
-      get: function get() {
-        return this.chunks.filter(function (chunk) {
-          return !!chunk.xhr && !!chunk.active;
-        });
-      }
-
-      /**
-       * Gets all the chunks that have finished uploading
-       */
-
-    }, {
-      key: 'chunksUploaded',
-      get: function get() {
-        return this.chunks.filter(function (chunk) {
-          return !!chunk.uploaded;
-        });
-      }
-    }]);
-
-    return ChunkUploadHandler;
-  }();
-
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-
-  var script = {
-    methods: {
-      change: function change(e) {
-        this.$parent.addInputFile(e.target);
-        e.target.value = '';
-        if (!e.target.files) {
-          // ie9 fix #219
-          this.$destroy();
-          // eslint-disable-next-line
-          new this.constructor({
-            parent: this.$parent,
-            el: this.$el
-          });
-        }
-      }
-    }
-  };
-
-  /* script */
-  var __vue_script__ = script;
-
-  /* template */
-  var __vue_render__ = function __vue_render__() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('input', { attrs: { "type": "file", "name": _vm.$parent.name, "id": _vm.$parent.inputId || _vm.$parent.name, "accept": _vm.$parent.accept, "capture": _vm.$parent.capture, "webkitdirectory": _vm.$parent.directory && _vm.$parent.features.directory, "directory": _vm.$parent.directory && _vm.$parent.features.directory, "multiple": _vm.$parent.multiple && _vm.$parent.features.html5 }, on: { "change": _vm.change } });
-  };
-  var __vue_staticRenderFns__ = [];
-
-  /* style */
-  var __vue_inject_styles__ = undefined;
-  /* scoped */
-  var __vue_scope_id__ = undefined;
-  /* module identifier */
-  var __vue_module_identifier__ = undefined;
-  /* functional template */
-  var __vue_is_functional_template__ = false;
-  /* component normalizer */
-  function __vue_normalize__(template, style, script$$1, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
-    var component = (typeof script$$1 === 'function' ? script$$1.options : script$$1) || {};
-
-    if (!component.render) {
-      component.render = template.render;
-      component.staticRenderFns = template.staticRenderFns;
-      component._compiled = true;
-
-      if (functional) component.functional = true;
-    }
-
-    component._scopeId = scope;
-
-    return component;
-  }
-  /* style inject */
-  function __vue_create_injector__() {
-    var head = document.head || document.getElementsByTagName('head')[0];
-    var styles = __vue_create_injector__.styles || (__vue_create_injector__.styles = {});
-    var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-
-    return function addStyle(id, css) {
-      if (document.querySelector('style[data-vue-ssr-id~="' + id + '"]')) return; // SSR styles are present.
-
-      var group = isOldIE ? css.media || 'default' : id;
-      var style = styles[group] || (styles[group] = { ids: [], parts: [], element: undefined });
-
-      if (!style.ids.includes(id)) {
-        var code = css.source;
-        var index = style.ids.length;
-
-        style.ids.push(id);
-
-        if (css.map) {
-          // https://developer.chrome.com/devtools/docs/javascript-debugging
-          // this makes source maps inside style tags work properly in Chrome
-          code += '\n/*# sourceURL=' + css.map.sources[0] + ' */';
-          // http://stackoverflow.com/a/26603875
-          code += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) + ' */';
-        }
-
-        if (isOldIE) {
-          style.element = style.element || document.querySelector('style[data-group=' + group + ']');
-        }
-
-        if (!style.element) {
-          var el = style.element = document.createElement('style');
-          el.type = 'text/css';
-
-          if (css.media) el.setAttribute('media', css.media);
-          if (isOldIE) {
-            el.setAttribute('data-group', group);
-            el.setAttribute('data-next-index', '0');
-          }
-
-          head.appendChild(el);
-        }
-
-        if (isOldIE) {
-          index = parseInt(style.element.getAttribute('data-next-index'));
-          style.element.setAttribute('data-next-index', index + 1);
-        }
-
-        if (style.element.styleSheet) {
-          style.parts.push(code);
-          style.element.styleSheet.cssText = style.parts.filter(Boolean).join('\n');
-        } else {
-          var textNode = document.createTextNode(code);
-          var nodes = style.element.childNodes;
-          if (nodes[index]) style.element.removeChild(nodes[index]);
-          if (nodes.length) style.element.insertBefore(textNode, nodes[index]);else style.element.appendChild(textNode);
-        }
-      }
-    };
-  }
-  /* style inject SSR */
-
-  var InputFile = __vue_normalize__({ render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ }, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, __vue_create_injector__, undefined);
-
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-  function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-  var CHUNK_DEFAULT_OPTIONS = {
-    headers: {},
-    action: '',
-    minSize: 1048576,
-    maxActive: 3,
-    maxRetries: 5,
-
-    handler: ChunkUploadHandler
-  };
-
-  var script$1 = {
-    components: {
-      InputFile: InputFile
-    },
-    props: {
-      inputId: {
-        type: String
-      },
-
-      name: {
-        type: String,
-        default: 'file'
-      },
-
-      accept: {
-        type: String
-      },
-
-      capture: {},
-
-      multiple: {
-        type: Boolean
-      },
-
-      maximum: {
-        type: Number,
-        default: function _default() {
-          return this.multiple ? 0 : 1;
-        }
-      },
-
-      addIndex: {
-        type: [Boolean, Number]
-      },
-
-      directory: {
-        type: Boolean
-      },
-
-      postAction: {
-        type: String
-      },
-
-      putAction: {
-        type: String
-      },
-
-      customAction: {
-        type: Function
-      },
-
-      headers: {
-        type: Object,
-        default: Object
-      },
-
-      data: {
-        type: Object,
-        default: Object
-      },
-
-      timeout: {
-        type: Number,
-        default: 0
-      },
-
-      drop: {
-        default: false
-      },
-
-      dropDirectory: {
-        type: Boolean,
-        default: true
-      },
-
-      size: {
-        type: Number,
-        default: 0
-      },
-
-      extensions: {
-        default: Array
-      },
-
-      value: {
-        type: Array,
-        default: Array
-      },
-
-      thread: {
-        type: Number,
-        default: 1
-      },
-
-      // Chunk upload enabled
-      chunkEnabled: {
-        type: Boolean,
-        default: false
-      },
-
-      // Chunk upload properties
-      chunk: {
-        type: Object,
-        default: function _default() {
-          return CHUNK_DEFAULT_OPTIONS;
-        }
-      }
-    },
-
-    data: function data() {
-      return {
-        files: this.value,
-        features: {
-          html5: true,
-          directory: false,
-          drag: false
-        },
-
-        active: false,
-        dropActive: false,
-
-        uploading: 0,
-
-        destroy: false
-      };
-    },
-
-
-    /**
-     * mounted
-     * @return {[type]} [description]
-     */
-    mounted: function mounted() {
-      var input = document.createElement('input');
-      input.type = 'file';
-      input.multiple = true;
-
-      // html5 特征
-      if (window.FormData && input.files) {
-        // 上传目录特征
-        if (typeof input.webkitdirectory === 'boolean' || typeof input.directory === 'boolean') {
-          this.features.directory = true;
-        }
-
-        // 拖拽特征
-        if (this.features.html5 && typeof input.ondrop !== 'undefined') {
-          this.features.drop = true;
-        }
-      } else {
-        this.features.html5 = false;
-      }
-
-      // files 定位缓存
-      this.maps = {};
-
-      this.$nextTick(function () {
-
-        // 更新下父级
-        if (this.$parent) {
-          this.$parent.$forceUpdate();
-        }
-
-        // 拖拽渲染
-        this.watchDrop(this.drop);
-      });
-    },
-
-
-    /**
-     * beforeDestroy
-     * @return {[type]} [description]
-     */
-    beforeDestroy: function beforeDestroy() {
-      // 已销毁
-      this.destroy = true;
-
-      // 设置成不激活
-      this.active = false;
-    },
-
-
-    computed: {
-      /**
-       * uploading 正在上传的线程
-       * @return {[type]} [description]
-       */
-
-      /**
-       * uploaded 文件列表是否全部已上传
-       * @return {[type]} [description]
-       */
-      uploaded: function uploaded() {
-        var file = void 0;
-        for (var i = 0; i < this.files.length; i++) {
-          file = this.files[i];
-          if (file.fileObject && !file.error && !file.success) {
-            return false;
-          }
-        }
-        return true;
-      },
-      chunkOptions: function chunkOptions() {
-        return Object.assign(CHUNK_DEFAULT_OPTIONS, this.chunk);
-      },
-      className: function className() {
-        return ['file-uploads', this.features.html5 ? 'file-uploads-html5' : 'file-uploads-html4', this.features.directory && this.directory ? 'file-uploads-directory' : undefined, this.features.drop && this.drop ? 'file-uploads-drop' : undefined];
-      }
-    },
-
-    watch: {
-      active: function active(_active) {
-        this.watchActive(_active);
-      },
-      dropActive: function dropActive() {
-        if (this.$parent) {
-          this.$parent.$forceUpdate();
-        }
-      },
-      drop: function drop(value) {
-        this.watchDrop(value);
-      },
-      value: function value(files) {
-        if (this.files === files) {
-          return;
-        }
-        this.files = files;
-
-        var oldMaps = this.maps;
-
-        // 重写 maps 缓存
-        this.maps = {};
-        for (var i = 0; i < this.files.length; i++) {
-          var file = this.files[i];
-          this.maps[file.id] = file;
-        }
-
-        // add, update
-        for (var key in this.maps) {
-          var newFile = this.maps[key];
-          var oldFile = oldMaps[key];
-          if (newFile !== oldFile) {
-            this.emitFile(newFile, oldFile);
-          }
-        }
-
-        // delete
-        for (var _key in oldMaps) {
-          if (!this.maps[_key]) {
-            this.emitFile(undefined, oldMaps[_key]);
-          }
-        }
-      }
-    },
-
-    methods: {
-
-      // 清空
-      clear: function clear() {
-        if (this.files.length) {
-          var files = this.files;
-          this.files = [];
-
-          // 定位
-          this.maps = {};
-
-          // 事件
-          this.emitInput();
-          for (var i = 0; i < files.length; i++) {
-            this.emitFile(undefined, files[i]);
-          }
-        }
-        return true;
-      },
-
-
-      // 选择
-      get: function get(id) {
-        if (!id) {
-          return false;
-        }
-
-        if ((typeof id === 'undefined' ? 'undefined' : _typeof(id)) === 'object') {
-          return this.maps[id.id] || false;
-        }
-
-        return this.maps[id] || false;
-      },
-
-
-      // 添加
-      add: function add(_files) {
-        var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.addIndex;
-
-        var files = _files;
-        var isArray = files instanceof Array;
-
-        // 不是数组整理成数组
-        if (!isArray) {
-          files = [files];
-        }
-
-        // 遍历规范对象
-        var addFiles = [];
-        for (var i = 0; i < files.length; i++) {
-          var file = files[i];
-          if (this.features.html5 && file instanceof Blob) {
-            file = {
-              file: file,
-              size: file.size,
-              name: file.webkitRelativePath || file.relativePath || file.name || 'unknown',
-              type: file.type
-            };
-          }
-          var fileObject = false;
-          if (file.fileObject === false) ; else if (file.fileObject) {
-            fileObject = true;
-          } else if (typeof Element !== 'undefined' && file.el instanceof Element) {
-            fileObject = true;
-          } else if (typeof Blob !== 'undefined' && file.file instanceof Blob) {
-            fileObject = true;
-          }
-          if (fileObject) {
-            file = _extends({
-              fileObject: true,
-              size: -1,
-              name: 'Filename',
-              type: '',
-              active: false,
-              error: '',
-              success: false,
-              putAction: this.putAction,
-              postAction: this.postAction,
-              timeout: this.timeout
-            }, file, {
-              response: {},
-
-              progress: '0.00', // 只读
-              speed: 0 // 只读
-              // xhr: false,                // 只读
-              // iframe: false,             // 只读
-            });
-
-            file.data = _extends({}, this.data, file.data ? file.data : {});
-
-            file.headers = _extends({}, this.headers, file.headers ? file.headers : {});
-          }
-
-          // 必须包含 id
-          if (!file.id) {
-            file.id = Math.random().toString(36).substr(2);
-          }
-
-          if (this.emitFilter(file, undefined)) {
-            continue;
-          }
-
-          // 最大数量限制
-          if (this.maximum > 1 && addFiles.length + this.files.length >= this.maximum) {
-            break;
-          }
-
-          addFiles.push(file);
-
-          // 最大数量限制
-          if (this.maximum === 1) {
-            break;
-          }
-        }
-
-        // 没有文件
-        if (!addFiles.length) {
-          return false;
-        }
-
-        // 如果是 1 清空
-        if (this.maximum === 1) {
-          this.clear();
-        }
-
-        // 添加进去 files
-        var newFiles = void 0;
-        if (index === true || index === 0) {
-          newFiles = addFiles.concat(this.files);
-        } else if (index) {
-          var _newFiles;
-
-          newFiles = this.files.concat([]);
-          (_newFiles = newFiles).splice.apply(_newFiles, [index, 0].concat(addFiles));
-        } else {
-          newFiles = this.files.concat(addFiles);
-        }
-
-        this.files = newFiles;
-
-        // 定位
-        for (var _i = 0; _i < addFiles.length; _i++) {
-          var _file2 = addFiles[_i];
-          this.maps[_file2.id] = _file2;
-        }
-
-        // 事件
-        this.emitInput();
-        for (var _i2 = 0; _i2 < addFiles.length; _i2++) {
-          this.emitFile(addFiles[_i2], undefined);
-        }
-
-        return isArray ? addFiles : addFiles[0];
-      },
-
-
-      // 添加表单文件
-      addInputFile: function addInputFile(el) {
-        var files = [];
-        if (el.files) {
-          for (var i = 0; i < el.files.length; i++) {
-            var file = el.files[i];
-            files.push({
-              size: file.size,
-              name: file.webkitRelativePath || file.relativePath || file.name,
-              type: file.type,
-              file: file,
-              el: el
-            });
-          }
-        } else {
-          var names = el.value.replace(/\\/g, '/').split('/');
-          files.push({
-            name: names[names.length - 1],
-            el: el
-          });
-        }
-        return this.add(files);
-      },
-
-
-      // 添加 DataTransfer
-      addDataTransfer: function addDataTransfer(dataTransfer) {
-        var _this = this;
-
-        var files = [];
-        if (dataTransfer.items && dataTransfer.items.length) {
-          var items = [];
-          for (var i = 0; i < dataTransfer.items.length; i++) {
-            var item = dataTransfer.items[i];
-            if (item.getAsEntry) {
-              item = item.getAsEntry() || item.getAsFile();
-            } else if (item.webkitGetAsEntry) {
-              item = item.webkitGetAsEntry() || item.getAsFile();
-            } else {
-              item = item.getAsFile();
-            }
-            if (item) {
-              items.push(item);
-            }
-          }
-
-          return new Promise(function (resolve, reject) {
-            var forEach = function forEach(i) {
-              var item = items[i];
-              // 结束 文件数量大于 最大数量
-              if (!item || _this.maximum > 0 && files.length >= _this.maximum) {
-                return resolve(_this.add(files));
-              }
-              _this.getEntry(item).then(function (results) {
-                files.push.apply(files, _toConsumableArray(results));
-                forEach(i + 1);
-              });
-            };
-            forEach(0);
-          });
-        }
-
-        if (dataTransfer.files.length) {
-          for (var _i3 = 0; _i3 < dataTransfer.files.length; _i3++) {
-            files.push(dataTransfer.files[_i3]);
-            if (this.maximum > 0 && files.length >= this.maximum) {
-              break;
-            }
-          }
-          return Promise.resolve(this.add(files));
-        }
-
-        return Promise.resolve([]);
-      },
-
-
-      // 获得 entry
-      getEntry: function getEntry(entry) {
-        var _this2 = this;
-
-        var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-
-        return new Promise(function (resolve, reject) {
-          if (entry.isFile) {
-            entry.file(function (file) {
-              resolve([{
-                size: file.size,
-                name: path + file.name,
-                type: file.type,
-                file: file
-              }]);
-            });
-          } else if (entry.isDirectory && _this2.dropDirectory) {
-            var files = [];
-            var dirReader = entry.createReader();
-            var readEntries = function readEntries() {
-              dirReader.readEntries(function (entries) {
-                var forEach = function forEach(i) {
-                  if (!entries[i] && i === 0 || _this2.maximum > 0 && files.length >= _this2.maximum) {
-                    return resolve(files);
-                  }
-                  if (!entries[i]) {
-                    return readEntries();
-                  }
-                  _this2.getEntry(entries[i], path + entry.name + '/').then(function (results) {
-                    files.push.apply(files, _toConsumableArray(results));
-                    forEach(i + 1);
-                  });
-                };
-                forEach(0);
-              });
-            };
-            readEntries();
-          } else {
-            resolve([]);
-          }
-        });
-      },
-      replace: function replace(id1, id2) {
-        var file1 = this.get(id1);
-        var file2 = this.get(id2);
-        if (!file1 || !file2 || file1 === file2) {
-          return false;
-        }
-        var files = this.files.concat([]);
-        var index1 = files.indexOf(file1);
-        var index2 = files.indexOf(file2);
-        if (index1 === -1 || index2 === -1) {
-          return false;
-        }
-        files[index1] = file2;
-        files[index2] = file1;
-        this.files = files;
-        this.emitInput();
-        return true;
-      },
-
-
-      // 移除
-      remove: function remove(id) {
-        var file = this.get(id);
-        if (file) {
-          if (this.emitFilter(undefined, file)) {
-            return false;
-          }
-          var files = this.files.concat([]);
-          var index = files.indexOf(file);
-          if (index === -1) {
-            console.error('remove', file);
-            return false;
-          }
-          files.splice(index, 1);
-          this.files = files;
-
-          // 定位
-          delete this.maps[file.id];
-
-          // 事件
-          this.emitInput();
-          this.emitFile(undefined, file);
-        }
-        return file;
-      },
-
-
-      // 更新
-      update: function update(id, data) {
-        var file = this.get(id);
-        if (file) {
-          var newFile = _extends({}, file, data);
-          // 停用必须加上错误
-          if (file.fileObject && file.active && !newFile.active && !newFile.error && !newFile.success) {
-            newFile.error = 'abort';
-          }
-
-          if (this.emitFilter(newFile, file)) {
-            return false;
-          }
-
-          var files = this.files.concat([]);
-          var index = files.indexOf(file);
-          if (index === -1) {
-            console.error('update', file);
-            return false;
-          }
-          files.splice(index, 1, newFile);
-          this.files = files;
-
-          // 删除  旧定位 写入 新定位 （已便支持修改id)
-          delete this.maps[file.id];
-          this.maps[newFile.id] = newFile;
-
-          // 事件
-          this.emitInput();
-          this.emitFile(newFile, file);
-          return newFile;
-        }
-        return false;
-      },
-
-
-      // 预处理 事件 过滤器
-      emitFilter: function emitFilter(newFile, oldFile) {
-        var isPrevent = false;
-        this.$emit('input-filter', newFile, oldFile, function () {
-          isPrevent = true;
-          return isPrevent;
-        });
-        return isPrevent;
-      },
-
-
-      // 处理后 事件 分发
-      emitFile: function emitFile(newFile, oldFile) {
-        this.$emit('input-file', newFile, oldFile);
-        if (newFile && newFile.fileObject && newFile.active && (!oldFile || !oldFile.active)) {
-          this.uploading++;
-          // 激活
-          this.$nextTick(function () {
-            var _this3 = this;
-
-            setTimeout(function () {
-              _this3.upload(newFile).then(function () {
-                // eslint-disable-next-line
-                newFile = _this3.get(newFile);
-                if (newFile && newFile.fileObject) {
-                  _this3.update(newFile, {
-                    active: false,
-                    success: !newFile.error
-                  });
-                }
-              }).catch(function (e) {
-                _this3.update(newFile, {
-                  active: false,
-                  success: false,
-                  error: e.code || e.error || e.message || e
-                });
-              });
-            }, parseInt(Math.random() * 50 + 50, 10));
-          });
-        } else if ((!newFile || !newFile.fileObject || !newFile.active) && oldFile && oldFile.fileObject && oldFile.active) {
-          // 停止
-          this.uploading--;
-        }
-
-        // 自动延续激活
-        if (this.active && (Boolean(newFile) !== Boolean(oldFile) || newFile.active !== oldFile.active)) {
-          this.watchActive(true);
-        }
-      },
-      emitInput: function emitInput() {
-        this.$emit('input', this.files);
-      },
-
-
-      // 上传
-      upload: function upload(id) {
-        var file = this.get(id);
-
-        // 被删除
-        if (!file) {
-          return Promise.reject('not_exists');
-        }
-
-        // 不是文件对象
-        if (!file.fileObject) {
-          return Promise.reject('file_object');
-        }
-
-        // 有错误直接响应
-        if (file.error) {
-          return Promise.reject(file.error);
-        }
-
-        // 已完成直接响应
-        if (file.success) {
-          return Promise.resolve(file);
-        }
-
-        // 后缀
-        var extensions = this.extensions;
-        if (extensions && (extensions.length || typeof extensions.length === 'undefined')) {
-          if ((typeof extensions === 'undefined' ? 'undefined' : _typeof(extensions)) !== 'object' || !(extensions instanceof RegExp)) {
-            if (typeof extensions === 'string') {
-              extensions = extensions.split(',').map(function (value) {
-                return value.trim();
-              }).filter(function (value) {
-                return value;
-              });
-            }
-            extensions = new RegExp('\\.(' + extensions.join('|').replace(/\./g, '\\.') + ')$', 'i');
-          }
-          if (file.name.search(extensions) === -1) {
-            return Promise.reject('extension');
-          }
-        }
-
-        // 大小
-        if (this.size > 0 && file.size >= 0 && file.size > this.size) {
-          return Promise.reject('size');
-        }
-
-        if (this.customAction) {
-          return this.customAction(file, this);
-        }
-
-        if (this.features.html5) {
-          if (this.shouldUseChunkUpload(file)) {
-            return this.uploadChunk(file);
-          }
-          if (file.putAction) {
-            return this.uploadPut(file);
-          }
-          if (file.postAction) {
-            return this.uploadHtml5(file);
-          }
-        }
-        if (file.postAction) {
-          return this.uploadHtml4(file);
-        }
-        return Promise.reject('No action configured');
-      },
-
-
-      /**
-       * Whether this file should be uploaded using chunk upload or not
-       *
-       * @param Object file
-       */
-      shouldUseChunkUpload: function shouldUseChunkUpload(file) {
-        return this.chunkEnabled && !!this.chunkOptions.handler && file.size > this.chunkOptions.minSize;
-      },
-
-
-      /**
-       * Upload a file using Chunk method
-       *
-       * @param File file
-       */
-      uploadChunk: function uploadChunk(file) {
-        var HandlerClass = this.chunkOptions.handler;
-        file.chunk = new HandlerClass(file, this.chunkOptions);
-
-        return file.chunk.upload();
-      },
-      uploadPut: function uploadPut(file) {
-        var querys = [];
-        var value = void 0;
-        for (var key in file.data) {
-          value = file.data[key];
-          if (value !== null && value !== undefined) {
-            querys.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
-          }
-        }
-        var queryString = querys.length ? (file.putAction.indexOf('?') === -1 ? '?' : '&') + querys.join('&') : '';
-        var xhr = new XMLHttpRequest();
-        xhr.open('PUT', file.putAction + queryString);
-        return this.uploadXhr(xhr, file, file.file);
-      },
-      uploadHtml5: function uploadHtml5(file) {
-        var form = new window.FormData();
-        var value = void 0;
-        for (var key in file.data) {
-          value = file.data[key];
-          if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
-            if (value instanceof File) {
-              form.append(key, value, value.name);
-            } else {
-              form.append(key, JSON.stringify(value));
-            }
-          } else if (value !== null && value !== undefined) {
-            form.append(key, value);
-          }
-        }
-        form.append(this.name, file.file, file.file.filename || file.name);
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', file.postAction);
-        return this.uploadXhr(xhr, file, form);
-      },
-      uploadXhr: function uploadXhr(xhr, _file, body) {
-        var _this4 = this;
-
-        var file = _file;
-        var speedTime = 0;
-        var speedLoaded = 0;
-
-        // 进度条
-        xhr.upload.onprogress = function (e) {
-          // 还未开始上传 已删除 未激活
-          file = _this4.get(file);
-          if (!e.lengthComputable || !file || !file.fileObject || !file.active) {
-            return;
-          }
-
-          // 进度 速度 每秒更新一次
-          var speedTime2 = Math.round(Date.now() / 1000);
-          if (speedTime2 === speedTime) {
-            return;
-          }
-          speedTime = speedTime2;
-
-          file = _this4.update(file, {
-            progress: (e.loaded / e.total * 100).toFixed(2),
-            speed: e.loaded - speedLoaded
-          });
-          speedLoaded = e.loaded;
-        };
-
-        // 检查激活状态
-        var interval = setInterval(function () {
-          file = _this4.get(file);
-          if (file && file.fileObject && !file.success && !file.error && file.active) {
-            return;
-          }
-
-          if (interval) {
-            clearInterval(interval);
-            interval = false;
-          }
-
-          try {
-            xhr.abort();
-            xhr.timeout = 1;
-          } catch (e) {}
-        }, 100);
-
-        return new Promise(function (resolve, reject) {
-          var complete = void 0;
-          var fn = function fn(e) {
-            // 已经处理过了
-            if (complete) {
-              return;
-            }
-            complete = true;
-            if (interval) {
-              clearInterval(interval);
-              interval = false;
-            }
-
-            file = _this4.get(file);
-
-            // 不存在直接响应
-            if (!file) {
-              return reject('not_exists');
-            }
-
-            // 不是文件对象
-            if (!file.fileObject) {
-              return reject('file_object');
-            }
-
-            // 有错误自动响应
-            if (file.error) {
-              return reject(file.error);
-            }
-
-            // 未激活
-            if (!file.active) {
-              return reject('abort');
-            }
-
-            // 已完成 直接相应
-            if (file.success) {
-              return resolve(file);
-            }
-
-            var data = {};
-
-            switch (e.type) {
-              case 'timeout':
-              case 'abort':
-                data.error = e.type;
-                break;
-              case 'error':
-                if (!xhr.status) {
-                  data.error = 'network';
-                } else if (xhr.status >= 500) {
-                  data.error = 'server';
-                } else if (xhr.status >= 400) {
-                  data.error = 'denied';
-                }
-                break;
-              default:
-                if (xhr.status >= 500) {
-                  data.error = 'server';
-                } else if (xhr.status >= 400) {
-                  data.error = 'denied';
-                } else {
-                  data.progress = '100.00';
-                }
-            }
-
-            if (xhr.responseText) {
-              var contentType = xhr.getResponseHeader('Content-Type');
-              if (contentType && contentType.indexOf('/json') !== -1) {
-                data.response = JSON.parse(xhr.responseText);
-              } else {
-                data.response = xhr.responseText;
-              }
-            }
-
-            // 更新
-            file = _this4.update(file, data);
-
-            // 相应错误
-            if (file.error) {
-              return reject(file.error);
-            }
-
-            // 响应
-            return resolve(file);
-          };
-
-          // 事件
-          xhr.onload = fn;
-          xhr.onerror = fn;
-          xhr.onabort = fn;
-          xhr.ontimeout = fn;
-
-          // 超时
-          if (file.timeout) {
-            xhr.timeout = file.timeout;
-          }
-
-          // headers
-          for (var key in file.headers) {
-            xhr.setRequestHeader(key, file.headers[key]);
-          }
-
-          // 更新 xhr
-          file = _this4.update(file, { xhr: xhr });
-
-          // 开始上传
-          xhr.send(body);
-        });
-      },
-      uploadHtml4: function uploadHtml4(_file) {
-        var _this5 = this;
-
-        var file = _file;
-        var onKeydown = function onKeydown(e) {
-          if (e.keyCode === 27) {
-            e.preventDefault();
-          }
-        };
-
-        var iframe = document.createElement('iframe');
-        iframe.id = 'upload-iframe-' + file.id;
-        iframe.name = 'upload-iframe-' + file.id;
-        iframe.src = 'about:blank';
-        iframe.setAttribute('style', 'width:1px;height:1px;top:-999em;position:absolute; margin-top:-999em;');
-
-        var form = document.createElement('form');
-
-        form.action = file.postAction;
-
-        form.name = 'upload-form-' + file.id;
-
-        form.setAttribute('method', 'POST');
-        form.setAttribute('target', 'upload-iframe-' + file.id);
-        form.setAttribute('enctype', 'multipart/form-data');
-
-        var value = void 0;
-        var input = void 0;
-        for (var key in file.data) {
-          value = file.data[key];
-          if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && typeof value.toString !== 'function') {
-            value = JSON.stringify(value);
-          }
-          if (value !== null && value !== undefined) {
-            input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = value;
-            form.appendChild(input);
-          }
-        }
-        form.appendChild(file.el);
-
-        document.body.appendChild(iframe).appendChild(form);
-
-        var getResponseData = function getResponseData() {
-          var doc = void 0;
-          try {
-            if (iframe.contentWindow) {
-              doc = iframe.contentWindow.document;
-            }
-          } catch (err) {}
-          if (!doc) {
-            try {
-              doc = iframe.contentDocument ? iframe.contentDocument : iframe.document;
-            } catch (err) {
-              doc = iframe.document;
-            }
-          }
-          if (doc && doc.body) {
-            return doc.body.innerHTML;
-          }
-          return null;
-        };
-
-        return new Promise(function (resolve, reject) {
-          setTimeout(function () {
-            file = _this5.update(file, { iframe: iframe });
-
-            // 不存在
-            if (!file) {
-              return reject('not_exists');
-            }
-
-            // 定时检查
-            var interval = setInterval(function () {
-              file = _this5.get(file);
-              if (file && file.fileObject && !file.success && !file.error && file.active) {
-                return;
-              }
-
-              if (interval) {
-                clearInterval(interval);
-                interval = false;
-              }
-
-              iframe.onabort({ type: file ? 'abort' : 'not_exists' });
-            }, 100);
-
-            var complete = void 0;
-            var fn = function fn(e) {
-              // 已经处理过了
-              if (complete) {
-                return;
-              }
-              complete = true;
-
-              if (interval) {
-                clearInterval(interval);
-                interval = false;
-              }
-
-              // 关闭 esc 事件
-              document.body.removeEventListener('keydown', onKeydown);
-
-              file = _this5.get(file);
-
-              // 不存在直接响应
-              if (!file) {
-                return reject('not_exists');
-              }
-
-              // 不是文件对象
-              if (!file.fileObject) {
-                return reject('file_object');
-              }
-
-              // 有错误自动响应
-              if (file.error) {
-                return reject(file.error);
-              }
-
-              // 未激活
-              if (!file.active) {
-                return reject('abort');
-              }
-
-              // 已完成 直接相应
-              if (file.success) {
-                return resolve(file);
-              }
-
-              var response = getResponseData();
-              var data = {};
-              switch (e.type) {
-                case 'abort':
-                  data.error = 'abort';
-                  break;
-                case 'error':
-                  if (file.error) {
-                    data.error = file.error;
-                  } else if (response === null) {
-                    data.error = 'network';
-                  } else {
-                    data.error = 'denied';
-                  }
-                  break;
-                default:
-                  if (file.error) {
-                    data.error = file.error;
-                  } else if (data === null) {
-                    data.error = 'network';
-                  } else {
-                    data.progress = '100.00';
-                  }
-              }
-
-              if (response !== null) {
-                if (response && response.substr(0, 1) === '{' && response.substr(response.length - 1, 1) === '}') {
-                  try {
-                    response = JSON.parse(response);
-                  } catch (err) {}
-                }
-                data.response = response;
-              }
-
-              // 更新
-              file = _this5.update(file, data);
-
-              if (file.error) {
-                return reject(file.error);
-              }
-
-              // 响应
-              return resolve(file);
-            };
-
-            // 添加事件
-            iframe.onload = fn;
-            iframe.onerror = fn;
-            iframe.onabort = fn;
-
-            // 禁止 esc 键
-            document.body.addEventListener('keydown', onKeydown);
-
-            // 提交
-            form.submit();
-          }, 50);
-        }).then(function (res) {
-          iframe.parentNode && iframe.parentNode.removeChild(iframe);
-          return res;
-        }).catch(function (res) {
-          iframe.parentNode && iframe.parentNode.removeChild(iframe);
-          return res;
-        });
-      },
-      watchActive: function watchActive(active) {
-        var file = void 0;
-        var index = 0;
-        while (file = this.files[index]) {
-          index++;
-          if (!file.fileObject) ; else if (active && !this.destroy) {
-            if (this.uploading >= this.thread || this.uploading && !this.features.html5) {
-              break;
-            }
-            if (!file.active && !file.error && !file.success) {
-              this.update(file, { active: true });
-            }
-          } else {
-            if (file.active) {
-              this.update(file, { active: false });
-            }
-          }
-        }
-        if (this.uploading === 0) {
-          this.active = false;
-        }
-      },
-      watchDrop: function watchDrop(_el) {
-        var el = _el;
-        if (!this.features.drop) {
-          return;
-        }
-
-        // 移除挂载
-        if (this.dropElement) {
-          try {
-            document.removeEventListener('dragenter', this.onDragenter, false);
-            document.removeEventListener('dragleave', this.onDragleave, false);
-            document.removeEventListener('drop', this.onDocumentDrop, false);
-            this.dropElement.removeEventListener('dragover', this.onDragover, false);
-            this.dropElement.removeEventListener('drop', this.onDrop, false);
-          } catch (e) {}
-        }
-
-        if (!el) {
-          el = false;
-        } else if (typeof el === 'string') {
-          el = document.querySelector(el) || this.$root.$el.querySelector(el);
-        } else if (el === true) {
-          el = this.$parent.$el;
-        }
-
-        this.dropElement = el;
-
-        if (this.dropElement) {
-          document.addEventListener('dragenter', this.onDragenter, false);
-          document.addEventListener('dragleave', this.onDragleave, false);
-          document.addEventListener('drop', this.onDocumentDrop, false);
-          this.dropElement.addEventListener('dragover', this.onDragover, false);
-          this.dropElement.addEventListener('drop', this.onDrop, false);
-        }
-      },
-      onDragenter: function onDragenter(e) {
-        e.preventDefault();
-        if (this.dropActive) {
-          return;
-        }
-        if (!e.dataTransfer) {
-          return;
-        }
-        var dt = e.dataTransfer;
-        if (dt.files && dt.files.length) {
-          this.dropActive = true;
-        } else if (!dt.types) {
-          this.dropActive = true;
-        } else if (dt.types.indexOf && dt.types.indexOf('Files') !== -1) {
-          this.dropActive = true;
-        } else if (dt.types.contains && dt.types.contains('Files')) {
-          this.dropActive = true;
-        }
-      },
-      onDragleave: function onDragleave(e) {
-        e.preventDefault();
-        if (!this.dropActive) {
-          return;
-        }
-        if (e.target.nodeName === 'HTML' || e.target === e.explicitOriginalTarget || !e.fromElement && (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight)) {
-          this.dropActive = false;
-        }
-      },
-      onDragover: function onDragover(e) {
-        e.preventDefault();
-      },
-      onDocumentDrop: function onDocumentDrop() {
-        this.dropActive = false;
-      },
-      onDrop: function onDrop(e) {
-        e.preventDefault();
-        this.addDataTransfer(e.dataTransfer);
-      }
-    }
-  };
-
-  /* script */
-  var __vue_script__$1 = script$1;
-
-  /* template */
-  var __vue_render__$1 = function __vue_render__() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('span', { class: _vm.className }, [_vm._t("default"), _vm._v(" "), _c('label', { attrs: { "for": _vm.inputId || _vm.name } }), _vm._v(" "), _c('input-file')], 2);
-  };
-  var __vue_staticRenderFns__$1 = [];
-
-  /* style */
-  var __vue_inject_styles__$1 = function (inject) {
-    if (!inject) return;
-    inject("data-v-37fa7525_0", { source: "\n.file-uploads{overflow:hidden;position:relative;text-align:center;display:inline-block\n}\n.file-uploads.file-uploads-html4 input[type=file],.file-uploads.file-uploads-html5 label{background:#fff;opacity:0;font-size:20em;z-index:1;top:0;left:0;right:0;bottom:0;position:absolute;width:100%;height:100%\n}\n.file-uploads.file-uploads-html4 label,.file-uploads.file-uploads-html5 input[type=file]{background:rgba(255,255,255,0);overflow:hidden;position:fixed;width:1px;height:1px;z-index:-1;opacity:0\n}", map: undefined, media: undefined });
-  };
-  /* scoped */
-  var __vue_scope_id__$1 = undefined;
-  /* module identifier */
-  var __vue_module_identifier__$1 = undefined;
-  /* functional template */
-  var __vue_is_functional_template__$1 = false;
-  /* component normalizer */
-  function __vue_normalize__$1(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
-    var component = (typeof script === 'function' ? script.options : script) || {};
-
-    if (!component.render) {
-      component.render = template.render;
-      component.staticRenderFns = template.staticRenderFns;
-      component._compiled = true;
-
-      if (functional) component.functional = true;
-    }
-
-    component._scopeId = scope;
-
-    {
-      var hook = void 0;
-      if (style) {
-        hook = function hook(context) {
-          style.call(this, createInjector(context));
-        };
-      }
-
-      if (hook !== undefined) {
-        if (component.functional) {
-          // register for functional component in vue file
-          var originalRender = component.render;
-          component.render = function renderWithStyleInjection(h, context) {
-            hook.call(context);
-            return originalRender(h, context);
-          };
-        } else {
-          // inject component registration as beforeCreate hook
-          var existing = component.beforeCreate;
-          component.beforeCreate = existing ? [].concat(existing, hook) : [hook];
-        }
-      }
-    }
-
-    return component;
-  }
-  /* style inject */
-  function __vue_create_injector__$1() {
-    var head = document.head || document.getElementsByTagName('head')[0];
-    var styles = __vue_create_injector__$1.styles || (__vue_create_injector__$1.styles = {});
-    var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-
-    return function addStyle(id, css) {
-      if (document.querySelector('style[data-vue-ssr-id~="' + id + '"]')) return; // SSR styles are present.
-
-      var group = isOldIE ? css.media || 'default' : id;
-      var style = styles[group] || (styles[group] = { ids: [], parts: [], element: undefined });
-
-      if (!style.ids.includes(id)) {
-        var code = css.source;
-        var index = style.ids.length;
-
-        style.ids.push(id);
-
-        if (css.map) {
-          // https://developer.chrome.com/devtools/docs/javascript-debugging
-          // this makes source maps inside style tags work properly in Chrome
-          code += '\n/*# sourceURL=' + css.map.sources[0] + ' */';
-          // http://stackoverflow.com/a/26603875
-          code += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) + ' */';
-        }
-
-        if (isOldIE) {
-          style.element = style.element || document.querySelector('style[data-group=' + group + ']');
-        }
-
-        if (!style.element) {
-          var el = style.element = document.createElement('style');
-          el.type = 'text/css';
-
-          if (css.media) el.setAttribute('media', css.media);
-          if (isOldIE) {
-            el.setAttribute('data-group', group);
-            el.setAttribute('data-next-index', '0');
-          }
-
-          head.appendChild(el);
-        }
-
-        if (isOldIE) {
-          index = parseInt(style.element.getAttribute('data-next-index'));
-          style.element.setAttribute('data-next-index', index + 1);
-        }
-
-        if (style.element.styleSheet) {
-          style.parts.push(code);
-          style.element.styleSheet.cssText = style.parts.filter(Boolean).join('\n');
-        } else {
-          var textNode = document.createTextNode(code);
-          var nodes = style.element.childNodes;
-          if (nodes[index]) style.element.removeChild(nodes[index]);
-          if (nodes.length) style.element.insertBefore(textNode, nodes[index]);else style.element.appendChild(textNode);
-        }
-      }
-    };
-  }
-  /* style inject SSR */
-
-  var FileUpload = __vue_normalize__$1({ render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 }, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, __vue_create_injector__$1, undefined);
-
-  var FileUpload$1 = /*#__PURE__*/Object.freeze({
-    default: FileUpload
-  });
-
-  var require$$0 = ( FileUpload$1 && FileUpload ) || FileUpload$1;
-
-  var src = require$$0;
-
-  return src;
-
-})));
-//# sourceMappingURL=vue-upload-component.js.map
 
 
 /***/ }),
@@ -59017,7 +59071,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_CreateCuestionario_vue__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_CreateCuestionario_vue__ = __webpack_require__(33);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e35e6cfe_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_CreateCuestionario_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
@@ -59511,7 +59565,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_DifundirCuestionario_vue__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_DifundirCuestionario_vue__ = __webpack_require__(34);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0073a978_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_DifundirCuestionario_vue__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
@@ -59600,7 +59654,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59834,6 +59888,28 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
+                _c(
+                  "div",
+                  [
+                    _c("date-pick", {
+                      staticClass: "form-control",
+                      attrs: {
+                        pickTime: true,
+                        isDateDisabled: _vm.isPastDate,
+                        format: "YYYY-MM-DD HH:mm"
+                      },
+                      model: {
+                        value: _vm.date,
+                        callback: function($$v) {
+                          _vm.date = $$v
+                        },
+                        expression: "date"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
                 _vm._m(0)
               ])
             : _vm._e()
@@ -59871,7 +59947,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_EditCuestionario_vue__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_EditCuestionario_vue__ = __webpack_require__(35);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_00e219e2_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_EditCuestionario_vue__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
@@ -60386,7 +60462,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Index_vue__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Index_vue__ = __webpack_require__(36);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6a5ecd47_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Index_vue__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
@@ -60529,7 +60605,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_CardTransition_vue__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_CardTransition_vue__ = __webpack_require__(37);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
@@ -62010,6 +62086,13 @@ module.exports = function (css) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 115 */,
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.VueDatePick=e():t.VueDatePick=e()}(window,function(){return function(n){var i={};function r(t){if(i[t])return i[t].exports;var e=i[t]={i:t,l:!1,exports:{}};return n[t].call(e.exports,e,e.exports,r),e.l=!0,e.exports}return r.m=n,r.c=i,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)r.d(n,i,function(t){return e[t]}.bind(null,i));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="",r(r.s=2)}([function(t,e,n){},function(t,e,n){"use strict";var i=n(0);n.n(i).a},function(t,e,n){"use strict";n.r(e);function v(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){var n=[],i=!0,r=!1,o=void 0;try{for(var s,a=t[Symbol.iterator]();!(i=(s=a.next()).done)&&(n.push(s.value),!e||n.length!==e);i=!0);}catch(t){r=!0,o=t}finally{try{i||null==a.return||a.return()}finally{if(r)throw o}}return n}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}var h=/,|\.|-| |:|\/|\\/,f=/D+/,m=/M+/,g=/Y+/,y=/h+/i,_=/m+/,C=/s+/;function P(t,e){return void 0!==t?t.toString().length>e?t:new Array(e-t.toString().length+1).join("0")+t:void 0}function D(t,e){return t.getDate()===e.getDate()&&t.getMonth()===e.getMonth()&&t.getFullYear()===e.getFullYear()}var i={props:{value:{type:String,default:""},format:{type:String,default:"YYYY-MM-DD"},displayFormat:{type:String},hasInputElement:{type:Boolean,default:!0},inputAttributes:{type:Object},selectableYearRange:{type:Number,default:40},parseDate:{type:Function},formatDate:{type:Function},pickTime:{type:Boolean,default:!1},pickMinutes:{type:Boolean,default:!0},pickSeconds:{type:Boolean,default:!1},isDateDisabled:{type:Function,default:function(){return!1}},nextMonthCaption:{type:String,default:"Next month"},prevMonthCaption:{type:String,default:"Previous month"},setTimeCaption:{type:String,default:"Set time:"},mobileBreakpointWidth:{type:Number,default:500},weekdays:{type:Array,default:function(){return["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}},months:{type:Array,default:function(){return["January","February","March","April","May","June","July","August","September","October","November","December"]}}},data:function(){return{inputValue:this.valueToInputFormat(this.value),currentPeriod:this.getPeriodFromValue(this.value,this.format),direction:void 0,positionClass:void 0,opened:!this.hasInputElement}},computed:{valueDate:function(){var t=this.value,e=this.format;return t?this.parseDateString(t,e):void 0},isValidValue:function(){var t=this.valueDate;return!this.value||Boolean(t)},currentPeriodDates:function(){var e=this,t=this.currentPeriod,n=t.year,i=t.month,r=[],o=new Date(n,i,1),s=new Date,a=o.getDay()||7;if(1<a)for(var u=a-2;0<=u;u--){var c=new Date(o);c.setDate(-u),r.push({outOfRange:!0,date:c})}for(;o.getMonth()===i;)r.push({date:new Date(o)}),o.setDate(o.getDate()+1);for(var l=7-r.length%7,d=1;d<=l;d++){var p=new Date(o);p.setDate(d),r.push({outOfRange:!0,date:p})}return r.forEach(function(t){t.disabled=e.isDateDisabled(t.date),t.today=D(t.date,s),t.dateKey=[t.date.getFullYear(),t.date.getMonth()+1,t.date.getDate()].join("-"),t.selected=!!e.valueDate&&D(t.date,e.valueDate)}),function(t,e){var n=[];for(;t.length;)n.push(t.splice(0,e));return n}(r,7)},yearRange:function(){for(var t=[],e=this.currentPeriod.year,n=e-this.selectableYearRange,i=e+this.selectableYearRange,r=n;r<=i;r++)t.push(r);return t},currentTime:function(){var t=this.valueDate;return t?{hours:t.getHours(),minutes:t.getMinutes(),seconds:t.getSeconds(),hoursPadded:P(t.getHours(),1),minutesPadded:P(t.getMinutes(),2),secondsPadded:P(t.getSeconds(),2)}:void 0},directionClass:function(){return this.direction?"vdp".concat(this.direction,"Direction"):void 0}},watch:{value:function(t){this.isValidValue&&(this.inputValue=this.valueToInputFormat(t),this.currentPeriod=this.getPeriodFromValue(t,this.format))},currentPeriod:function(t,e){var n=new Date(t.year,t.month).getTime(),i=new Date(e.year,e.month).getTime();this.direction=n!==i?i<n?"Next":"Prev":void 0}},beforeDestroy:function(){this.removeCloseEvents(),this.teardownPosition()},methods:{valueToInputFormat:function(t){return this.displayFormat&&this.formatDateToString(this.parseDateString(t,this.format),this.displayFormat)||t},getPeriodFromValue:function(t,e){var n=this.parseDateString(t,e)||new Date;return{month:n.getMonth(),year:n.getFullYear()}},parseDateString:function(t,e){return t?this.parseDate?this.parseDate(t,e):this.parseSimpleDateString(t,e):void 0},formatDateToString:function(t,e){return t?this.formatDate?this.formatDate(t,e):this.formatSimpleDateToString(t,e):""},parseSimpleDateString:function(t,e){for(var n,i,r,o,s,a,u=t.split(h),c=e.split(h),l=c.length,d=0;d<l;d++)c[d].match(f)?n=parseInt(u[d],10):c[d].match(m)?i=parseInt(u[d],10):c[d].match(g)?r=parseInt(u[d],10):c[d].match(y)?o=parseInt(u[d],10):c[d].match(_)?s=parseInt(u[d],10):c[d].match(C)&&(a=parseInt(u[d],10));var p=new Date([P(r,4),P(i,2),P(n,2)].join("-"));if(!isNaN(p))return[[o,"setHours"],[s,"setMinutes"],[a,"setSeconds"]].forEach(function(t){var e=v(t,2),n=e[0],i=e[1];void 0!==n&&p[i](n)}),p},formatSimpleDateToString:function(e,t){return t.replace(g,function(t){return e.getFullYear()}).replace(m,function(t){return P(e.getMonth()+1,t.length)}).replace(f,function(t){return P(e.getDate(),t.length)}).replace(y,function(t){return P(e.getHours(),t.length)}).replace(_,function(t){return P(e.getMinutes(),t.length)}).replace(C,function(t){return P(e.getSeconds(),t.length)})},incrementMonth:function(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:1,e=new Date(this.currentPeriod.year,this.currentPeriod.month),n=new Date(e.getFullYear(),e.getMonth()+t);this.currentPeriod={month:n.getMonth(),year:n.getFullYear()}},processUserInput:function(t){var e=this.parseDateString(t,this.displayFormat||this.format);this.inputValue=t,this.$emit("input",e?this.formatDateToString(e,this.format):t)},open:function(){this.opened||(this.opened=!0,this.currentPeriod=this.getPeriodFromValue(this.value,this.format),this.addCloseEvents(),this.setupPosition()),this.direction=void 0},close:function(){this.opened&&(this.opened=!1,this.direction=void 0,this.removeCloseEvents(),this.teardownPosition())},closeViaOverlay:function(t){this.hasInputElement&&t.target===this.$refs.outerWrap&&this.close()},addCloseEvents:function(){var e=this;this.closeEventListener||(this.closeEventListener=function(t){return e.inspectCloseEvent(t)},["click","keyup"].forEach(function(t){return document.addEventListener(t,e.closeEventListener)}))},inspectCloseEvent:function(t){t.keyCode?27===t.keyCode&&this.close():t.target===this.$el||this.$el.contains(t.target)||this.close()},removeCloseEvents:function(){var e=this;this.closeEventListener&&(["click","keyup"].forEach(function(t){return document.removeEventListener(t,e.closeEventListener)}),delete this.closeEventListener)},setupPosition:function(){var t=this;this.positionEventListener||(this.positionEventListener=function(){return t.positionFloater()},window.addEventListener("resize",this.positionEventListener)),this.positionFloater()},positionFloater:function(){var i=this,r=this.$el.getBoundingClientRect(),o="vdpPositionTop",s="vdpPositionLeft",t=function(){var t=i.$refs.outerWrap.getBoundingClientRect(),e=t.height,n=t.width;window.innerWidth>i.mobileBreakpointWidth?(r.top+r.height+e>window.innerHeight&&0<r.top-e&&(o="vdpPositionBottom"),r.left+n>window.innerWidth&&(s="vdpPositionRight"),i.positionClass=["vdpPositionReady",o,s].join(" ")):i.positionClass="vdpPositionFixed"};this.$refs.outerWrap?t():this.$nextTick(t)},teardownPosition:function(){this.positionEventListener&&(this.positionClass=void 0,window.removeEventListener("resize",this.positionEventListener),delete this.positionEventListener)},clear:function(){this.$emit("input","")},selectDateItem:function(t){if(!t.disabled){var e=new Date(t.date);this.currentTime&&(e.setHours(this.currentTime.hours),e.setMinutes(this.currentTime.minutes),e.setSeconds(this.currentTime.seconds)),this.$emit("input",this.formatDateToString(e,this.format)),this.hasInputElement&&!this.pickTime&&this.close()}},inputTime:function(t,e){var n=this.valueDate,i={setHours:23,setMinutes:59,setSeconds:59},r=parseInt(e.target.value,10)||0;i[t]<r?r=i[t]:r<0&&(r=0),e.target.value=P(r,"setHours"===t?1:2),n[t](r),this.$emit("input",this.formatDateToString(n,this.format))}}};n(1);var r=function(t,e,n,i,r,o,s,a){var u,c="function"==typeof t?t.options:t;if(e&&(c.render=e,c.staticRenderFns=n,c._compiled=!0),i&&(c.functional=!0),o&&(c._scopeId="data-v-"+o),s?(u=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),r&&r.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(s)},c._ssrRegister=u):r&&(u=a?function(){r.call(this,this.$root.$options.shadowRoot)}:r),u)if(c.functional){c._injectStyles=u;var l=c.render;c.render=function(t,e){return u.call(e),l(t,e)}}else{var d=c.beforeCreate;c.beforeCreate=d?[].concat(d,u):[u]}return{exports:t,options:c}}(i,function(){var n=this,t=n.$createElement,i=n._self._c||t;return i("div",{staticClass:"vdpComponent",class:{vdpWithInput:n.hasInputElement}},[n.hasInputElement?i("input",n._b({attrs:{type:"text"},domProps:{value:n.inputValue},on:{input:function(t){n.processUserInput(t.target.value)},focus:n.open,click:n.open}},"input",n.inputAttributes,!1)):n._e(),n._v(" "),n.hasInputElement&&n.inputValue?i("button",{staticClass:"vdpClearInput",attrs:{type:"button"},on:{click:n.clear}}):n._e(),n._v(" "),i("transition",{attrs:{name:"vdp-toggle-calendar"}},[n.opened?i("div",{ref:"outerWrap",staticClass:"vdpOuterWrap",class:[n.positionClass,{vdpFloating:n.hasInputElement}],on:{click:n.closeViaOverlay}},[i("div",{staticClass:"vdpInnerWrap"},[i("header",{staticClass:"vdpHeader"},[i("button",{staticClass:"vdpArrow vdpArrowPrev",attrs:{title:n.prevMonthCaption,type:"button"},on:{click:function(t){n.incrementMonth(-1)}}},[n._v(n._s(n.prevMonthCaption))]),n._v(" "),i("button",{staticClass:"vdpArrow vdpArrowNext",attrs:{type:"button",title:n.nextMonthCaption},on:{click:function(t){n.incrementMonth(1)}}},[n._v(n._s(n.nextMonthCaption))]),n._v(" "),i("div",{staticClass:"vdpPeriodControls"},[i("div",{staticClass:"vdpPeriodControl"},[i("button",{key:n.currentPeriod.month,class:n.directionClass,attrs:{type:"button"}},[n._v("\n                                "+n._s(n.months[n.currentPeriod.month])+"\n                            ")]),n._v(" "),i("select",{directives:[{name:"model",rawName:"v-model",value:n.currentPeriod.month,expression:"currentPeriod.month"}],on:{change:function(t){var e=Array.prototype.filter.call(t.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});n.$set(n.currentPeriod,"month",t.target.multiple?e:e[0])}}},n._l(n.months,function(t,e){return i("option",{key:t,domProps:{value:e}},[n._v("\n                                    "+n._s(t)+"\n                                ")])}))]),n._v(" "),i("div",{staticClass:"vdpPeriodControl"},[i("button",{key:n.currentPeriod.year,class:n.directionClass,attrs:{type:"button"}},[n._v("\n                                "+n._s(n.currentPeriod.year)+"\n                            ")]),n._v(" "),i("select",{directives:[{name:"model",rawName:"v-model",value:n.currentPeriod.year,expression:"currentPeriod.year"}],on:{change:function(t){var e=Array.prototype.filter.call(t.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});n.$set(n.currentPeriod,"year",t.target.multiple?e:e[0])}}},n._l(n.yearRange,function(t){return i("option",{key:t,domProps:{value:t}},[n._v("\n                                    "+n._s(t)+"\n                                ")])}))])])]),n._v(" "),i("table",{staticClass:"vdpTable"},[i("thead",[i("tr",n._l(n.weekdays,function(t){return i("th",{key:t,staticClass:"vdpHeadCell"},[i("span",{staticClass:"vdpHeadCellContent"},[n._v(n._s(t))])])}))]),n._v(" "),i("tbody",{key:n.currentPeriod.year+"-"+n.currentPeriod.month,class:n.directionClass},n._l(n.currentPeriodDates,function(t,e){return i("tr",{key:e,staticClass:"vdpRow"},n._l(t,function(e){return i("td",{key:e.dateKey,staticClass:"vdpCell",class:{selectable:!e.disabled,selected:e.selected,disabled:e.disabled,today:e.today,outOfRange:e.outOfRange},attrs:{"data-id":e.dateKey},on:{click:function(t){n.selectDateItem(e)}}},[i("div",{staticClass:"vdpCellContent"},[n._v(n._s(e.date.getDate()))])])}))}))]),n._v(" "),n.pickTime&&n.currentTime?i("div",{staticClass:"vdpTimeControls"},[i("span",{staticClass:"vdpTimeCaption"},[n._v(n._s(n.setTimeCaption))]),n._v(" "),i("div",{staticClass:"vdpTimeUnit"},[i("pre",[i("span",[n._v(n._s(n.currentTime.hoursPadded))]),i("br")]),n._v(" "),i("input",{staticClass:"vdpHoursInput",attrs:{type:"number",pattern:"\\d*"},domProps:{value:n.currentTime.hoursPadded},on:{input:function(t){t.preventDefault(),n.inputTime("setHours",t)}}})]),n._v(" "),n.pickMinutes?i("span",{staticClass:"vdpTimeSeparator"},[n._v(":")]):n._e(),n._v(" "),n.pickMinutes?i("div",{staticClass:"vdpTimeUnit"},[i("pre",[i("span",[n._v(n._s(n.currentTime.minutesPadded))]),i("br")]),n._v(" "),n.pickMinutes?i("input",{staticClass:"vdpMinutesInput",attrs:{type:"number",pattern:"\\d*"},domProps:{value:n.currentTime.minutesPadded},on:{input:function(t){n.inputTime("setMinutes",t)}}}):n._e()]):n._e(),n._v(" "),n.pickSeconds?i("span",{staticClass:"vdpTimeSeparator"},[n._v(":")]):n._e(),n._v(" "),n.pickSeconds?i("div",{staticClass:"vdpTimeUnit"},[i("pre",[i("span",[n._v(n._s(n.currentTime.secondsPadded))]),i("br")]),n._v(" "),n.pickSeconds?i("input",{staticClass:"vdpSecondsInput",attrs:{type:"number",pattern:"\\d*"},domProps:{value:n.currentTime.secondsPadded},on:{input:function(t){n.inputTime("setSeconds",t)}}}):n._e()]):n._e()]):n._e()])]):n._e()])],1)},[],!1,null,null,null);r.options.__file="vueDatePick.vue";e.default=r.exports}]).default});
 
 /***/ })
 /******/ ]);

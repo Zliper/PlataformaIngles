@@ -86,6 +86,16 @@
 					<input type="datetime-local" class="form-control" v-model="aplicacion.fecha_hora" placeholder="Fecha y hora de aplicacion">
 				</div>
 
+				<div>
+					<date-pick
+						v-model="date"
+						class="form-control"
+						:pickTime="true"
+						:isDateDisabled="isPastDate"
+						:format="'YYYY-MM-DD HH:mm'"
+					></date-pick>
+				</div>
+
 				<div class="col-md-2 col-sm-12 inputs">
 					<button type="submit" class="btn btn-primary btn-block">Guardar</button>
 				</div>
@@ -95,58 +105,90 @@
 </template>
 
 <script>
-
+import DatePick from "vue-date-pick";
 export default {
-    props: ['cuestionarioSelected'],
-    data() {
-        return {
-            cuestionario: [],
-            aplicacion: [],
-            errors: [],
-            datos: false,
-            titulo: 'No hay datos'
-        }
-    },
-    mounted() {
-        
-        console.log(this.cuestionarioSelected);
-        if (this.cuestionarioSelected) {
-            this.cuestionario = this.cuestionarioSelected;
-            console.log(this.cuestionarioSelected);
-            this.titulo = 'Aplicar cuestionario'
-			this.datos = true;
-			axios.get('/api/puntos?id=' + this.cuestionarioSelected.punto_gramatical)
-			.then(response => {
-				this.cuestionarioSelected.punto_gramatical = response.data.data.puntos_gramaticales[0].punto_gramatical;
-			})
-			.catch(e => {
-				console.log(e);
-			});
-        }
-    },
-    methods: {
-        add() {
-            console.log(this.aplicacion.fecha_hora);
-            this.$router.push({ name: 'cuestionarios'})
-			this.$toastr('success', 'El cuestionario ha sido programado correctamente');
-        },
-
-        checkForm() {
-                if (this.aplicacion.duracion && this.aplicacion.fecha_hora) {
-                    this.add();
-                }
-
-                this.errors = [];
-
-                if (!this.aplicacion.duracion) this.errors.push('Duracion is required');
-                if (!this.aplicacion.fecha_hora) this.errors.push('Fecha y hora is required');
-        }
+  components: { DatePick },
+  props: ["cuestionarioSelected"],
+  data() {
+    return {
+      cuestionario: [],
+      aplicacion: [],
+      errors: [],
+      datos: false,
+      titulo: "No hay datos",
+      date: "2018-11-29 12:00"
+    };
+  },
+  mounted() {
+    console.log(this.cuestionarioSelected);
+    if (this.cuestionarioSelected) {
+      this.cuestionario = this.cuestionarioSelected;
+      console.log(this.cuestionarioSelected);
+      this.titulo = "Aplicar cuestionario";
+      this.datos = true;
+      axios
+        .get("/api/puntos?id=" + this.cuestionarioSelected.punto_gramatical)
+        .then(response => {
+          this.cuestionarioSelected.punto_gramatical =
+            response.data.data.puntos_gramaticales[0].punto_gramatical;
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
-}
+  },
+  methods: {
+    isPastDate(date) {
+      const currentDate = new Date();
+      return currentDate >= date;
+    },
+    add() {
+      console.log(this.aplicacion.fecha_hora);
+      const currentDate = new Date();
+      //const yesterdayDate = new Date("Y/m/d", strtotime("-1 days"));
+      //console.log(yesterdayDate);
+      console.log(currentDate);
+
+      let difusion = {
+        evaluacion_id: this.cuestionarioSelected.id,
+        profesor_id: "1",
+        matricula: "1",
+        duracion: this.aplicacion.duracion,
+        fecha_aplicacion: this.aplicacion.fecha_hora,
+        status: "1"
+      };
+
+      axios
+        .post("/api/difusiones", difusion)
+        .then(response => {
+          //this.clear();
+          this.$router.push({ name: "cuestionarios" });
+          this.$toastr(
+            "success",
+            "El cuestionario ha sido programado correctamente"
+          );
+        })
+        .catch(e => {
+          console.log("errorSQL: " + e);
+        });
+    },
+
+    checkForm() {
+      if (this.aplicacion.duracion && this.aplicacion.fecha_hora) {
+        this.add();
+      }
+
+      this.errors = [];
+
+      if (!this.aplicacion.duracion) this.errors.push("Duracion is required");
+      if (!this.aplicacion.fecha_hora)
+        this.errors.push("Fecha y hora is required");
+    }
+  }
+};
 </script>
     
 <style>
-
 </style>
 
 

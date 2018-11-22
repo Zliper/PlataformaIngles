@@ -21,7 +21,7 @@
         <br>
         <br>
 
-        <h1 class="title m-b-md">Platinim</h1>
+        <h1 class="title m-b-md">Platinum</h1>
 
         <br>
         <br>
@@ -54,7 +54,7 @@
 				<div class="card text-white bg-secondary">
 					<div class="card-body">
 						<h3 class="card-title text-center">Alumno</h3>
-                        <input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1" placeholder="ID Grupo">
+                        <input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1" placeholder="Matricula">
                         <br>
                         <button type="submit" onclick="window.location.href='/alumno'" class="btn btn-primary btn-block">Entrar</button>
 					</div>

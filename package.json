@@ -21,6 +21,8 @@
     },
     "dependencies": {
         "@deveodk/vue-toastr": "^1.0.4",
+        "vue-date-pick": "^1.0.4",
+        "vue-picture-input": "^2.1.6",
         "vue-router": "^3.0.1",
         "vue-upload-component": "^2.8.14"
     }

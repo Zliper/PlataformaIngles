@@ -113,6 +113,7 @@
 export default {
   data() {
     return {
+      profesorID: "1",
       tipos: [],
       actividades: [],
       ordinarios: [],
@@ -141,7 +142,9 @@ export default {
           console.log(e);
         });
     },
-    fetchExtraordinarios(page_url = "/api/evaluaciones?byTipo=1&profesorId=1") {
+    fetchExtraordinarios(
+      page_url = "/api/evaluaciones?byTipo=1&profesorId=" + this.profesorID
+    ) {
       let vm = this;
 
       axios
@@ -154,7 +157,9 @@ export default {
           console.log(e);
         });
     },
-    fetchRecuperaciones(page_url = "/api/evaluaciones?byTipo=2") {
+    fetchRecuperaciones(
+      page_url = "/api/evaluaciones?byTipo=2&profesorId=" + this.profesorID
+    ) {
       let vm = this;
 
       axios
@@ -167,7 +172,9 @@ export default {
           console.log(e);
         });
     },
-    fetchOrdinarios(page_url = "/api/evaluaciones?byTipo=3") {
+    fetchOrdinarios(
+      page_url = "/api/evaluaciones?byTipo=3&profesorId=" + this.profesorID
+    ) {
       let vm = this;
 
       axios
@@ -180,7 +187,9 @@ export default {
           console.log(e);
         });
     },
-    fetchActividades(page_url = "/api/evaluaciones?byTipo=4") {
+    fetchActividades(
+      page_url = "/api/evaluaciones?byTipo=4&profesorId=" + this.profesorID
+    ) {
       let vm = this;
 
       axios
@@ -194,30 +203,43 @@ export default {
         });
     },
     difundir(cuestionarioSelected) {
-      this.$router.push({ name: "cuestionario.difundir", params: { cuestionarioSelected } });
+      this.$router.push({
+        name: "cuestionario.difundir",
+        params: { cuestionarioSelected }
+      });
     },
     editar(cuestionarioSelected) {
-      this.$router.push({ name: "cuestionario.edit", params: { cuestionarioSelected } });
+      this.$router.push({
+        name: "cuestionario.edit",
+        params: { cuestionarioSelected }
+      });
     },
     confirmDelete(cuestionarioSelected) {
-      if(confirm("¿Seguro que desea borrar el cuestionario "+ cuestionarioSelected.nota +"?")){
+      if (
+        confirm(
+          "¿Seguro que desea borrar el cuestionario " +
+            cuestionarioSelected.nota +
+            "?"
+        )
+      ) {
         this.borrar(cuestionarioSelected);
       }
     },
     borrar(cuestionarioSelected) {
-      axios.delete('/api/evaluaciones/' + cuestionarioSelected.id)
-      .then(response => {
-        this.fetchExtraordinarios();
-        this.fetchRecuperaciones();
-        this.fetchOrdinarios();
-        this.fetchActividades();
-        //this.$router.push({ name: 'cuestionarios'})
-        this.$toastr('warning', 'Cuestionario deleted successfully');
-        console.log(response);
-      })
-      .catch(e => {
-        console.log(e);
-      });
+      axios
+        .delete("/api/evaluaciones/" + cuestionarioSelected.id)
+        .then(response => {
+          this.fetchExtraordinarios();
+          this.fetchRecuperaciones();
+          this.fetchOrdinarios();
+          this.fetchActividades();
+          //this.$router.push({ name: 'cuestionarios'})
+          this.$toastr("warning", "Cuestionario deleted successfully");
+          console.log(response);
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
   }
 };
