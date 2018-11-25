@@ -79,6 +79,33 @@
         
         <form class="mb-4" v-on:submit.prevent="checkForm">
             <div class="row justify-content-center inputs" v-if="datos">
+
+				<div class="col-md-3 col-sm-12">
+					<div class="card text-white bg-secondary">
+						<div class="card-header">
+							<h5>Alumnos </h5>
+							
+							<input type="radio" id="all" value="false" v-model="showListaAlumnos">
+							<label for="all"> Todos </label>
+							<input type="radio" id="select" value="true" v-model="showListaAlumnos">
+							<label for="select"> Seleccionar</label>
+						</div>
+						<transition name="fade">
+							<div class="card-body" v-if="showListaAlumnos=='true'">
+								
+									<div v-for="matricula in matriculas" v-bind:key="matricula.matricula">
+										<input type="checkbox" :id=matricula.matricula :value=matricula.matricula v-model="matriculasSeleccionadas">
+										<label :for=matricula.matricula>{{matricula.matricula}}</label>
+									</div>
+								
+							</div>
+						</transition>
+						<div class="card-footer" v-if="showListaAlumnos=='true'">
+							<span>Matriculas seleccionadas: {{ matriculasSeleccionadas }}</span>
+						</div>
+					</div>
+				</div>
+				
 				<div class="col-md-3 col-sm-12 inputs">
 					<input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1" v-model="aplicacion.duracion" placeholder="Duración del examen">
 				</div>
@@ -86,7 +113,7 @@
 					<input type="datetime-local" class="form-control" v-model="aplicacion.fecha_hora" placeholder="Fecha y hora de aplicacion">
 				</div>
 
-				<div>
+				<div v-if="false">
 					<date-pick
 						v-model="date"
 						class="form-control"
@@ -116,7 +143,16 @@ export default {
       errors: [],
       datos: false,
       titulo: "No hay datos",
-      date: "2018-11-29 12:00"
+      date: "2018-11-29 12:00",
+      showListaAlumnos: "false",
+      matriculas: [
+        { matricula: "1" },
+        { matricula: "143048" },
+        { matricula: "143049" },
+        { matricula: "153020" },
+        { matricula: "143530" }
+      ],
+      matriculasSeleccionadas: []
     };
   },
   mounted() {
@@ -142,7 +178,7 @@ export default {
       const currentDate = new Date();
       return currentDate >= date;
     },
-    add() {
+    add(matricula) {
       console.log(this.aplicacion.fecha_hora);
       const currentDate = new Date();
       //const yesterdayDate = new Date("Y/m/d", strtotime("-1 days"));
@@ -152,7 +188,7 @@ export default {
       let difusion = {
         evaluacion_id: this.cuestionarioSelected.id,
         profesor_id: "1",
-        matricula: "1",
+        matricula: matricula,
         duracion: this.aplicacion.duracion,
         fecha_aplicacion: this.aplicacion.fecha_hora,
         status: "1"
@@ -173,9 +209,93 @@ export default {
         });
     },
 
+    addDifusiones() {
+      let axiosArray = [];
+      if (this.showListaAlumnos == "false") {
+        for (var i = 0; i < this.matriculas.length; i++) {
+          let difusion = {
+            evaluacion_id: this.cuestionarioSelected.id,
+            profesor_id: "1",
+            matricula: this.matriculas[i].matricula,
+            duracion: this.aplicacion.duracion,
+            fecha_aplicacion: this.aplicacion.fecha_hora,
+            status: "1"
+          };
+          let newPromise = axios({
+            method: "post",
+            url: "/api/difusiones",
+            data: difusion
+          });
+          axiosArray.push(newPromise);
+        }
+      } else {
+        for (var i = 0; i < this.matriculasSeleccionadas.length; i++) {
+          let difusion = {
+            evaluacion_id: this.cuestionarioSelected.id,
+            profesor_id: "1",
+            matricula: this.matriculasSeleccionadas[i],
+            duracion: this.aplicacion.duracion,
+            fecha_aplicacion: this.aplicacion.fecha_hora,
+            status: "2"
+          };
+          let newPromise = axios({
+            method: "post",
+            url: "/api/difusiones",
+            data: difusion
+          });
+          axiosArray.push(newPromise);
+        }
+      }
+
+      axios
+        .all(axiosArray)
+        .then(
+          axios.spread((...responses) => {
+            //responses.forEach(res => console.log("Success"));
+            //console.log("submitted all axios calls");
+            this.$router.push({ name: "cuestionarios" });
+            this.$toastr(
+              "success",
+              "El cuestionario ha sido programado correctamente"
+            );
+          })
+        )
+        .catch(error => {
+          console.log("errorSQL: " + error);
+        });
+
+      /*axios.all([
+		if (this.showListaAlumnos == "false") {
+          for (var i = 0; i < this.matriculas.length; i++) {
+			  axios.post("/api/difusiones", {
+				evaluacion_id: this.cuestionarioSelected.id,
+				profesor_id: "1",
+				matricula: matricula,
+				duracion: this.aplicacion.duracion,
+				fecha_aplicacion: this.aplicacion.fecha_hora,
+				status: "1"
+			})
+            add(this.matriculas[i].matricula);
+          }
+        } else {
+          for (var i = 0; i < this.matriculasSeleccionadas.length; i++) {
+            add(this.matriculasSeleccionadas[i]);
+          }
+		}
+		])
+		.then(axios.spread((googleRes, appleRes) => {
+    		// do something with both responses
+  		});*/
+    },
+
     checkForm() {
-      if (this.aplicacion.duracion && this.aplicacion.fecha_hora) {
-        this.add();
+      if (
+        this.aplicacion.duracion &&
+        this.aplicacion.fecha_hora &&
+        (this.showListaAlumnos == "false" ||
+          this.matriculasSeleccionadas.length != 0)
+      ) {
+        this.addDifusiones();
       }
 
       this.errors = [];
@@ -183,12 +303,28 @@ export default {
       if (!this.aplicacion.duracion) this.errors.push("Duracion is required");
       if (!this.aplicacion.fecha_hora)
         this.errors.push("Fecha y hora is required");
+      /*console.log(
+        this.showListaAlumnos == "false" ||
+          this.matriculasSeleccionadas.length != 0
+      );/*/
+      if (
+        this.showListaAlumnos == "true" &&
+        this.matriculasSeleccionadas.length == 0
+      )
+        this.errors.push("No hay alumnos seleccionados");
     }
   }
 };
 </script>
     
 <style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
 
 

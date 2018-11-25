@@ -32233,6 +32233,33 @@ var cantidad;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -32245,7 +32272,10 @@ var cantidad;
       errors: [],
       datos: false,
       titulo: "No hay datos",
-      date: "2018-11-29 12:00"
+      date: "2018-11-29 12:00",
+      showListaAlumnos: "false",
+      matriculas: [{ matricula: "1" }, { matricula: "143048" }, { matricula: "143049" }, { matricula: "153020" }, { matricula: "143530" }],
+      matriculasSeleccionadas: []
     };
   },
   mounted: function mounted() {
@@ -32270,7 +32300,7 @@ var cantidad;
       var currentDate = new Date();
       return currentDate >= date;
     },
-    add: function add() {
+    add: function add(matricula) {
       var _this2 = this;
 
       console.log(this.aplicacion.fecha_hora);
@@ -32282,7 +32312,7 @@ var cantidad;
       var difusion = {
         evaluacion_id: this.cuestionarioSelected.id,
         profesor_id: "1",
-        matricula: "1",
+        matricula: matricula,
         duracion: this.aplicacion.duracion,
         fecha_aplicacion: this.aplicacion.fecha_hora,
         status: "1"
@@ -32296,15 +32326,92 @@ var cantidad;
         console.log("errorSQL: " + e);
       });
     },
+    addDifusiones: function addDifusiones() {
+      var _this3 = this;
+
+      var axiosArray = [];
+      if (this.showListaAlumnos == "false") {
+        for (var i = 0; i < this.matriculas.length; i++) {
+          var difusion = {
+            evaluacion_id: this.cuestionarioSelected.id,
+            profesor_id: "1",
+            matricula: this.matriculas[i].matricula,
+            duracion: this.aplicacion.duracion,
+            fecha_aplicacion: this.aplicacion.fecha_hora,
+            status: "1"
+          };
+          var newPromise = axios({
+            method: "post",
+            url: "/api/difusiones",
+            data: difusion
+          });
+          axiosArray.push(newPromise);
+        }
+      } else {
+        for (var i = 0; i < this.matriculasSeleccionadas.length; i++) {
+          var _difusion = {
+            evaluacion_id: this.cuestionarioSelected.id,
+            profesor_id: "1",
+            matricula: this.matriculasSeleccionadas[i],
+            duracion: this.aplicacion.duracion,
+            fecha_aplicacion: this.aplicacion.fecha_hora,
+            status: "2"
+          };
+          var _newPromise = axios({
+            method: "post",
+            url: "/api/difusiones",
+            data: _difusion
+          });
+          axiosArray.push(_newPromise);
+        }
+      }
+
+      axios.all(axiosArray).then(axios.spread(function () {
+        //responses.forEach(res => console.log("Success"));
+        //console.log("submitted all axios calls");
+        _this3.$router.push({ name: "cuestionarios" });
+        _this3.$toastr("success", "El cuestionario ha sido programado correctamente");
+      })).catch(function (error) {
+        console.log("errorSQL: " + error);
+      });
+
+      /*axios.all([
+      if (this.showListaAlumnos == "false") {
+          for (var i = 0; i < this.matriculas.length; i++) {
+      axios.post("/api/difusiones", {
+      evaluacion_id: this.cuestionarioSelected.id,
+      profesor_id: "1",
+      matricula: matricula,
+      duracion: this.aplicacion.duracion,
+      fecha_aplicacion: this.aplicacion.fecha_hora,
+      status: "1"
+      })
+            add(this.matriculas[i].matricula);
+          }
+        } else {
+          for (var i = 0; i < this.matriculasSeleccionadas.length; i++) {
+            add(this.matriculasSeleccionadas[i]);
+          }
+      }
+      ])
+      .then(axios.spread((googleRes, appleRes) => {
+      // do something with both responses
+      });*/
+    },
     checkForm: function checkForm() {
-      if (this.aplicacion.duracion && this.aplicacion.fecha_hora) {
-        this.add();
+      if (this.aplicacion.duracion && this.aplicacion.fecha_hora && (this.showListaAlumnos == "false" || this.matriculasSeleccionadas.length != 0)) {
+        this.addDifusiones();
       }
 
       this.errors = [];
 
       if (!this.aplicacion.duracion) this.errors.push("Duracion is required");
       if (!this.aplicacion.fecha_hora) this.errors.push("Fecha y hora is required");
+      /*console.log(
+        this.showListaAlumnos == "false" ||
+          this.matriculasSeleccionadas.length != 0
+      );/*/
+      if (this.showListaAlumnos == "true" && this.matriculasSeleccionadas.length == 0) this.errors.push("No hay alumnos seleccionados");
     }
   }
 });
@@ -59654,7 +59761,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n  -webkit-transition: opacity 0.25s;\r\n  transition: opacity 0.25s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n  opacity: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -59824,6 +59931,146 @@ var render = function() {
         [
           _vm.datos
             ? _c("div", { staticClass: "row justify-content-center inputs" }, [
+                _c("div", { staticClass: "col-md-3 col-sm-12" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card text-white bg-secondary" },
+                    [
+                      _c("div", { staticClass: "card-header" }, [
+                        _c("h5", [_vm._v("Alumnos ")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.showListaAlumnos,
+                              expression: "showListaAlumnos"
+                            }
+                          ],
+                          attrs: { type: "radio", id: "all", value: "false" },
+                          domProps: {
+                            checked: _vm._q(_vm.showListaAlumnos, "false")
+                          },
+                          on: {
+                            change: function($event) {
+                              _vm.showListaAlumnos = "false"
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "all" } }, [
+                          _vm._v(" Todos ")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.showListaAlumnos,
+                              expression: "showListaAlumnos"
+                            }
+                          ],
+                          attrs: { type: "radio", id: "select", value: "true" },
+                          domProps: {
+                            checked: _vm._q(_vm.showListaAlumnos, "true")
+                          },
+                          on: {
+                            change: function($event) {
+                              _vm.showListaAlumnos = "true"
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "select" } }, [
+                          _vm._v(" Seleccionar")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("transition", { attrs: { name: "fade" } }, [
+                        _vm.showListaAlumnos == "true"
+                          ? _c(
+                              "div",
+                              { staticClass: "card-body" },
+                              _vm._l(_vm.matriculas, function(matricula) {
+                                return _c("div", { key: matricula.matricula }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.matriculasSeleccionadas,
+                                        expression: "matriculasSeleccionadas"
+                                      }
+                                    ],
+                                    attrs: {
+                                      type: "checkbox",
+                                      id: matricula.matricula
+                                    },
+                                    domProps: {
+                                      value: matricula.matricula,
+                                      checked: Array.isArray(
+                                        _vm.matriculasSeleccionadas
+                                      )
+                                        ? _vm._i(
+                                            _vm.matriculasSeleccionadas,
+                                            matricula.matricula
+                                          ) > -1
+                                        : _vm.matriculasSeleccionadas
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$a = _vm.matriculasSeleccionadas,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = matricula.matricula,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (_vm.matriculasSeleccionadas = $$a.concat(
+                                                [$$v]
+                                              ))
+                                          } else {
+                                            $$i > -1 &&
+                                              (_vm.matriculasSeleccionadas = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          _vm.matriculasSeleccionadas = $$c
+                                        }
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "label",
+                                    { attrs: { for: matricula.matricula } },
+                                    [_vm._v(_vm._s(matricula.matricula))]
+                                  )
+                                ])
+                              })
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _vm.showListaAlumnos == "true"
+                        ? _c("div", { staticClass: "card-footer" }, [
+                            _c("span", [
+                              _vm._v(
+                                "Matriculas seleccionadas: " +
+                                  _vm._s(_vm.matriculasSeleccionadas)
+                              )
+                            ])
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "col-md-3 col-sm-12 inputs" }, [
                   _c("input", {
                     directives: [
@@ -59888,27 +60135,29 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  [
-                    _c("date-pick", {
-                      staticClass: "form-control",
-                      attrs: {
-                        pickTime: true,
-                        isDateDisabled: _vm.isPastDate,
-                        format: "YYYY-MM-DD HH:mm"
-                      },
-                      model: {
-                        value: _vm.date,
-                        callback: function($$v) {
-                          _vm.date = $$v
-                        },
-                        expression: "date"
-                      }
-                    })
-                  ],
-                  1
-                ),
+                false
+                  ? _c(
+                      "div",
+                      [
+                        _c("date-pick", {
+                          staticClass: "form-control",
+                          attrs: {
+                            pickTime: true,
+                            isDateDisabled: _vm.isPastDate,
+                            format: "YYYY-MM-DD HH:mm"
+                          },
+                          model: {
+                            value: _vm.date,
+                            callback: function($$v) {
+                              _vm.date = $$v
+                            },
+                            expression: "date"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
                 _vm._m(0)
               ])
