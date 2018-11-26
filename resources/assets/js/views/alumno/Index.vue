@@ -42,47 +42,48 @@
 
 <script>
 export default {
-	data() {
-		return {
-			actividades: 0,
-			examenes: 0,
-			badgeAct: 'badge-success',
-			badgeEx: 'badge-success'
+  data() {
+    return {
+      actividades: 0,
+      examenes: 0,
+      badgeAct: "badge-success",
+      badgeEx: "badge-success"
+    };
+  },
 
-		}
-	},
+  created() {
+    this.fetchActividades();
+    this.fetchExamenes();
+  },
 
-	created() {
-		this.fetchActividades();
-		this.fetchExamenes();
-	},
+  methods: {
+    fetchActividades() {
+      axios
+        .get("/api/difusiones?count=actividades&matricula=1&status=2")
+        .then(response => {
+          this.actividades = response.data;
+          if (response.data > 0) {
+            this.badgeAct = "badge-warning";
+          }
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
 
-	methods: {
-		fetchActividades() {
-			axios.get('/api/evaluaciones?count=Actividades')
-			.then(response => {
-				this.actividades = response.data;
-				if (response.data > 0){
-					this.badgeAct= 'badge-warning';
-				}
-			})
-			.catch(e => {
-				console.log(e);
-			});
-		},
-
-		fetchExamenes() {
-			axios.get('/api/evaluaciones?count=Examenes')
-			.then(response=>{
-				this.examenes = response.data;
-				if (response.data > 0){
-					this.badgeEx= 'badge-warning';
-				}
-			})
-			.catch(e=>{
-				console.log(e);
-			});
-		}
-	}
-}
+    fetchExamenes() {
+      axios
+        .get("/api/difusiones?count=ordinarios&matricula=1&status=2")
+        .then(response => {
+          this.examenes = response.data;
+          if (response.data > 0) {
+            this.badgeEx = "badge-warning";
+          }
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+  }
+};
 </script>

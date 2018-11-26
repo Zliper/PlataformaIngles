@@ -17,13 +17,42 @@ class DifusionController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->input('byProfesor','')) {
-            return new DifusionCollection(Difusion::where('profesor_id','=',$request->input('byProfesor',''))->get());
-        } /*else if($request->input('count','') == "Actividades") {
-            return Evaluacion::where('alumno_id','=',1)->where('catalogo_id',4)->count();
-        } else if($request->input('count','') == "Examenes") {
-            return Evaluacion::where('alumno_id','=',1)->where('catalogo_id',1)->count();
-        }*/
+        if ($request->input('byProfesor')) {
+            return new DifusionCollection(Difusion::where('profesor_id','=',$request->input('byProfesor'))->get());
+        }  else if ($request->input('byStatus')) {
+            if ($request->input('matricula')) {
+                return new DifusionCollection(Difusion::where('matricula','=',$request->input('matricula'))->where('status','=',$request->input('byStatus'))->get());
+            } else if ($request->input('profesor_id')) {
+                return new DifusionCollection(Difusion::where('profesor_id','=',$request->input('profesor_id'))->where('status','=',$request->input('byStatus'))->get());
+            }
+            return new DifusionCollection(Difusion::where('status','=',$request->input('byStatus'))->get());
+        } else if ($request->input('count')) {
+            if($request->input('count')=='actividades') $tipo = '4';
+            if($request->input('count')=='ordinarios') $tipo = '3';
+            if($request->input('count')=='recuperaciones') $tipo = '2';
+            if($request->input('count')=='extraordinarios') $tipo = '1';
+            $matricula = $request->input('matricula');
+            $status = $request->input('status');
+            $difusiones = Difusion::join('evaluaciones', function($join) use ($tipo,$matricula,$status){
+                $join->on('difusiones.evaluacion_id','=','evaluaciones.id')
+                ->where('difusiones.matricula','=',$matricula)->where('evaluaciones.catalogo_id','=',$tipo)->where('difusiones.status','=',$status);
+            })
+                ->count();
+            return $difusiones;
+        } else if ($request->input('getByAlumno')) {
+            if($request->input('getByAlumno')=='actividades') $tipo = '4';
+            if($request->input('getByAlumno')=='ordinarios') $tipo = '3';
+            if($request->input('getByAlumno')=='recuperaciones') $tipo = '2';
+            if($request->input('getByAlumno')=='extraordinarios') $tipo = '1';
+            $matricula = $request->input('matricula');
+            $status = $request->input('status');
+            $difusiones = Difusion::join('evaluaciones', function($join) use ($tipo,$matricula,$status){
+                $join->on('difusiones.evaluacion_id','=','evaluaciones.id')
+                ->where('difusiones.matricula','=',$matricula)->where('evaluaciones.catalogo_id','=',$tipo)->where('difusiones.status','=',$status);
+            })
+                ->get();
+            return $difusiones;
+        }
         return new DifusionCollection(Difusion::all());
     }
 

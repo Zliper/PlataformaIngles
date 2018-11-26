@@ -19,7 +19,8 @@ class DifusionCollection extends ResourceCollection
             "difusiones" => $this->collection->transform(function($p) {
                 return [
                     'id' => $p->id,
-                    'evaluacion_id' => new EvaluacionResource($p->nota),
+                    //'evaluacion_id' => new EvaluacionResource($p->id),
+                    'evaluacion_id' => $p->evaluacion_id,
                     'profesor_id' => $p->profesor_id,
                     'matricula' => $p->matricula,
                     'duracion' => $p->duracion,

@@ -191,7 +191,7 @@ export default {
         matricula: matricula,
         duracion: this.aplicacion.duracion,
         fecha_aplicacion: this.aplicacion.fecha_hora,
-        status: "1"
+        status: "2"
       };
 
       axios
@@ -219,7 +219,7 @@ export default {
             matricula: this.matriculas[i].matricula,
             duracion: this.aplicacion.duracion,
             fecha_aplicacion: this.aplicacion.fecha_hora,
-            status: "1"
+            status: "2"
           };
           let newPromise = axios({
             method: "post",
@@ -252,7 +252,6 @@ export default {
         .then(
           axios.spread((...responses) => {
             //responses.forEach(res => console.log("Success"));
-            //console.log("submitted all axios calls");
             this.$router.push({ name: "cuestionarios" });
             this.$toastr(
               "success",
@@ -263,29 +262,6 @@ export default {
         .catch(error => {
           console.log("errorSQL: " + error);
         });
-
-      /*axios.all([
-		if (this.showListaAlumnos == "false") {
-          for (var i = 0; i < this.matriculas.length; i++) {
-			  axios.post("/api/difusiones", {
-				evaluacion_id: this.cuestionarioSelected.id,
-				profesor_id: "1",
-				matricula: matricula,
-				duracion: this.aplicacion.duracion,
-				fecha_aplicacion: this.aplicacion.fecha_hora,
-				status: "1"
-			})
-            add(this.matriculas[i].matricula);
-          }
-        } else {
-          for (var i = 0; i < this.matriculasSeleccionadas.length; i++) {
-            add(this.matriculasSeleccionadas[i]);
-          }
-		}
-		])
-		.then(axios.spread((googleRes, appleRes) => {
-    		// do something with both responses
-  		});*/
     },
 
     checkForm() {
