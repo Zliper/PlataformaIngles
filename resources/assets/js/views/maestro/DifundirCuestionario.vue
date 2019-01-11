@@ -1,134 +1,132 @@
 <template>
-    <div>
-        <div v-if="errors.length" class="alert alert-danger error">
-			<b>Please correct the following error(s):</b>
-			<ul>
-				<li v-for="e in errors"> {{ e }} </li>
-			</ul>
-		</div>
-        
-        <h3 class="titles"> {{ titulo }}</h3>
-
-        <card-transition> 
-
-		<div class="card mb-5" :key="cuestionarioSelected.id" v-if="datos">
-			<div class="card-body">
-				<table class="table table-hover">
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">Titulo</th>
-							<th scope="col"> {{cuestionarioSelected.nota}} </th>
-						</tr>
-					</thead>
-
-					<tbody>	
-
-						<tr>
-							<th>Instrucciones</th>	
-							<td>
-								{{ cuestionarioSelected.instruccion }}
-							</td>
-						</tr>
-
-						<tr>
-							<th>Nivel</th>
-							<td>
-								{{ cuestionarioSelected.materia.materia }}
-							</td>
-						</tr>
-						
-						<tr>
-							<th>Punto Gramatical</th>
-							<td>
-								{{ cuestionarioSelected.punto_gramatical }}
-							</td>
-						</tr>
-						
-						<tr>
-							<th>Cuestionario para</th>
-							<td>
-								{{ cuestionarioSelected.tipo.catalogo }}
-							</td>
-						</tr>
-						
-						<tr>
-							<th>Reactivos de reading</th>
-							<td>
-								{{ cuestionarioSelected.cantidad_reading }}
-							</td>
-						</tr>
-
-						<tr>
-							<th>Reactivos de writing</th>	
-							<td>
-								{{ cuestionarioSelected.cantidad_writing }}
-							</td>
-						</tr>
-
-						<tr>
-							<th>Reactivos de listening</th>	
-							<td>
-								{{ cuestionarioSelected.cantidad_listening }}
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</card-transition>
-        
-        <form class="mb-4" v-on:submit.prevent="checkForm">
-            <div class="row justify-content-center inputs" v-if="datos">
-
-				<div class="col-md-3 col-sm-12">
-					<div class="card text-white bg-secondary">
-						<div class="card-header">
-							<h5>Alumnos </h5>
-							
-							<input type="radio" id="all" value="false" v-model="showListaAlumnos">
-							<label for="all"> Todos </label>
-							<input type="radio" id="select" value="true" v-model="showListaAlumnos">
-							<label for="select"> Seleccionar</label>
-						</div>
-						<transition name="fade">
-							<div class="card-body" v-if="showListaAlumnos=='true'">
-								
-									<div v-for="matricula in matriculas" v-bind:key="matricula.matricula">
-										<input type="checkbox" :id=matricula.matricula :value=matricula.matricula v-model="matriculasSeleccionadas">
-										<label :for=matricula.matricula>{{matricula.matricula}}</label>
-									</div>
-								
-							</div>
-						</transition>
-						<div class="card-footer" v-if="showListaAlumnos=='true'">
-							<span>Matriculas seleccionadas: {{ matriculasSeleccionadas }}</span>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-3 col-sm-12 inputs">
-					<input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1" v-model="aplicacion.duracion" placeholder="Duración del examen">
-				</div>
-				<div class="col-md-3 col-sm-12 inputs">
-					<input type="datetime-local" class="form-control" v-model="aplicacion.fecha_hora" placeholder="Fecha y hora de aplicacion">
-				</div>
-
-				<div v-if="false">
-					<date-pick
-						v-model="date"
-						class="form-control"
-						:pickTime="true"
-						:isDateDisabled="isPastDate"
-						:format="'YYYY-MM-DD HH:mm'"
-					></date-pick>
-				</div>
-
-				<div class="col-md-2 col-sm-12 inputs">
-					<button type="submit" class="btn btn-primary btn-block">Guardar</button>
-				</div>
-			</div>
-        </form>
+  <div>
+    <div v-if="errors.length" class="alert alert-danger error">
+      <b>Please correct the following error(s):</b>
+      <ul>
+        <li v-for="e in errors">{{ e }}</li>
+      </ul>
     </div>
+
+    <h3 class="titles">{{ titulo }}</h3>
+
+    <card-transition>
+      <div class="card mb-5" :key="cuestionarioSelected.id" v-if="datos">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">{{cuestionarioSelected.nota}}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th>Instrucciones</th>
+                <td>{{ cuestionarioSelected.instruccion }}</td>
+              </tr>
+
+              <tr>
+                <th>Nivel</th>
+                <td>{{ cuestionarioSelected.materia.materia }}</td>
+              </tr>
+
+              <tr>
+                <th>Punto Gramatical</th>
+                <td>{{ cuestionarioSelected.punto_gramatical }}</td>
+              </tr>
+
+              <tr>
+                <th>Cuestionario para</th>
+                <td>{{ cuestionarioSelected.tipo.catalogo }}</td>
+              </tr>
+
+              <tr>
+                <th>Reactivos de reading</th>
+                <td>{{ cuestionarioSelected.cantidad_reading }}</td>
+              </tr>
+
+              <tr>
+                <th>Reactivos de writing</th>
+                <td>{{ cuestionarioSelected.cantidad_writing }}</td>
+              </tr>
+
+              <tr>
+                <th>Reactivos de listening</th>
+                <td>{{ cuestionarioSelected.cantidad_listening }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </card-transition>
+
+    <form class="mb-4" v-on:submit.prevent="checkForm">
+      <div class="row justify-content-center inputs" v-if="datos">
+        <div class="col-md-3 col-sm-12">
+          <div class="card text-white bg-secondary">
+            <div class="card-header">
+              <h5>Alumnos</h5>
+
+              <input type="radio" id="all" value="false" v-model="showListaAlumnos">
+              <label for="all">Todos</label>
+              <input type="radio" id="select" value="true" v-model="showListaAlumnos">
+              <label for="select">Seleccionar</label>
+            </div>
+            <transition name="fade">
+              <div class="card-body" v-if="showListaAlumnos=='true'">
+                <div v-for="matricula in matriculas" v-bind:key="matricula.matricula">
+                  <input
+                    type="checkbox"
+                    :id="matricula.matricula"
+                    :value="matricula.matricula"
+                    v-model="matriculasSeleccionadas"
+                  >
+                  <label :for="matricula.matricula">{{matricula.matricula}}</label>
+                </div>
+              </div>
+            </transition>
+            <div class="card-footer" v-if="showListaAlumnos=='true'">
+              <span>Matriculas seleccionadas: {{ matriculasSeleccionadas }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-12 inputs">
+          <input
+            type="number"
+            class="form-control"
+            onkeypress="return event.charCode >= 48"
+            min="1"
+            v-model="aplicacion.duracion"
+            placeholder="Duración del examen"
+          >
+        </div>
+        <div class="col-md-3 col-sm-12 inputs">
+          <input
+            type="datetime-local"
+            class="form-control"
+            v-model="aplicacion.fecha_hora"
+            placeholder="Fecha y hora de aplicacion"
+          >
+        </div>
+
+        <div v-if="false">
+          <date-pick
+            v-model="date"
+            class="form-control"
+            :pickTime="true"
+            :isDateDisabled="isPastDate"
+            :format="'YYYY-MM-DD HH:mm'"
+          ></date-pick>
+        </div>
+
+        <div class="col-md-2 col-sm-12 inputs">
+          <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -171,6 +169,8 @@ export default {
         .catch(e => {
           console.log(e);
         });
+    } else {
+      this.$router.push({ name: "cuestionarios" });
     }
   },
   methods: {

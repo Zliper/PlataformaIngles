@@ -8,6 +8,7 @@ use App\Http\Resources\DifusionResource;
 use App\Http\Resources\collections\DifusionCollection;
 use App\models\Difusion;
 use App\User;
+use Carbon\Carbon;
 class DifusionController extends Controller
 {
     /**
@@ -51,6 +52,38 @@ class DifusionController extends Controller
                 ->where('difusiones.matricula','=',$matricula)->where('evaluaciones.catalogo_id','=',$tipo)->where('difusiones.status','=',$status);
             })
                 ->get();
+            return $difusiones;
+        } else if ($request->input('getActiveByAlumno')) {
+            if($request->input('getActiveByAlumno')=='actividades') $tipo = '4';
+            if($request->input('getActiveByAlumno')=='ordinarios') $tipo = '3';
+            if($request->input('getActiveByAlumno')=='recuperaciones') $tipo = '2';
+            if($request->input('getActiveByAlumno')=='extraordinarios') $tipo = '1';
+            $matricula = $request->input('matricula');
+            $status = $request->input('status');
+            date_default_timezone_set('America/Mexico_City');
+            $minutes = 6;
+            $fecha = date('Y-m-d H:i:s', strtotime('-10 minutes'));
+            $difusiones = Difusion::join('evaluaciones', function($join) use ($tipo,$matricula,$status,$fecha){
+                $join->on('difusiones.evaluacion_id','=','evaluaciones.id')
+                ->where('difusiones.matricula','=',$matricula)->where('evaluaciones.catalogo_id','=',$tipo)->where('difusiones.status','=',$status)->where('fecha_aplicacion', '>=',$fecha);
+            })
+                ->get();
+            return $difusiones;
+        } else if ($request->input('countActiveByAlumno')) {
+            if($request->input('countActiveByAlumno')=='actividades') $tipo = '4';
+            if($request->input('countActiveByAlumno')=='ordinarios') $tipo = '3';
+            if($request->input('countActiveByAlumno')=='recuperaciones') $tipo = '2';
+            if($request->input('countActiveByAlumno')=='extraordinarios') $tipo = '1';
+            $matricula = $request->input('matricula');
+            $status = $request->input('status');
+            date_default_timezone_set('America/Mexico_City');
+            $minutes = 6;
+            $fecha = date('Y-m-d H:i:s', strtotime('-10 minutes'));
+            $difusiones = Difusion::join('evaluaciones', function($join) use ($tipo,$matricula,$status,$fecha){
+                $join->on('difusiones.evaluacion_id','=','evaluaciones.id')
+                ->where('difusiones.matricula','=',$matricula)->where('evaluaciones.catalogo_id','=',$tipo)->where('difusiones.status','=',$status)->where('fecha_aplicacion', '>=',$fecha);
+            })
+                ->count();
             return $difusiones;
         }
         return new DifusionCollection(Difusion::all());

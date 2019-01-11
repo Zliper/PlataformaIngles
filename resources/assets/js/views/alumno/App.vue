@@ -13,6 +13,12 @@
                             <li class="nav-item">
                                 <router-link :to="{ name: 'index' } " class="nav-link text-white">Inicio</router-link>
                             </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name: 'actividades' } " class="nav-link text-white">Actividades</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name: 'examenes' } " class="nav-link text-white">Examenes</router-link>
+                            </li>
                         </ul>
                     </div>
                </div>

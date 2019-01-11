@@ -19,6 +19,8 @@ class EvaluacionController extends Controller
     {
         if ($request->input('byTipo','')) {
             return new EvaluacionCollection(Evaluacion::where('profesor_id','=',$request->input('profesorId'))->where('catalogo_id','=',$request->input('byTipo',''))->get());
+        } else if ($request->input('byID','')){
+            return new EvaluacionCollection(Evaluacion::where('id','=',$request->input('byID'))->get());
         } /*else if($request->input('count','') == "Actividades") {
             return Evaluacion::where('alumno_id','=',1)->where('catalogo_id',4)->count();
         } else if($request->input('count','') == "Examenes") {

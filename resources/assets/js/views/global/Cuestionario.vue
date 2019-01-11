@@ -3,7 +3,7 @@
     <br>
     <div class="form-row">
       <div class="col-md-10 col-sm-12">
-        <h3>Cuestionarios</h3>
+        <h3>Cuestionarios creados</h3>
       </div>
       <div class="col-md-2 col-sm-12">
         <router-link :to="{ name: 'cuestionario.create' }" >

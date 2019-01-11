@@ -26,6 +26,15 @@ class ReactivoController extends Controller
             return Reactivo::where('estatus_id',1)->count();
         } else if($request->input('count','') == "Espera") {
             return Reactivo::where('estatus_id',2)->count();
+        } else if($request->input('count','') == "Espera") {
+            return Reactivo::where('estatus_id',2)->count();
+        } else if($request->input('byCompetencia')) {
+            if($request->input('byCompetencia')=='reading') $competencia = '1';
+            if($request->input('byCompetencia')=='listening') $competencia = '2';
+            if($request->input('byCompetencia')=='writing') $competencia = '3';
+            $tipo = $request->input('tipo');
+            $punto = $request->input('punto');
+            return Reactivo::where('estatus_id',1)->where('competencia_id',$competencia)->where('catalogo_id',$tipo)->where('punto_id',$punto)->get();
         } else {
             return new ReactivoCollection(Reactivo::where('profesor_id','=',$request->input('by',''))->paginate(3));
         }

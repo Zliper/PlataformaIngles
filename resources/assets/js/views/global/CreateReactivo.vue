@@ -1,64 +1,120 @@
 <template>
-	<div>
-		<div v-if="errors.length" class="alert alert-danger error">
-			<b>Please correct the following error(s):</b>
-			<ul>
-				<li v-for="e in errors"> {{ e }} </li>
-			</ul>
-		</div>
+  <div>
+    <div v-if="errors.length" class="alert alert-danger error">
+      <b>Please correct the following error(s):</b>
+      <ul>
+        <li v-for="e in errors">{{ e }}</li>
+      </ul>
+    </div>
 
-		<h3 class="titles">Opciones</h3>
-		<hr>
-		<div>
-			<div class="row justify-content-center inputs">
-				<div class="col-md-8 col-sm-12">
-					<label for="catalogo">Destino del reactivo</label>
-					<select v-model="reactivo.tipo_cuestionario" id="catalogo" class="form-control">
-						<option v-for="c in cuestionarios" v-bind:value="c.id"> {{ c.tipo }}</option>
-					</select>
-				</div>
-			</div>
+    <h3 class="titles">Opciones</h3>
+    <hr>
+    <div>
+      <div class="row justify-content-center inputs">
+        <div class="col-md-8 col-sm-12">
+          <label for="catalogo">Destino del reactivo</label>
+          <select v-model="reactivo.tipo_cuestionario" id="catalogo" class="form-control">
+            <option v-for="c in cuestionarios" v-bind:value="c.id">{{ c.tipo }}</option>
+          </select>
+        </div>
+      </div>
 
-			<div class="row justify-content-center inputs">
-				<div class="col-md-8 col-sm-12">
-					<label for="materia">Punto Gramatical</label>
-					<select v-model="reactivo.punto_gramatical" name="materia" id="materia" class="form-control">
-						<option v-for="punto in puntos" v-bind:value="punto.id"> {{ punto.unidad }} - {{ punto.punto_gramatica }}</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="row justify-content-center inputs">
-				<div class="col-md-8 col-sm-12">
-					<h6>Elije la competencia al cual seran asignados los reactivos y el numero de ellos</h6>
-				</div>
-			</div>
-			
-			<div class="row justify-content-center inputs">
-				<div class="col-md-3 col-sm-12 inputs">
-					<select v-model="reactivo.competencia" name="competencia" id="competencia" class="form-control">
-							<option selected disabled value="">Competencia</option>
-							<option v-for="competencia in competencias" v-bind:value="competencia.id"> {{ competencia.competencia }}</option>
-					</select>
-				</div>
-				<div class="col-md-3 col-sm-12 inputs">
-					<input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1"  :disabled="disable" v-model="reactivo.cantidad" placeholder="Cantidad de reactivos">
-				</div>
+      <div class="row justify-content-center inputs">
+        <div class="col-md-8 col-sm-12">
+          <label for="materia">Punto Gramatical</label>
+          <select
+            v-model="reactivo.punto_gramatical"
+            name="materia"
+            id="materia"
+            class="form-control"
+          >
+            <option
+              v-for="punto in puntos"
+              v-bind:value="punto.id"
+            >{{ punto.unidad }} - {{ punto.punto_gramatica }}</option>
+          </select>
+        </div>
+      </div>
 
-				<div class="col-md-2 col-sm-12 inputs">
-					<button class="btn btn-primary" v-on:click="disableButtons" type="button">Confirmar</button>
-				</div>
-			</div>
-	
-			<div class="row justify-content-center">
-				<div style="width: 50%; margin: 0 auto;" class="col-md-8 inputs">
-					<div class="alert alert-primary alert-dismissible fade show" role="alert">
-						<strong>Hola!</strong><br>De ser necesario adjunte un archivo de apoyo para que el alumno pueda responder el reactivo.
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class=" inputs" align="center">
+      <div class="row justify-content-center inputs">
+        <div class="col-md-8 col-sm-12">
+          <h6>Elije la competencia al cual seran asignados los reactivos y el numero de ellos</h6>
+        </div>
+      </div>
+
+      <div class="row justify-content-center inputs">
+        <div class="col-md-3 col-sm-12 inputs">
+          <select
+            v-model="reactivo.competencia"
+            name="competencia"
+            id="competencia"
+            class="form-control"
+          >
+            <option selected disabled value>Competencia</option>
+            <option
+              v-for="competencia in competencias"
+              v-bind:value="competencia.id"
+            >{{ competencia.competencia }}</option>
+          </select>
+        </div>
+        <div class="col-md-3 col-sm-12 inputs">
+          <input
+            type="number"
+            class="form-control"
+            onkeypress="return event.charCode >= 48"
+            min="1"
+            :disabled="disable"
+            v-model="reactivo.cantidad"
+            placeholder="Cantidad de reactivos"
+          >
+        </div>
+
+        <div class="col-md-2 col-sm-12 inputs">
+          <button class="btn btn-primary" v-on:click="disableButtons" type="button">Confirmar</button>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div style="width: 50%; margin: 0 auto;" class="col-md-8 inputs">
+          <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Hola!</strong>
+            <br>Adjunte un archivo de apoyo para que el alumno pueda responder el reactivo.
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class>
+            <div class="card-header">Seleccione una imagen</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-9">
+                  <input
+                    type="file"
+                    v-on:change="onImageChange"
+                    :disabled="uploadComplete"
+                    class="form-control"
+                    value="Seleccionar"
+                  >
+                </div>
+                <div class="col-md-3">
+                  <button
+                    :class="buttonStatus"
+                    :disabled="uploadComplete"
+                    @click="uploadImage"
+                  >{{ buttonText }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <!-- <div class="inputs" align="center">
             <div class="upload">
               <ul v-if="files.length">
                 <li v-for="(file, index) in files" :key="file.id">
@@ -74,107 +130,160 @@
               <ul v-else>
                 <td>
                   <div class="text-center">
-                    <h4>Arrastre el archivo a subir<br/>o</h4>
+                    <h4>Arrastre el archivo a subir
+                      <br>o
+                    </h4>
                     <label for="file" class="btn btn-lg btn-primary">Seleccione el archivo</label>
                   </div>
                 </td>
               </ul>
 
               <div v-show="$refs.upload && $refs.upload.dropActive" class="drop-active">
-    		        <h3>Suelte el archivo para subir</h3>
+                <h3>Suelte el archivo para subir</h3>
               </div>
               <div class="example-btn">
-                <!-- <input type="file"  @change="onFileChange"> -->
+                <!-- <input type="file"  @change="onFileChange"> 
                 <file-upload
                   class="btn btn-primary"
-                  accept="image/png,image/jpeg,image/jpg,audio/mp3,application/pdf"
-                  post-action="api/images-upload"
+                  accept="image/png, image/jpeg, image/jpg, audio/mp3, application/pdf"
+                  post-action="/api/upload"
                   :multiple="false"
                   :drop="true"
                   :drop-directory="false"
                   v-model="files"
-                  ref="upload">
-                    <i class="fa fa-plus"></i>
-                    Seleccionar archivo
+                  ref="upload"
+                >
+                  <i class="fa fa-plus"></i>
+                  Seleccionar archivo
                 </file-upload>
-                <button type="button" class="btn btn-success" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  v-if="!$refs.upload || !$refs.upload.active"
+                  @click.prevent="$refs.upload.active = true"
+                >
                   <i class="fa fa-arrow-up" aria-hidden="true"></i>
                   Iniciar la carga
                 </button>
-                <button type="button" class="btn btn-danger"  v-else @click.prevent="$refs.upload.active = false">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  v-else
+                  @click.prevent="$refs.upload.active = false"
+                >
                   <i class="fa fa-stop" aria-hidden="true"></i>
                   Detener la carga
                 </button>
               </div>
             </div>
+          </div>-->
+        </div>
+
+        <div class="col-md-8 inputs">
+          <label for="materia">Tipo de reactivo</label>
+          <select
+            v-model="reactivo.tipo_reactivo"
+            @change="instruccionesBy(reactivo.tipo_reactivo)"
+            name="materia"
+            id="materia"
+            class="form-control mb-4"
+          >
+            <option v-for="t in tipos" v-bind:value="t.id">{{ t.tipo }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-8 inputs">
+          <label for="instruccion">Instrucciones</label>
+          <select name="instruccion" v-model="instruccion" class="form-control mb-4">
+            <option
+              v-for="instruccion in instrucciones"
+              v-bind:value="  instruccion.id "
+            >{{ instruccion.instruccion }}</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 class="titles">Reactivos</h3>
+
+      <template v-if="disable">
+        <div class="row justify-content-center">
+          <div v-for="x in reactivos" class="card col-sm-10 col-md-7 border-dark inputs">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="question">Pregunta</label>
+                <input
+                  type="text"
+                  v-model="preguntas[x].pregunta"
+                  class="form-control"
+                  placeholder="Pregunta"
+                >
+              </div>
+              <div class="form-group">
+                <label for="respuesta">Respuesta correcta</label>
+                <input
+                  type="text"
+                  v-model="preguntas[x].respuesta"
+                  class="form-control"
+                  placeholder="Respuesta correcta"
+                >
+              </div>
+              <template v-if="reactivo.tipo_reactivo == 2">
+                <div class="form-group">
+                  <label for="respuesta">Respuesta incorrecta</label>
+                  <input
+                    type="text"
+                    v-model="preguntas[x].opciones.op_1"
+                    class="form-control"
+                    placeholder="Respuesta incorrecta"
+                  >
+                </div>
+              </template>
+              <template v-if="reactivo.tipo_reactivo == 3">
+                <div class="row form-group">
+                  <div class="col-sm-4">
+                    <label for="respuesta">Opción 1</label>
+                    <input
+                      type="text"
+                      v-model="preguntas[x].opciones.op_1"
+                      class="form-control"
+                      placeholder="Opción 1"
+                    >
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="respuesta">Opción 2</label>
+                    <input
+                      type="text"
+                      v-model="preguntas[x].opciones.op_2"
+                      class="form-control"
+                      placeholder="Opción 1"
+                    >
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="respuesta">Opción 3</label>
+                    <input
+                      type="text"
+                      v-model="preguntas[x].opciones.op_3"
+                      class="form-control"
+                      placeholder="Opción 1"
+                    >
+                  </div>
+                </div>
+              </template>
+            </div>
           </div>
-				</div>
-
-				<div class="col-md-8 inputs">
-					<label for="materia">Tipo de reactivo</label>
-					<select v-model="reactivo.tipo_reactivo" @change="instruccionesBy(reactivo.tipo_reactivo)"  name="materia" id="materia" class="form-control mb-4">
-						<option v-for="t in tipos" v-bind:value="t.id"> {{ t.tipo }}</option>
-					</select>
-				</div>
-
-				<div class="col-md-8 inputs">
-					<label for="instruccion">Instrucciones</label>
-					<select name="instruccion" v-model="instruccion" class="form-control mb-4">
-						<option  v-for="instruccion in instrucciones" v-bind:value="  instruccion.id "> {{ instruccion.instruccion }} </option>
-					</select>
-				</div>
-			</div>
-			
-			<h3 class="titles">Reactivos</h3>
-
-			<template v-if="disable">
-				<div class="row justify-content-center">
-					<div v-for="x in reactivos" class="card col-sm-10 col-md-7 border-dark inputs">
-						<div class="card-body">
-							<div class="form-group">
-								<label for="question">Pregunta</label>
-								<input type="text" v-model="preguntas[x].pregunta" class="form-control" placeholder="Pregunta">
-							</div>
-							<div class="form-group">
-								<label for="respuesta">Respuesta correcta</label>
-								<input type="text" v-model="preguntas[x].respuesta" class="form-control" placeholder="Respuesta correcta">
-							</div>
-                            <template v-if="reactivo.tipo_reactivo == 2">
-								<div class="form-group">
-										<label for="respuesta">Respuesta incorrecta</label>
-										<input type="text" v-model="preguntas[x].opciones.op_1" class="form-control" placeholder="Respuesta incorrecta">
-									</div>
-							</template>
-							<template v-if="reactivo.tipo_reactivo == 3">
-								<div class="row form-group">
-									<div class="col-sm-4">
-										<label for="respuesta">Opción 1</label>
-										<input type="text" v-model="preguntas[x].opciones.op_1" class="form-control" placeholder="Opción 1">
-									</div>
-									<div class="col-sm-4">
-										<label for="respuesta">Opción 2</label>
-										<input type="text" v-model="preguntas[x].opciones.op_2" class="form-control" placeholder="Opción 1">
-									</div>
-									<div class="col-sm-4">
-										<label for="respuesta">Opción 3</label>
-										<input type="text" v-model="preguntas[x].opciones.op_3" class="form-control" placeholder="Opción 1">
-									</div>
-								</div>
-							</template>
-						</div>
-					</div>
-					<div class="col-sm-7">
-						<button class="btn btn-primary btn-lg btn-block" @click="checkForm">Guardar</button>	
-					</div>
-				</div>
-			</template>
-			<hr>
-		</div>
-	</div>
+          <div class="col-sm-7">
+            <button class="btn btn-primary btn-lg btn-block" @click="checkForm">Guardar</button>
+          </div>
+        </div>
+      </template>
+      <hr>
+    </div>
+  </div>
 </template>
 
 <script>
 import FileUpload from "vue-upload-component";
+//import FileUpload from "vue-upload-component/dist/vue-upload-component.part.js";
 var cantidad;
 export default {
   components: {
@@ -196,7 +305,11 @@ export default {
       },
       preguntas: [],
       files: [],
-      textID: '',
+      textID: "",
+      image: "",
+      uploadComplete: false,
+      buttonText: "Subir imagen",
+      buttonStatus: "btn btn-primary btn-block"
     };
   },
 
@@ -313,34 +426,38 @@ export default {
     },
 
     addText() {
-      const formData = new FormData();
-      this.files.forEach( file =>{
+      /* const formData = new FormData();
+      this.files.forEach(file => {
         alert(file.name);
-        formData.append('images[]', file,file.name);
+        formData.append("images[]", file, file.name);
       });
 
-      axios.post('/api/images-upload',this.files.name)
-       .then(response => {
-         alert('ookokok');
-         alert(this.files.name);
+      axios
+        .post("/api/images-upload", this.files.name)
+        .then(response => {
+          alert("ookokok");
+          alert(this.files.name);
           this.textID = response.data.id;
-          alert( this.textID);
-        }) .catch(e => {
+          alert(this.textID);
+        })
+        .catch(e => {
           console.log(e);
         });
+*/
+
       // console.clear;
       // console.log(this.files[0].file);
-      // axios
-      //   .post("/api/images-upload", {
-      //     text: this.files[0].file
-      //   })
-      //   .then(response => {
-      //     this.textID = response.data.id;
-      //     this.add(); //luego se registran las preguntas
-      //   })
-      //   .catch(e => {
-      //     console.log(e);
-      //   });
+      axios
+        .post("/api/images-upload", {
+          text: this.files[0].file
+        })
+        .then(response => {
+          this.textID = response.data.id;
+          this.add(); //luego se registran las preguntas
+        })
+        .catch(e => {
+          console.log(e);
+        });
     },
 
     addReactivo(pregunta) {
@@ -350,7 +467,7 @@ export default {
           tipo_id: this.reactivo.tipo_reactivo,
           estatus_id: 2,
           profesor_id: 1,
-          text_id: this.files.name,
+          text_id: this.reactivo.textID,
           punto_id: this.reactivo.punto_gramatical,
           catalogo_id: this.reactivo.tipo_cuestionario,
           pregunta: pregunta.pregunta,
@@ -373,27 +490,62 @@ export default {
       console.log(!this.reactivo.competencia);
       if (!this.reactivo.competencia)
         this.errors.push("Error elegir una competencia");
-      else{
-      if (cantidad > 0) {
-        this.disable = true;
-        this.reactivos = this.range(cantidad);
-        this.preguntas = this.range(cantidad);
+      else {
+        if (cantidad > 0) {
+          this.disable = true;
+          this.reactivos = this.range(cantidad);
+          this.preguntas = this.range(cantidad);
 
-        for (var i = 0; i < cantidad; i++) {
-          this.preguntas[i] = {
-            opciones: {}
-          };
+          for (var i = 0; i < cantidad; i++) {
+            this.preguntas[i] = {
+              opciones: {}
+            };
+          }
+          return;
+        } else {
+          this.errors.push("Error elegir una cantidad de reactivos");
         }
-        return;
-      } else {
-        this.errors.push("Error elegir una cantidad de reactivos");
-      }
       }
     },
     onFileChange(e) {
-      var filess =e.target.files || e.dataTransfer.files;
+      var filess = e.target.files || e.dataTransfer.files;
       console.log(filess[0].name);
+    },
 
+    onImageChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+    },
+
+    createImage(file) {
+      let reader = new FileReader();
+      let vm = this;
+      reader.onload = e => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+
+    uploadImage() {
+      //console.log({ image: this.image });
+      axios;
+      axios
+        .post("/api/upload", { image: this.image })
+        .then(response => {
+          if (response.data.success) {
+            this.reactivo.textID = response.data.success.id;
+            this.uploadComplete = true;
+            this.buttonText = "Completado";
+            this.buttonStatus = "btn btn-success btn-block";
+            //console.log(response.data.success.id);
+          }
+        })
+        .catch(e => {
+          this.buttonText = "Error";
+          this.buttonStatus = "btn btn-danger btn-block";
+          console.log(e);
+        });
     }
   }
 };

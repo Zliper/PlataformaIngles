@@ -24,7 +24,8 @@ Route::get('tipos','API\TipoReactivoController@index');
 Route::get('cuestionarios','API\CatalogoCuestionarioController@index');
 
 //Route::delete('delEvaluaciones','API\EvaluacionController@destroy');
-Route::post('images-upload','API\ReactivoController@upload');
+Route::post('file-upload','API\ReactivoController@upload');
+Route::post('upload', 'FileController@store');
 
 Route::group(['middleware' => 'auth:api'], function() {
 	//colocar todas las rutas para login api.

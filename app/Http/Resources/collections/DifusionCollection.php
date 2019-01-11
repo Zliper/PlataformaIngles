@@ -27,9 +27,6 @@ class DifusionCollection extends ResourceCollection
                     'fecha_creacion' => $p->fecha_creacion,
                     'fecha_aplicacion' => $p->fecha_aplicacion,
                     'status' => $p->status,
-                    /*'relationships' => [
-                        "punto_gramatical" => new PuntoGramaticalResource($p->punto_gramatical),
-                    ],*/
                 ];
             })
         ];
