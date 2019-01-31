@@ -29775,6 +29775,9 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
 
 
 //import FileUpload from "vue-upload-component/dist/vue-upload-component.part.js";
@@ -29997,6 +30000,7 @@ var cantidad;
       var _this8 = this;
 
       //console.log({ image: this.image });
+      console.log("FileSelected: " + fileSelected.file);
       axios;
       axios.post("/api/upload", { image: this.image }).then(function (response) {
         if (response.data.success) {
@@ -59211,7 +59215,10 @@ var render = function() {
                         attrs: {
                           type: "file",
                           disabled: _vm.uploadComplete,
-                          value: "Seleccionar"
+                          value: "Seleccionar",
+                          id: "fileSelected",
+                          name: "fileSelected",
+                          accept: "image/*, audio/*, .pdf"
                         },
                         on: { change: _vm.onImageChange }
                       })

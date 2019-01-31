@@ -100,6 +100,9 @@
                     :disabled="uploadComplete"
                     class="form-control"
                     value="Seleccionar"
+                    id="fileSelected"
+                    name="fileSelected"
+                    accept="image/*, audio/*, .pdf"
                   >
                 </div>
                 <div class="col-md-3">
@@ -529,6 +532,7 @@ export default {
 
     uploadImage() {
       //console.log({ image: this.image });
+      console.log("FileSelected: " + fileSelected.file);
       axios;
       axios
         .post("/api/upload", { image: this.image })
