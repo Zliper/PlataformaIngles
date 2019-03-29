@@ -8,6 +8,7 @@ use App\Http\Resources\collections\ReactivoCollection;
 use App\Http\Resources\ReactivoResource;
 use App\models\Reactivo;
 use App\models\OpcionReactivo;
+use App\models\Competencia;
 
 class ReactivoController extends Controller
 {
@@ -34,7 +35,7 @@ class ReactivoController extends Controller
             if($request->input('byCompetencia')=='writing') $competencia = '3';
             $tipo = $request->input('tipo');
             $punto = $request->input('punto');
-            return Reactivo::where('estatus_id',1)->where('competencia_id',$competencia)->where('catalogo_id',$tipo)->where('punto_id',$punto)->get();
+            return Reactivo::where('estatus_id',1)->where('competencia_id',$competencia)->where('catalogo_id',$tipo)->where('punto_id',$punto)->with('Opciones')->with('Competencia')->get();
         } else {
             return new ReactivoCollection(Reactivo::where('profesor_id','=',$request->input('by',''))->paginate(3));
         }

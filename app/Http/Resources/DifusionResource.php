@@ -15,13 +15,13 @@ class DifusionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'difusion_id' => $this->id,
             'evaluacion_id' => $this->evaluacion_id,
             'profesor_id' => $this->evaluacion_id,
-            'matricula' => $this->matricula,
             'duracion' => $this->duracion,
             'fecha_creacion' => $this->fecha_creacion,
             'fecha_aplicacion' => $this->fecha_aplicacion,
+            'fecha_limite' => $this->fecha_limite,
             'status' => $this->status,
         ];
     }

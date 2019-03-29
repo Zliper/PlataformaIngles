@@ -34,9 +34,9 @@ class FileController extends Controller
 
         //$path = $request->get('image')->store('photos');
 
-       /*$image= new FileUpload();
+       /* $image= new FileUpload();
        $image->image_name = $name;
-       $image->save();*/
+       $image->save(); */
 
        $options = [
             "text" => $name

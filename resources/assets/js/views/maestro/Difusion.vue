@@ -3,12 +3,7 @@
     <br>
     <div class="form-row">
       <div class="col-md-10 col-sm-12">
-        <h3>Cuestionarios creados</h3>
-      </div>
-      <div class="col-md-2 col-sm-12">
-        <router-link :to="{ name: 'cuestionario.create' }">
-          <button type="submit" class="btn btn-primary btn-block">Crear cuestionario</button>
-        </router-link>
+        <h3>Aplicaciones creadas</h3>
       </div>
     </div>
     <hr>
@@ -17,21 +12,20 @@
       <h4 style="text-align: center;">Actividades</h4>
       <div class="row justify-content-center inputs">
         <card-transition style="min-width: 75%">
-          <div class="card mb-5" v-for="actividad in actividades" :key="actividad.id">
+          <div class="card mb-5" v-for="actividad in actividades" :key="actividad.difusion_id">
             <br>
             <div class="row">
               <div class="col-md-12 col-sm-12 inputs">
-                <div class="col-md-12 col-sm-12">{{ actividad.nota }}</div>
+                <div class="col-md-12 col-sm-12">
+                  Cuestionario: {{ actividad.evaluacion_id.nota }}
+                  <br>
+                  <!-- Alumno: {{ actividad.matricula }} -->
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12 col-sm-12" align="right">
                 <div class="col-md-12 col-sm-12 inputs">
-                  <button
-                    class="btn btn-primary"
-                    v-on:click="difundir(actividad)"
-                    type="button"
-                  >Aplicar</button>
                   <button
                     class="btn btn-danger"
                     v-on:click="confirmDelete(actividad)"
@@ -50,21 +44,20 @@
       <h4 style="text-align: center;">Ordinarios</h4>
       <div class="row justify-content-center inputs">
         <card-transition style="min-width: 75%">
-          <div class="card mb-5" v-for="ordinario in ordinarios" :key="ordinario.id">
+          <div class="card mb-5" v-for="ordinario in ordinarios" :key="ordinario.difusion_id">
             <br>
             <div class="row">
               <div class="col-md-12 col-sm-12 inputs">
-                <div class="col-md-12 col-sm-12">{{ ordinario.nota }}</div>
+                <div class="col-md-12 col-sm-12">
+                  Cuestionario: {{ ordinario.evaluacion_id.nota }}
+                  <br>
+                  <!-- Alumno: {{ ordinario.matricula }} -->
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12 col-sm-12" align="right">
                 <div class="col-md-12 col-sm-12 inputs">
-                  <button
-                    class="btn btn-primary"
-                    v-on:click="difundir(ordinario)"
-                    type="button"
-                  >Aplicar</button>
                   <button
                     class="btn btn-danger"
                     v-on:click="confirmDelete(ordinario)"
@@ -83,21 +76,24 @@
       <h4 style="text-align: center;">Recuperaciones</h4>
       <div class="row justify-content-center inputs">
         <card-transition style="min-width: 75%">
-          <div class="card mb-5" v-for="recuperacion in recuperaciones" :key="recuperacion.id">
+          <div
+            class="card mb-5"
+            v-for="recuperacion in recuperaciones"
+            :key="recuperacion.difusion_id"
+          >
             <br>
             <div class="row">
               <div class="col-md-12 col-sm-12 inputs">
-                <div class="col-md-12 col-sm-12">{{ recuperacion.nota }}</div>
+                <div class="col-md-12 col-sm-12">
+                  Cuestionario: {{ recuperacion.evaluacion_id.nota }}
+                  <br>
+                  <!-- Alumno: {{ recuperacion.matricula }} -->
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12 col-sm-12" align="right">
                 <div class="col-md-12 col-sm-12 inputs">
-                  <button
-                    class="btn btn-primary"
-                    v-on:click="difundir(recuperacion)"
-                    type="button"
-                  >Aplicar</button>
                   <button
                     class="btn btn-danger"
                     v-on:click="confirmDelete(recuperacion)"
@@ -120,24 +116,27 @@
       <h4 style="text-align: center;">Extraordinarios</h4>
       <div class="row justify-content-center inputs">
         <card-transition style="min-width: 75%">
-          <div class="card mb-5" v-for="extraordinario in extraordinarios" :key="extraordinario.id">
+          <div
+            class="card mb-5"
+            v-for="extraordinario in extraordinarios"
+            :key="extraordinario.difusion_id"
+          >
             <br>
             <div class="row">
               <div class="col-md-12 col-sm-12 inputs">
-                <div class="col-md-12 col-sm-12">{{ extraordinario.nota }}</div>
+                <div class="col-md-12 col-sm-12">
+                  Cuestionario: {{ extraordinario.evaluacion_id.nota }}
+                  <br>
+                  <!-- Alumno: {{ extraordinario.matricula }} -->
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12 col-sm-12" align="right">
                 <div class="col-md-12 col-sm-12 inputs">
                   <button
-                    class="btn btn-primary"
-                    v-on:click="difundir(extraordinario)"
-                    type="button"
-                  >Aplicar</button>
-                  <button
                     class="btn btn-danger"
-                    v-on:click="confirmDelete(extraordinario.id)"
+                    v-on:click="confirmDelete(extraordinario)"
                     type="button"
                   >Borrar</button>
                   <button
@@ -191,99 +190,116 @@ export default {
         });
     },
     fetchExtraordinarios(
-      page_url = "/api/evaluaciones?byTipo=1&profesorId=" + this.profesorID
+      page_url = "/api/difusiones?getActiveByProfesor=" +
+        this.profesorID +
+        "&tipo=extraordinarios&status=2"
     ) {
       let vm = this;
 
       axios
         .get(page_url)
         .then(response => {
+          console.log(response);
           console.log("ext");
-          this.extraordinarios = response.data.data.evaluaciones;
+          this.extraordinarios = response.data.data.difusiones;
         })
         .catch(e => {
           console.log(e);
         });
     },
     fetchRecuperaciones(
-      page_url = "/api/evaluaciones?byTipo=2&profesorId=" + this.profesorID
+      page_url = "/api/difusiones?getActiveByProfesor=" +
+        this.profesorID +
+        "&tipo=recuperaciones&status=2"
     ) {
       let vm = this;
 
       axios
         .get(page_url)
         .then(response => {
-          console.log("ext");
-          this.recuperaciones = response.data.data.evaluaciones;
+          console.log("rec");
+          this.recuperaciones = response.data.data.difusiones;
         })
         .catch(e => {
           console.log(e);
         });
     },
     fetchOrdinarios(
-      page_url = "/api/evaluaciones?byTipo=3&profesorId=" + this.profesorID
+      page_url = "/api/difusiones?getActiveByProfesor=" +
+        this.profesorID +
+        "&tipo=ordinarios&status=2"
     ) {
       let vm = this;
 
       axios
         .get(page_url)
         .then(response => {
-          console.log("ext");
-          this.ordinarios = response.data.data.evaluaciones;
+          console.log("ord");
+          this.ordinarios = response.data.data.difusiones;
         })
         .catch(e => {
           console.log(e);
         });
     },
     fetchActividades(
-      page_url = "/api/evaluaciones?byTipo=4&profesorId=" + this.profesorID
+      page_url = "/api/difusiones?getActiveByProfesor=" +
+        this.profesorID +
+        "&tipo=actividades&status=2"
     ) {
       let vm = this;
 
       axios
         .get(page_url)
         .then(response => {
-          console.log("ext");
-          this.actividades = response.data.data.evaluaciones;
+          console.log("act");
+          this.actividades = response.data.data.difusiones;
+          console.log(this.actividades);
         })
         .catch(e => {
           console.log(e);
         });
     },
-    difundir(cuestionarioSelected) {
-      this.$router.push({
-        name: "cuestionario.difundir",
-        params: { cuestionarioSelected }
-      });
-    },
     editar(cuestionarioSelected) {
       this.$router.push({
-        name: "cuestionario.edit",
+        name: "difusion.edit",
         params: { cuestionarioSelected }
       });
     },
     confirmDelete(cuestionarioSelected) {
       if (
         confirm(
-          "¿Seguro que desea borrar el cuestionario " +
-            cuestionarioSelected.nota +
-            "? \n Esta accion no se puede deshacer"
+          "¿Seguro que desea borrar la difusion " +
+            cuestionarioSelected.evaluacion_id.nota +
+            "? \n Esto no borrara el cuestionario \n Esta accion no se puede deshacer"
         )
       ) {
         this.borrar(cuestionarioSelected);
       }
     },
     borrar(cuestionarioSelected) {
+      //console.log("cuestionario: " + cuestionarioSelected.difusion_id);
       axios
-        .delete("/api/evaluaciones/" + cuestionarioSelected.id)
+        .delete("/api/difusiones/" + cuestionarioSelected.difusion_id)
         .then(response => {
+          this.delDifusionesAnteriores(cuestionarioSelected);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    delDifusionesAnteriores(cuestionarioSelected) {
+      axios
+        .delete("/api/alumnoDifusiones/" + cuestionarioSelected.difusion_id)
+        .then(response => {
+          //this.$router.push({ name: 'cuestionarios'})
           this.fetchExtraordinarios();
           this.fetchRecuperaciones();
           this.fetchOrdinarios();
           this.fetchActividades();
           //this.$router.push({ name: 'cuestionarios'})
-          this.$toastr("warning", "Cuestionario deleted successfully");
+          this.$toastr("warning", "Difusion deleted successfully");
           console.log(response);
+          // this.addDifusiones(); //luego se registran las preguntas
         })
         .catch(e => {
           console.log(e);

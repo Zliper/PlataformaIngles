@@ -520,7 +520,7 @@ export default {
       if (!files.length) return;
       this.createImage(files[0]);
     },
-
+    
     createImage(file) {
       let reader = new FileReader();
       let vm = this;
@@ -532,7 +532,7 @@ export default {
 
     uploadImage() {
       //console.log({ image: this.image });
-      console.log("FileSelected: " + fileSelected.file);
+      //console.log("FileSelected: " + fileSelected.file);
       axios;
       axios
         .post("/api/upload", { image: this.image })

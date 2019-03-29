@@ -9,7 +9,7 @@ class Difusion extends Model
 
     public $timestamps = false;
 	protected $fillable = [
-		'evaluacion_id','profesor_id','matricula','duracion','fecha_creacion', 'fecha_aplicacion', 'status'
+		'evaluacion_id','profesor_id','duracion','fecha_creacion', 'fecha_aplicacion', 'fecha_limite', 'status'
 	];
     
     protected $table = 'difusiones';

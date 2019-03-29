@@ -32,7 +32,7 @@ class Evaluacion extends Model
     	return $this->belongsTo('App\models\CatalogoCuestionario','catalogo_id','id');
     }
 
-    public function punto_gramatical() {
+    public function puntogramatical() {
     	return $this->belongsTo('App\models\PuntoGramatical','punto_gramatical','id');
     }
 }

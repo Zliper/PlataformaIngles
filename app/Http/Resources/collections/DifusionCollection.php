@@ -16,17 +16,16 @@ class DifusionCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            "difusiones" => $this->collection->transform(function($p) {
+            "difusiones" => $this->collection->transform(function($d) {
                 return [
-                    'id' => $p->id,
-                    //'evaluacion_id' => new EvaluacionResource($p->id),
-                    'evaluacion_id' => $p->evaluacion_id,
-                    'profesor_id' => $p->profesor_id,
-                    'matricula' => $p->matricula,
-                    'duracion' => $p->duracion,
-                    'fecha_creacion' => $p->fecha_creacion,
-                    'fecha_aplicacion' => $p->fecha_aplicacion,
-                    'status' => $p->status,
+                    'difusion_id' => $d->id,
+                    'evaluacion_id' => new EvaluacionResource($d->evaluacion),
+                    'profesor_id' => $d->profesor_id,
+                    'duracion' => $d->duracion,
+                    'fecha_creacion' => $d->fecha_creacion,
+                    'fecha_aplicacion' => $d->fecha_aplicacion,
+                    'fecha_limite' => $d->fecha_limite,
+                    'status' => $d->status,
                 ];
             })
         ];

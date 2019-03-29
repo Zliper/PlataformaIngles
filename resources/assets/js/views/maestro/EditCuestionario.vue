@@ -13,7 +13,7 @@
       <div class="row justify-content-center inputs" v-if="editing">
         <form class="mb-4" v-on:submit.prevent="checkForm">
           <input v-model="cuestionario.nota" class="form-control inputs" placeholder="Titulo">
-          
+
           <select
             v-model="cuestionario.materia.id"
             id="materiaZ"
@@ -21,22 +21,34 @@
             class="form-control inputs"
           >
             <option selected disabled value>Nivel</option>
-            <option v-for="materia in materias" v-bind:value="materia.id">{{ materia.materia }}</option>
+            <option
+              v-for="materia in materias"
+              v-bind:key="materia.id"
+              v-bind:value="materia.id"
+            >{{ materia.materia }}</option>
           </select>
-          
+
           <select v-model="cuestionario.tipo.id" id="tipo" hint="s" class="form-control inputs">
             <option selected disabled value>Tipo de examen</option>
-            <option v-for="tipo in tipos" v-bind:value="tipo.id">{{ tipo.tipo }}</option>
+            <option
+              v-for="tipo in tipos"
+              v-bind:key="tipo.id"
+              v-bind:value="tipo.id"
+            >{{ tipo.tipo }}</option>
           </select>
-          
+
           <select
-            v-model="cuestionario.punto_gramatical"
+            v-model="cuestionario.punto_gramatical.id"
             id="punto"
             hint="s"
             class="form-control inputs"
           >
             <option selected disabled value>Punto gramatical</option>
-            <option v-for="punto in puntos" v-bind:value="punto.id">{{ punto.punto_gramatical }}</option>
+            <option
+              v-for="punto in puntos"
+              v-bind:key="punto.id"
+              v-bind:value="punto.id"
+            >{{ punto.punto_gramatical }}</option>
           </select>
 
           <div class="row justify-content-center inputs">
@@ -186,7 +198,7 @@ export default {
         materia_id: this.cuestionario.materia.id,
         catalogo_id: this.cuestionario.tipo.id,
         //"alumno_id": '1',
-        punto_gramatical: this.cuestionario.punto_gramatical,
+        punto_gramatical: this.cuestionario.punto_gramatical.id,
         cantidad_reading: this.cuestionario.cantidad_reading,
         cantidad_listening: this.cuestionario.cantidad_listening,
         cantidad_writing: this.cuestionario.cantidad_writing,
@@ -194,11 +206,6 @@ export default {
         instruccion: this.cuestionario.instruccion,
         status: "1"
       };
-
-      // console.log("-------------------------");
-      // console.log(this.cuestionario);
-      // console.log(this.cuestionarioSelected);
-      // console.log("-------------------------");
 
       axios
         .put(
@@ -208,7 +215,7 @@ export default {
         .then(response => {
           this.clear();
           this.$router.push({ name: "cuestionarios" });
-          this.$toastr("success", "Cuestionario added successfully");
+          this.$toastr("success", "Cuestionario updated successfully");
           console.log(response);
         })
         .catch(e => {
@@ -234,8 +241,9 @@ export default {
 
     checkForm() {
       if (
-        /*this.cuestionario.tipo.id && this.cuestionario.materia.id &&*/ this
-          .cuestionario.punto_gramatical &&
+        /*this.cuestionario.tipo.id && this.cuestionario.materia.id &&*/
+
+        this.cuestionario.punto_gramatical &&
         this.cuestionario.cantidad_reading &&
         this.cuestionario.cantidad_listening &&
         this.cuestionario.cantidad_writing &&

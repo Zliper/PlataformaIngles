@@ -4,6 +4,102 @@
     <hr>
     <h5>{{ cuestionario.instruccion }}</h5>
     <hr>
+
+    <card-transition>
+      <div
+        class="card mb-5 col-md-10 col-sm-12"
+        align="center"
+        style="margin: auto;"
+        v-for="reactivo in reading"
+        :key="reactivo.id"
+      >
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">{{reactivo.competencia.tipo_competencia}}</th>
+                <th scope="col">{{ reactivo.pregunta }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr class="table-success">
+                <th>Opcion 1</th>
+                <td>{{ reactivo.respuesta_correcta }}</td>
+              </tr>
+              <tr v-bind:key="key" v-for="(value, key) in reactivo.opciones">
+                <th>Opción {{ key+2 }}</th>
+                <td>{{ value.opcion }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </card-transition>
+
+    <card-transition>
+      <div
+        class="card mb-5 col-md-10 col-sm-12"
+        align="center"
+        style="margin: auto;"
+        v-for="reactivo in listening"
+        :key="reactivo.id"
+      >
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">{{reactivo.competencia.tipo_competencia}}</th>
+                <th scope="col">{{ reactivo.pregunta }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr class="table-success">
+                <th>Opcion 1</th>
+                <td>{{ reactivo.respuesta_correcta }}</td>
+              </tr>
+
+              <tr v-bind:key="key" v-for="(value, key, index) in reactivo.opciones">
+                <th>Opción {{ key+2 }}</th>
+                <td>{{ value.opcion }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </card-transition>
+
+    <card-transition>
+      <div
+        class="card mb-5 col-md-10 col-sm-12"
+        align="center"
+        style="margin: auto;"
+        v-for="reactivo in writing"
+        :key="reactivo.id"
+      >
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">{{reactivo.competencia.tipo_competencia}}</th>
+                <th scope="col">{{reactivo.id}}</th>
+                <th scope="col">{{ reactivo.pregunta }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr class="table-success">
+                <th>Opcion 1</th>
+                <td>{{ reactivo.respuesta_correcta }}</td>
+              </tr>
+
+              <input type="text">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </card-transition>
   </div>
 </template>
 

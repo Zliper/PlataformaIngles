@@ -3,57 +3,52 @@
     <div v-if="errors.length" class="alert alert-danger error">
       <b>Please correct the following error(s):</b>
       <ul>
-        <li v-for="e in errors">{{ e }}</li>
+        <li v-for="e in errors" v-bind:key="e in errors">{{ e }}</li>
       </ul>
     </div>
 
     <h3 class="titles">{{ titulo }}</h3>
 
     <card-transition>
-      <div class="card mb-5" :key="cuestionarioSelected.id" v-if="datos">
+      <div class="card mb-5" :key="cuestionarioSelected.difusion_id" v-if="datos">
         <div class="card-body">
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Titulo</th>
-                <th scope="col">{{cuestionarioSelected.nota}}</th>
+                <th scope="col">{{cuestionarioSelected.evaluacion_id.nota}}</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
                 <th>Instrucciones</th>
-                <td>{{ cuestionarioSelected.instruccion }}</td>
-              </tr>
-
-              <tr>
-                <th>Nivel</th>
-                <td>{{ cuestionarioSelected.materia.materia }}</td>
-              </tr>
-
-              <tr>
-                <th>Punto Gramatical</th>
-                <td>{{ cuestionarioSelected.punto_gramatical.punto_gramatical }}</td>
-              </tr>
-
-              <tr>
-                <th>Cuestionario para</th>
-                <td>{{ cuestionarioSelected.tipo.catalogo }}</td>
+                <td>{{ cuestionarioSelected.evaluacion_id.instruccion }}</td>
               </tr>
 
               <tr>
                 <th>Reactivos de reading</th>
-                <td>{{ cuestionarioSelected.cantidad_reading }}</td>
+                <td>{{ cuestionarioSelected.evaluacion_id.cantidad_reading }}</td>
               </tr>
 
               <tr>
                 <th>Reactivos de writing</th>
-                <td>{{ cuestionarioSelected.cantidad_writing }}</td>
+                <td>{{ cuestionarioSelected.evaluacion_id.cantidad_writing }}</td>
               </tr>
 
               <tr>
                 <th>Reactivos de listening</th>
-                <td>{{ cuestionarioSelected.cantidad_listening }}</td>
+                <td>{{ cuestionarioSelected.evaluacion_id.cantidad_listening }}</td>
+              </tr>
+
+              <tr>
+                <th>Duracion</th>
+                <td>{{ cuestionarioSelected.duracion }} minutos</td>
+              </tr>
+
+              <tr>
+                <th>Hora y fecha de aplicacion</th>
+                <td>{{ formatoFecha(cuestionarioSelected.fecha_aplicacion) }}</td>
               </tr>
             </tbody>
           </table>
@@ -142,16 +137,17 @@ export default {
       datos: false,
       titulo: "No hay datos",
       date: "2018-11-29 12:00",
-      showListaAlumnos: "false",
+      showListaAlumnos: "true",
       difusionID: "",
       matriculas: [
-        { matricula: "1" },
-        { matricula: "143048" },
-        { matricula: "143049" },
-        { matricula: "153020" },
-        { matricula: "143530" }
+        { matricula: 1 },
+        { matricula: 143048 },
+        { matricula: 143049 },
+        { matricula: 153020 },
+        { matricula: 143530 }
       ],
-      matriculasSeleccionadas: []
+      matriculasSeleccionadas: [],
+      matriculasOriginales: []
     };
   },
   mounted() {
@@ -159,8 +155,10 @@ export default {
     if (this.cuestionarioSelected) {
       this.cuestionario = this.cuestionarioSelected;
       console.log(this.cuestionarioSelected);
-      this.titulo = "Aplicar cuestionario";
+      this.titulo = "Editar aplicación";
       this.datos = true;
+      this.aplicacion.duracion = this.cuestionarioSelected.duracion;
+      //this.aplicacion.fecha_hora = "12/02/2020 02:20 p.m.";
       axios
         .get("/api/puntos?id=" + this.cuestionarioSelected.punto_gramatical)
         .then(response => {
@@ -171,48 +169,45 @@ export default {
           console.log(e);
         });
     } else {
-      this.$router.push({ name: "cuestionarios" });
+      this.$router.push({ name: "difusiones" });
     }
   },
+  created() {
+    this.fetchMatriculas();
+  },
   methods: {
+    fetchMatriculas(
+      page_url = "/api/alumnoDifusiones?matriculaByDifusion=" +
+        this.cuestionarioSelected.difusion_id
+    ) {
+      let vm = this;
+
+      axios
+        .get(page_url)
+        .then(response => {
+          console.log(
+            "Matriculas seleccionadas de la difusion " +
+              this.cuestionarioSelected.difusion_id
+          );
+          console.log(response.data);
+          console.log(this.matriculas);
+          this.matriculasSeleccionadas = response.data;
+          this.matriculasOriginales = response.data;
+          //this.extraordinarios = response.data.data.evaluaciones;
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+
     isPastDate(date) {
       const currentDate = new Date();
       return currentDate >= date;
     },
-    /* add(matricula) {
-      console.log(this.aplicacion.fecha_hora);
-      const currentDate = new Date();
-      //const yesterdayDate = new Date("Y/m/d", strtotime("-1 days"));
-      //console.log(yesterdayDate);
-      console.log(currentDate);
-
-      let difusion = {
-        evaluacion_id: this.cuestionarioSelected.id,
-        profesor_id: "1",
-        matricula: matricula,
-        duracion: this.aplicacion.duracion,
-        fecha_aplicacion: this.aplicacion.fecha_hora,
-        status: "2"
-      };
-
-      axios
-        .post("/api/difusiones", difusion)
-        .then(response => {
-          //this.clear();
-          this.$router.push({ name: "cuestionarios" });
-          this.$toastr(
-            "success",
-            "El cuestionario ha sido programado correctamente"
-          );
-        })
-        .catch(e => {
-          console.log("errorSQL: " + e);
-        });
-    }, */
 
     addDifusion() {
       axios
-        .post("/api/difusiones", {
+        .put("/api/difusiones/" + this.cuestionarioSelected.difusion_id, {
           evaluacion_id: this.cuestionarioSelected.id,
           profesor_id: "1",
           duracion: this.aplicacion.duracion,
@@ -224,10 +219,25 @@ export default {
           status: "2"
         })
         .then(response => {
-          this.difusionID = response.data.success.difusion_id;
+          this.difusionID = this.cuestionarioSelected.difusion_id;
           console.log("ID DIFUSION");
           console.log(this.difusionID);
           console.log("ID DIFUSION");
+          this.delDifusionesAnteriores(); //luego se registran las preguntas
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+
+    delDifusionesAnteriores() {
+      axios
+        .delete(
+          "/api/alumnoDifusiones/" + this.cuestionarioSelected.difusion_id
+        )
+        .then(response => {
+          //this.$router.push({ name: 'cuestionarios'})
+          //this.$toastr("warning", "Difusiones deleted successfully");
           this.addDifusiones(); //luego se registran las preguntas
         })
         .catch(e => {
@@ -284,6 +294,23 @@ export default {
         .catch(error => {
           console.log("errorSQL: " + error);
         });
+    },
+
+    formatoFecha(fecha) {
+      var dt = new Date(fecha);
+
+      const options = {
+        year: "numeric",
+        month: "2-digit",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: "true",
+        timeZone: "America/Mexico_City",
+        timeZoneName: "short"
+      };
+
+      return dt.toLocaleString("es-MX", options);
     },
 
     calcularLimite(fecha, duracion) {
@@ -370,5 +397,3 @@ export default {
   opacity: 0;
 }
 </style>
-
-
