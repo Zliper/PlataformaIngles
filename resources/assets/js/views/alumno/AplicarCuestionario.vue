@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3 class="titles">{{ cuestionario.nota }}</h3>
+    <h3 class="titles">{{ cuestionario.difusion_id.evaluacion_id.nota }}</h3>
     <hr>
-    <h5>{{ cuestionario.instruccion }}</h5>
+    <h5>{{ cuestionario.difusion_id.evaluacion_id.instruccion }}</h5>
     <hr>
 
     <card-transition>
@@ -23,6 +23,13 @@
             </thead>
 
             <tbody>
+              <tr>
+                <th>Archivo multimedia</th>
+                <td>
+                  {{ multimedia + "(" + getFile(reactivo.text_id)+")"}}
+                  <img v-bind:src="multimedia">
+                </td>
+              </tr>
               <tr class="table-success">
                 <th>Opcion 1</th>
                 <td>{{ reactivo.respuesta_correcta }}</td>
@@ -55,6 +62,10 @@
             </thead>
 
             <tbody>
+              <tr>
+                <th>Archivo multimedia</th>
+                <td>{{ multimedia + "(" + getFile(reactivo.text_id)+")"}}</td>
+              </tr>
               <tr class="table-success">
                 <th>Opcion 1</th>
                 <td>{{ reactivo.respuesta_correcta }}</td>
@@ -89,6 +100,10 @@
             </thead>
 
             <tbody>
+              <tr>
+                <th>Archivo multimedia</th>
+                <td>{{ multimedia + "(" + getFile(reactivo.text_id)+")"}}</td>
+              </tr>
               <tr class="table-success">
                 <th>Opcion 1</th>
                 <td>{{ reactivo.respuesta_correcta }}</td>
@@ -113,6 +128,7 @@ export default {
       reading: [],
       listening: {},
       writing: {},
+      multimedia: "no",
       titulo: "No hay datos",
       editing: false
     };
@@ -124,9 +140,10 @@ export default {
       (this.titulo = "Editar cuestionario"),
         (this.cuestionario = this.cuestionarioSelected);
       this.cuestionario.id = this.cuestionarioSelected.id;
-      this.obtainReading();
-      this.obtainListening();
-      this.obtainWriting();
+      console.log(this.cuestionario);
+      this.getReading();
+      this.getListening();
+      this.getWriting();
     } else {
       this.$router.push({ name: "index" });
     }
@@ -135,11 +152,11 @@ export default {
   created() {},
 
   methods: {
-    obtainReading(
+    getReading(
       page_url = "/api/reactivos?byCompetencia=reading&tipo=" +
-        this.cuestionario.catalogo_id +
+        this.cuestionario.difusion_id.evaluacion_id.tipo.id +
         "&punto=" +
-        this.cuestionario.punto_gramatical
+        this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id
     ) {
       let vm = this;
 
@@ -156,7 +173,7 @@ export default {
         });
     },
 
-    obtainListening(
+    getListening(
       page_url = "/api/reactivos?byCompetencia=listening&tipo=" +
         this.cuestionario.catalogo_id +
         "&punto=" +
@@ -177,7 +194,7 @@ export default {
         });
     },
 
-    obtainWriting(
+    getWriting(
       page_url = "/api/reactivos?byCompetencia=writing&tipo=" +
         this.cuestionario.catalogo_id +
         "&punto=" +
@@ -192,6 +209,23 @@ export default {
           console.log("WRITING");
           console.log(this.writing);
           console.log("END WRITING");
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    getFile(id) {
+      let vm = this;
+
+      axios
+        .get("/api/texts?id=" + id)
+        .then(response => {
+          console.log("TEXT");
+          console.log(response.data[0]);
+          console.log("END TEXT");
+          this.multimedia = response.data[0];
+          this.multimedia = "public/images/" + this.multimedia;
+          return response.data[0];
         })
         .catch(e => {
           console.log(e);

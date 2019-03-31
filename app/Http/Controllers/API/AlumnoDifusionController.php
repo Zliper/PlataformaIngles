@@ -34,6 +34,16 @@ class AlumnoDifusionController extends Controller
 
             return new AlumnoDifusionCollection(AlumnoDifusion::where('matricula','=',$matricula)->whereHas("hasDifusion",function($c) use ($tipo){$c->whereHas("evaluacion",function($c) use ($tipo){$c->where('catalogo_id','=',$tipo);});})->whereHas("hasDifusion",function($c) use ($status){$c->where('status','=',$status);})->whereHas("hasDifusion",function($c) use ($fecha){$c->where('fecha_aplicacion', '<=',$fecha);})->whereHas("hasDifusion",function($c) use ($fecha){$c->where('fecha_limite', '>=',$fecha);})->where('status','=',$status)->get());
             // return $difusiones;
+        } else if ($request->input('countActiveByAlumno')) {
+            if($request->input('tipo')=='actividades') $tipo = '4';
+            if($request->input('tipo')=='ordinarios') $tipo = '3';
+            if($request->input('tipo')=='recuperaciones') $tipo = '2';
+            if($request->input('tipo')=='extraordinarios') $tipo = '1';
+            date_default_timezone_set('America/Mexico_City');
+            $fecha = date('Y-m-d H:i:s');
+            $matricula = $request->input('countActiveByAlumno');
+            $status = $request->input('status');
+            return AlumnoDifusion::where('matricula','=',$matricula)->whereHas("hasDifusion",function($c) use ($tipo){$c->whereHas("evaluacion",function($c) use ($tipo){$c->where('catalogo_id','=',$tipo);});})->whereHas("hasDifusion",function($c) use ($status){$c->where('status','=',$status);})->whereHas("hasDifusion",function($c) use ($fecha){$c->where('fecha_aplicacion', '<=',$fecha);})->whereHas("hasDifusion",function($c) use ($fecha){$c->where('fecha_limite', '>=',$fecha);})->where('status','=',$status)->count();
         } else {
             return new AlumnoDifusionCollection(AlumnoDifusion::get());
         }

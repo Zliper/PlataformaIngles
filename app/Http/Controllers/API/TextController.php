@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TextResource;
+use App\Http\Resources\collections\TextCollection;
 use App\models\Text;
 
 class TextController extends Controller
@@ -14,9 +15,13 @@ class TextController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->input('id')) {
+            return Text::where('id',$request->input('id'))->get()->pluck('text');
+        } else {
+            return new TextCollection(Text::get());
+        }
     }
 
     /**

@@ -64,9 +64,9 @@ export default {
     countActividades() {
       axios
         .get(
-          "/api/difusiones?countActiveByAlumno=actividades&matricula=" +
+          "/api/alumnoDifusiones?countActiveByAlumno=" +
             this.matricula +
-            "&status=2"
+            "&tipo=actividades&status=2"
         )
         .then(response => {
           this.actividades = response.data;
@@ -82,9 +82,9 @@ export default {
     countExamenes() {
       axios
         .get(
-          "/api/difusiones?countActiveByAlumno=ordinarios&matricula=" +
+          "/api/alumnoDifusiones?countActiveByAlumno=" +
             this.matricula +
-            "&status=2"
+            "&tipo=ordinarios&status=2"
         )
         .then(response => {
           this.examenes = this.examenes + response.data;
@@ -98,9 +98,9 @@ export default {
 
       axios
         .get(
-          "/api/difusiones?countActiveByAlumno=recuperaciones&matricula=" +
+          "/api/alumnoDifusiones?countActiveByAlumno=" +
             this.matricula +
-            "&status=2"
+            "&tipo=recuperaciones&status=2"
         )
         .then(response => {
           this.examenes = this.examenes + response.data;
@@ -114,9 +114,9 @@ export default {
 
       axios
         .get(
-          "/api/difusiones?countActiveByAlumno=extraordinarios&matricula=" +
+          "/api/alumnoDifusiones?countActiveByAlumno=" +
             this.matricula +
-            "&status=2"
+            "&tipo=extraordinarios&status=2"
         )
         .then(response => {
           this.examenes = this.examenes + response.data;

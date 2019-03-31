@@ -30348,7 +30348,7 @@ var cantidad;
           _this8.uploadComplete = true;
           _this8.buttonText = "Completado";
           _this8.buttonStatus = "btn btn-success btn-block";
-          //console.log(response.data.success.id);
+          console.log("this.reactivo.textID = " + _this8.reactivo.textID);
         }
       }).catch(function (e) {
         _this8.buttonText = "Error";
@@ -33642,7 +33642,7 @@ var cantidad;
     countActividades: function countActividades() {
       var _this = this;
 
-      axios.get("/api/difusiones?countActiveByAlumno=actividades&matricula=" + this.matricula + "&status=2").then(function (response) {
+      axios.get("/api/alumnoDifusiones?countActiveByAlumno=" + this.matricula + "&tipo=actividades&status=2").then(function (response) {
         _this.actividades = response.data;
         if (response.data > 0) {
           _this.badgeAct = "badge-warning";
@@ -33654,7 +33654,7 @@ var cantidad;
     countExamenes: function countExamenes() {
       var _this2 = this;
 
-      axios.get("/api/difusiones?countActiveByAlumno=ordinarios&matricula=" + this.matricula + "&status=2").then(function (response) {
+      axios.get("/api/alumnoDifusiones?countActiveByAlumno=" + this.matricula + "&tipo=ordinarios&status=2").then(function (response) {
         _this2.examenes = _this2.examenes + response.data;
         if (response.data > 0) {
           _this2.badgeEx = "badge-warning";
@@ -33663,7 +33663,7 @@ var cantidad;
         console.log(e);
       });
 
-      axios.get("/api/difusiones?countActiveByAlumno=recuperaciones&matricula=" + this.matricula + "&status=2").then(function (response) {
+      axios.get("/api/alumnoDifusiones?countActiveByAlumno=" + this.matricula + "&tipo=recuperaciones&status=2").then(function (response) {
         _this2.examenes = _this2.examenes + response.data;
         if (response.data > 0) {
           _this2.badgeEx = "badge-warning";
@@ -33672,7 +33672,7 @@ var cantidad;
         console.log(e);
       });
 
-      axios.get("/api/difusiones?countActiveByAlumno=extraordinarios&matricula=" + this.matricula + "&status=2").then(function (response) {
+      axios.get("/api/alumnoDifusiones?countActiveByAlumno=" + this.matricula + "&tipo=extraordinarios&status=2").then(function (response) {
         _this2.examenes = _this2.examenes + response.data;
         if (response.data > 0) {
           _this2.badgeEx = "badge-warning";
@@ -34164,6 +34164,21 @@ var cantidad;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: ["cuestionarioSelected"],
@@ -34174,6 +34189,7 @@ var cantidad;
       reading: [],
       listening: {},
       writing: {},
+      multimedia: "no",
       titulo: "No hay datos",
       editing: false
     };
@@ -34183,9 +34199,10 @@ var cantidad;
       this.editing = true;
       this.titulo = "Editar cuestionario", this.cuestionario = this.cuestionarioSelected;
       this.cuestionario.id = this.cuestionarioSelected.id;
-      this.obtainReading();
-      this.obtainListening();
-      this.obtainWriting();
+      console.log(this.cuestionario);
+      this.getReading();
+      this.getListening();
+      this.getWriting();
     } else {
       this.$router.push({ name: "index" });
     }
@@ -34194,10 +34211,10 @@ var cantidad;
 
 
   methods: {
-    obtainReading: function obtainReading() {
+    getReading: function getReading() {
       var _this = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=reading&tipo=" + this.cuestionario.catalogo_id + "&punto=" + this.cuestionario.punto_gramatical;
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=reading&tipo=" + this.cuestionario.difusion_id.evaluacion_id.tipo.id + "&punto=" + this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id;
 
       var vm = this;
 
@@ -34210,7 +34227,7 @@ var cantidad;
         console.log(e);
       });
     },
-    obtainListening: function obtainListening() {
+    getListening: function getListening() {
       var _this2 = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=listening&tipo=" + this.cuestionario.catalogo_id + "&punto=" + this.cuestionario.punto_gramatical;
@@ -34226,7 +34243,7 @@ var cantidad;
         console.log(e);
       });
     },
-    obtainWriting: function obtainWriting() {
+    getWriting: function getWriting() {
       var _this3 = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=writing&tipo=" + this.cuestionario.catalogo_id + "&punto=" + this.cuestionario.punto_gramatical;
@@ -34238,6 +34255,22 @@ var cantidad;
         console.log("WRITING");
         console.log(_this3.writing);
         console.log("END WRITING");
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    getFile: function getFile(id) {
+      var _this4 = this;
+
+      var vm = this;
+
+      axios.get("/api/texts?id=" + id).then(function (response) {
+        console.log("TEXT");
+        console.log(response.data[0]);
+        console.log("END TEXT");
+        _this4.multimedia = response.data[0];
+        _this4.multimedia = "public/images/" + _this4.multimedia;
+        return response.data[0];
       }).catch(function (e) {
         console.log(e);
       });
@@ -64024,12 +64057,14 @@ var render = function() {
     "div",
     [
       _c("h3", { staticClass: "titles" }, [
-        _vm._v(_vm._s(_vm.cuestionario.nota))
+        _vm._v(_vm._s(_vm.cuestionario.difusion_id.evaluacion_id.nota))
       ]),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
-      _c("h5", [_vm._v(_vm._s(_vm.cuestionario.instruccion))]),
+      _c("h5", [
+        _vm._v(_vm._s(_vm.cuestionario.difusion_id.evaluacion_id.instruccion))
+      ]),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
@@ -64062,6 +64097,24 @@ var render = function() {
                   _c(
                     "tbody",
                     [
+                      _c("tr", [
+                        _c("th", [_vm._v("Archivo multimedia")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(
+                                _vm.multimedia +
+                                  "(" +
+                                  _vm.getFile(reactivo.text_id) +
+                                  ")"
+                              ) +
+                              "\n                "
+                          ),
+                          _c("img", { attrs: { src: _vm.multimedia } })
+                        ])
+                      ]),
+                      _vm._v(" "),
                       _c("tr", { staticClass: "table-success" }, [
                         _c("th", [_vm._v("Opcion 1")]),
                         _vm._v(" "),
@@ -64114,6 +64167,21 @@ var render = function() {
                   _c(
                     "tbody",
                     [
+                      _c("tr", [
+                        _c("th", [_vm._v("Archivo multimedia")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm.multimedia +
+                                "(" +
+                                _vm.getFile(reactivo.text_id) +
+                                ")"
+                            )
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
                       _c("tr", { staticClass: "table-success" }, [
                         _c("th", [_vm._v("Opcion 1")]),
                         _vm._v(" "),
@@ -64168,6 +64236,21 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("tbody", [
+                    _c("tr", [
+                      _c("th", [_vm._v("Archivo multimedia")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.multimedia +
+                              "(" +
+                              _vm.getFile(reactivo.text_id) +
+                              ")"
+                          )
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
                     _c("tr", { staticClass: "table-success" }, [
                       _c("th", [_vm._v("Opcion 1")]),
                       _vm._v(" "),

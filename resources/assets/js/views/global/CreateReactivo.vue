@@ -520,7 +520,7 @@ export default {
       if (!files.length) return;
       this.createImage(files[0]);
     },
-    
+
     createImage(file) {
       let reader = new FileReader();
       let vm = this;
@@ -542,7 +542,7 @@ export default {
             this.uploadComplete = true;
             this.buttonText = "Completado";
             this.buttonStatus = "btn btn-success btn-block";
-            //console.log(response.data.success.id);
+            console.log("this.reactivo.textID = " + this.reactivo.textID);
           }
         })
         .catch(e => {
