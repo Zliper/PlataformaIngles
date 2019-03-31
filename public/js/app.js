@@ -33738,11 +33738,15 @@ var cantidad;
   data: function data() {
     return {
       actividades: [],
+      actividades2: [],
       matricula: "1"
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     this.fetchActividades();
+  },
+  created: function created() {
+    //this.fetchActividades();
     console.log(this.actividades);
   },
 
@@ -33755,47 +33759,29 @@ var cantidad;
       var vm = this;
 
       axios.get(page_url).then(function (response) {
-        console.log(response.data.data.alumnoDifusiones);
-        _this.actividades = response.data.data.alumnoDifusiones;
-        _this.fetchEvaluaciones(_this.actividades);
-        //date_default_timezone_set("America/Mexico_City");
+        var difusiones = response.data.data.alumnoDifusiones;
 
-        /*this.actividades.maximo = strtotime(
-          "+" + this.actividades.duracion + " minute",
-          strtotime(this.actividades.fecha_aplicacion)
-        );*/
-      }).catch(function (e) {
-        console.log(e);
-      });
-      console.log("Actividades");
-      console.log(this.actividades);
-    },
-    fetchEvaluaciones: function fetchEvaluaciones(difusion) {
-      console.log("evaluaciones " + difusion.length);
-      for (var i = 0; i < difusion.length; i++) {
-        console.log(difusion[i].difusion_id.evaluacion_id);
-        console.log("I " + i);
-        //let vm = this;
-        console.log(difusion[i]);
-        var evaluacion;
-        evaluacion = this.getEvaluacion(i, difusion[i].difusion_id.evaluacion_id);
-        console.log(evaluacion);
-        difusion[i].difusion_id.evaluacion_id = evaluacion;
-        console.log(difusion[i]);
-      }
-    },
-    getEvaluacion: function getEvaluacion(i, id) {
-      var evaluacion;
-      axios.get("/api/evaluaciones?byID=" + id).then(function (response) {
-        console.log("Cuestionario " + i);
-        console.log(response.data.data.evaluaciones);
-
-        return response.data.data.evaluaciones[0];
+        for (var i = 0; i < difusiones.length; i++) {
+          _this.setEvaluacionesActividades(i, difusiones);
+        }
       }).catch(function (e) {
         console.log(e);
       });
     },
-    calcularLimite: function calcularLimite(fecha) {
+    setEvaluacionesActividades: function setEvaluacionesActividades(i, difusiones) {
+      var _this2 = this;
+
+      axios.get("/api/evaluaciones?byID=" + difusiones[i].difusion_id.evaluacion_id).then(function (response) {
+        //this.actividades[i].difusion_id.evaluacion_id =
+        //response.data.data.evaluaciones[0];
+        difusiones[i].difusion_id.evaluacion_id = response.data.data.evaluaciones[0];
+        _this2.actividades = difusiones;
+        // this.setEvaluacionActividad(difusiones);
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    formatoFecha: function formatoFecha(fecha) {
       var options = {
         weekday: "long",
         year: "numeric",
@@ -33964,44 +33950,89 @@ var cantidad;
       var vm = this;
 
       axios.get(page_url).then(function (response) {
-        console.log(response.data.data.alumnoDifusiones);
-        _this.ordinarios = response.data.data.alumnoDifusiones;
+        var difusiones = response.data.data.alumnoDifusiones;
+
+        for (var i = 0; i < difusiones.length; i++) {
+          _this.setEvaluacionesOrdinarios(i, difusiones);
+        }
       }).catch(function (e) {
         console.log(e);
       });
-      console.log(this.ordinarios);
+    },
+    setEvaluacionesOrdinarios: function setEvaluacionesOrdinarios(i, difusiones) {
+      var _this2 = this;
+
+      axios.get("/api/evaluaciones?byID=" + difusiones[i].difusion_id.evaluacion_id).then(function (response) {
+        //this.actividades[i].difusion_id.evaluacion_id =
+        //response.data.data.evaluaciones[0];
+        difusiones[i].difusion_id.evaluacion_id = response.data.data.evaluaciones[0];
+        _this2.ordinarios = difusiones;
+        // this.setEvaluacionActividad(difusiones);
+      }).catch(function (e) {
+        console.log(e);
+      });
     },
     fetchRecuperaciones: function fetchRecuperaciones() {
-      var _this2 = this;
+      var _this3 = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/alumnoDifusiones?getActiveByAlumno=recuperaciones&matricula=" + this.matricula + "&status=2";
 
       var vm = this;
 
       axios.get(page_url).then(function (response) {
-        console.log(response.data.data.alumnoDifusiones);
-        _this2.recuperaciones = response.data.data.alumnoDifusiones;
+        var difusiones = response.data.data.alumnoDifusiones;
+
+        for (var i = 0; i < difusiones.length; i++) {
+          _this3.setEvaluacionesRecuperaciones(i, difusiones);
+        }
       }).catch(function (e) {
         console.log(e);
       });
-      console.log(this.recuperaciones);
+    },
+    setEvaluacionesRecuperaciones: function setEvaluacionesRecuperaciones(i, difusiones) {
+      var _this4 = this;
+
+      axios.get("/api/evaluaciones?byID=" + difusiones[i].difusion_id.evaluacion_id).then(function (response) {
+        //this.actividades[i].difusion_id.evaluacion_id =
+        //response.data.data.evaluaciones[0];
+        difusiones[i].difusion_id.evaluacion_id = response.data.data.evaluaciones[0];
+        _this4.recuperaciones = difusiones;
+        // this.setEvaluacionActividad(difusiones);
+      }).catch(function (e) {
+        console.log(e);
+      });
     },
     fetchExtraordinarios: function fetchExtraordinarios() {
-      var _this3 = this;
+      var _this5 = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/alumnoDifusiones?getActiveByAlumno=extraordinarios&matricula=" + this.matricula + "&status=2";
 
       var vm = this;
 
       axios.get(page_url).then(function (response) {
-        console.log(response.data.data.alumnoDifusiones);
-        _this3.extraordinarios = response.data.data.alumnoDifusiones;
+        var difusiones = response.data.data.alumnoDifusiones;
+
+        for (var i = 0; i < difusiones.length; i++) {
+          _this5.setEvaluacionesExtraordinarios(i, difusiones);
+        }
       }).catch(function (e) {
         console.log(e);
       });
-      console.log(this.extraordinarios);
     },
-    calcularLimite: function calcularLimite(fecha, duracion) {
+    setEvaluacionesExtraordinarios: function setEvaluacionesExtraordinarios(i, difusiones) {
+      var _this6 = this;
+
+      axios.get("/api/evaluaciones?byID=" + difusiones[i].difusion_id.evaluacion_id).then(function (response) {
+        //this.actividades[i].difusion_id.evaluacion_id =
+        //response.data.data.evaluaciones[0];
+        difusiones[i].difusion_id.evaluacion_id = response.data.data.evaluaciones[0];
+        _this6.extraordinarios = difusiones;
+        // this.setEvaluacionActividad(difusiones);
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    formatoFecha: function formatoFecha(fecha) {
       var options = {
         weekday: "long",
         year: "numeric",
@@ -34012,7 +34043,6 @@ var cantidad;
         hour12: true
       };
       var dt = new Date(fecha);
-      dt.setMinutes(dt.getMinutes() + duracion);
       return dt.toLocaleDateString("es-MX", options);
     },
     aplicar: function aplicar(cuestionarioSelected) {
@@ -63397,7 +63427,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -63454,7 +63484,7 @@ var render = function() {
                         _vm._v(
                           "\n                Limite: " +
                             _vm._s(
-                              _vm.calcularLimite(
+                              _vm.formatoFecha(
                                 actividad.difusion_id.fecha_limite
                               )
                             ) +
@@ -63621,7 +63651,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -63666,19 +63696,22 @@ var render = function() {
                   _c("div", { staticClass: "row" }, [
                     _c("div", { staticClass: "col-md-12 col-sm-12 inputs" }, [
                       _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _c("h4", [_vm._v(_vm._s(ordinario.nota))]),
+                        _c("h4", [
+                          _vm._v(
+                            _vm._s(ordinario.difusion_id.evaluacion_id.nota)
+                          )
+                        ]),
                         _vm._v(
                           "\n                Tiempo: " +
-                            _vm._s(ordinario.duracion) +
+                            _vm._s(ordinario.difusion_id.duracion) +
                             " minutos\n                "
                         ),
                         _c("br"),
                         _vm._v(
                           "\n                Limite: " +
                             _vm._s(
-                              _vm.calcularLimite(
-                                ordinario.fecha_aplicacion,
-                                ordinario.duracion
+                              _vm.formatoFecha(
+                                ordinario.difusion_id.fecha_limite
                               )
                             ) +
                             "\n              "
@@ -63748,19 +63781,22 @@ var render = function() {
                   _c("div", { staticClass: "row" }, [
                     _c("div", { staticClass: "col-md-12 col-sm-12 inputs" }, [
                       _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _c("h4", [_vm._v(_vm._s(recuperacion.nota))]),
+                        _c("h4", [
+                          _vm._v(
+                            _vm._s(recuperacion.difusion_id.evaluacion_id.nota)
+                          )
+                        ]),
                         _vm._v(
                           "\n                Tiempo: " +
-                            _vm._s(recuperacion.duracion) +
+                            _vm._s(recuperacion.difusion_id.duracion) +
                             " minutos\n                "
                         ),
                         _c("br"),
                         _vm._v(
                           "\n                Limite: " +
                             _vm._s(
-                              _vm.calcularLimite(
-                                recuperacion.fecha_aplicacion,
-                                recuperacion.duracion
+                              _vm.formatoFecha(
+                                recuperacion.difusion_id.fecha_limite
                               )
                             ) +
                             "\n              "
@@ -63830,19 +63866,24 @@ var render = function() {
                   _c("div", { staticClass: "row" }, [
                     _c("div", { staticClass: "col-md-12 col-sm-12 inputs" }, [
                       _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _c("h4", [_vm._v(_vm._s(extraordinario.nota))]),
+                        _c("h4", [
+                          _vm._v(
+                            _vm._s(
+                              extraordinario.difusion_id.evaluacion_id.nota
+                            )
+                          )
+                        ]),
                         _vm._v(
                           "\n                Tiempo: " +
-                            _vm._s(extraordinario.duracion) +
+                            _vm._s(extraordinario.difusion_id.duracion) +
                             " minutos\n                "
                         ),
                         _c("br"),
                         _vm._v(
                           "\n                Limite: " +
                             _vm._s(
-                              _vm.calcularLimite(
-                                extraordinario.fecha_aplicacion,
-                                extraordinario.duracion
+                              _vm.formatoFecha(
+                                extraordinario.difusion_id.fecha_limite
                               )
                             ) +
                             "\n              "

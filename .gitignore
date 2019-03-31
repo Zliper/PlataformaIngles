@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/PlataformaIngles.git
 /.idea
 /.vscode
 /.vagrant

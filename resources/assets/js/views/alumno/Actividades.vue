@@ -20,7 +20,7 @@
                   <h4>{{ actividad.difusion_id.evaluacion_id.nota }}</h4>
                   Tiempo: {{actividad.difusion_id.duracion}} minutos
                   <br>
-                  Limite: {{calcularLimite(actividad.difusion_id.fecha_limite)}}
+                  Limite: {{formatoFecha(actividad.difusion_id.fecha_limite)}}
                 </div>
               </div>
             </div>
@@ -47,11 +47,15 @@ export default {
   data() {
     return {
       actividades: [],
+      actividades2: [],
       matricula: "1"
     };
   },
-  created() {
+  mounted() {
     this.fetchActividades();
+  },
+  created() {
+    //this.fetchActividades();
     console.log(this.actividades);
   },
   methods: {
@@ -65,54 +69,34 @@ export default {
       axios
         .get(page_url)
         .then(response => {
-          console.log(response.data.data.alumnoDifusiones);
-          this.actividades = response.data.data.alumnoDifusiones;
-          this.fetchEvaluaciones(this.actividades);
-          //date_default_timezone_set("America/Mexico_City");
+          var difusiones = response.data.data.alumnoDifusiones;
 
-          /*this.actividades.maximo = strtotime(
-            "+" + this.actividades.duracion + " minute",
-            strtotime(this.actividades.fecha_aplicacion)
-          );*/
+          for (var i = 0; i < difusiones.length; i++) {
+            this.setEvaluacionesActividades(i, difusiones);
+          }
         })
         .catch(e => {
           console.log(e);
         });
-      console.log("Actividades");
-      console.log(this.actividades);
     },
-    fetchEvaluaciones(difusion) {
-      console.log("evaluaciones " + difusion.length);
-      for (var i = 0; i < difusion.length; i++) {
-        console.log(difusion[i].difusion_id.evaluacion_id);
-        console.log("I " + i);
-        //let vm = this;
-        console.log(difusion[i]);
-        var evaluacion;
-        evaluacion = this.getEvaluacion(
-          i,
-          difusion[i].difusion_id.evaluacion_id
-        );
-        console.log(evaluacion);
-        difusion[i].difusion_id.evaluacion_id = evaluacion;
-        console.log(difusion[i]);
-      }
-    },
-    getEvaluacion(i, id) {
-      var evaluacion;
+    setEvaluacionesActividades(i, difusiones) {
       axios
-        .get("/api/evaluaciones?byID=" + id)
+        .get(
+          "/api/evaluaciones?byID=" + difusiones[i].difusion_id.evaluacion_id
+        )
         .then(response => {
-          console.log("Cuestionario " + i);
-          console.log(response.data.data.evaluaciones);
-
-          return response.data.data.evaluaciones[0];
+          //this.actividades[i].difusion_id.evaluacion_id =
+          //response.data.data.evaluaciones[0];
+          difusiones[i].difusion_id.evaluacion_id =
+            response.data.data.evaluaciones[0];
+          this.actividades = difusiones;
+          // this.setEvaluacionActividad(difusiones);
         })
         .catch(e => {
           console.log(e);
         });
     },
-    calcularLimite(fecha) {
+    formatoFecha(fecha) {
       var options = {
         weekday: "long",
         year: "numeric",

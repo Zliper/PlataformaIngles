@@ -18,10 +18,10 @@
             <div class="row">
               <div class="col-md-12 col-sm-12 inputs">
                 <div class="col-md-12 col-sm-12">
-                  <h4>{{ ordinario.nota }}</h4>
-                  Tiempo: {{ordinario.duracion}} minutos
+                  <h4>{{ ordinario.difusion_id.evaluacion_id.nota }}</h4>
+                  Tiempo: {{ordinario.difusion_id.duracion}} minutos
                   <br>
-                  Limite: {{calcularLimite(ordinario.fecha_aplicacion,ordinario.duracion)}}
+                  Limite: {{formatoFecha(ordinario.difusion_id.fecha_limite)}}
                 </div>
               </div>
             </div>
@@ -54,10 +54,10 @@
             <div class="row">
               <div class="col-md-12 col-sm-12 inputs">
                 <div class="col-md-12 col-sm-12">
-                  <h4>{{ recuperacion.nota }}</h4>
-                  Tiempo: {{recuperacion.duracion}} minutos
+                  <h4>{{ recuperacion.difusion_id.evaluacion_id.nota }}</h4>
+                  Tiempo: {{recuperacion.difusion_id.duracion}} minutos
                   <br>
-                  Limite: {{calcularLimite(recuperacion.fecha_aplicacion,recuperacion.duracion)}}
+                  Limite: {{formatoFecha(recuperacion.difusion_id.fecha_limite)}}
                 </div>
               </div>
             </div>
@@ -90,10 +90,10 @@
             <div class="row">
               <div class="col-md-12 col-sm-12 inputs">
                 <div class="col-md-12 col-sm-12">
-                  <h4>{{ extraordinario.nota }}</h4>
-                  Tiempo: {{extraordinario.duracion}} minutos
+                  <h4>{{ extraordinario.difusion_id.evaluacion_id.nota }}</h4>
+                  Tiempo: {{extraordinario.difusion_id.duracion}} minutos
                   <br>
-                  Limite: {{calcularLimite(extraordinario.fecha_aplicacion,extraordinario.duracion)}}
+                  Limite: {{formatoFecha(extraordinario.difusion_id.fecha_limite)}}
                 </div>
               </div>
             </div>
@@ -141,13 +141,32 @@ export default {
       axios
         .get(page_url)
         .then(response => {
-          console.log(response.data.data.alumnoDifusiones);
-          this.ordinarios = response.data.data.alumnoDifusiones;
+          var difusiones = response.data.data.alumnoDifusiones;
+
+          for (var i = 0; i < difusiones.length; i++) {
+            this.setEvaluacionesOrdinarios(i, difusiones);
+          }
         })
         .catch(e => {
           console.log(e);
         });
-      console.log(this.ordinarios);
+    },
+    setEvaluacionesOrdinarios(i, difusiones) {
+      axios
+        .get(
+          "/api/evaluaciones?byID=" + difusiones[i].difusion_id.evaluacion_id
+        )
+        .then(response => {
+          //this.actividades[i].difusion_id.evaluacion_id =
+          //response.data.data.evaluaciones[0];
+          difusiones[i].difusion_id.evaluacion_id =
+            response.data.data.evaluaciones[0];
+          this.ordinarios = difusiones;
+          // this.setEvaluacionActividad(difusiones);
+        })
+        .catch(e => {
+          console.log(e);
+        });
     },
 
     fetchRecuperaciones(
@@ -160,13 +179,32 @@ export default {
       axios
         .get(page_url)
         .then(response => {
-          console.log(response.data.data.alumnoDifusiones);
-          this.recuperaciones = response.data.data.alumnoDifusiones;
+          var difusiones = response.data.data.alumnoDifusiones;
+
+          for (var i = 0; i < difusiones.length; i++) {
+            this.setEvaluacionesRecuperaciones(i, difusiones);
+          }
         })
         .catch(e => {
           console.log(e);
         });
-      console.log(this.recuperaciones);
+    },
+    setEvaluacionesRecuperaciones(i, difusiones) {
+      axios
+        .get(
+          "/api/evaluaciones?byID=" + difusiones[i].difusion_id.evaluacion_id
+        )
+        .then(response => {
+          //this.actividades[i].difusion_id.evaluacion_id =
+          //response.data.data.evaluaciones[0];
+          difusiones[i].difusion_id.evaluacion_id =
+            response.data.data.evaluaciones[0];
+          this.recuperaciones = difusiones;
+          // this.setEvaluacionActividad(difusiones);
+        })
+        .catch(e => {
+          console.log(e);
+        });
     },
 
     fetchExtraordinarios(
@@ -179,15 +217,34 @@ export default {
       axios
         .get(page_url)
         .then(response => {
-          console.log(response.data.data.alumnoDifusiones);
-          this.extraordinarios = response.data.data.alumnoDifusiones;
+          var difusiones = response.data.data.alumnoDifusiones;
+
+          for (var i = 0; i < difusiones.length; i++) {
+            this.setEvaluacionesExtraordinarios(i, difusiones);
+          }
         })
         .catch(e => {
           console.log(e);
         });
-      console.log(this.extraordinarios);
     },
-    calcularLimite(fecha, duracion) {
+    setEvaluacionesExtraordinarios(i, difusiones) {
+      axios
+        .get(
+          "/api/evaluaciones?byID=" + difusiones[i].difusion_id.evaluacion_id
+        )
+        .then(response => {
+          //this.actividades[i].difusion_id.evaluacion_id =
+          //response.data.data.evaluaciones[0];
+          difusiones[i].difusion_id.evaluacion_id =
+            response.data.data.evaluaciones[0];
+          this.extraordinarios = difusiones;
+          // this.setEvaluacionActividad(difusiones);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    formatoFecha(fecha) {
       var options = {
         weekday: "long",
         year: "numeric",
@@ -198,7 +255,6 @@ export default {
         hour12: true
       };
       var dt = new Date(fecha);
-      dt.setMinutes(dt.getMinutes() + duracion);
       return dt.toLocaleDateString("es-MX", options);
     },
     aplicar(cuestionarioSelected) {
