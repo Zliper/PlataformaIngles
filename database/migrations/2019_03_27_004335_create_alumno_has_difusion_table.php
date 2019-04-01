@@ -14,13 +14,21 @@ class CreateAlumnoHasDifusionTable extends Migration
     public function up()
     {
         Schema::create('alumno_has_difusion', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('matricula')->unsigned();
 
             $table->integer('difusion_id')->unsigned();
             $table->foreign('difusion_id')->references('id')->on('difusiones')->onDelete('cascade');
 
-            $table->string('guardadas')->default('0');
-            $table->string('estatus');
+            $table->integer('readingGuardadas')->default('0');
+            $table->integer('listeningGuardadas')->default('0');
+            $table->integer('writingingGuardadas')->default('0');
+
+            $table->integer('readingCorrectas')->default('0');
+            $table->integer('listeningCorrectas')->default('0');
+            $table->integer('writingingCorrectas')->default('0');
+
+            $table->integer('status');
         });
     }
 

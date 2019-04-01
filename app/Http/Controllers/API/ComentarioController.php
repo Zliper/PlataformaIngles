@@ -4,11 +4,11 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TextResource;
-use App\Http\Resources\collections\TextCollection;
-use App\models\Text;
+use App\Http\Resources\ComentarioResource;
+use App\Http\Resources\collections\ComentarioCollection;
+use App\models\Comentario;
 
-class TextController extends Controller
+class ComentarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +17,8 @@ class TextController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->input('id')) {
-            return Text::where('id',$request->input('id'))->get();
-        } else {
-            return new TextCollection(Text::get());
+        if ($request->input('byReactivo')) {
+            return Comentario::where('reactivo_id',$request->input('byReactivo'))->get()->pluck('comentario');
         }
     }
 
@@ -32,12 +30,18 @@ class TextController extends Controller
      */
     public function store(Request $request)
     {
-        $options = [
-            "text" => $request->text
-        ];
+        //
+    }
 
-        $t = Text::create($options);
-        return response(new TextResource($t));
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**

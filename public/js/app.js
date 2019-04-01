@@ -29485,47 +29485,70 @@ if (false) {(function () {
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-	data: function data() {
-		return {
-			pagination: {},
-			reactivos: []
-		};
-	},
-	created: function created() {
-		this.fetchReactivos();
-	},
+  data: function data() {
+    return {
+      pagination: {},
+      reactivos: []
+    };
+  },
+  created: function created() {
+    this.fetchReactivos();
+  },
 
-	methods: {
-		fetchReactivos: function fetchReactivos() {
-			var _this = this;
+  methods: {
+    fetchReactivos: function fetchReactivos() {
+      var _this = this;
 
-			var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/api/reactivos?by=1';
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?by=1";
 
-			var vm = this;
+      var vm = this;
 
-			axios.get(page_url).then(function (response) {
-				console.log(response.data);
-				_this.reactivos = response.data.data.reactivos;
-				vm.makePagination(response.data.meta, response.data.links);
-			}).catch(function (e) {
-				console.log(e);
-			});
-		},
-		makePagination: function makePagination(meta, links) {
-			var pagination = {
-				current_page: meta.current_page,
-				last_page: meta.last_page,
-				next_page_url: links.next,
-				prev_page_url: links.prev,
-				prev_next_url: links.prev_next_url,
-				url: meta.path + '?page='
-			};
+      axios.get(page_url).then(function (response) {
+        console.log(response.data);
+        _this.reactivos = response.data.data.reactivos;
+        vm.makePagination(response.data.meta, response.data.links);
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    getComentario: function getComentario(id) {
+      var _this2 = this;
 
-			this.pagination = pagination;
-		}
-	}
+      console.log(id);
+      var vm = this;
+
+      axios.get("/api/comentarios?byReactivo=" + id).then(function (response) {
+        console.log(response.data[0]);
+        for (var index = 0; index < _this2.reactivos.length; index++) {
+          if (_this2.reactivos[index].id = id) {
+            _this2.reactivos[index].comentario = response.data[0];
+          } else {
+            return "";
+          }
+        }
+        return response.data[0];
+        /* this.reactivos = response.data.data.reactivos;
+        vm.makePagination(response.data.meta, response.data.links); */
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    makePagination: function makePagination(meta, links) {
+      var pagination = {
+        current_page: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev,
+        prev_next_url: links.prev_next_url,
+        url: meta.path + "?page="
+      };
+
+      this.pagination = pagination;
+    }
+  }
 });
 
 /***/ }),
@@ -34178,7 +34201,6 @@ var cantidad;
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: ["cuestionarioSelected"],
@@ -34230,7 +34252,7 @@ var cantidad;
     getListening: function getListening() {
       var _this2 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=listening&tipo=" + this.cuestionario.catalogo_id + "&punto=" + this.cuestionario.punto_gramatical;
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=listening&tipo=" + this.cuestionario.difusion_id.evaluacion_id.tipo.id + "&punto=" + this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id;
 
       var vm = this;
 
@@ -34246,7 +34268,7 @@ var cantidad;
     getWriting: function getWriting() {
       var _this3 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=writing&tipo=" + this.cuestionario.catalogo_id + "&punto=" + this.cuestionario.punto_gramatical;
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=writing&tipo=" + this.cuestionario.difusion_id.evaluacion_id.tipo.id + "&punto=" + this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id;
 
       var vm = this;
 
@@ -34259,21 +34281,9 @@ var cantidad;
         console.log(e);
       });
     },
-    getFile: function getFile(id) {
-      var _this4 = this;
 
-      var vm = this;
-
-      axios.get("/api/texts?id=" + id).then(function (response) {
-        console.log("TEXT");
-        console.log(response.data[0]);
-        console.log("END TEXT");
-        _this4.multimedia = response.data[0];
-        _this4.multimedia = "public/images/" + _this4.multimedia;
-        return response.data[0];
-      }).catch(function (e) {
-        console.log(e);
-      });
+    newWindow: function newWindow(url) {
+      window.open(url, "_blank");
     }
   }
 });
@@ -59594,13 +59604,11 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { attrs: { scope: "col" } }, [
                         _vm._v(
-                          " " +
-                            _vm._s(
-                              reactivo.relationships["autor"].name +
-                                " " +
-                                reactivo.relationships["autor"].apellido
-                            ) +
-                            " "
+                          _vm._s(
+                            reactivo.relationships["autor"].name +
+                              " " +
+                              reactivo.relationships["autor"].apellido
+                          )
                         )
                       ])
                     ])
@@ -59610,34 +59618,23 @@ var render = function() {
                     "tbody",
                     [
                       _c("tr", [
-                        _c("th", [_vm._v("Id")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(" " + _vm._s(reactivo.id) + " ")])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("th", [_vm._v("Nivel ")]),
+                        _c("th", [_vm._v("Nivel")]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t" +
-                              _vm._s(reactivo.relationships["nivel"].materia) +
-                              "\n\t\t\t\t\t\t\t\t"
+                            _vm._s(reactivo.relationships["nivel"].materia)
                           )
                         ])
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _c("th", [_vm._v("Unidad ")]),
+                        _c("th", [_vm._v("Unidad")]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t" +
-                              _vm._s(
-                                reactivo.relationships["punto_gramatical"]
-                                  .unidad
-                              ) +
-                              "\n\t\t\t\t\t\t\t\t"
+                            _vm._s(
+                              reactivo.relationships["punto_gramatical"].unidad
+                            )
                           )
                         ])
                       ]),
@@ -59647,26 +59644,20 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t" +
-                              _vm._s(
-                                reactivo.relationships["punto_gramatical"]
-                                  .punto_gramatical
-                              ) +
-                              "\n\t\t\t\t\t\t\t\t"
+                            _vm._s(
+                              reactivo.relationships["punto_gramatical"]
+                                .punto_gramatical
+                            )
                           )
                         ])
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _c("th", [_vm._v("Reactivo para ")]),
+                        _c("th", [_vm._v("Reactivo para")]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t" +
-                              _vm._s(
-                                reactivo.relationships["catalogo"].catalogo
-                              ) +
-                              "\n\t\t\t\t\t\t\t\t"
+                            _vm._s(reactivo.relationships["catalogo"].catalogo)
                           )
                         ])
                       ]),
@@ -59676,12 +59667,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t" +
-                              _vm._s(
-                                reactivo.relationships["competencia"]
-                                  .competencia
-                              ) +
-                              "\n\t\t\t\t\t\t\t\t"
+                            _vm._s(
+                              reactivo.relationships["competencia"].competencia
+                            )
                           )
                         ])
                       ]),
@@ -59691,11 +59679,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t" +
-                              _vm._s(
-                                reactivo.relationships["tipo_reactivo"].tipo
-                              ) +
-                              "\n\t\t\t\t\t\t\t\t"
+                            _vm._s(reactivo.relationships["tipo_reactivo"].tipo)
                           )
                         ])
                       ]),
@@ -59703,15 +59687,11 @@ var render = function() {
                       reactivo.relationships.text
                         ? [
                             _c("tr", [
-                              _c("th", [_vm._v(" Texto/Url ")]),
+                              _c("th", [_vm._v("Texto/Url")]),
                               _vm._v(" "),
                               _c("td", [
                                 _vm._v(
-                                  " " +
-                                    _vm._s(
-                                      reactivo.relationships["text"].texto
-                                    ) +
-                                    " "
+                                  _vm._s(reactivo.relationships["text"].texto)
                                 )
                               ])
                             ])
@@ -59721,20 +59701,14 @@ var render = function() {
                       _c("tr", [
                         _c("th", [_vm._v("Pregunta")]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            " " + _vm._s(reactivo.attributes.pregunta) + " "
-                          )
-                        ])
+                        _c("td", [_vm._v(_vm._s(reactivo.attributes.pregunta))])
                       ]),
                       _vm._v(" "),
                       _c("tr", { staticClass: "table-success" }, [
                         _c("th", [_vm._v("Respuesta")]),
                         _vm._v(" "),
                         _c("td", [
-                          _vm._v(
-                            " " + _vm._s(reactivo.attributes.respuesta) + " "
-                          )
+                          _vm._v(_vm._s(reactivo.attributes.respuesta))
                         ])
                       ]),
                       _vm._v(" "),
@@ -59744,13 +59718,7 @@ var render = function() {
                           return _c("tr", [
                             _c("th", [_vm._v("Opción " + _vm._s(index))]),
                             _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t" +
-                                  _vm._s(value.opcion) +
-                                  "\n\t\t\t\t\t\t\t\t"
-                              )
-                            ])
+                            _c("td", [_vm._v(_vm._s(value.opcion))])
                           ])
                         }
                       ),
@@ -59760,15 +59728,27 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t" +
-                              _vm._s(
-                                reactivo.relationships["estatus_reactivo"]
-                                  .estatus
-                              ) +
-                              "\n\t\t\t\t\t\t\t\t"
+                            _vm._s(
+                              reactivo.relationships["estatus_reactivo"].estatus
+                            )
                           )
                         ])
-                      ])
+                      ]),
+                      _vm._v(" "),
+                      reactivo.relationships["estatus_reactivo"].estatus ==
+                      "Comentario"
+                        ? _c("tr", [
+                            _c("th", [_vm._v("Comentario")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.getComentario(reactivo.id)) +
+                                  " " +
+                                  _vm._s(reactivo.comentario)
+                              )
+                            ])
+                          ])
+                        : _vm._e()
                     ],
                     2
                   )
@@ -59828,7 +59808,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v(" " + _vm._s(n) + " ")]
+                    [_vm._v(_vm._s(n))]
                   )
                 ]
               )
@@ -59872,7 +59852,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-10 col-sm-12" }, [
-      _c("h3", [_vm._v("Reactivos creados ")])
+      _c("h3", [_vm._v("Reactivos creados")])
     ])
   }
 ]
@@ -64085,11 +64065,22 @@ var render = function() {
                   _c("thead", { staticClass: "thead-dark" }, [
                     _c("tr", [
                       _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(reactivo.competencia.tipo_competencia))
+                        _vm._v(_vm._s(reactivo.pregunta))
                       ]),
                       _vm._v(" "),
                       _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(reactivo.pregunta))
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary",
+                            on: {
+                              click: function($event) {
+                                _vm.newWindow("/storage/" + reactivo.text.text)
+                              }
+                            }
+                          },
+                          [_vm._v("Archivo multimedia")]
+                        )
                       ])
                     ])
                   ]),
@@ -64097,24 +64088,6 @@ var render = function() {
                   _c(
                     "tbody",
                     [
-                      _c("tr", [
-                        _c("th", [_vm._v("Archivo multimedia")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            "\n                " +
-                              _vm._s(
-                                _vm.multimedia +
-                                  "(" +
-                                  _vm.getFile(reactivo.text_id) +
-                                  ")"
-                              ) +
-                              "\n                "
-                          ),
-                          _c("img", { attrs: { src: _vm.multimedia } })
-                        ])
-                      ]),
-                      _vm._v(" "),
                       _c("tr", { staticClass: "table-success" }, [
                         _c("th", [_vm._v("Opcion 1")]),
                         _vm._v(" "),
@@ -64155,11 +64128,22 @@ var render = function() {
                   _c("thead", { staticClass: "thead-dark" }, [
                     _c("tr", [
                       _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(reactivo.competencia.tipo_competencia))
+                        _vm._v(_vm._s(reactivo.pregunta))
                       ]),
                       _vm._v(" "),
                       _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(reactivo.pregunta))
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary",
+                            on: {
+                              click: function($event) {
+                                _vm.newWindow("/storage/" + reactivo.text.text)
+                              }
+                            }
+                          },
+                          [_vm._v("Archivo multimedia")]
+                        )
                       ])
                     ])
                   ]),
@@ -64167,21 +64151,6 @@ var render = function() {
                   _c(
                     "tbody",
                     [
-                      _c("tr", [
-                        _c("th", [_vm._v("Archivo multimedia")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              _vm.multimedia +
-                                "(" +
-                                _vm.getFile(reactivo.text_id) +
-                                ")"
-                            )
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
                       _c("tr", { staticClass: "table-success" }, [
                         _c("th", [_vm._v("Opcion 1")]),
                         _vm._v(" "),
@@ -64222,35 +64191,27 @@ var render = function() {
                   _c("thead", { staticClass: "thead-dark" }, [
                     _c("tr", [
                       _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(reactivo.competencia.tipo_competencia))
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(reactivo.id))
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
                         _vm._v(_vm._s(reactivo.pregunta))
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { attrs: { scope: "col" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary",
+                            on: {
+                              click: function($event) {
+                                _vm.newWindow("/storage/" + reactivo.text.text)
+                              }
+                            }
+                          },
+                          [_vm._v("Archivo multimedia")]
+                        )
                       ])
                     ])
                   ]),
                   _vm._v(" "),
                   _c("tbody", [
-                    _c("tr", [
-                      _c("th", [_vm._v("Archivo multimedia")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.multimedia +
-                              "(" +
-                              _vm.getFile(reactivo.text_id) +
-                              ")"
-                          )
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
                     _c("tr", { staticClass: "table-success" }, [
                       _c("th", [_vm._v("Opcion 1")]),
                       _vm._v(" "),

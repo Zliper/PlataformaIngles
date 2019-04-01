@@ -26,6 +26,7 @@ class ReactivoResource extends JsonResource
                     new TipoReactivoResource($this->tipo),
                     new EstatusResource($this->estatus),
                     new ProfesorResource($this->profesor),
+                    // new ComentarioResource($this->comentario),
                 ],
             ],
         ];

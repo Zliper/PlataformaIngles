@@ -25,7 +25,7 @@ class FileController extends Controller
           
           $file = explode(";base64,", $image);
 
-          Storage::put($name, base64_decode($file[1]));
+          Storage::disk('public')->put($name, base64_decode($file[1]));
           
           //Storage::putFile($image, new File(public_path('images/').$name));
           //$path = $request->get('image')->store('photos');

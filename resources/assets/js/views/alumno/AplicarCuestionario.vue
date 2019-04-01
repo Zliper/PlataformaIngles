@@ -17,19 +17,17 @@
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">{{reactivo.competencia.tipo_competencia}}</th>
                 <th scope="col">{{ reactivo.pregunta }}</th>
+                <th scope="col">
+                  <button
+                    class="btn btn-secondary"
+                    @click="newWindow('/storage/' + reactivo.text.text)"
+                  >Archivo multimedia</button>
+                </th>
               </tr>
             </thead>
 
             <tbody>
-              <tr>
-                <th>Archivo multimedia</th>
-                <td>
-                  {{ multimedia + "(" + getFile(reactivo.text_id)+")"}}
-                  <img v-bind:src="multimedia">
-                </td>
-              </tr>
               <tr class="table-success">
                 <th>Opcion 1</th>
                 <td>{{ reactivo.respuesta_correcta }}</td>
@@ -56,16 +54,17 @@
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">{{reactivo.competencia.tipo_competencia}}</th>
                 <th scope="col">{{ reactivo.pregunta }}</th>
+                <th scope="col">
+                  <button
+                    class="btn btn-secondary"
+                    @click="newWindow('/storage/' + reactivo.text.text)"
+                  >Archivo multimedia</button>
+                </th>
               </tr>
             </thead>
 
             <tbody>
-              <tr>
-                <th>Archivo multimedia</th>
-                <td>{{ multimedia + "(" + getFile(reactivo.text_id)+")"}}</td>
-              </tr>
               <tr class="table-success">
                 <th>Opcion 1</th>
                 <td>{{ reactivo.respuesta_correcta }}</td>
@@ -93,17 +92,17 @@
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">{{reactivo.competencia.tipo_competencia}}</th>
-                <th scope="col">{{reactivo.id}}</th>
                 <th scope="col">{{ reactivo.pregunta }}</th>
+                <th scope="col">
+                  <button
+                    class="btn btn-secondary"
+                    @click="newWindow('/storage/' + reactivo.text.text)"
+                  >Archivo multimedia</button>
+                </th>
               </tr>
             </thead>
 
             <tbody>
-              <tr>
-                <th>Archivo multimedia</th>
-                <td>{{ multimedia + "(" + getFile(reactivo.text_id)+")"}}</td>
-              </tr>
               <tr class="table-success">
                 <th>Opcion 1</th>
                 <td>{{ reactivo.respuesta_correcta }}</td>
@@ -175,9 +174,9 @@ export default {
 
     getListening(
       page_url = "/api/reactivos?byCompetencia=listening&tipo=" +
-        this.cuestionario.catalogo_id +
+        this.cuestionario.difusion_id.evaluacion_id.tipo.id +
         "&punto=" +
-        this.cuestionario.punto_gramatical
+        this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id
     ) {
       let vm = this;
 
@@ -196,9 +195,9 @@ export default {
 
     getWriting(
       page_url = "/api/reactivos?byCompetencia=writing&tipo=" +
-        this.cuestionario.catalogo_id +
+        this.cuestionario.difusion_id.evaluacion_id.tipo.id +
         "&punto=" +
-        this.cuestionario.punto_gramatical
+        this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id
     ) {
       let vm = this;
 
@@ -214,22 +213,8 @@ export default {
           console.log(e);
         });
     },
-    getFile(id) {
-      let vm = this;
-
-      axios
-        .get("/api/texts?id=" + id)
-        .then(response => {
-          console.log("TEXT");
-          console.log(response.data[0]);
-          console.log("END TEXT");
-          this.multimedia = response.data[0];
-          this.multimedia = "public/images/" + this.multimedia;
-          return response.data[0];
-        })
-        .catch(e => {
-          console.log(e);
-        });
+    newWindow: function(url) {
+      window.open(url, "_blank");
     }
   }
 };

@@ -15,9 +15,15 @@ class AlumnoDifusionResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'matricula' => $this->matricula,
             'difusion_id' => $this->difusion_id,
-            'guardadas' => $this->guardadas,
+            'readingGuardadas' => $this->readingGuardadas,
+            'listeningGuardadas' => $this->listeningGuardadas,
+            'writingGuardadas' => $this->writingGuardadas,
+            'readingCorrectas' => $this->readingCorrectas,
+            'listeningCorrectas' => $this->listeningCorrectas,
+            'writingCorrectas' => $this->writingCorrectas,
             'status' => $this->status,
         ];
     }

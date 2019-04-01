@@ -45,4 +45,8 @@ class Reactivo extends Model
     public function catalogo() {
       return $this->belongsTo('App\models\CatalogoCuestionario','catalogo_id');
     }
+
+    public function comentario() {
+      return $this->belongsTo('App\models\Comentario','comentario_id');
+    }
 }

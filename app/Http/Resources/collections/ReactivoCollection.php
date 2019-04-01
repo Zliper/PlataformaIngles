@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Http\Resources\CompetenciaResource;
 use App\Http\Resources\TipoReactivoResource;
 use App\Http\Resources\EstatusResource;
+use App\Http\Resources\ComentarioResource;
 use App\Http\Resources\ProfesorResource;
 use App\Http\Resources\PuntoGramaticalResource;
 use App\Http\Resources\CatalagoResource;
@@ -42,6 +43,7 @@ class ReactivoCollection extends ResourceCollection
                         "nivel" => new MateriaResource($reactivo->punto->materia),
                         "tipo_reactivo" => new TipoReactivoResource($reactivo->tipo),
                         "estatus_reactivo" => new EstatusResource($reactivo->estatus),
+                        // "comentario" => new ComentarioResource($reactivo->comentario),
                         "punto_gramatical" => new PuntoGramaticalResource($reactivo->punto),
                         "catalogo" => new CatalagoResource($reactivo->catalogo),
                         "autor" => new ProfesorResource($reactivo->profesor),

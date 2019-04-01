@@ -16,6 +16,7 @@ Route::resource('alumnoDifusiones','API\AlumnoDifusionController');
 //Route::resource('delEvaluacion','API\EvaluacionController@destroy');
 //Route::resource('grupos', 'API\GrupoController');
 Route::resource('texts', 'API\TextController');
+Route::resource('comentarios', 'API\ComentarioController');
 Route::resource('instrucciones','API\InstruccionController');
 
 

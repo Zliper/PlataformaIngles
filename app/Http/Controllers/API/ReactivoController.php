@@ -35,9 +35,9 @@ class ReactivoController extends Controller
             if($request->input('byCompetencia')=='writing') $competencia = '3';
             $tipo = $request->input('tipo');
             $punto = $request->input('punto');
-            return Reactivo::where('estatus_id',1)->where('competencia_id',$competencia)->where('catalogo_id',$tipo)->where('punto_id',$punto)->with('Opciones')->with('Competencia')->get();
+            return Reactivo::where('estatus_id',1)->where('competencia_id',$competencia)->where('catalogo_id',$tipo)->where('punto_id',$punto)->with('Opciones')->with('Competencia')->with('Text')->get();
         } else {
-            return new ReactivoCollection(Reactivo::where('profesor_id','=',$request->input('by',''))->paginate(3));
+            return new ReactivoCollection(Reactivo::where('profesor_id','=',$request->input('by',''))->with('Comentario')->paginate(3));
         }
 
         return new ReactivoCollection(Reactivo::paginate(5));

@@ -14,11 +14,20 @@ class EstatusTableSeeder extends Seeder
     public function run()
     {
         Estatus::create([
+            'id' => '0',
+            'estatus' => 'Eliminado'
+        ]);
+    {
+        Estatus::create([
             'estatus' => 'Aprobado'
         ]);
 
         Estatus::create([
             'estatus' => 'Espera'
+        ]);  
+
+        Estatus::create([
+            'estatus' => 'Comentario'
         ]);  
     }
 }
