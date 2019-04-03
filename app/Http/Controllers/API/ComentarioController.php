@@ -30,7 +30,10 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ComentarioResource::withoutWrapping();
+        $comentario = Comentario::create($request->all());
+        $id = new ComentarioResource($comentario);
+        return response()->json(['success' => $id], 200);
     }
 
     /**

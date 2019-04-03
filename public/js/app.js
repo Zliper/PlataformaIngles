@@ -28243,90 +28243,200 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-	data: function data() {
-		return {
-			data: {
-				email: "root@gmail.com",
-				password: "loremroot"
-			},
-			token: '',
-			sortType: '',
-			pagination: {},
-			reactivos: []
-		};
-	},
-	created: function created() {
-		this.fetchReactivos();
-		console.log(reactivo);
-	},
+  data: function data() {
+    return {
+      data: {
+        email: "root@gmail.com",
+        password: "loremroot"
+      },
+      token: "",
+      sortType: "",
+      pagination: {},
+      reactivos: [],
+      titleReactivo: "",
+      reactivoSelected: {
+        attributes: {
+          pregunta: ""
+        },
+        id: 0
+      }
+    };
+  },
+  created: function created() {
+    this.fetchReactivos();
+    console.log(reactivo);
+  },
 
 
-	methods: {
-		fetchReactivos: function fetchReactivos() {
-			var _this = this;
+  methods: {
+    fetchReactivos: function fetchReactivos() {
+      var _this = this;
 
-			var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/api/reactivos?by=Espera';
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?by=Espera";
 
-			var vm = this;
+      var vm = this;
 
-			axios.get(page_url).then(function (response) {
-				console.log(response.data);
-				_this.reactivos = response.data.data.reactivos;
-				vm.makePagination(response.data.meta, response.data.links);
-			}).catch(function (e) {
-				console.log(e);
-			});
-		},
-		makePagination: function makePagination(meta, links) {
-			var pagination = {
-				current_page: meta.current_page,
-				last_page: meta.last_page,
-				next_page_url: links.next,
-				prev_page_url: links.prev,
-				prev_next_url: links.prev_next_url,
-				url: meta.path + '?page='
-			};
+      axios.get(page_url).then(function (response) {
+        console.log(response.data);
+        _this.reactivos = response.data.data.reactivos;
+        vm.makePagination(response.data.meta, response.data.links);
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    makePagination: function makePagination(meta, links) {
+      var pagination = {
+        current_page: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev,
+        prev_next_url: links.prev_next_url,
+        url: meta.path + "?page="
+      };
 
-			this.pagination = pagination;
-		},
-		sortBy: function sortBy(sortType) {
-			if (sortType === "Aprobado") {
-				this.fetchReactivos('/api/reactivos?by=Aprobado');
-			} else if (sortType === "Espera") {
-				this.fetchReactivos();
-			}
-		},
-		validateReactivo: function validateReactivo(id) {
-			this.update(id);
-		},
-		update: function update(id) {
-			var _this2 = this;
+      this.pagination = pagination;
+    },
+    sortBy: function sortBy(sortType) {
+      if (sortType === "Aprobado") {
+        this.fetchReactivos("/api/reactivos?by=Aprobado");
+      } else if (sortType === "Espera") {
+        this.fetchReactivos();
+      }
+    },
+    validateReactivo: function validateReactivo(id) {
+      this.update(id);
+    },
+    update: function update(id) {
+      var _this2 = this;
 
-			axios.put('/api/reactivos/' + id, { "estatus_id": 1 }, { headers: { Authorization: "Bearer " + this.token } }).then(function (response) {
-				_this2.fetchReactivos();
-				_this2.$toastr('success', 'Reactivo added successfully');
-			}).catch(function (e) {
-				console.log(e);
-			});
-		},
-		deleteReactivo: function deleteReactivo(id) {
-			if (confirm("¿Seguro que borrar el reactivo?")) {
-				this.delete(id);
-			}
-		},
-		delete: function _delete(id) {
-			var _this3 = this;
+      axios.put("/api/reactivos/" + id, { estatus_id: 1 }, { headers: { Authorization: "Bearer " + this.token } }).then(function (response) {
+        _this2.fetchReactivos();
+        _this2.$toastr("success", "Reactivo added successfully");
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    deleteReactivo: function deleteReactivo(id) {
+      if (confirm("¿Seguro que borrar el reactivo?\nEsta accion no se puede deshacer")) {
+        this.delete(id);
+      }
+    },
+    commentReactivo: function commentReactivo(id) {
+      if (confirm("¿Seguro que enviar el comentario?")) {
+        this.comment(id);
+      }
+    },
+    selectedReactivo: function selectedReactivo(reactivo) {
+      this.reactivoSelected = reactivo;
+    },
+    clearbox: function clearbox() {
+      console.log(this.txtComentario);
+      this.reactivoSelected.attributes.pregunta = "";
+      this.reactivoSelected.id = 0;
+      this.txtComentario = "";
+    },
+    delete: function _delete(id) {
+      var _this3 = this;
 
-			axios.delete('/api/reactivos/' + id).then(function (response) {
-				_this3.fetchReactivos();
-				_this3.$toastr('warning', 'Reactivo was deleted');
-			}).catch(function (e) {
-				console.log(e);
-			});
-		}
-	}
+      axios.delete("/api/reactivos/" + id).then(function (response) {
+        _this3.fetchReactivos();
+        _this3.$toastr("warning", "Reactivo was deleted");
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    comment: function comment(id) {
+      var _this4 = this;
+
+      axios.post("/api/comentarios", {
+        reactivo_id: id,
+        comentario: this.txtComentario
+      }).then(function (response) {
+        console.log(response);
+        _this4.clearbox(); //luego se limpian los campos
+      }).catch(function (e) {
+        console.log(e);
+      });
+      axios.put("/api/reactivos/" + id, { estatus_id: 3 }, { headers: { Authorization: "Bearer " + this.token } }).then(function (response) {
+        _this4.fetchReactivos();
+        _this4.$toastr("success", "Comentario sended successfully");
+      }).catch(function (e) {
+        console.log(e);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -57299,21 +57409,17 @@ var render = function() {
     "div",
     [
       _vm.sortType === "Aprobado"
-        ? [
-            _c("h3", { staticClass: "titles" }, [
-              _vm._v("Reactivos Aprobados ")
-            ])
-          ]
+        ? [_c("h3", { staticClass: "titles" }, [_vm._v("Reactivos Aprobados")])]
         : [
             _c("h3", { staticClass: "titles" }, [
-              _vm._v("Reactivos por aprobar ")
+              _vm._v("Reactivos por aprobar")
             ])
           ],
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
       _c("div", { staticClass: "form-row col-sm-3 mb-5" }, [
-        _c("label", { attrs: { for: "filter" } }, [_vm._v("Filtrar por ")]),
+        _c("label", { attrs: { for: "filter" } }, [_vm._v("Filtrar por")]),
         _vm._v(" "),
         _c(
           "select",
@@ -57361,6 +57467,107 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: { id: "comentario", role: "dialog" }
+          },
+          [
+            _c("div", { staticClass: "modal-dialog modal-sm" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("p", [
+                    _vm._v(
+                      "Escriba el comentario que desea enviar al profesor respecto al reactivo"
+                    )
+                  ]),
+                  _vm._v(
+                    '\n            "' +
+                      _vm._s(_vm.reactivoSelected.attributes.pregunta) +
+                      '"\n            '
+                  ),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.txtComentario,
+                          expression: "txtComentario"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { placeholder: "Comentario", rows: "5" },
+                      domProps: { value: _vm.txtComentario },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.txtComentario = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: true,
+                          expression: "true"
+                        }
+                      ],
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button", "data-dismiss": "modal" },
+                      on: {
+                        click: function($event) {
+                          _vm.clearbox()
+                        }
+                      }
+                    },
+                    [_vm._v("Cancelar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: true,
+                          expression: "true"
+                        }
+                      ],
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button", "data-dismiss": "modal" },
+                      on: {
+                        click: function($event) {
+                          _vm.commentReactivo(_vm.reactivoSelected.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Enviar")]
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      ],
+      _vm._v(" "),
       _c(
         "card-transition",
         _vm._l(_vm.reactivos, function(reactivo) {
@@ -57373,13 +57580,11 @@ var render = function() {
                     _vm._v(" "),
                     _c("th", { attrs: { scope: "col" } }, [
                       _vm._v(
-                        " " +
-                          _vm._s(
-                            reactivo.relationships["autor"].name +
-                              " " +
-                              reactivo.relationships["autor"].apellido
-                          ) +
-                          " "
+                        _vm._s(
+                          reactivo.relationships["autor"].name +
+                            " " +
+                            reactivo.relationships["autor"].apellido
+                        )
                       )
                     ])
                   ])
@@ -57389,27 +57594,21 @@ var render = function() {
                   "tbody",
                   [
                     _c("tr", [
-                      _c("th", [_vm._v("Nivel ")]),
+                      _c("th", [_vm._v("Nivel")]),
                       _vm._v(" "),
                       _c("td", [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(reactivo.relationships["nivel"].materia) +
-                            "\n\t\t\t\t\t\t\t"
-                        )
+                        _vm._v(_vm._s(reactivo.relationships["nivel"].materia))
                       ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("th", [_vm._v("Unidad ")]),
+                      _c("th", [_vm._v("Unidad")]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(
-                              reactivo.relationships["punto_gramatical"].unidad
-                            ) +
-                            "\n\t\t\t\t\t\t\t"
+                          _vm._s(
+                            reactivo.relationships["punto_gramatical"].unidad
+                          )
                         )
                       ])
                     ]),
@@ -57419,26 +57618,20 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(
-                              reactivo.relationships["punto_gramatical"]
-                                .punto_gramatical
-                            ) +
-                            "\n\t\t\t\t\t\t\t"
+                          _vm._s(
+                            reactivo.relationships["punto_gramatical"]
+                              .punto_gramatical
+                          )
                         )
                       ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("th", [_vm._v("Reactivo para ")]),
+                      _c("th", [_vm._v("Reactivo para")]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(
-                              reactivo.relationships["catalogo"].catalogo
-                            ) +
-                            "\n\t\t\t\t\t\t\t"
+                          _vm._s(reactivo.relationships["catalogo"].catalogo)
                         )
                       ])
                     ]),
@@ -57448,11 +57641,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(
-                              reactivo.relationships["competencia"].competencia
-                            ) +
-                            "\n\t\t\t\t\t\t\t"
+                          _vm._s(
+                            reactivo.relationships["competencia"].competencia
+                          )
                         )
                       ])
                     ]),
@@ -57462,11 +57653,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(
-                              reactivo.relationships["tipo_reactivo"].tipo
-                            ) +
-                            "\n\t\t\t\t\t\t\t"
+                          _vm._s(reactivo.relationships["tipo_reactivo"].tipo)
                         )
                       ])
                     ]),
@@ -57474,13 +57661,11 @@ var render = function() {
                     reactivo.relationships.text
                       ? [
                           _c("tr", [
-                            _c("th", [_vm._v(" Texto/Url ")]),
+                            _c("th", [_vm._v("Texto/Url")]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
-                                " " +
-                                  _vm._s(reactivo.relationships["text"].texto) +
-                                  " "
+                                _vm._s(reactivo.relationships["text"].texto)
                               )
                             ])
                           ])
@@ -57490,19 +57675,13 @@ var render = function() {
                     _c("tr", [
                       _c("th", [_vm._v("Pregunta")]),
                       _vm._v(" "),
-                      _c("td", [
-                        _vm._v(" " + _vm._s(reactivo.attributes.pregunta) + " ")
-                      ])
+                      _c("td", [_vm._v(_vm._s(reactivo.attributes.pregunta))])
                     ]),
                     _vm._v(" "),
                     _c("tr", { staticClass: "table-success" }, [
                       _c("th", [_vm._v("Respuesta")]),
                       _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          " " + _vm._s(reactivo.attributes.respuesta) + " "
-                        )
-                      ])
+                      _c("td", [_vm._v(_vm._s(reactivo.attributes.respuesta))])
                     ]),
                     _vm._v(" "),
                     _vm._l(
@@ -57511,13 +57690,7 @@ var render = function() {
                         return _c("tr", [
                           _c("th", [_vm._v("Opción " + _vm._s(index))]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
-                                _vm._s(value.opcion) +
-                                "\n\t\t\t\t\t\t\t"
-                            )
-                          ])
+                          _c("td", [_vm._v(_vm._s(value.opcion))])
                         ])
                       }
                     )
@@ -57565,7 +57738,16 @@ var render = function() {
                         "a",
                         {
                           staticClass: "btn btn-info btn-block inputs",
-                          attrs: { href: "#" }
+                          attrs: {
+                            href: "#comentario",
+                            role: "button",
+                            "data-toggle": "modal"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.selectedReactivo(reactivo)
+                            }
+                          }
                         },
                         [_vm._v("Comentario")]
                       )
@@ -57628,7 +57810,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v(" " + _vm._s(n) + " ")]
+                    [_vm._v(_vm._s(n))]
                   )
                 ]
               )
@@ -57666,7 +57848,27 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v("Comentario de revisión")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 if (false) {
