@@ -34311,6 +34311,18 @@ var cantidad;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: ["cuestionarioSelected"],
@@ -34321,20 +34333,24 @@ var cantidad;
       reading: [],
       listening: {},
       writing: {},
+      reactivo: {},
       multimedia: "no",
       titulo: "No hay datos",
+      respuesta: "",
+      competencia: "",
       editing: false
     };
   },
   mounted: function mounted() {
     if (this.cuestionarioSelected) {
+      console.log("cuestionario recibed");
+      console.log(this.cuestionarioSelected);
       this.editing = true;
       this.titulo = "Editar cuestionario", this.cuestionario = this.cuestionarioSelected;
       this.cuestionario.id = this.cuestionarioSelected.id;
+      console.log("cuestionario setted");
       console.log(this.cuestionario);
       this.getReading();
-      this.getListening();
-      this.getWriting();
     } else {
       this.$router.push({ name: "index" });
     }
@@ -34346,50 +34362,126 @@ var cantidad;
     getReading: function getReading() {
       var _this = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=reading&tipo=" + this.cuestionario.difusion_id.evaluacion_id.tipo.id + "&punto=" + this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id;
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetenciaRandom=reading&tipo=" + this.cuestionario.difusion_id.evaluacion_id.tipo.id + "&punto=" + this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id;
 
-      var vm = this;
+      if (this.cuestionario.readingGuardadas < this.cuestionario.difusion_id.evaluacion_id.cantidad_reading) {
+        console.log("obtener reading");
+        console.log("hay " + this.cuestionario.readingGuardadas + " reading guardadas de " + this.cuestionario.difusion_id.evaluacion_id.cantidad_reading);
+        var vm = this;
 
-      axios.get(page_url).then(function (response) {
-        _this.reading = response.data;
-        console.log("READING");
-        console.log(_this.reading);
-        console.log("END READING");
-      }).catch(function (e) {
-        console.log(e);
-      });
+        axios.get(page_url).then(function (response) {
+          _this.reactivo = response.data;
+          console.log("READING");
+          console.log(_this.reactivo);
+          _this.competencia = "reading";
+          console.log("END READING");
+        }).catch(function (e) {
+          console.log(e);
+        });
+      } else {
+        console.log("reading completas, obtener listening");
+        console.log("hay " + this.cuestionario.readingGuardadas + " reading guardadas de " + this.cuestionario.difusion_id.evaluacion_id.cantidad_reading);
+        this.getListening();
+      }
     },
     getListening: function getListening() {
       var _this2 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=listening&tipo=" + this.cuestionario.difusion_id.evaluacion_id.tipo.id + "&punto=" + this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id;
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetenciaRandom=listening&tipo=" + this.cuestionario.difusion_id.evaluacion_id.tipo.id + "&punto=" + this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id;
 
-      var vm = this;
+      if (this.cuestionario.listeningGuardadas < this.cuestionario.difusion_id.evaluacion_id.cantidad_listening) {
+        console.log("obtener listening");
+        console.log("hay " + this.cuestionario.listeningGuardadas + " listening guardadas de " + this.cuestionario.difusion_id.evaluacion_id.cantidad_listening);
+        var vm = this;
 
-      axios.get(page_url).then(function (response) {
-        _this2.listening = response.data;
-        console.log("LISTENING");
-        console.log(_this2.listening);
-        console.log("END LISTENING");
-      }).catch(function (e) {
-        console.log(e);
-      });
+        axios.get(page_url).then(function (response) {
+          _this2.reactivo = response.data;
+          console.log("LISTENING");
+          console.log(_this2.reactivo);
+          _this2.competencia = "listening";
+          console.log("END LISTENING");
+        }).catch(function (e) {
+          console.log(e);
+        });
+      } else {
+        console.log("listening completas, obtener writing");
+        console.log("hay " + this.cuestionario.listeningGuardadas + " listening guardadas de " + this.cuestionario.difusion_id.evaluacion_id.cantidad_listening);
+        this.getWriting();
+      }
     },
     getWriting: function getWriting() {
       var _this3 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetencia=writing&tipo=" + this.cuestionario.difusion_id.evaluacion_id.tipo.id + "&punto=" + this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id;
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/reactivos?byCompetenciaRandom=writing&tipo=" + this.cuestionario.difusion_id.evaluacion_id.tipo.id + "&punto=" + this.cuestionario.difusion_id.evaluacion_id.punto_gramatical.id;
 
-      var vm = this;
+      if (this.cuestionario.writingGuardadas < this.cuestionario.difusion_id.evaluacion_id.cantidad_writing) {
+        console.log("obtener writing");
+        console.log("hay " + this.cuestionario.writingGuardadas + " writing guardadas de " + this.cuestionario.difusion_id.evaluacion_id.cantidad_writing);
+        var vm = this;
 
-      axios.get(page_url).then(function (response) {
-        _this3.writing = response.data;
-        console.log("WRITING");
-        console.log(_this3.writing);
-        console.log("END WRITING");
+        axios.get(page_url).then(function (response) {
+          _this3.reactivo = response.data;
+          console.log("WRITING");
+          console.log(_this3.reactivo);
+          _this3.competencia = "writing";
+          console.log("END WRITING");
+        }).catch(function (e) {
+          console.log(e);
+        });
+      } else {
+        console.log("writing completas, competencias completadas");
+        console.log("hay " + this.cuestionario.writingGuardadas + " writing guardadas de " + this.cuestionario.difusion_id.evaluacion_id.cantidad_writing);
+        // this.getWriting();
+      }
+    },
+    save: function save() {
+      var _this4 = this;
+
+      console.log(this.respuesta);
+      console.log(this.competencia);
+      console.log(this.reactivo);
+      console.log(this.cuestionario);
+      var guardadas;
+      var correctas;
+      if (this.competencia == "reading") {
+        this.cuestionario.readingGuardadas = this.cuestionario.readingGuardadas + 1;
+        if (this.respuesta == this.reactivo.respuesta_correcta) {
+          this.cuestionario.readingCorrectas = this.cuestionario.readingCorrectas + 1;
+        }
+      } else if (this.competencia == "listening") {
+        this.cuestionario.listeningGuardadas = this.cuestionario.listeningGuardadas + 1;
+        if (this.respuesta == this.reactivo.respuesta_correcta) {
+          this.cuestionario.listeningCorrectas = this.cuestionario.listeningCorrectas + 1;
+        }
+      } else if (this.competencia == "writing") {
+        this.cuestionario.writingGuardadas = this.cuestionario.writingGuardadas + 1;
+        if (this.respuesta == this.reactivo.respuesta_correcta) {
+          this.cuestionario.writingCorrectas = this.cuestionario.writingCorrectas + 1;
+        }
+      }
+      console.log("nuevo cuestionario");
+      console.log(this.cuestionario);
+      axios.put("/api/alumnoDifusiones/" + this.cuestionario.id, {
+        readingGuardadas: this.cuestionario.readingGuardadas,
+        listeningGuardadas: this.cuestionario.listeningGuardadas,
+        writingGuardadas: this.cuestionario.writingGuardadas,
+        readingCorrectas: this.cuestionario.readingCorrectas,
+        listeningCorrectas: this.cuestionario.listeningCorrectas,
+        writingCorrectas: this.cuestionario.writingCorrectas,
+        status: this.cuestionario.status
+      }).then(function (response) {
+        _this4.next(_this4.cuestionario);
+        //luego se registran las preguntas
       }).catch(function (e) {
         console.log(e);
       });
+    },
+    next: function next(cuestionarioSelected) {
+      this.$router.push({
+        name: "cuestionario.aplicar",
+        params: { cuestionarioSelected: cuestionarioSelected }
+      });
+      this.cuestionario = this.cuestionario;
     },
 
     newWindow: function newWindow(url) {
@@ -64250,184 +64342,124 @@ var render = function() {
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
-      _c(
-        "card-transition",
-        _vm._l(_vm.reading, function(reactivo) {
-          return _c(
-            "div",
-            {
-              key: reactivo.id,
-              staticClass: "card mb-5 col-md-10 col-sm-12",
-              staticStyle: { margin: "auto" },
-              attrs: { align: "center" }
-            },
-            [
-              _c("div", { staticClass: "card-body" }, [
-                _c("table", { staticClass: "table table-hover" }, [
-                  _c("thead", { staticClass: "thead-dark" }, [
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(reactivo.pregunta))
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-secondary",
-                            on: {
-                              click: function($event) {
-                                _vm.newWindow("/storage/" + reactivo.text.text)
-                              }
-                            }
-                          },
-                          [_vm._v("Archivo multimedia")]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    [
-                      _c("tr", { staticClass: "table-success" }, [
-                        _c("th", [_vm._v("Opcion 1")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(reactivo.respuesta_correcta))])
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(reactivo.opciones, function(value, key) {
-                        return _c("tr", { key: key }, [
-                          _c("th", [_vm._v("Opción " + _vm._s(key + 2))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.opcion))])
-                        ])
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ])
-            ]
-          )
-        })
-      ),
-      _vm._v(" "),
-      _c(
-        "card-transition",
-        _vm._l(_vm.listening, function(reactivo) {
-          return _c(
-            "div",
-            {
-              key: reactivo.id,
-              staticClass: "card mb-5 col-md-10 col-sm-12",
-              staticStyle: { margin: "auto" },
-              attrs: { align: "center" }
-            },
-            [
-              _c("div", { staticClass: "card-body" }, [
-                _c("table", { staticClass: "table table-hover" }, [
-                  _c("thead", { staticClass: "thead-dark" }, [
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(reactivo.pregunta))
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-secondary",
-                            on: {
-                              click: function($event) {
-                                _vm.newWindow("/storage/" + reactivo.text.text)
-                              }
-                            }
-                          },
-                          [_vm._v("Archivo multimedia")]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    [
-                      _c("tr", { staticClass: "table-success" }, [
-                        _c("th", [_vm._v("Opcion 1")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(reactivo.respuesta_correcta))])
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(reactivo.opciones, function(value, key, index) {
-                        return _c("tr", { key: key }, [
-                          _c("th", [_vm._v("Opción " + _vm._s(key + 2))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.opcion))])
-                        ])
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ])
-            ]
-          )
-        })
-      ),
-      _vm._v(" "),
-      _c(
-        "card-transition",
-        _vm._l(_vm.writing, function(reactivo) {
-          return _c(
-            "div",
-            {
-              key: reactivo.id,
-              staticClass: "card mb-5 col-md-10 col-sm-12",
-              staticStyle: { margin: "auto" },
-              attrs: { align: "center" }
-            },
-            [
-              _c("div", { staticClass: "card-body" }, [
-                _c("table", { staticClass: "table table-hover" }, [
-                  _c("thead", { staticClass: "thead-dark" }, [
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(reactivo.pregunta))
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-secondary",
-                            on: {
-                              click: function($event) {
-                                _vm.newWindow("/storage/" + reactivo.text.text)
-                              }
-                            }
-                          },
-                          [_vm._v("Archivo multimedia")]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tbody", [
-                    _c("tr", { staticClass: "table-success" }, [
-                      _c("th", [_vm._v("Opcion 1")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(reactivo.respuesta_correcta))])
+      _c("card-transition", [
+        _c(
+          "div",
+          {
+            key: _vm.reactivo.id,
+            staticClass: "card mb-5 col-md-10 col-sm-12",
+            staticStyle: { margin: "auto" },
+            attrs: { align: "center" }
+          },
+          [
+            _c("div", { staticClass: "card-head" }, [
+              _c("table", { staticClass: "table table-hover" }, [
+                _c("thead", { staticClass: "thead" }, [
+                  _c("tr", [
+                    _c("th", { attrs: { scope: "col" } }, [
+                      _vm._v(_vm._s(_vm.reactivo.pregunta))
                     ]),
                     _vm._v(" "),
-                    _c("input", { attrs: { type: "text" } })
+                    _c("th", { attrs: { scope: "col" } }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          on: {
+                            click: function($event) {
+                              _vm.newWindow(
+                                "/storage/" + _vm.reactivo.text.text
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("Archivo multimedia")]
+                      )
+                    ])
                   ])
                 ])
               ])
-            ]
-          )
-        })
-      )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _vm.reactivo.tipo_id == 1
+                ? _c("div", [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta,
+                          expression: "respuesta"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", placeholder: "Respuesta" },
+                      domProps: { value: _vm.respuesta },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.respuesta = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                : _c(
+                    "div",
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          on: {
+                            click: function($event) {
+                              _vm.respuesta = _vm.reactivo.respuesta_correcta
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(_vm.reactivo.respuesta_correcta))]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.reactivo.opciones, function(value, key) {
+                        return _c(
+                          "button",
+                          {
+                            key: key,
+                            staticClass: "btn btn-secondary",
+                            on: {
+                              click: function($event) {
+                                _vm.respuesta = value.opcion
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(value.opcion))]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.save()
+                    }
+                  }
+                },
+                [_vm._v("Next")]
+              )
+            ])
+          ]
+        )
+      ])
     ],
     1
   )

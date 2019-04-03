@@ -80,9 +80,14 @@ class AlumnoDifusionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $alumnoDifusion = AlumnoDifusion::findOrFail($id);
+        //return response()->json(null,204);
+        //return Evaluacion::find($id)->nota;
+        if($alumnoDifusion->update($request->all())){
+            return response()->json(null,204);
+        }
     }
 
     /**
