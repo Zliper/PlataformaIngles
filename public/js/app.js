@@ -34477,6 +34477,7 @@ var cantidad;
       });
     },
     next: function next(cuestionarioSelected) {
+      this.getReading();
       this.$router.push({
         name: "cuestionario.aplicar",
         params: { cuestionarioSelected: cuestionarioSelected }
@@ -64329,6 +64330,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { key: _vm.cuestionario.id },
     [
       _c("h3", { staticClass: "titles" }, [
         _vm._v(_vm._s(_vm.cuestionario.difusion_id.evaluacion_id.nota))

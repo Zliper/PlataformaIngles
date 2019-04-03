@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind:key="cuestionario.id">
     <h3 class="titles">{{ cuestionario.difusion_id.evaluacion_id.nota }}</h3>
     <hr>
     <h5>{{ cuestionario.difusion_id.evaluacion_id.instruccion }}</h5>
@@ -345,6 +345,7 @@ export default {
         });
     },
     next(cuestionarioSelected) {
+      this.getReading();
       this.$router.push({
         name: "cuestionario.aplicar",
         params: { cuestionarioSelected }
