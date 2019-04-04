@@ -17,7 +17,7 @@ class EstatusTableSeeder extends Seeder
             'id' => '0',
             'estatus' => 'Eliminado'
         ]);
-    {
+    
         Estatus::create([
             'estatus' => 'Aprobado'
         ]);
@@ -28,6 +28,10 @@ class EstatusTableSeeder extends Seeder
 
         Estatus::create([
             'estatus' => 'Comentario'
+        ]);
+
+        Estatus::create([
+            'estatus' => 'Completado'
         ]);  
     }
 }

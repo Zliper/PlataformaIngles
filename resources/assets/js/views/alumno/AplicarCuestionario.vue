@@ -2,85 +2,10 @@
   <div v-bind:key="cuestionario.id">
     <h3 class="titles">{{ cuestionario.difusion_id.evaluacion_id.nota }}</h3>
     <hr>
-    <h5>{{ cuestionario.difusion_id.evaluacion_id.instruccion }}</h5>
-    <hr>
+    <h5 v-if="!end">{{ cuestionario.difusion_id.evaluacion_id.instruccion }}</h5>
+    <hr v-if="!end">
 
-    <!-- <card-transition>
-      <div
-        v-bind:key="reactivo.id"
-        class="card mb-5 col-md-10 col-sm-12"
-        align="center"
-        style="margin: auto;"
-      >
-        <div class="card-body">
-          <table class="table table-hover">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">{{ reactivo.pregunta }}</th>
-                <th scope="col">
-                  <button
-                    class="btn btn-secondary"
-                    @click="newWindow('/storage/' + reactivo.text.text)"
-                  >Archivo multimedia</button>
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr class="table-success">
-                <th>Opcion 1</th>
-                <td>{{ reactivo.respuesta_correcta }}</td>
-              </tr>
-              <tr v-bind:key="key" v-for="(value, key) in reactivo.opciones">
-                <th>Opción {{ key+2 }}</th>
-                <td>{{ value.opcion }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </card-transition>
-
-    <card-transition>
-      <div
-        v-bind:key="reactivo.id"
-        class="card mb-5 col-md-10 col-sm-12"
-        align="center"
-        style="margin: auto;"
-        v-for="reactivo in listening"
-        :key="reactivo.id"
-      >
-        <div class="card-body">
-          <table class="table table-hover">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">{{ reactivo.pregunta }}</th>
-                <th scope="col">
-                  <button
-                    class="btn btn-secondary"
-                    @click="newWindow('/storage/' + reactivo.text.text)"
-                  >Archivo multimedia</button>
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr class="table-success">
-                <th>Opcion 1</th>
-                <td>{{ reactivo.respuesta_correcta }}</td>
-              </tr>
-
-              <tr v-bind:key="key" v-for="(value, key, index) in reactivo.opciones">
-                <th>Opción {{ key+2 }}</th>
-                <td>{{ value.opcion }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </card-transition>-->
-
-    <card-transition>
+    <card-transition v-if="!update">
       <div
         v-bind:key="reactivo.id"
         class="card mb-5 col-md-10 col-sm-12"
@@ -88,38 +13,60 @@
         style="margin: auto;"
       >
         <div class="card-head">
-          <table class="table table-hover">
-            <thead class="thead">
-              <tr>
-                <th scope="col">{{ reactivo.pregunta }}</th>
-                <th scope="col">
-                  <button
-                    class="btn btn-secondary"
-                    @click="newWindow('/storage/' + reactivo.text.text)"
-                  >Archivo multimedia</button>
-                </th>
-              </tr>
-            </thead>
-          </table>
+          <div class="container">
+            <br>
+            <div class="row" v-if="!end">
+              <!-- <div class="col-md-4"></div> -->
+              <div class="col-13 col-sm-6 col-md-9">
+                <!-- <p class="text-left">{{ reactivo.pregunta }}</p> -->
+                <h5 class="text-left">{{ reactivo.pregunta }}</h5>
+              </div>
+              <div class="col-5 col-md-3">
+                <button
+                  class="btn btn-secondary btn-block"
+                  @click="newWindow('/storage/' + reactivo.text.text)"
+                >Archivo multimedia</button>
+              </div>
+            </div>
+            <div class="row justify-content-md-center" v-else>
+              <div class="col">
+                <h2
+                  v-if="cuestionario.difusion_id.evaluacion_id.tipo.id == 4"
+                  class="text-center"
+                >Actividad terminada.</h2>
+                <h2 v-else class="text-center">Examen terminado.</h2>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card-body">
-          <div v-if="reactivo.tipo_id == 1">
-            <textarea type="text" v-model="respuesta" class="form-control" placeholder="Respuesta"></textarea>
-          </div>
-          <div v-else>
-            <button
-              class="btn btn-secondary"
-              @click="respuesta = reactivo.respuesta_correcta"
-            >{{ reactivo.respuesta_correcta }}</button>
-            <button
-              class="btn btn-secondary"
-              @click="respuesta = value.opcion"
-              v-bind:key="key"
-              v-for="(value, key) in reactivo.opciones"
-            >{{ value.opcion }}</button>
+          <br>
+          <div v-if="!end">
+            <div v-if="reactivo.tipo_id == 1">
+              <textarea
+                type="text"
+                v-model="respuesta"
+                class="form-control"
+                placeholder="Respuesta"
+              ></textarea>
+            </div>
+            <div v-else class="container">
+              <div class="row justify-content-md-center">
+                <div class="col col-lg-3" v-bind:key="key" v-for="(value, key) in this.respuestas">
+                  <button
+                    class="btn btn-block"
+                    v-bind:class="value.class"
+                    @click="setActive(value)"
+                    v-bind:key="value.id"
+                  >{{ value.opcion }}</button>
+                </div>
+              </div>
+            </div>
           </div>
           <br>
-          <button class="btn btn-success" v-on:click="save()" type="button">Next</button>
+          <br>
+          <button class="btn btn-success" v-on:click="save()" type="button" v-if="!end">Next</button>
+          <button class="btn btn-primary" v-on:click="exit()" type="button" v-else>Finish</button>
         </div>
         <!-- <div class="card-footer">
           <button class="btn btn-primary" v-on:click="aplicar()" type="button">Next</button>
@@ -143,8 +90,13 @@ export default {
       multimedia: "no",
       titulo: "No hay datos",
       respuesta: "",
+      respuestas: [],
       competencia: "",
-      editing: false
+      activeButton: "btn-info",
+      inactiveButton: "btn-outline-info",
+      editing: false,
+      end: false,
+      update: false
     };
   },
 
@@ -167,6 +119,30 @@ export default {
   created() {},
 
   methods: {
+    randomizeRespuestas() {
+      this.respuestas.push({
+        id: 0,
+        opcion: this.reactivo.respuesta_correcta,
+        class: this.inactiveButton
+      });
+      for (var i = this.reactivo.opciones.length - 1; i >= 0; i--) {
+        this.respuestas.push({
+          id: i + 1,
+          opcion: this.reactivo.opciones[i].opcion,
+          class: this.inactiveButton
+        });
+      }
+      console.log("array opciones");
+      console.log(this.respuestas);
+      for (var i = this.respuestas.length - 1; i >= 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = this.respuestas[i];
+        this.respuestas[i] = this.respuestas[j];
+        this.respuestas[j] = temp;
+      }
+      console.log("array opciones randomized");
+      console.log(this.respuestas);
+    },
     getReading(
       page_url = "/api/reactivos?byCompetenciaRandom=reading&tipo=" +
         this.cuestionario.difusion_id.evaluacion_id.tipo.id +
@@ -190,6 +166,7 @@ export default {
           .get(page_url)
           .then(response => {
             this.reactivo = response.data;
+            this.randomizeRespuestas();
             console.log("READING");
             console.log(this.reactivo);
             this.competencia = "reading";
@@ -233,6 +210,7 @@ export default {
           .get(page_url)
           .then(response => {
             this.reactivo = response.data;
+            this.randomizeRespuestas();
             console.log("LISTENING");
             console.log(this.reactivo);
             this.competencia = "listening";
@@ -276,6 +254,7 @@ export default {
           .get(page_url)
           .then(response => {
             this.reactivo = response.data;
+            this.randomizeRespuestas();
             console.log("WRITING");
             console.log(this.reactivo);
             this.competencia = "writing";
@@ -292,8 +271,19 @@ export default {
             " writing guardadas de " +
             this.cuestionario.difusion_id.evaluacion_id.cantidad_writing
         );
-        // this.getWriting();
+        this.finish();
       }
+    },
+    setActive(value) {
+      this.respuesta = value.opcion;
+      for (var i = this.respuestas.length - 1; i >= 0; i--) {
+        if (this.respuestas[i].id == value.id) {
+          this.respuestas[i].class = this.activeButton;
+        } else {
+          this.respuestas[i].class = this.inactiveButton;
+        }
+      }
+      console.log(this.respuesta);
     },
     save() {
       console.log(this.respuesta);
@@ -337,12 +327,17 @@ export default {
           status: this.cuestionario.status
         })
         .then(response => {
+          this.clear();
           this.next(this.cuestionario);
           //luego se registran las preguntas
         })
         .catch(e => {
           console.log(e);
         });
+    },
+    clear() {
+      this.respuesta = "";
+      this.respuestas = [];
     },
     next(cuestionarioSelected) {
       this.getReading();
@@ -351,6 +346,29 @@ export default {
         params: { cuestionarioSelected }
       });
       this.cuestionario = this.cuestionario;
+    },
+    finish() {
+      axios
+        .put("/api/alumnoDifusiones/" + this.cuestionario.id, {
+          status: 4
+        })
+        .then(response => {
+          this.clear();
+          this.cuestionario.status = 4;
+
+          //luego se registran las preguntas
+        })
+        .catch(e => {
+          console.log(e);
+        });
+      this.update = true;
+      this.end = true;
+      this.update = false;
+    },
+    exit() {
+      this.$router.push({
+        name: "index"
+      });
     },
     newWindow: function(url) {
       window.open(url, "_blank");

@@ -9,7 +9,7 @@ $factory->define(App\models\OpcionReactivo::class, function (Faker $faker) {
     $reactivo = Reactivo::count();
 
     return [
-        'opcion' => $faker->word,
+        'opcion' => 'Opcion' . ' ' . $faker->word,
         'reactivo_id' => $faker->numberBetween(1,$reactivo-10),
     ];
 });

@@ -34270,59 +34270,6 @@ var cantidad;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: ["cuestionarioSelected"],
@@ -34337,8 +34284,13 @@ var cantidad;
       multimedia: "no",
       titulo: "No hay datos",
       respuesta: "",
+      respuestas: [],
       competencia: "",
-      editing: false
+      activeButton: "btn-info",
+      inactiveButton: "btn-outline-info",
+      editing: false,
+      end: false,
+      update: false
     };
   },
   mounted: function mounted() {
@@ -34359,6 +34311,30 @@ var cantidad;
 
 
   methods: {
+    randomizeRespuestas: function randomizeRespuestas() {
+      this.respuestas.push({
+        id: 0,
+        opcion: this.reactivo.respuesta_correcta,
+        class: this.inactiveButton
+      });
+      for (var i = this.reactivo.opciones.length - 1; i >= 0; i--) {
+        this.respuestas.push({
+          id: i + 1,
+          opcion: this.reactivo.opciones[i].opcion,
+          class: this.inactiveButton
+        });
+      }
+      console.log("array opciones");
+      console.log(this.respuestas);
+      for (var i = this.respuestas.length - 1; i >= 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = this.respuestas[i];
+        this.respuestas[i] = this.respuestas[j];
+        this.respuestas[j] = temp;
+      }
+      console.log("array opciones randomized");
+      console.log(this.respuestas);
+    },
     getReading: function getReading() {
       var _this = this;
 
@@ -34371,6 +34347,7 @@ var cantidad;
 
         axios.get(page_url).then(function (response) {
           _this.reactivo = response.data;
+          _this.randomizeRespuestas();
           console.log("READING");
           console.log(_this.reactivo);
           _this.competencia = "reading";
@@ -34396,6 +34373,7 @@ var cantidad;
 
         axios.get(page_url).then(function (response) {
           _this2.reactivo = response.data;
+          _this2.randomizeRespuestas();
           console.log("LISTENING");
           console.log(_this2.reactivo);
           _this2.competencia = "listening";
@@ -34421,6 +34399,7 @@ var cantidad;
 
         axios.get(page_url).then(function (response) {
           _this3.reactivo = response.data;
+          _this3.randomizeRespuestas();
           console.log("WRITING");
           console.log(_this3.reactivo);
           _this3.competencia = "writing";
@@ -34431,8 +34410,19 @@ var cantidad;
       } else {
         console.log("writing completas, competencias completadas");
         console.log("hay " + this.cuestionario.writingGuardadas + " writing guardadas de " + this.cuestionario.difusion_id.evaluacion_id.cantidad_writing);
-        // this.getWriting();
+        this.finish();
       }
+    },
+    setActive: function setActive(value) {
+      this.respuesta = value.opcion;
+      for (var i = this.respuestas.length - 1; i >= 0; i--) {
+        if (this.respuestas[i].id == value.id) {
+          this.respuestas[i].class = this.activeButton;
+        } else {
+          this.respuestas[i].class = this.inactiveButton;
+        }
+      }
+      console.log(this.respuesta);
     },
     save: function save() {
       var _this4 = this;
@@ -34470,11 +34460,16 @@ var cantidad;
         writingCorrectas: this.cuestionario.writingCorrectas,
         status: this.cuestionario.status
       }).then(function (response) {
+        _this4.clear();
         _this4.next(_this4.cuestionario);
         //luego se registran las preguntas
       }).catch(function (e) {
         console.log(e);
       });
+    },
+    clear: function clear() {
+      this.respuesta = "";
+      this.respuestas = [];
     },
     next: function next(cuestionarioSelected) {
       this.getReading();
@@ -34483,6 +34478,28 @@ var cantidad;
         params: { cuestionarioSelected: cuestionarioSelected }
       });
       this.cuestionario = this.cuestionario;
+    },
+    finish: function finish() {
+      var _this5 = this;
+
+      axios.put("/api/alumnoDifusiones/" + this.cuestionario.id, {
+        status: 4
+      }).then(function (response) {
+        _this5.clear();
+        _this5.cuestionario.status = 4;
+
+        //luego se registran las preguntas
+      }).catch(function (e) {
+        console.log(e);
+      });
+      this.update = true;
+      this.end = true;
+      this.update = false;
+    },
+    exit: function exit() {
+      this.$router.push({
+        name: "index"
+      });
     },
 
     newWindow: function newWindow(url) {
@@ -64338,130 +64355,180 @@ var render = function() {
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
-      _c("h5", [
-        _vm._v(_vm._s(_vm.cuestionario.difusion_id.evaluacion_id.instruccion))
-      ]),
+      !_vm.end
+        ? _c("h5", [
+            _vm._v(
+              _vm._s(_vm.cuestionario.difusion_id.evaluacion_id.instruccion)
+            )
+          ])
+        : _vm._e(),
       _vm._v(" "),
-      _c("hr"),
+      !_vm.end ? _c("hr") : _vm._e(),
       _vm._v(" "),
-      _c("card-transition", [
-        _c(
-          "div",
-          {
-            key: _vm.reactivo.id,
-            staticClass: "card mb-5 col-md-10 col-sm-12",
-            staticStyle: { margin: "auto" },
-            attrs: { align: "center" }
-          },
-          [
-            _c("div", { staticClass: "card-head" }, [
-              _c("table", { staticClass: "table table-hover" }, [
-                _c("thead", { staticClass: "thead" }, [
-                  _c("tr", [
-                    _c("th", { attrs: { scope: "col" } }, [
-                      _vm._v(_vm._s(_vm.reactivo.pregunta))
-                    ]),
+      !_vm.update
+        ? _c("card-transition", [
+            _c(
+              "div",
+              {
+                key: _vm.reactivo.id,
+                staticClass: "card mb-5 col-md-10 col-sm-12",
+                staticStyle: { margin: "auto" },
+                attrs: { align: "center" }
+              },
+              [
+                _c("div", { staticClass: "card-head" }, [
+                  _c("div", { staticClass: "container" }, [
+                    _c("br"),
                     _vm._v(" "),
-                    _c("th", { attrs: { scope: "col" } }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-secondary",
-                          on: {
-                            click: function($event) {
-                              _vm.newWindow(
-                                "/storage/" + _vm.reactivo.text.text
-                              )
-                            }
-                          }
-                        },
-                        [_vm._v("Archivo multimedia")]
-                      )
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm.reactivo.tipo_id == 1
-                ? _c("div", [
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.respuesta,
-                          expression: "respuesta"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "Respuesta" },
-                      domProps: { value: _vm.respuesta },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.respuesta = $event.target.value
-                        }
-                      }
-                    })
-                  ])
-                : _c(
-                    "div",
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-secondary",
-                          on: {
-                            click: function($event) {
-                              _vm.respuesta = _vm.reactivo.respuesta_correcta
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(_vm.reactivo.respuesta_correcta))]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.reactivo.opciones, function(value, key) {
-                        return _c(
-                          "button",
-                          {
-                            key: key,
-                            staticClass: "btn btn-secondary",
-                            on: {
-                              click: function($event) {
-                                _vm.respuesta = value.opcion
-                              }
-                            }
-                          },
-                          [_vm._v(_vm._s(value.opcion))]
+                    !_vm.end
+                      ? _c("div", { staticClass: "row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-13 col-sm-6 col-md-9" },
+                            [
+                              _c("h5", { staticClass: "text-left" }, [
+                                _vm._v(_vm._s(_vm.reactivo.pregunta))
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-5 col-md-3" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-secondary btn-block",
+                                on: {
+                                  click: function($event) {
+                                    _vm.newWindow(
+                                      "/storage/" + _vm.reactivo.text.text
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Archivo multimedia")]
+                            )
+                          ])
+                        ])
+                      : _c(
+                          "div",
+                          { staticClass: "row justify-content-md-center" },
+                          [
+                            _c("div", { staticClass: "col" }, [
+                              _vm.cuestionario.difusion_id.evaluacion_id.tipo
+                                .id == 4
+                                ? _c("h2", { staticClass: "text-center" }, [
+                                    _vm._v("Actividad terminada.")
+                                  ])
+                                : _c("h2", { staticClass: "text-center" }, [
+                                    _vm._v("Examen terminado.")
+                                  ])
+                            ])
+                          ]
                         )
-                      })
-                    ],
-                    2
-                  ),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-success",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.save()
-                    }
-                  }
-                },
-                [_vm._v("Next")]
-              )
-            ])
-          ]
-        )
-      ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("br"),
+                  _vm._v(" "),
+                  !_vm.end
+                    ? _c("div", [
+                        _vm.reactivo.tipo_id == 1
+                          ? _c("div", [
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.respuesta,
+                                    expression: "respuesta"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Respuesta"
+                                },
+                                domProps: { value: _vm.respuesta },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.respuesta = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          : _c("div", { staticClass: "container" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row justify-content-md-center"
+                                },
+                                _vm._l(this.respuestas, function(value, key) {
+                                  return _c(
+                                    "div",
+                                    { key: key, staticClass: "col col-lg-3" },
+                                    [
+                                      _c(
+                                        "button",
+                                        {
+                                          key: value.id,
+                                          staticClass: "btn btn-block",
+                                          class: value.class,
+                                          on: {
+                                            click: function($event) {
+                                              _vm.setActive(value)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(value.opcion))]
+                                      )
+                                    ]
+                                  )
+                                })
+                              )
+                            ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  !_vm.end
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              _vm.save()
+                            }
+                          }
+                        },
+                        [_vm._v("Next")]
+                      )
+                    : _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              _vm.exit()
+                            }
+                          }
+                        },
+                        [_vm._v("Finish")]
+                      )
+                ])
+              ]
+            )
+          ])
+        : _vm._e()
     ],
     1
   )

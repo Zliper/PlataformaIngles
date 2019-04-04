@@ -19,8 +19,8 @@ $factory->define(App\models\Reactivo::class, function (Faker $faker) {
     $text = Text::count();
 
     return [
-        'pregunta' => $faker->sentence(7),
-        'respuesta_correcta' => $faker->word,
+        'pregunta' => 'Question' . ' ' . $faker->word,
+        'respuesta_correcta' => 'Opcion' . ' ' . $faker->word,
         'competencia_id' => $faker->numberBetween(1,$competencia),
         'tipo_id' => $faker->numberBetween(1,$tipo),
         'estatus_id' => $faker->numberBetween(1,$estatus),
