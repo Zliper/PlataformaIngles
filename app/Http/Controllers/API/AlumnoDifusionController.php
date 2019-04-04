@@ -20,6 +20,8 @@ class AlumnoDifusionController extends Controller
         //
         if ($request->input('matriculaByDifusion')) {
             return AlumnoDifusion::where('difusion_id',$request->input('matriculaByDifusion'))->get()->pluck('matricula');
+        } else if ($request->input('resultadosByDifusion')) {
+            return AlumnoDifusion::where('difusion_id',$request->input('resultadosByDifusion'))->with("hasDifusion")->with('hasDifusion','hasDifusion.evaluacion')->get();
         } else if ($request->input('getActiveByAlumno')) {
             if($request->input('getActiveByAlumno')=='actividades') $tipo = '4';
             if($request->input('getActiveByAlumno')=='ordinarios') $tipo = '3';

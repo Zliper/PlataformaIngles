@@ -12,6 +12,7 @@ import CreateCuestionario from "../views/maestro/CreateCuestionario.vue";
 import DifundirCuestionario from "../views/maestro/DifundirCuestionario.vue";
 import EditCuestionario from "../views/maestro/EditCuestionario.vue";
 import EditDifusion from "../views/maestro/EditDifusion.vue";
+import Resultados from "../views/maestro/Resultados.vue";
 
 Vue.use(VueRouter);
 
@@ -59,6 +60,12 @@ const router = new VueRouter({
       path: "/maestro/difusiones/edit",
       name: "difusion.edit",
       component: EditDifusion,
+      props: true
+    },
+    {
+      path: "/maestro/difusiones/resultados",
+      name: "difusiones.resultados",
+      component: Resultados,
       props: true
     },
     {

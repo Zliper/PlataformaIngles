@@ -79,13 +79,29 @@ class DifusionController extends Controller
             date_default_timezone_set('America/Mexico_City');
             $minutes = 6;
             $fecha = date('Y-m-d H:i:s');
-            /* $difusiones = Difusion::join('evaluaciones', function($join) use ($tipo,$id,$status,$fecha){
-                $join->on('difusiones.evaluacion_id','=','evaluaciones.id')
-                ->where('difusiones.profesor_id','=',$id)->where('evaluaciones.catalogo_id','=',$tipo)->where('difusiones.status','=',$status)->where('fecha_aplicacion', '>=',$fecha);
-            })
-                ->get();
-            return $difusiones; */
             return new DifusionCollection(Difusion::where('profesor_id','=',$id)->whereHas("evaluacion",function($c) use ($tipo){$c->where('catalogo_id','=',$tipo);})->where('status','=',$status)->where('fecha_aplicacion', '<=',$fecha)->where('fecha_limite', '>=',$fecha)->get());
+        } else if ($request->input('getPastByProfesor')) {
+            if($request->input('tipo')=='actividades') $tipo = '4';
+            if($request->input('tipo')=='ordinarios') $tipo = '3';
+            if($request->input('tipo')=='recuperaciones') $tipo = '2';
+            if($request->input('tipo')=='extraordinarios') $tipo = '1';
+            $id = $request->input('getPastByProfesor');
+            $status = $request->input('status');
+            date_default_timezone_set('America/Mexico_City');
+            $minutes = 6;
+            $fecha = date('Y-m-d H:i:s');
+            return new DifusionCollection(Difusion::where('profesor_id','=',$id)->whereHas("evaluacion",function($c) use ($tipo){$c->where('catalogo_id','=',$tipo);})->where('status','=',$status)->where('fecha_aplicacion', '<=',$fecha)->where('fecha_limite', '<=',$fecha)->get());
+        } else if ($request->input('getNextByProfesor')) {
+            if($request->input('tipo')=='actividades') $tipo = '4';
+            if($request->input('tipo')=='ordinarios') $tipo = '3';
+            if($request->input('tipo')=='recuperaciones') $tipo = '2';
+            if($request->input('tipo')=='extraordinarios') $tipo = '1';
+            $id = $request->input('getNextByProfesor');
+            $status = $request->input('status');
+            date_default_timezone_set('America/Mexico_City');
+            $minutes = 6;
+            $fecha = date('Y-m-d H:i:s');
+            return new DifusionCollection(Difusion::where('profesor_id','=',$id)->whereHas("evaluacion",function($c) use ($tipo){$c->where('catalogo_id','=',$tipo);})->where('status','=',$status)->where('fecha_aplicacion', '>=',$fecha)->where('fecha_limite', '>=',$fecha)->get());
         } else if ($request->input('countActiveByAlumno')) {
             if($request->input('countActiveByAlumno')=='actividades') $tipo = '4';
             if($request->input('countActiveByAlumno')=='ordinarios') $tipo = '3';

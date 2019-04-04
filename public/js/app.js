@@ -29824,24 +29824,515 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
       profesorID: "1",
       tipos: [],
-      actividades: [],
-      ordinarios: [],
-      recuperaciones: [],
-      extraordinarios: []
+      actividadesPasadas: [],
+      ordinariosPasados: [],
+      recuperacionesPasadas: [],
+      extraordinariosPasados: [],
+      actividadesActivas: [],
+      ordinariosActivos: [],
+      recuperacionesActivas: [],
+      extraordinariosActivos: [],
+      actividadesProximas: [],
+      ordinariosProximos: [],
+      recuperacionesProximas: [],
+      extraordinariosProximos: [],
+      renderComponent: true,
+      tiempos: [{
+        id: 0,
+        tiempo: "Pasados",
+        expand: false
+      }, {
+        id: 1,
+        tiempo: "Activos",
+        expand: true
+      }, {
+        id: 2,
+        tiempo: "Por aplicar",
+        expand: false
+      }]
     };
   },
   created: function created() {
     this.fetchTipos();
-    this.fetchExtraordinarios();
-    this.fetchRecuperaciones();
-    this.fetchOrdinarios();
     this.fetchActividades();
+    this.fetchOrdinarios();
+    this.fetchRecuperaciones();
+    this.fetchExtraordinarios();
   },
 
   methods: {
@@ -29862,14 +30353,26 @@ if (false) {(function () {
     fetchExtraordinarios: function fetchExtraordinarios() {
       var _this2 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/difusiones?getActiveByProfesor=" + this.profesorID + "&tipo=extraordinarios&status=2";
-
       var vm = this;
 
-      axios.get(page_url).then(function (response) {
+      axios.get("/api/difusiones?getPastByProfesor=" + this.profesorID + "&tipo=extraordinarios&status=2").then(function (response) {
         console.log(response);
         console.log("ext");
-        _this2.extraordinarios = response.data.data.difusiones;
+        _this2.extraordinariosPasados = response.data.data.difusiones;
+      }).catch(function (e) {
+        console.log(e);
+      });
+      axios.get("/api/difusiones?getActiveByProfesor=" + this.profesorID + "&tipo=extraordinarios&status=2").then(function (response) {
+        console.log(response);
+        console.log("ext");
+        _this2.extraordinariosActivos = response.data.data.difusiones;
+      }).catch(function (e) {
+        console.log(e);
+      });
+      axios.get("/api/difusiones?getNextByProfesor=" + this.profesorID + "&tipo=extraordinarios&status=2").then(function (response) {
+        console.log(response);
+        console.log("ext");
+        _this2.extraordinariosProximos = response.data.data.difusiones;
       }).catch(function (e) {
         console.log(e);
       });
@@ -29877,13 +30380,23 @@ if (false) {(function () {
     fetchRecuperaciones: function fetchRecuperaciones() {
       var _this3 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/difusiones?getActiveByProfesor=" + this.profesorID + "&tipo=recuperaciones&status=2";
-
       var vm = this;
 
-      axios.get(page_url).then(function (response) {
+      axios.get("/api/difusiones?getPastByProfesor=" + this.profesorID + "&tipo=recuperaciones&status=2").then(function (response) {
         console.log("rec");
-        _this3.recuperaciones = response.data.data.difusiones;
+        _this3.recuperacionesPasadas = response.data.data.difusiones;
+      }).catch(function (e) {
+        console.log(e);
+      });
+      axios.get("/api/difusiones?getActiveByProfesor=" + this.profesorID + "&tipo=recuperaciones&status=2").then(function (response) {
+        console.log("rec");
+        _this3.recuperacionesActivas = response.data.data.difusiones;
+      }).catch(function (e) {
+        console.log(e);
+      });
+      axios.get("/api/difusiones?getNextByProfesor=" + this.profesorID + "&tipo=recuperaciones&status=2").then(function (response) {
+        console.log("rec");
+        _this3.recuperacionesProximas = response.data.data.difusiones;
       }).catch(function (e) {
         console.log(e);
       });
@@ -29891,13 +30404,24 @@ if (false) {(function () {
     fetchOrdinarios: function fetchOrdinarios() {
       var _this4 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/difusiones?getActiveByProfesor=" + this.profesorID + "&tipo=ordinarios&status=2";
-
       var vm = this;
 
-      axios.get(page_url).then(function (response) {
+      axios.get("/api/difusiones?getPastByProfesor=" + this.profesorID + "&tipo=ordinarios&status=2").then(function (response) {
         console.log("ord");
-        _this4.ordinarios = response.data.data.difusiones;
+        _this4.ordinariosPasados = response.data.data.difusiones;
+      }).catch(function (e) {
+        console.log(e);
+      });
+      axios.get("/api/difusiones?getActiveByProfesor=" + this.profesorID + "&tipo=ordinarios&status=2").then(function (response) {
+        console.log("ord");
+        _this4.ordinariosActivos = response.data.data.difusiones;
+        console.log(_this4.ordinariosActivos);
+      }).catch(function (e) {
+        console.log(e);
+      });
+      axios.get("/api/difusiones?getNextByProfesor=" + this.profesorID + "&tipo=ordinarios&status=2").then(function (response) {
+        console.log("ord");
+        _this4.ordinariosProximos = response.data.data.difusiones;
       }).catch(function (e) {
         console.log(e);
       });
@@ -29905,14 +30429,26 @@ if (false) {(function () {
     fetchActividades: function fetchActividades() {
       var _this5 = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/difusiones?getActiveByProfesor=" + this.profesorID + "&tipo=actividades&status=2";
-
       var vm = this;
 
-      axios.get(page_url).then(function (response) {
+      axios.get("/api/difusiones?getPastByProfesor=" + this.profesorID + "&tipo=actividades&status=2").then(function (response) {
         console.log("act");
-        _this5.actividades = response.data.data.difusiones;
-        console.log(_this5.actividades);
+        _this5.actividadesPasadas = response.data.data.difusiones;
+        console.log(_this5.actividadesPasadas);
+      }).catch(function (e) {
+        console.log(e);
+      });
+      axios.get("/api/difusiones?getActiveByProfesor=" + this.profesorID + "&tipo=actividades&status=2").then(function (response) {
+        console.log("act");
+        _this5.actividadesActivas = response.data.data.difusiones;
+        console.log(_this5.actividadesActivas);
+      }).catch(function (e) {
+        console.log(e);
+      });
+      axios.get("/api/difusiones?getNextByProfesor=" + this.profesorID + "&tipo=actividades&status=2").then(function (response) {
+        console.log("act");
+        _this5.actividadesProximas = response.data.data.difusiones;
+        console.log(_this5.actividadesProximas);
       }).catch(function (e) {
         console.log(e);
       });
@@ -29943,16 +30479,39 @@ if (false) {(function () {
 
       axios.delete("/api/alumnoDifusiones/" + cuestionarioSelected.difusion_id).then(function (response) {
         //this.$router.push({ name: 'cuestionarios'})
-        _this7.fetchExtraordinarios();
-        _this7.fetchRecuperaciones();
-        _this7.fetchOrdinarios();
         _this7.fetchActividades();
+        _this7.fetchOrdinarios();
+        _this7.fetchRecuperaciones();
+        _this7.fetchExtraordinarios();
         //this.$router.push({ name: 'cuestionarios'})
         _this7.$toastr("warning", "Difusion deleted successfully");
         console.log(response);
         // this.addDifusiones(); //luego se registran las preguntas
       }).catch(function (e) {
         console.log(e);
+      });
+    },
+    resultados: function resultados(difusion) {
+      //console.log(difusion);
+      this.$router.push({
+        name: "difusiones.resultados",
+        params: { difusion: difusion }
+      });
+    },
+    forceRerender: function forceRerender(id) {
+      var _this8 = this;
+
+      if (this.tiempos[id].expand == true) {
+        this.tiempos[id].expand = false;
+      } else {
+        this.tiempos[id].expand = true;
+      }
+      // Remove my-component from the DOM
+      this.renderComponent = false;
+
+      this.$nextTick(function () {
+        // Add the component back in
+        _this8.renderComponent = true;
       });
     }
   }
@@ -59538,6 +60097,8 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__views_maestro_DifundirCuestionario_vue__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__views_maestro_EditCuestionario_vue__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__views_maestro_EditDifusion_vue__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_maestro_Resultados_vue__ = __webpack_require__(142);
+
 
 
 
@@ -59591,6 +60152,11 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     path: "/maestro/difusiones/edit",
     name: "difusion.edit",
     component: __WEBPACK_IMPORTED_MODULE_11__views_maestro_EditDifusion_vue__["a" /* default */],
+    props: true
+  }, {
+    path: "/maestro/difusiones/resultados",
+    name: "difusiones.resultados",
+    component: __WEBPACK_IMPORTED_MODULE_12__views_maestro_Resultados_vue__["a" /* default */],
     props: true
   }, {
     path: "/maestro/reactivos/create",
@@ -60296,345 +60862,2316 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("div", [
-      _c("h4", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Actividades")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row justify-content-center inputs" },
-        [
-          _c(
-            "card-transition",
-            { staticStyle: { "min-width": "75%" } },
-            _vm._l(_vm.actividades, function(actividad) {
-              return _c(
-                "div",
-                { key: actividad.difusion_id, staticClass: "card mb-5" },
-                [
+    _c(
+      "div",
+      [
+        _vm.renderComponent
+          ? _c(
+              "card-transition",
+              { staticStyle: { "min-width": "75%" } },
+              _vm._l(_vm.tiempos, function(tiempo) {
+                return _c("div", { key: tiempo.id, staticClass: "card mb-5" }, [
                   _c("br"),
                   _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12 col-sm-12 inputs" }, [
-                      _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _vm._v(
-                          "\n                Cuestionario: " +
-                            _vm._s(actividad.evaluacion_id.nota) +
-                            "\n                "
-                        ),
-                        _c("br")
-                      ])
-                    ])
+                  _c("div", { staticClass: "form-row" }, [
+                    _c("div", { staticClass: "col-md-1 col-sm-1" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8 col-sm-10" }, [
+                      _c("h3", [_vm._v(_vm._s(tiempo.tiempo))])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2 col-sm-12" }, [
+                      !tiempo.expand
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary btn-block",
+                              on: {
+                                click: function($event) {
+                                  _vm.forceRerender(tiempo.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Mostrar")]
+                          )
+                        : _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary btn-block",
+                              on: {
+                                click: function($event) {
+                                  _vm.forceRerender(tiempo.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Ocultar")]
+                          )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 col-sm-1" })
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col-md-12 col-sm-12",
-                        attrs: { align: "right" }
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12 col-sm-12 inputs" },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.confirmDelete(actividad)
-                                  }
-                                }
-                              },
-                              [_vm._v("Borrar")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-info",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.editar(actividad)
-                                  }
-                                }
-                              },
-                              [_vm._v("Editar")]
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]
-              )
-            })
-          )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", [
-      _c("h4", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Ordinarios")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row justify-content-center inputs" },
-        [
-          _c(
-            "card-transition",
-            { staticStyle: { "min-width": "75%" } },
-            _vm._l(_vm.ordinarios, function(ordinario) {
-              return _c(
-                "div",
-                { key: ordinario.difusion_id, staticClass: "card mb-5" },
-                [
-                  _c("br"),
+                  _c("hr"),
                   _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12 col-sm-12 inputs" }, [
-                      _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _vm._v(
-                          "\n                Cuestionario: " +
-                            _vm._s(ordinario.evaluacion_id.nota) +
-                            "\n                "
-                        ),
-                        _c("br")
-                      ])
-                    ])
-                  ]),
+                  tiempo.expand
+                    ? _c(
+                        "div",
+                        [
+                          _c("br"),
+                          _vm._v(" "),
+                          tiempo.id == 0
+                            ? [
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Actividades")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(_vm.actividadesPasadas, function(
+                                          actividad
+                                        ) {
+                                          return _c(
+                                            "div",
+                                            {
+                                              key: actividad.difusion_id,
+                                              staticClass: "card mb-5"
+                                            },
+                                            [
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12 inputs"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                          Cuestionario: " +
+                                                              _vm._s(
+                                                                actividad
+                                                                  .evaluacion_id
+                                                                  .nota
+                                                              ) +
+                                                              "\n                          "
+                                                          ),
+                                                          _c("br")
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12",
+                                                      attrs: { align: "right" }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12 inputs"
+                                                        },
+                                                        [
+                                                          !tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-danger",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.confirmDelete(
+                                                                        actividad,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Borrar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 2
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.editar(
+                                                                        actividad,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Editar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.resultados(
+                                                                        actividad,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Ver resultados"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Ordinarios")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(_vm.ordinariosPasados, function(
+                                          ordinario
+                                        ) {
+                                          return _c(
+                                            "div",
+                                            {
+                                              key: ordinario.difusion_id,
+                                              staticClass: "card mb-5"
+                                            },
+                                            [
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12 inputs"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                          Cuestionario: " +
+                                                              _vm._s(
+                                                                ordinario
+                                                                  .evaluacion_id
+                                                                  .nota
+                                                              ) +
+                                                              "\n                          "
+                                                          ),
+                                                          _c("br")
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12",
+                                                      attrs: { align: "right" }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12 inputs"
+                                                        },
+                                                        [
+                                                          !tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-danger",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.confirmDelete(
+                                                                        ordinario,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Cancelar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 2
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.editar(
+                                                                        ordinario,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Editar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.resultados(
+                                                                        ordinario,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Ver resultados"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Recuperaciones")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(
+                                          _vm.recuperacionesPasadas,
+                                          function(recuperacion) {
+                                            return _c(
+                                              "div",
+                                              {
+                                                key: recuperacion.difusion_id,
+                                                staticClass: "card mb-5"
+                                              },
+                                              [
+                                                _c("br"),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12 inputs"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                          Cuestionario: " +
+                                                                _vm._s(
+                                                                  recuperacion
+                                                                    .evaluacion_id
+                                                                    .nota
+                                                                ) +
+                                                                "\n                          "
+                                                            ),
+                                                            _c("br")
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12",
+                                                        attrs: {
+                                                          align: "right"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12 inputs"
+                                                          },
+                                                          [
+                                                            !tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-danger",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.confirmDelete(
+                                                                          recuperacion,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Cancelar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 2
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.editar(
+                                                                          recuperacion,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Editar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.resultados(
+                                                                          recuperacion,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Ver resultados"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e()
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        )
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Extraordinarios")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(
+                                          _vm.extraordinariosPasados,
+                                          function(extraordinario) {
+                                            return _c(
+                                              "div",
+                                              {
+                                                key: extraordinario.difusion_id,
+                                                staticClass: "card mb-5"
+                                              },
+                                              [
+                                                _c("br"),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12 inputs"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                          Cuestionario: " +
+                                                                _vm._s(
+                                                                  extraordinario
+                                                                    .evaluacion_id
+                                                                    .nota
+                                                                ) +
+                                                                "\n                          "
+                                                            ),
+                                                            _c("br")
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12",
+                                                        attrs: {
+                                                          align: "right"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12 inputs"
+                                                          },
+                                                          [
+                                                            !tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-danger",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.confirmDelete(
+                                                                          extraordinario,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Cancelar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 2
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.editar(
+                                                                          extraordinario,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Editar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.resultados(
+                                                                          extraordinario,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Ver resultados"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e()
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        )
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tiempo.id == 1
+                            ? [
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Actividades")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(_vm.actividadesActivas, function(
+                                          actividad
+                                        ) {
+                                          return _c(
+                                            "div",
+                                            {
+                                              key: actividad.difusion_id,
+                                              staticClass: "card mb-5"
+                                            },
+                                            [
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12 inputs"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                          Cuestionario: " +
+                                                              _vm._s(
+                                                                actividad
+                                                                  .evaluacion_id
+                                                                  .nota
+                                                              ) +
+                                                              "\n                          "
+                                                          ),
+                                                          _c("br")
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12",
+                                                      attrs: { align: "right" }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12 inputs"
+                                                        },
+                                                        [
+                                                          !tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-danger",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.confirmDelete(
+                                                                        actividad,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Borrar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 2
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.editar(
+                                                                        actividad,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Editar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.resultados(
+                                                                        actividad,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Ver resultados"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Ordinarios")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(_vm.ordinariosActivos, function(
+                                          ordinario
+                                        ) {
+                                          return _c(
+                                            "div",
+                                            {
+                                              key: ordinario.difusion_id,
+                                              staticClass: "card mb-5"
+                                            },
+                                            [
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12 inputs"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                          Cuestionario: " +
+                                                              _vm._s(
+                                                                ordinario
+                                                                  .evaluacion_id
+                                                                  .nota
+                                                              ) +
+                                                              "\n                          "
+                                                          ),
+                                                          _c("br")
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12",
+                                                      attrs: { align: "right" }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12 inputs"
+                                                        },
+                                                        [
+                                                          !tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-danger",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.confirmDelete(
+                                                                        ordinario,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Cancelar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 2
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.editar(
+                                                                        ordinario,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Editar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.resultados(
+                                                                        ordinario,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Ver resultados"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Recuperaciones")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(
+                                          _vm.recuperacionesActivas,
+                                          function(recuperacion) {
+                                            return _c(
+                                              "div",
+                                              {
+                                                key: recuperacion.difusion_id,
+                                                staticClass: "card mb-5"
+                                              },
+                                              [
+                                                _c("br"),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12 inputs"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                          Cuestionario: " +
+                                                                _vm._s(
+                                                                  recuperacion
+                                                                    .evaluacion_id
+                                                                    .nota
+                                                                ) +
+                                                                "\n                          "
+                                                            ),
+                                                            _c("br")
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12",
+                                                        attrs: {
+                                                          align: "right"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12 inputs"
+                                                          },
+                                                          [
+                                                            !tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-danger",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.confirmDelete(
+                                                                          recuperacion,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Cancelar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 2
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.editar(
+                                                                          recuperacion,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Editar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.resultados(
+                                                                          recuperacion,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Ver resultados"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e()
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        )
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Extraordinarios")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(
+                                          _vm.extraordinariosActivos,
+                                          function(extraordinario) {
+                                            return _c(
+                                              "div",
+                                              {
+                                                key: extraordinario.difusion_id,
+                                                staticClass: "card mb-5"
+                                              },
+                                              [
+                                                _c("br"),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12 inputs"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                          Cuestionario: " +
+                                                                _vm._s(
+                                                                  extraordinario
+                                                                    .evaluacion_id
+                                                                    .nota
+                                                                ) +
+                                                                "\n                          "
+                                                            ),
+                                                            _c("br")
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12",
+                                                        attrs: {
+                                                          align: "right"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12 inputs"
+                                                          },
+                                                          [
+                                                            !tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-danger",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.confirmDelete(
+                                                                          extraordinario,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Cancelar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 2
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.editar(
+                                                                          extraordinario,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Editar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.resultados(
+                                                                          extraordinario,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Ver resultados"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e()
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        )
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          tiempo.id == 2
+                            ? [
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Actividades")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(
+                                          _vm.actividadesProximas,
+                                          function(actividad) {
+                                            return _c(
+                                              "div",
+                                              {
+                                                key: actividad.difusion_id,
+                                                staticClass: "card mb-5"
+                                              },
+                                              [
+                                                _c("br"),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12 inputs"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                          Cuestionario: " +
+                                                                _vm._s(
+                                                                  actividad
+                                                                    .evaluacion_id
+                                                                    .nota
+                                                                ) +
+                                                                "\n                          "
+                                                            ),
+                                                            _c("br")
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12",
+                                                        attrs: {
+                                                          align: "right"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12 inputs"
+                                                          },
+                                                          [
+                                                            !tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-danger",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.confirmDelete(
+                                                                          actividad,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Borrar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 2
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.editar(
+                                                                          actividad,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Editar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.resultados(
+                                                                          actividad,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Ver resultados"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e()
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        )
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Ordinarios")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(_vm.ordinariosProximos, function(
+                                          ordinario
+                                        ) {
+                                          return _c(
+                                            "div",
+                                            {
+                                              key: ordinario.difusion_id,
+                                              staticClass: "card mb-5"
+                                            },
+                                            [
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12 inputs"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                          Cuestionario: " +
+                                                              _vm._s(
+                                                                ordinario
+                                                                  .evaluacion_id
+                                                                  .nota
+                                                              ) +
+                                                              "\n                          "
+                                                          ),
+                                                          _c("br")
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-12 col-sm-12",
+                                                      attrs: { align: "right" }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-md-12 col-sm-12 inputs"
+                                                        },
+                                                        [
+                                                          !tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-danger",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.confirmDelete(
+                                                                        ordinario,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Cancelar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 2
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.editar(
+                                                                        ordinario,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Editar"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          tiempo.id == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-info",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button"
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      _vm.resultados(
+                                                                        ordinario,
+                                                                        tiempo.id
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Ver resultados"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Recuperaciones")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(
+                                          _vm.recuperacionesProximas,
+                                          function(recuperacion) {
+                                            return _c(
+                                              "div",
+                                              {
+                                                key: recuperacion.difusion_id,
+                                                staticClass: "card mb-5"
+                                              },
+                                              [
+                                                _c("br"),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12 inputs"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                          Cuestionario: " +
+                                                                _vm._s(
+                                                                  recuperacion
+                                                                    .evaluacion_id
+                                                                    .nota
+                                                                ) +
+                                                                "\n                          "
+                                                            ),
+                                                            _c("br")
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12",
+                                                        attrs: {
+                                                          align: "right"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12 inputs"
+                                                          },
+                                                          [
+                                                            !tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-danger",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.confirmDelete(
+                                                                          recuperacion,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Cancelar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 2
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.editar(
+                                                                          recuperacion,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Editar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.resultados(
+                                                                          recuperacion,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Ver resultados"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e()
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        )
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c(
+                                    "h4",
+                                    { staticStyle: { "text-align": "center" } },
+                                    [_vm._v("Extraordinarios")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "row justify-content-center inputs"
+                                    },
+                                    [
+                                      _c(
+                                        "card-transition",
+                                        { staticStyle: { "min-width": "75%" } },
+                                        _vm._l(
+                                          _vm.extraordinariosProximos,
+                                          function(extraordinario) {
+                                            return _c(
+                                              "div",
+                                              {
+                                                key: extraordinario.difusion_id,
+                                                staticClass: "card mb-5"
+                                              },
+                                              [
+                                                _c("br"),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12 inputs"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                          Cuestionario: " +
+                                                                _vm._s(
+                                                                  extraordinario
+                                                                    .evaluacion_id
+                                                                    .nota
+                                                                ) +
+                                                                "\n                          "
+                                                            ),
+                                                            _c("br")
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "col-md-12 col-sm-12",
+                                                        attrs: {
+                                                          align: "right"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "col-md-12 col-sm-12 inputs"
+                                                          },
+                                                          [
+                                                            !tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-danger",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.confirmDelete(
+                                                                          extraordinario,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Cancelar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 2
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.editar(
+                                                                          extraordinario,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Editar"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            tiempo.id == 0
+                                                              ? _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-info",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "button"
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.resultados(
+                                                                          extraordinario,
+                                                                          tiempo.id
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Ver resultados"
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              : _vm._e()
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        )
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]
+                            : _vm._e()
+                        ],
+                        2
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col-md-12 col-sm-12",
-                        attrs: { align: "right" }
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12 col-sm-12 inputs" },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.confirmDelete(ordinario)
-                                  }
-                                }
-                              },
-                              [_vm._v("Borrar")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-info",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.editar(ordinario)
-                                  }
-                                }
-                              },
-                              [_vm._v("Editar")]
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]
-              )
-            })
-          )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", [
-      _c("h4", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Recuperaciones")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row justify-content-center inputs" },
-        [
-          _c(
-            "card-transition",
-            { staticStyle: { "min-width": "75%" } },
-            _vm._l(_vm.recuperaciones, function(recuperacion) {
-              return _c(
-                "div",
-                { key: recuperacion.difusion_id, staticClass: "card mb-5" },
-                [
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12 col-sm-12 inputs" }, [
-                      _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _vm._v(
-                          "\n                Cuestionario: " +
-                            _vm._s(recuperacion.evaluacion_id.nota) +
-                            "\n                "
-                        ),
-                        _c("br")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col-md-12 col-sm-12",
-                        attrs: { align: "right" }
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12 col-sm-12 inputs" },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.confirmDelete(recuperacion)
-                                  }
-                                }
-                              },
-                              [_vm._v("Borrar")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-info",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.editar(recuperacion)
-                                  }
-                                }
-                              },
-                              [_vm._v("Editar")]
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]
-              )
-            })
-          )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", [
-      _c("h4", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Extraordinarios")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row justify-content-center inputs" },
-        [
-          _c(
-            "card-transition",
-            { staticStyle: { "min-width": "75%" } },
-            _vm._l(_vm.extraordinarios, function(extraordinario) {
-              return _c(
-                "div",
-                { key: extraordinario.difusion_id, staticClass: "card mb-5" },
-                [
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12 col-sm-12 inputs" }, [
-                      _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _vm._v(
-                          "\n                Cuestionario: " +
-                            _vm._s(extraordinario.evaluacion_id.nota) +
-                            "\n                "
-                        ),
-                        _c("br")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col-md-12 col-sm-12",
-                        attrs: { align: "right" }
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12 col-sm-12 inputs" },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.confirmDelete(extraordinario)
-                                  }
-                                }
-                              },
-                              [_vm._v("Borrar")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-info",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.editar(extraordinario)
-                                  }
-                                }
-                              },
-                              [_vm._v("Editar")]
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]
-              )
-            })
-          )
-        ],
-        1
-      )
-    ])
+                  _c("br")
+                ])
+              })
+            )
+          : _vm._e()
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -66029,6 +68566,247 @@ module.exports = function (css) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 141 */,
+/* 142 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Resultados_vue__ = __webpack_require__(143);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2125b9fe_hasScoped_true_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Resultados_vue__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
+var disposed = false
+function injectStyle (context) {
+  if (disposed) return
+  __webpack_require__(144)
+}
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2125b9fe"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Resultados_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2125b9fe_hasScoped_true_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Resultados_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2125b9fe_hasScoped_true_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Resultados_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\views\\maestro\\Resultados.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2125b9fe", Component.options)
+  } else {
+    hotAPI.reload("data-v-2125b9fe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 143 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  props: ["difusion"],
+  data: function data() {
+    return {
+      titulo: "",
+      datos: false,
+      resultados: []
+    };
+  },
+  mounted: function mounted() {
+    console.log("difusion recived");
+    console.log(this.difusion);
+    if (this.difusion) {
+      //   this.cuestionario = this.cuestionarioSelected;
+      //   console.log(this.cuestionarioSelected);
+      this.titulo = "Resultados de la aplicación";
+      this.datos = true;
+      //   this.aplicacion.duracion = this.cuestionarioSelected.duracion;
+      //this.aplicacion.fecha_hora = "12/02/2020 02:20 p.m.";
+    } else {
+      this.$router.push({ name: "difusiones" });
+    }
+  },
+  created: function created() {
+    this.fetchResultados();
+  },
+
+  methods: {
+    fetchResultados: function fetchResultados() {
+      var _this = this;
+
+      axios.get("/api/alumnoDifusiones?resultadosByDifusion=" + this.difusion.difusion_id).then(function (response) {
+        console.log("Matriculas seleccionadas de la difusion "
+        // + this.cuestionarioSelected.difusion_id
+        );
+        console.log(response.data);
+        //   console.log(this.matriculas);
+        _this.resultados = response.data;
+        //this.extraordinarios = response.data.data.evaluaciones;
+      }).catch(function (e) {
+        console.log(e);
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(145);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(3).default
+var update = add("64e48954", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"id\":\"data-v-2125b9fe\",\"scoped\":true,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Resultados.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"id\":\"data-v-2125b9fe\",\"scoped\":true,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Resultados.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 146 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("h3", { staticClass: "titles" }, [_vm._v(_vm._s(_vm.titulo))]),
+      _vm._v(" "),
+      _c(
+        "card-transition",
+        _vm._l(_vm.resultados, function(resultado) {
+          return _c("div", { key: resultado.id, staticClass: "card mb-5" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h3", [
+                _vm._v(_vm._s(resultado.has_difusion.evaluacion.nota))
+              ]),
+              _vm._v(" "),
+              _c("h5", [_vm._v("Matricula: " + _vm._s(resultado.matricula))]),
+              _vm._v(" "),
+              _c("h5", [
+                _vm._v(
+                  "Reading: " +
+                    _vm._s(resultado.readingCorrectas) +
+                    " de " +
+                    _vm._s(resultado.has_difusion.evaluacion.cantidad_reading)
+                )
+              ]),
+              _vm._v(" "),
+              _c("h5", [
+                _vm._v(
+                  "Listening: " +
+                    _vm._s(resultado.listeningCorrectas) +
+                    " de " +
+                    _vm._s(resultado.has_difusion.evaluacion.cantidad_listening)
+                )
+              ]),
+              _vm._v(" "),
+              _c("h5", [
+                _vm._v(
+                  "Writing: " +
+                    _vm._s(resultado.writingCorrectas) +
+                    " de " +
+                    _vm._s(resultado.has_difusion.evaluacion.cantidad_writing)
+                )
+              ])
+            ])
+          ])
+        })
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2125b9fe", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
 
 /***/ })
 /******/ ]);
