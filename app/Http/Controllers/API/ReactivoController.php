@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\collections\ReactivoCollection;
+use App\Http\Resources\collections\ReactivoComentarioCollection;
 use App\Http\Resources\ReactivoResource;
 use App\models\Reactivo;
 use App\models\OpcionReactivo;
@@ -20,9 +21,23 @@ class ReactivoController extends Controller
     public function index(Request $request)
     { 
         if ($request->input('by','') == "Aprobado") {
-            return new ReactivoCollection(Reactivo::where('estatus_id','=',1)->paginate(3));
+            if ($request->input('profesor_id')){
+                return new ReactivoCollection(Reactivo::where('estatus_id','=',1)->where('profesor_id','=',$request->input('profesor_id'))->paginate(3));
+            } else {
+                return new ReactivoCollection(Reactivo::where('estatus_id','=',1)->paginate(3));
+            }
         } else if ($request->input('by','') == "Espera") {
-            return new ReactivoCollection(Reactivo::where('estatus_id','=',2)->paginate(3));
+            if ($request->input('profesor_id')){
+                return new ReactivoCollection(Reactivo::where('estatus_id','=',2)->where('profesor_id','=',$request->input('profesor_id'))->paginate(3));
+            } else {
+                return new ReactivoCollection(Reactivo::where('estatus_id','=',2)->paginate(3));
+            }
+        } else if ($request->input('by','') == "Comentario") {
+            if ($request->input('profesor_id')){
+                return new ReactivoComentarioCollection(Reactivo::where('estatus_id','=',3)->where('profesor_id','=',$request->input('profesor_id'))->with('Comentario')->paginate(3));
+            } else {
+                return new ReactivoCollection(Reactivo::where('estatus_id','=',3)->with('Comentario')->paginate(3));
+            }
         } else if($request->input('count','') == "Aprobado") {
             return Reactivo::where('estatus_id',1)->count();
         } else if($request->input('count','') == "Espera") {

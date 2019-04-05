@@ -13,6 +13,15 @@
     </div>
     <hr>
 
+    <div class="form-row col-sm-3 mb-5">
+      <label for="filter">Filtrar por</label>
+      <select @change="sortBy(sortType)" v-model="sortType" id="filter" class="form-control">
+        <option selected value="Espera">Sin validar</option>
+        <option value="Aprobado">Validados</option>
+        <option value="Comentario">Con comentarios</option>
+      </select>
+    </div>
+
     <card-transition>
       <div
         class="card mb-5 col-md-10 col-sm-12"
@@ -89,7 +98,7 @@
               </tr>
               <tr v-if="reactivo.relationships['estatus_reactivo'].estatus == 'Comentario'">
                 <th>Comentario</th>
-                <td>{{getComentario(reactivo.id)}} {{ reactivo.comentario }}</td>
+                <td>{{ reactivo.relationships['comentario'].comentario }}</td>
               </tr>
             </tbody>
           </table>
@@ -139,7 +148,7 @@ export default {
     this.fetchReactivos();
   },
   methods: {
-    fetchReactivos(page_url = "/api/reactivos?by=1") {
+    fetchReactivos(page_url = "/api/reactivos?by=Aprobado&profesor_id=1") {
       let vm = this;
 
       axios
@@ -176,6 +185,16 @@ export default {
         .catch(e => {
           console.log(e);
         });
+    },
+
+    sortBy(sortType) {
+      if (sortType === "Aprobado") {
+        this.fetchReactivos("/api/reactivos?by=Aprobado&profesor_id=1");
+      } else if (sortType === "Espera") {
+        this.fetchReactivos("/api/reactivos?by=Espera&profesor_id=1");
+      } else if (sortType === "Comentario") {
+        this.fetchReactivos("/api/reactivos?by=Comentario&profesor_id=1");
+      }
     },
 
     makePagination(meta, links) {

@@ -47,6 +47,6 @@ class Reactivo extends Model
     }
 
     public function comentario() {
-      return $this->belongsTo('App\models\Comentario','comentario_id');
+      return $this->belongsTo('App\models\Comentario','id','reactivo_id');
     }
 }

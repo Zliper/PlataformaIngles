@@ -16,7 +16,7 @@ class ComentarioResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'difusion_id' => $this->difusion_id,
+            'reactivo_id' => $this->reactivo_id,
             'comentario' => $this->comentario
         ];
     }

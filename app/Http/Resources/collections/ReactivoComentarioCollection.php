@@ -20,7 +20,7 @@ use App\Http\Resources\collections\CatalogoCollection;
 use App\Http\Resources\collections\ComentarioCollection;
 
 
-class ReactivoCollection extends ResourceCollection
+class ReactivoComentarioCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -44,7 +44,7 @@ class ReactivoCollection extends ResourceCollection
                         "nivel" => new MateriaResource($reactivo->punto->materia),
                         "tipo_reactivo" => new TipoReactivoResource($reactivo->tipo),
                         "estatus_reactivo" => new EstatusResource($reactivo->estatus),
-                        //"comentario" => new ComentarioResource($reactivo->comentario),
+                        "comentario" => new ComentarioResource($reactivo->comentario),
                         "punto_gramatical" => new PuntoGramaticalResource($reactivo->punto),
                         "catalogo" => new CatalagoResource($reactivo->catalogo),
                         "autor" => new ProfesorResource($reactivo->profesor),
